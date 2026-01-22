@@ -3,21 +3,30 @@
         "id": 44717,
         "name": "Study room 172",
         "capacity": 4,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "Multimedia"
+        "building_id": "MLTM",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 44718,
         "name": "Study room 173",
         "capacity": 7,
+        "must_reserve": true,
         "tech_enhanced": true,
-        "location": "Multimedia"
+        "building_id": "MLTM",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 59309,
         "name": "Study room 174",
         "capacity": 2,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "Multimedia"
+        "building_id": "MLTM",
+        "is_indoor": true,
+        "is_talking_allowed": true
     }
 ]

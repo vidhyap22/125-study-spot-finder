@@ -8,7 +8,6 @@ OUTPUT_DIR = "./data"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs(f'{OUTPUT_DIR}/room_availability', exist_ok=True)
 
-
 SCRAPING_JS_CODE_BLOCK = """
         () => {
             const results = {};
@@ -73,7 +72,13 @@ SCRAPING_JS_CODE_BLOCK = """
                 const laneTd = tr.querySelector("td.fc-timeline-lane.fc-resource");
                 if (!laneTd) return;
 
-                const resourceId = laneTd.dataset.resourceId;
+                const resourceIdRaw = laneTd.dataset.resourceId;
+                if (!resourceIdRaw) return;
+
+                // ✅ SAME ID extraction logic as previous script
+                const roomId = parseInt(resourceIdRaw.split("_")[1]);
+                if (isNaN(roomId)) return;
+
                 const events = laneTd.querySelectorAll(
                     ".fc-timeline-events a.fc-timeline-event"
                 );
@@ -89,19 +94,17 @@ SCRAPING_JS_CODE_BLOCK = """
                     if (!start || isNaN(start)) return;
 
                     const end = new Date(start.getTime() + 30 * 60 * 1000);
-                    const roomName = parts[1].replace(/\\s*\\(.*?\\)\\s*/, "").trim();
 
                     let isAvailable = null;
                     if (/unavailable/i.test(label)) isAvailable = false;
                     else if (/available/i.test(label)) isAvailable = true;
                     if (isAvailable === null) return;
 
-                    if (!results[roomName]) results[roomName] = [];
-                    results[roomName].push({
+                    if (!results[roomId]) results[roomId] = [];
+                    results[roomId].push({
                         start: toPacificISOString(start),
                         end: toPacificISOString(end),
-                        isAvailable,
-                        resourceId
+                        isAvailable
                     });
                 });
             });
@@ -110,16 +113,13 @@ SCRAPING_JS_CODE_BLOCK = """
         }
         """
 def extract_space_id(url):
-    match = re.search(r"/space/(\d+)", url)
+    match = re.search(r"/space/(\\d+)", url)
     return match.group(1) if match else None
 
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)
     page = browser.new_page()
-
-
-    # LIBRARY LOCATIONS (with lid)
 
     locations = {
         "Science": 6580,
@@ -133,28 +133,29 @@ with sync_playwright() as p:
         page.wait_for_selector(".fc-timeline-body")
         page.wait_for_selector(".fc-timeline-events a.fc-timeline-event", timeout=60000)
 
-        print("Page title:", page.title())
-        print("URL loaded:", page.url)
-
         data = page.evaluate(SCRAPING_JS_CODE_BLOCK)
 
-        with open(f"{OUTPUT_DIR}/room_availability/{location}_room_availability.json", "w", encoding="utf-8") as f:
+        with open(
+            f"{OUTPUT_DIR}/room_availability/{location}_room_availability.json",
+            "w",
+            encoding="utf-8"
+        ) as f:
             json.dump(data, f, indent=4)
 
         print(f"{location} availability saved")
-
 
     # ALP
     page.goto("https://scheduler.oit.uci.edu/reserve/Antcaves", timeout=60000)
     page.wait_for_selector(".fc-timeline-body")
     page.wait_for_selector(".fc-timeline-events a.fc-timeline-event", timeout=60000)
 
-    print("Page title:", page.title())
-    print("URL loaded:", page.url)
-
     data = page.evaluate(SCRAPING_JS_CODE_BLOCK)
 
-    with open(f"{OUTPUT_DIR}/room_availability/ALP_room_availability.json", "w", encoding="utf-8") as f:
+    with open(
+        f"{OUTPUT_DIR}/room_availability/ALP_room_availability.json",
+        "w",
+        encoding="utf-8"
+    ) as f:
         json.dump(data, f, indent=4)
 
     print("ALP availability saved")

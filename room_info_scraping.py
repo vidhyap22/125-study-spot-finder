@@ -1,9 +1,11 @@
 from playwright.sync_api import sync_playwright
 import json
 import re
+import os
 
 BASE_URL = "https://spaces.lib.uci.edu"
 ANTCAVES_URL = "https://scheduler.oit.uci.edu/reserve/Antcaves"
+
 SCRAPING_JS_CODE_BLOCK = """
         () => {
             const rooms = [];
@@ -36,36 +38,60 @@ SCRAPING_JS_CODE_BLOCK = """
                     id,
                     name,
                     capacity,
-                    tech_enhanced,
-                    location: null
+                    tech_enhanced
                 });
             });
 
             return rooms;
         }
-        """
-OUTPUT_DIR = "./data"
-def extract_space_id(url):
-    match = re.search(r"/space/(\d+)", url)
-    return match.group(1) if match else None
+"""
+
+OUTPUT_DIR = "./data/room_info"
+os.makedirs(OUTPUT_DIR, exist_ok=True)
+
+# Building normalization rules
+BUILDING_INFO = {
+    "Langson": {
+        "building_name": "Langson Library",
+        "building_id": "LLIB"
+    },
+    "Science": {
+        "building_name": "Science Library",
+        "building_id": "SLIB"
+    },
+    "Multimedia": {
+        "building_name": "Multimedia ResourcesCenter",
+        "building_id": "MLTM"
+    },
+    "Gateway": {
+        "building_name": "Gateway Study Center",
+        "building_id": "GSC"
+    },
+    "ALP": {
+        "building_name": "Anteater Learning Pavilion",
+        "building_id": "ALP"
+    }
+}
 
 
-def extract_antcaves_id(url):
-    """
-    Extract a stable numeric ID from Antcaves room URLs.
-    Example:
-    /reserve/antcave-12 → 12
-    """
-    match = re.search(r"(\d+)$", url)
-    return int(match.group(1)) if match else None
+def format_room(room, location_key):
+    return {
+        "id": room["id"],
+        "name": f'{room["name"]}',
+        "capacity": room["capacity"],
+        "must_reserve": True,
+        "tech_enhanced": room["tech_enhanced"],
+        "building_id": BUILDING_INFO[location_key]["building_id"],
+        "is_indoor": True,
+        "is_talking_allowed": True
+    }
 
 
 with sync_playwright() as p:
     browser = p.chromium.launch(headless=True)
     page = browser.new_page()
 
-    # LIBRARY LOCATIONS (with lid)
-
+    # Library locations (unchanged)
     locations = {
         "Science": 6580,
         "Langson": 6539,
@@ -73,38 +99,34 @@ with sync_playwright() as p:
         "Multimedia": 6581
     }
 
-    for location, l_id in locations.items():
-        page.goto(f"https://spaces.lib.uci.edu/spaces?lid={l_id}", timeout=100000)
+    # Scrape library rooms
+    for location, lid in locations.items():
+        page.goto(f"https://spaces.lib.uci.edu/spaces?lid={lid}", timeout=100000)
         page.wait_for_selector(".fc-timeline-body")
-
         page.wait_for_selector(".fc-datagrid-cell", timeout=100000)
 
-        data_rooms = page.evaluate(SCRAPING_JS_CODE_BLOCK)
+        raw_rooms = page.evaluate(SCRAPING_JS_CODE_BLOCK)
+        formatted_rooms = [
+            format_room(r, location) for r in raw_rooms
+        ]
 
-        for r in data_rooms:
-            r["location"] = location
+        with open(f"{OUTPUT_DIR}/{location}_room_info.json", "w", encoding="utf-8") as f:
+            json.dump(formatted_rooms, f, indent=4)
 
-        with open(f"{OUTPUT_DIR}/room_info/{location}_room_info.json", "w", encoding="utf-8") as f:
-            json.dump(data_rooms, f, indent=4)
+        print(f"{location} rooms saved: {len(formatted_rooms)}")
 
-        print(f"{location} rooms:", data_rooms)
-
-
-    # ALP Rooms
-
+    # ALP (Antcaves)
     page.goto(ANTCAVES_URL, timeout=100000)
     page.wait_for_selector(".fc-timeline-body")
 
-    antcaves_rooms = page.evaluate(SCRAPING_JS_CODE_BLOCK)
+    alp_raw_rooms = page.evaluate(SCRAPING_JS_CODE_BLOCK)
+    alp_formatted = [
+        format_room(r, "ALP") for r in alp_raw_rooms
+    ]
 
+    with open(f"{OUTPUT_DIR}/ALP_room_info.json", "w", encoding="utf-8") as f:
+        json.dump(alp_formatted, f, indent=4)
 
-    print(len(antcaves_rooms))
-    for r in antcaves_rooms:
-        r["location"] = "ALP"
-
-    with open(f"{OUTPUT_DIR}/room_info/ALP_room_info.json", "w", encoding="utf-8") as f:
-        json.dump(antcaves_rooms, f, indent=4)
-
-    print("ALP rooms:", antcaves_rooms)
+    print(f"ALP rooms saved: {len(alp_formatted)}")
 
     browser.close()

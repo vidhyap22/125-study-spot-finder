@@ -3,91 +3,130 @@
         "id": 44704,
         "name": "Gateway 2101",
         "capacity": 4,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "Gateway"
+        "building_id": "GSC",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 44705,
         "name": "Gateway 2102",
         "capacity": 4,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "Gateway"
+        "building_id": "GSC",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 44706,
         "name": "Gateway 2103",
         "capacity": 4,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "Gateway"
+        "building_id": "GSC",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 44707,
         "name": "Gateway 2104",
         "capacity": 4,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "Gateway"
+        "building_id": "GSC",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 44708,
         "name": "Gateway 2105",
         "capacity": 4,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "Gateway"
+        "building_id": "GSC",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 44709,
         "name": "Gateway 2106",
         "capacity": 4,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "Gateway"
+        "building_id": "GSC",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 44710,
         "name": "Gateway 2107",
         "capacity": 4,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "Gateway"
+        "building_id": "GSC",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 117634,
         "name": "Gateway 2108",
         "capacity": 6,
+        "must_reserve": true,
         "tech_enhanced": true,
-        "location": "Gateway"
+        "building_id": "GSC",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 117629,
         "name": "Gateway 2109",
         "capacity": 6,
+        "must_reserve": true,
         "tech_enhanced": true,
-        "location": "Gateway"
+        "building_id": "GSC",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 44711,
         "name": "Gateway 2110",
         "capacity": 3,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "Gateway"
+        "building_id": "GSC",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 44712,
         "name": "Gateway 2111",
         "capacity": 3,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "Gateway"
+        "building_id": "GSC",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 44713,
         "name": "Gateway 2112",
         "capacity": 4,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "Gateway"
+        "building_id": "GSC",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 44714,
         "name": "Gateway 2113",
         "capacity": 4,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "Gateway"
+        "building_id": "GSC",
+        "is_indoor": true,
+        "is_talking_allowed": true
     }
 ]

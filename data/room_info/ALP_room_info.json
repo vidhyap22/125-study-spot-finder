@@ -3,28 +3,40 @@
         "id": 34681,
         "name": "ALP 2210",
         "capacity": 6,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "ALP"
+        "building_id": "ALP",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 34680,
         "name": "ALP 2510",
         "capacity": 10,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "ALP"
+        "building_id": "ALP",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 34682,
         "name": "ALP 2610",
         "capacity": 10,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "ALP"
+        "building_id": "ALP",
+        "is_indoor": true,
+        "is_talking_allowed": true
     },
     {
         "id": 34683,
         "name": "ALP 2710",
         "capacity": 6,
+        "must_reserve": true,
         "tech_enhanced": false,
-        "location": "ALP"
+        "building_id": "ALP",
+        "is_indoor": true,
+        "is_talking_allowed": true
     }
 ]
