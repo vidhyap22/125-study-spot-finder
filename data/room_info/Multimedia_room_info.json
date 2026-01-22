@@ -1,0 +1,23 @@
+[
+    {
+        "id": 44717,
+        "name": "Study room 172",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Multimedia"
+    },
+    {
+        "id": 44718,
+        "name": "Study room 173",
+        "capacity": 7,
+        "tech_enhanced": true,
+        "location": "Multimedia"
+    },
+    {
+        "id": 59309,
+        "name": "Study room 174",
+        "capacity": 2,
+        "tech_enhanced": false,
+        "location": "Multimedia"
+    }
+]

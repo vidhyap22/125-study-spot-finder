@@ -1,0 +1,6034 @@
+{
+    "Gateway 2101": [
+        {
+            "start": "2026-01-21T15:00:00-08:00",
+            "end": "2026-01-21T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T15:30:00-08:00",
+            "end": "2026-01-21T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T16:00:00-08:00",
+            "end": "2026-01-21T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T16:30:00-08:00",
+            "end": "2026-01-21T17:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T17:00:00-08:00",
+            "end": "2026-01-21T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T17:30:00-08:00",
+            "end": "2026-01-21T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T18:00:00-08:00",
+            "end": "2026-01-21T18:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T18:30:00-08:00",
+            "end": "2026-01-21T19:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T19:00:00-08:00",
+            "end": "2026-01-21T19:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T19:30:00-08:00",
+            "end": "2026-01-21T20:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T20:00:00-08:00",
+            "end": "2026-01-21T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T20:30:00-08:00",
+            "end": "2026-01-21T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T21:00:00-08:00",
+            "end": "2026-01-21T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T21:30:00-08:00",
+            "end": "2026-01-21T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T22:00:00-08:00",
+            "end": "2026-01-21T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T22:30:00-08:00",
+            "end": "2026-01-21T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T23:00:00-08:00",
+            "end": "2026-01-21T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-21T23:30:00-08:00",
+            "end": "2026-01-22T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T00:00:00-08:00",
+            "end": "2026-01-22T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T08:00:00-08:00",
+            "end": "2026-01-22T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T08:30:00-08:00",
+            "end": "2026-01-22T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T09:00:00-08:00",
+            "end": "2026-01-22T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T09:30:00-08:00",
+            "end": "2026-01-22T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T10:00:00-08:00",
+            "end": "2026-01-22T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T10:30:00-08:00",
+            "end": "2026-01-22T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T11:00:00-08:00",
+            "end": "2026-01-22T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T11:30:00-08:00",
+            "end": "2026-01-22T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T12:00:00-08:00",
+            "end": "2026-01-22T12:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T12:30:00-08:00",
+            "end": "2026-01-22T13:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T13:00:00-08:00",
+            "end": "2026-01-22T13:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T13:30:00-08:00",
+            "end": "2026-01-22T14:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T14:00:00-08:00",
+            "end": "2026-01-22T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T14:30:00-08:00",
+            "end": "2026-01-22T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T15:00:00-08:00",
+            "end": "2026-01-22T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T15:30:00-08:00",
+            "end": "2026-01-22T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T16:00:00-08:00",
+            "end": "2026-01-22T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T16:30:00-08:00",
+            "end": "2026-01-22T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T17:00:00-08:00",
+            "end": "2026-01-22T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T17:30:00-08:00",
+            "end": "2026-01-22T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T18:00:00-08:00",
+            "end": "2026-01-22T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T18:30:00-08:00",
+            "end": "2026-01-22T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T19:00:00-08:00",
+            "end": "2026-01-22T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T19:30:00-08:00",
+            "end": "2026-01-22T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T20:00:00-08:00",
+            "end": "2026-01-22T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T20:30:00-08:00",
+            "end": "2026-01-22T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T21:00:00-08:00",
+            "end": "2026-01-22T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T21:30:00-08:00",
+            "end": "2026-01-22T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T22:00:00-08:00",
+            "end": "2026-01-22T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T22:30:00-08:00",
+            "end": "2026-01-22T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T23:00:00-08:00",
+            "end": "2026-01-22T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-22T23:30:00-08:00",
+            "end": "2026-01-23T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T00:00:00-08:00",
+            "end": "2026-01-23T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T08:00:00-08:00",
+            "end": "2026-01-23T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T08:30:00-08:00",
+            "end": "2026-01-23T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T09:00:00-08:00",
+            "end": "2026-01-23T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T09:30:00-08:00",
+            "end": "2026-01-23T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T10:00:00-08:00",
+            "end": "2026-01-23T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T10:30:00-08:00",
+            "end": "2026-01-23T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T11:00:00-08:00",
+            "end": "2026-01-23T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T11:30:00-08:00",
+            "end": "2026-01-23T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T12:00:00-08:00",
+            "end": "2026-01-23T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T12:30:00-08:00",
+            "end": "2026-01-23T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T13:00:00-08:00",
+            "end": "2026-01-23T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T13:30:00-08:00",
+            "end": "2026-01-23T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T14:00:00-08:00",
+            "end": "2026-01-23T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T14:30:00-08:00",
+            "end": "2026-01-23T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T15:00:00-08:00",
+            "end": "2026-01-23T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T15:30:00-08:00",
+            "end": "2026-01-23T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T16:00:00-08:00",
+            "end": "2026-01-23T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T16:30:00-08:00",
+            "end": "2026-01-23T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T17:00:00-08:00",
+            "end": "2026-01-23T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T17:30:00-08:00",
+            "end": "2026-01-23T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T18:00:00-08:00",
+            "end": "2026-01-23T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T18:30:00-08:00",
+            "end": "2026-01-23T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T19:00:00-08:00",
+            "end": "2026-01-23T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T19:30:00-08:00",
+            "end": "2026-01-23T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        },
+        {
+            "start": "2026-01-23T20:00:00-08:00",
+            "end": "2026-01-23T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44704"
+        }
+    ],
+    "Gateway 2102": [
+        {
+            "start": "2026-01-21T15:00:00-08:00",
+            "end": "2026-01-21T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T15:30:00-08:00",
+            "end": "2026-01-21T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T16:00:00-08:00",
+            "end": "2026-01-21T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T16:30:00-08:00",
+            "end": "2026-01-21T17:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T17:00:00-08:00",
+            "end": "2026-01-21T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T17:30:00-08:00",
+            "end": "2026-01-21T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T18:00:00-08:00",
+            "end": "2026-01-21T18:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T18:30:00-08:00",
+            "end": "2026-01-21T19:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T19:00:00-08:00",
+            "end": "2026-01-21T19:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T19:30:00-08:00",
+            "end": "2026-01-21T20:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T20:00:00-08:00",
+            "end": "2026-01-21T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T20:30:00-08:00",
+            "end": "2026-01-21T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T21:00:00-08:00",
+            "end": "2026-01-21T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T21:30:00-08:00",
+            "end": "2026-01-21T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T22:00:00-08:00",
+            "end": "2026-01-21T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T22:30:00-08:00",
+            "end": "2026-01-21T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T23:00:00-08:00",
+            "end": "2026-01-21T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-21T23:30:00-08:00",
+            "end": "2026-01-22T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T00:00:00-08:00",
+            "end": "2026-01-22T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T08:00:00-08:00",
+            "end": "2026-01-22T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T08:30:00-08:00",
+            "end": "2026-01-22T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T09:00:00-08:00",
+            "end": "2026-01-22T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T09:30:00-08:00",
+            "end": "2026-01-22T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T10:00:00-08:00",
+            "end": "2026-01-22T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T10:30:00-08:00",
+            "end": "2026-01-22T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T11:00:00-08:00",
+            "end": "2026-01-22T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T11:30:00-08:00",
+            "end": "2026-01-22T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T12:00:00-08:00",
+            "end": "2026-01-22T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T12:30:00-08:00",
+            "end": "2026-01-22T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T13:00:00-08:00",
+            "end": "2026-01-22T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T13:30:00-08:00",
+            "end": "2026-01-22T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T14:00:00-08:00",
+            "end": "2026-01-22T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T14:30:00-08:00",
+            "end": "2026-01-22T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T15:00:00-08:00",
+            "end": "2026-01-22T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T15:30:00-08:00",
+            "end": "2026-01-22T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T16:00:00-08:00",
+            "end": "2026-01-22T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T16:30:00-08:00",
+            "end": "2026-01-22T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T17:00:00-08:00",
+            "end": "2026-01-22T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T17:30:00-08:00",
+            "end": "2026-01-22T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T18:00:00-08:00",
+            "end": "2026-01-22T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T18:30:00-08:00",
+            "end": "2026-01-22T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T19:00:00-08:00",
+            "end": "2026-01-22T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T19:30:00-08:00",
+            "end": "2026-01-22T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T20:00:00-08:00",
+            "end": "2026-01-22T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T20:30:00-08:00",
+            "end": "2026-01-22T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T21:00:00-08:00",
+            "end": "2026-01-22T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T21:30:00-08:00",
+            "end": "2026-01-22T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T22:00:00-08:00",
+            "end": "2026-01-22T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T22:30:00-08:00",
+            "end": "2026-01-22T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T23:00:00-08:00",
+            "end": "2026-01-22T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-22T23:30:00-08:00",
+            "end": "2026-01-23T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T00:00:00-08:00",
+            "end": "2026-01-23T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T08:00:00-08:00",
+            "end": "2026-01-23T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T08:30:00-08:00",
+            "end": "2026-01-23T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T09:00:00-08:00",
+            "end": "2026-01-23T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T09:30:00-08:00",
+            "end": "2026-01-23T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T10:00:00-08:00",
+            "end": "2026-01-23T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T10:30:00-08:00",
+            "end": "2026-01-23T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T11:00:00-08:00",
+            "end": "2026-01-23T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T11:30:00-08:00",
+            "end": "2026-01-23T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T12:00:00-08:00",
+            "end": "2026-01-23T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T12:30:00-08:00",
+            "end": "2026-01-23T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T13:00:00-08:00",
+            "end": "2026-01-23T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T13:30:00-08:00",
+            "end": "2026-01-23T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T14:00:00-08:00",
+            "end": "2026-01-23T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T14:30:00-08:00",
+            "end": "2026-01-23T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T15:00:00-08:00",
+            "end": "2026-01-23T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T15:30:00-08:00",
+            "end": "2026-01-23T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T16:00:00-08:00",
+            "end": "2026-01-23T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T16:30:00-08:00",
+            "end": "2026-01-23T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T17:00:00-08:00",
+            "end": "2026-01-23T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T17:30:00-08:00",
+            "end": "2026-01-23T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T18:00:00-08:00",
+            "end": "2026-01-23T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T18:30:00-08:00",
+            "end": "2026-01-23T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T19:00:00-08:00",
+            "end": "2026-01-23T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T19:30:00-08:00",
+            "end": "2026-01-23T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        },
+        {
+            "start": "2026-01-23T20:00:00-08:00",
+            "end": "2026-01-23T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44705"
+        }
+    ],
+    "Gateway 2103": [
+        {
+            "start": "2026-01-21T15:00:00-08:00",
+            "end": "2026-01-21T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T15:30:00-08:00",
+            "end": "2026-01-21T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T16:00:00-08:00",
+            "end": "2026-01-21T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T16:30:00-08:00",
+            "end": "2026-01-21T17:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T17:00:00-08:00",
+            "end": "2026-01-21T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T17:30:00-08:00",
+            "end": "2026-01-21T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T18:00:00-08:00",
+            "end": "2026-01-21T18:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T18:30:00-08:00",
+            "end": "2026-01-21T19:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T19:00:00-08:00",
+            "end": "2026-01-21T19:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T19:30:00-08:00",
+            "end": "2026-01-21T20:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T20:00:00-08:00",
+            "end": "2026-01-21T20:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T20:30:00-08:00",
+            "end": "2026-01-21T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T21:00:00-08:00",
+            "end": "2026-01-21T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T21:30:00-08:00",
+            "end": "2026-01-21T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T22:00:00-08:00",
+            "end": "2026-01-21T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T22:30:00-08:00",
+            "end": "2026-01-21T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T23:00:00-08:00",
+            "end": "2026-01-21T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-21T23:30:00-08:00",
+            "end": "2026-01-22T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T00:00:00-08:00",
+            "end": "2026-01-22T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T08:00:00-08:00",
+            "end": "2026-01-22T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T08:30:00-08:00",
+            "end": "2026-01-22T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T09:00:00-08:00",
+            "end": "2026-01-22T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T09:30:00-08:00",
+            "end": "2026-01-22T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T10:00:00-08:00",
+            "end": "2026-01-22T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T10:30:00-08:00",
+            "end": "2026-01-22T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T11:00:00-08:00",
+            "end": "2026-01-22T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T11:30:00-08:00",
+            "end": "2026-01-22T12:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T12:00:00-08:00",
+            "end": "2026-01-22T12:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T12:30:00-08:00",
+            "end": "2026-01-22T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T13:00:00-08:00",
+            "end": "2026-01-22T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T13:30:00-08:00",
+            "end": "2026-01-22T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T14:00:00-08:00",
+            "end": "2026-01-22T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T14:30:00-08:00",
+            "end": "2026-01-22T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T15:00:00-08:00",
+            "end": "2026-01-22T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T15:30:00-08:00",
+            "end": "2026-01-22T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T16:00:00-08:00",
+            "end": "2026-01-22T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T16:30:00-08:00",
+            "end": "2026-01-22T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T17:00:00-08:00",
+            "end": "2026-01-22T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T17:30:00-08:00",
+            "end": "2026-01-22T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T18:00:00-08:00",
+            "end": "2026-01-22T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T18:30:00-08:00",
+            "end": "2026-01-22T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T19:00:00-08:00",
+            "end": "2026-01-22T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T19:30:00-08:00",
+            "end": "2026-01-22T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T20:00:00-08:00",
+            "end": "2026-01-22T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T20:30:00-08:00",
+            "end": "2026-01-22T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T21:00:00-08:00",
+            "end": "2026-01-22T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T21:30:00-08:00",
+            "end": "2026-01-22T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T22:00:00-08:00",
+            "end": "2026-01-22T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T22:30:00-08:00",
+            "end": "2026-01-22T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T23:00:00-08:00",
+            "end": "2026-01-22T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-22T23:30:00-08:00",
+            "end": "2026-01-23T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T00:00:00-08:00",
+            "end": "2026-01-23T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T08:00:00-08:00",
+            "end": "2026-01-23T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T08:30:00-08:00",
+            "end": "2026-01-23T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T09:00:00-08:00",
+            "end": "2026-01-23T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T09:30:00-08:00",
+            "end": "2026-01-23T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T10:00:00-08:00",
+            "end": "2026-01-23T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T10:30:00-08:00",
+            "end": "2026-01-23T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T11:00:00-08:00",
+            "end": "2026-01-23T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T11:30:00-08:00",
+            "end": "2026-01-23T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T12:00:00-08:00",
+            "end": "2026-01-23T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T12:30:00-08:00",
+            "end": "2026-01-23T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T13:00:00-08:00",
+            "end": "2026-01-23T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T13:30:00-08:00",
+            "end": "2026-01-23T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T14:00:00-08:00",
+            "end": "2026-01-23T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T14:30:00-08:00",
+            "end": "2026-01-23T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T15:00:00-08:00",
+            "end": "2026-01-23T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T15:30:00-08:00",
+            "end": "2026-01-23T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T16:00:00-08:00",
+            "end": "2026-01-23T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T16:30:00-08:00",
+            "end": "2026-01-23T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T17:00:00-08:00",
+            "end": "2026-01-23T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T17:30:00-08:00",
+            "end": "2026-01-23T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T18:00:00-08:00",
+            "end": "2026-01-23T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T18:30:00-08:00",
+            "end": "2026-01-23T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T19:00:00-08:00",
+            "end": "2026-01-23T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T19:30:00-08:00",
+            "end": "2026-01-23T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        },
+        {
+            "start": "2026-01-23T20:00:00-08:00",
+            "end": "2026-01-23T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44706"
+        }
+    ],
+    "Gateway 2104": [
+        {
+            "start": "2026-01-21T15:00:00-08:00",
+            "end": "2026-01-21T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T15:30:00-08:00",
+            "end": "2026-01-21T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T16:00:00-08:00",
+            "end": "2026-01-21T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T16:30:00-08:00",
+            "end": "2026-01-21T17:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T17:00:00-08:00",
+            "end": "2026-01-21T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T17:30:00-08:00",
+            "end": "2026-01-21T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T18:00:00-08:00",
+            "end": "2026-01-21T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T18:30:00-08:00",
+            "end": "2026-01-21T19:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T19:00:00-08:00",
+            "end": "2026-01-21T19:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T19:30:00-08:00",
+            "end": "2026-01-21T20:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T20:00:00-08:00",
+            "end": "2026-01-21T20:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T20:30:00-08:00",
+            "end": "2026-01-21T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T21:00:00-08:00",
+            "end": "2026-01-21T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T21:30:00-08:00",
+            "end": "2026-01-21T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T22:00:00-08:00",
+            "end": "2026-01-21T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T22:30:00-08:00",
+            "end": "2026-01-21T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T23:00:00-08:00",
+            "end": "2026-01-21T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-21T23:30:00-08:00",
+            "end": "2026-01-22T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T00:00:00-08:00",
+            "end": "2026-01-22T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T08:00:00-08:00",
+            "end": "2026-01-22T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T08:30:00-08:00",
+            "end": "2026-01-22T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T09:00:00-08:00",
+            "end": "2026-01-22T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T09:30:00-08:00",
+            "end": "2026-01-22T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T10:00:00-08:00",
+            "end": "2026-01-22T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T10:30:00-08:00",
+            "end": "2026-01-22T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T11:00:00-08:00",
+            "end": "2026-01-22T11:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T11:30:00-08:00",
+            "end": "2026-01-22T12:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T12:00:00-08:00",
+            "end": "2026-01-22T12:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T12:30:00-08:00",
+            "end": "2026-01-22T13:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T13:00:00-08:00",
+            "end": "2026-01-22T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T13:30:00-08:00",
+            "end": "2026-01-22T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T14:00:00-08:00",
+            "end": "2026-01-22T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T14:30:00-08:00",
+            "end": "2026-01-22T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T15:00:00-08:00",
+            "end": "2026-01-22T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T15:30:00-08:00",
+            "end": "2026-01-22T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T16:00:00-08:00",
+            "end": "2026-01-22T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T16:30:00-08:00",
+            "end": "2026-01-22T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T17:00:00-08:00",
+            "end": "2026-01-22T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T17:30:00-08:00",
+            "end": "2026-01-22T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T18:00:00-08:00",
+            "end": "2026-01-22T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T18:30:00-08:00",
+            "end": "2026-01-22T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T19:00:00-08:00",
+            "end": "2026-01-22T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T19:30:00-08:00",
+            "end": "2026-01-22T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T20:00:00-08:00",
+            "end": "2026-01-22T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T20:30:00-08:00",
+            "end": "2026-01-22T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T21:00:00-08:00",
+            "end": "2026-01-22T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T21:30:00-08:00",
+            "end": "2026-01-22T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T22:00:00-08:00",
+            "end": "2026-01-22T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T22:30:00-08:00",
+            "end": "2026-01-22T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T23:00:00-08:00",
+            "end": "2026-01-22T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-22T23:30:00-08:00",
+            "end": "2026-01-23T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T00:00:00-08:00",
+            "end": "2026-01-23T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T08:00:00-08:00",
+            "end": "2026-01-23T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T08:30:00-08:00",
+            "end": "2026-01-23T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T09:00:00-08:00",
+            "end": "2026-01-23T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T09:30:00-08:00",
+            "end": "2026-01-23T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T10:00:00-08:00",
+            "end": "2026-01-23T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T10:30:00-08:00",
+            "end": "2026-01-23T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T11:00:00-08:00",
+            "end": "2026-01-23T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T11:30:00-08:00",
+            "end": "2026-01-23T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T12:00:00-08:00",
+            "end": "2026-01-23T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T12:30:00-08:00",
+            "end": "2026-01-23T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T13:00:00-08:00",
+            "end": "2026-01-23T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T13:30:00-08:00",
+            "end": "2026-01-23T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T14:00:00-08:00",
+            "end": "2026-01-23T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T14:30:00-08:00",
+            "end": "2026-01-23T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T15:00:00-08:00",
+            "end": "2026-01-23T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T15:30:00-08:00",
+            "end": "2026-01-23T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T16:00:00-08:00",
+            "end": "2026-01-23T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T16:30:00-08:00",
+            "end": "2026-01-23T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T17:00:00-08:00",
+            "end": "2026-01-23T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T17:30:00-08:00",
+            "end": "2026-01-23T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T18:00:00-08:00",
+            "end": "2026-01-23T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T18:30:00-08:00",
+            "end": "2026-01-23T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T19:00:00-08:00",
+            "end": "2026-01-23T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T19:30:00-08:00",
+            "end": "2026-01-23T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        },
+        {
+            "start": "2026-01-23T20:00:00-08:00",
+            "end": "2026-01-23T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44707"
+        }
+    ],
+    "Gateway 2105": [
+        {
+            "start": "2026-01-21T15:00:00-08:00",
+            "end": "2026-01-21T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T15:30:00-08:00",
+            "end": "2026-01-21T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T16:00:00-08:00",
+            "end": "2026-01-21T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T16:30:00-08:00",
+            "end": "2026-01-21T17:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T17:00:00-08:00",
+            "end": "2026-01-21T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T17:30:00-08:00",
+            "end": "2026-01-21T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T18:00:00-08:00",
+            "end": "2026-01-21T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T18:30:00-08:00",
+            "end": "2026-01-21T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T19:00:00-08:00",
+            "end": "2026-01-21T19:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T19:30:00-08:00",
+            "end": "2026-01-21T20:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T20:00:00-08:00",
+            "end": "2026-01-21T20:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T20:30:00-08:00",
+            "end": "2026-01-21T21:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T21:00:00-08:00",
+            "end": "2026-01-21T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T21:30:00-08:00",
+            "end": "2026-01-21T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T22:00:00-08:00",
+            "end": "2026-01-21T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T22:30:00-08:00",
+            "end": "2026-01-21T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T23:00:00-08:00",
+            "end": "2026-01-21T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-21T23:30:00-08:00",
+            "end": "2026-01-22T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T00:00:00-08:00",
+            "end": "2026-01-22T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T08:00:00-08:00",
+            "end": "2026-01-22T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T08:30:00-08:00",
+            "end": "2026-01-22T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T09:00:00-08:00",
+            "end": "2026-01-22T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T09:30:00-08:00",
+            "end": "2026-01-22T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T10:00:00-08:00",
+            "end": "2026-01-22T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T10:30:00-08:00",
+            "end": "2026-01-22T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T11:00:00-08:00",
+            "end": "2026-01-22T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T11:30:00-08:00",
+            "end": "2026-01-22T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T12:00:00-08:00",
+            "end": "2026-01-22T12:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T12:30:00-08:00",
+            "end": "2026-01-22T13:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T13:00:00-08:00",
+            "end": "2026-01-22T13:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T13:30:00-08:00",
+            "end": "2026-01-22T14:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T14:00:00-08:00",
+            "end": "2026-01-22T14:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T14:30:00-08:00",
+            "end": "2026-01-22T15:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T15:00:00-08:00",
+            "end": "2026-01-22T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T15:30:00-08:00",
+            "end": "2026-01-22T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T16:00:00-08:00",
+            "end": "2026-01-22T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T16:30:00-08:00",
+            "end": "2026-01-22T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T17:00:00-08:00",
+            "end": "2026-01-22T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T17:30:00-08:00",
+            "end": "2026-01-22T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T18:00:00-08:00",
+            "end": "2026-01-22T18:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T18:30:00-08:00",
+            "end": "2026-01-22T19:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T19:00:00-08:00",
+            "end": "2026-01-22T19:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T19:30:00-08:00",
+            "end": "2026-01-22T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T20:00:00-08:00",
+            "end": "2026-01-22T20:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T20:30:00-08:00",
+            "end": "2026-01-22T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T21:00:00-08:00",
+            "end": "2026-01-22T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T21:30:00-08:00",
+            "end": "2026-01-22T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T22:00:00-08:00",
+            "end": "2026-01-22T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T22:30:00-08:00",
+            "end": "2026-01-22T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T23:00:00-08:00",
+            "end": "2026-01-22T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-22T23:30:00-08:00",
+            "end": "2026-01-23T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T00:00:00-08:00",
+            "end": "2026-01-23T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T08:00:00-08:00",
+            "end": "2026-01-23T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T08:30:00-08:00",
+            "end": "2026-01-23T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T09:00:00-08:00",
+            "end": "2026-01-23T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T09:30:00-08:00",
+            "end": "2026-01-23T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T10:00:00-08:00",
+            "end": "2026-01-23T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T10:30:00-08:00",
+            "end": "2026-01-23T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T11:00:00-08:00",
+            "end": "2026-01-23T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T11:30:00-08:00",
+            "end": "2026-01-23T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T12:00:00-08:00",
+            "end": "2026-01-23T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T12:30:00-08:00",
+            "end": "2026-01-23T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T13:00:00-08:00",
+            "end": "2026-01-23T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T13:30:00-08:00",
+            "end": "2026-01-23T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T14:00:00-08:00",
+            "end": "2026-01-23T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T14:30:00-08:00",
+            "end": "2026-01-23T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T15:00:00-08:00",
+            "end": "2026-01-23T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T15:30:00-08:00",
+            "end": "2026-01-23T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T16:00:00-08:00",
+            "end": "2026-01-23T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T16:30:00-08:00",
+            "end": "2026-01-23T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T17:00:00-08:00",
+            "end": "2026-01-23T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T17:30:00-08:00",
+            "end": "2026-01-23T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T18:00:00-08:00",
+            "end": "2026-01-23T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T18:30:00-08:00",
+            "end": "2026-01-23T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T19:00:00-08:00",
+            "end": "2026-01-23T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T19:30:00-08:00",
+            "end": "2026-01-23T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        },
+        {
+            "start": "2026-01-23T20:00:00-08:00",
+            "end": "2026-01-23T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44708"
+        }
+    ],
+    "Gateway 2106": [
+        {
+            "start": "2026-01-21T15:00:00-08:00",
+            "end": "2026-01-21T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T15:30:00-08:00",
+            "end": "2026-01-21T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T16:00:00-08:00",
+            "end": "2026-01-21T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T16:30:00-08:00",
+            "end": "2026-01-21T17:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T17:00:00-08:00",
+            "end": "2026-01-21T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T17:30:00-08:00",
+            "end": "2026-01-21T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T18:00:00-08:00",
+            "end": "2026-01-21T18:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T18:30:00-08:00",
+            "end": "2026-01-21T19:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T19:00:00-08:00",
+            "end": "2026-01-21T19:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T19:30:00-08:00",
+            "end": "2026-01-21T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T20:00:00-08:00",
+            "end": "2026-01-21T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T20:30:00-08:00",
+            "end": "2026-01-21T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T21:00:00-08:00",
+            "end": "2026-01-21T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T21:30:00-08:00",
+            "end": "2026-01-21T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T22:00:00-08:00",
+            "end": "2026-01-21T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T22:30:00-08:00",
+            "end": "2026-01-21T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T23:00:00-08:00",
+            "end": "2026-01-21T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-21T23:30:00-08:00",
+            "end": "2026-01-22T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T00:00:00-08:00",
+            "end": "2026-01-22T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T08:00:00-08:00",
+            "end": "2026-01-22T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T08:30:00-08:00",
+            "end": "2026-01-22T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T09:00:00-08:00",
+            "end": "2026-01-22T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T09:30:00-08:00",
+            "end": "2026-01-22T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T10:00:00-08:00",
+            "end": "2026-01-22T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T10:30:00-08:00",
+            "end": "2026-01-22T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T11:00:00-08:00",
+            "end": "2026-01-22T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T11:30:00-08:00",
+            "end": "2026-01-22T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T12:00:00-08:00",
+            "end": "2026-01-22T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T12:30:00-08:00",
+            "end": "2026-01-22T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T13:00:00-08:00",
+            "end": "2026-01-22T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T13:30:00-08:00",
+            "end": "2026-01-22T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T14:00:00-08:00",
+            "end": "2026-01-22T14:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T14:30:00-08:00",
+            "end": "2026-01-22T15:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T15:00:00-08:00",
+            "end": "2026-01-22T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T15:30:00-08:00",
+            "end": "2026-01-22T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T16:00:00-08:00",
+            "end": "2026-01-22T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T16:30:00-08:00",
+            "end": "2026-01-22T17:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T17:00:00-08:00",
+            "end": "2026-01-22T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T17:30:00-08:00",
+            "end": "2026-01-22T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T18:00:00-08:00",
+            "end": "2026-01-22T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T18:30:00-08:00",
+            "end": "2026-01-22T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T19:00:00-08:00",
+            "end": "2026-01-22T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T19:30:00-08:00",
+            "end": "2026-01-22T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T20:00:00-08:00",
+            "end": "2026-01-22T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T20:30:00-08:00",
+            "end": "2026-01-22T21:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T21:00:00-08:00",
+            "end": "2026-01-22T21:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T21:30:00-08:00",
+            "end": "2026-01-22T22:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T22:00:00-08:00",
+            "end": "2026-01-22T22:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T22:30:00-08:00",
+            "end": "2026-01-22T23:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T23:00:00-08:00",
+            "end": "2026-01-22T23:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-22T23:30:00-08:00",
+            "end": "2026-01-23T00:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T00:00:00-08:00",
+            "end": "2026-01-23T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T08:00:00-08:00",
+            "end": "2026-01-23T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T08:30:00-08:00",
+            "end": "2026-01-23T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T09:00:00-08:00",
+            "end": "2026-01-23T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T09:30:00-08:00",
+            "end": "2026-01-23T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T10:00:00-08:00",
+            "end": "2026-01-23T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T10:30:00-08:00",
+            "end": "2026-01-23T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T11:00:00-08:00",
+            "end": "2026-01-23T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T11:30:00-08:00",
+            "end": "2026-01-23T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T12:00:00-08:00",
+            "end": "2026-01-23T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T12:30:00-08:00",
+            "end": "2026-01-23T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T13:00:00-08:00",
+            "end": "2026-01-23T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T13:30:00-08:00",
+            "end": "2026-01-23T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T14:00:00-08:00",
+            "end": "2026-01-23T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T14:30:00-08:00",
+            "end": "2026-01-23T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T15:00:00-08:00",
+            "end": "2026-01-23T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T15:30:00-08:00",
+            "end": "2026-01-23T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T16:00:00-08:00",
+            "end": "2026-01-23T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T16:30:00-08:00",
+            "end": "2026-01-23T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T17:00:00-08:00",
+            "end": "2026-01-23T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T17:30:00-08:00",
+            "end": "2026-01-23T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T18:00:00-08:00",
+            "end": "2026-01-23T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T18:30:00-08:00",
+            "end": "2026-01-23T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T19:00:00-08:00",
+            "end": "2026-01-23T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T19:30:00-08:00",
+            "end": "2026-01-23T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        },
+        {
+            "start": "2026-01-23T20:00:00-08:00",
+            "end": "2026-01-23T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44709"
+        }
+    ],
+    "Gateway 2107": [
+        {
+            "start": "2026-01-21T15:00:00-08:00",
+            "end": "2026-01-21T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T15:30:00-08:00",
+            "end": "2026-01-21T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T16:00:00-08:00",
+            "end": "2026-01-21T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T16:30:00-08:00",
+            "end": "2026-01-21T17:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T17:00:00-08:00",
+            "end": "2026-01-21T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T17:30:00-08:00",
+            "end": "2026-01-21T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T18:00:00-08:00",
+            "end": "2026-01-21T18:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T18:30:00-08:00",
+            "end": "2026-01-21T19:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T19:00:00-08:00",
+            "end": "2026-01-21T19:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T19:30:00-08:00",
+            "end": "2026-01-21T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T20:00:00-08:00",
+            "end": "2026-01-21T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T20:30:00-08:00",
+            "end": "2026-01-21T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T21:00:00-08:00",
+            "end": "2026-01-21T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T21:30:00-08:00",
+            "end": "2026-01-21T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T22:00:00-08:00",
+            "end": "2026-01-21T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T22:30:00-08:00",
+            "end": "2026-01-21T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T23:00:00-08:00",
+            "end": "2026-01-21T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-21T23:30:00-08:00",
+            "end": "2026-01-22T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T00:00:00-08:00",
+            "end": "2026-01-22T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T08:00:00-08:00",
+            "end": "2026-01-22T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T08:30:00-08:00",
+            "end": "2026-01-22T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T09:00:00-08:00",
+            "end": "2026-01-22T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T09:30:00-08:00",
+            "end": "2026-01-22T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T10:00:00-08:00",
+            "end": "2026-01-22T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T10:30:00-08:00",
+            "end": "2026-01-22T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T11:00:00-08:00",
+            "end": "2026-01-22T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T11:30:00-08:00",
+            "end": "2026-01-22T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T12:00:00-08:00",
+            "end": "2026-01-22T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T12:30:00-08:00",
+            "end": "2026-01-22T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T13:00:00-08:00",
+            "end": "2026-01-22T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T13:30:00-08:00",
+            "end": "2026-01-22T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T14:00:00-08:00",
+            "end": "2026-01-22T14:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T14:30:00-08:00",
+            "end": "2026-01-22T15:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T15:00:00-08:00",
+            "end": "2026-01-22T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T15:30:00-08:00",
+            "end": "2026-01-22T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T16:00:00-08:00",
+            "end": "2026-01-22T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T16:30:00-08:00",
+            "end": "2026-01-22T17:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T17:00:00-08:00",
+            "end": "2026-01-22T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T17:30:00-08:00",
+            "end": "2026-01-22T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T18:00:00-08:00",
+            "end": "2026-01-22T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T18:30:00-08:00",
+            "end": "2026-01-22T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T19:00:00-08:00",
+            "end": "2026-01-22T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T19:30:00-08:00",
+            "end": "2026-01-22T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T20:00:00-08:00",
+            "end": "2026-01-22T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T20:30:00-08:00",
+            "end": "2026-01-22T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T21:00:00-08:00",
+            "end": "2026-01-22T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T21:30:00-08:00",
+            "end": "2026-01-22T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T22:00:00-08:00",
+            "end": "2026-01-22T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T22:30:00-08:00",
+            "end": "2026-01-22T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T23:00:00-08:00",
+            "end": "2026-01-22T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-22T23:30:00-08:00",
+            "end": "2026-01-23T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T00:00:00-08:00",
+            "end": "2026-01-23T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T08:00:00-08:00",
+            "end": "2026-01-23T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T08:30:00-08:00",
+            "end": "2026-01-23T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T09:00:00-08:00",
+            "end": "2026-01-23T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T09:30:00-08:00",
+            "end": "2026-01-23T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T10:00:00-08:00",
+            "end": "2026-01-23T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T10:30:00-08:00",
+            "end": "2026-01-23T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T11:00:00-08:00",
+            "end": "2026-01-23T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T11:30:00-08:00",
+            "end": "2026-01-23T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T12:00:00-08:00",
+            "end": "2026-01-23T12:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T12:30:00-08:00",
+            "end": "2026-01-23T13:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T13:00:00-08:00",
+            "end": "2026-01-23T13:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T13:30:00-08:00",
+            "end": "2026-01-23T14:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T14:00:00-08:00",
+            "end": "2026-01-23T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T14:30:00-08:00",
+            "end": "2026-01-23T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T15:00:00-08:00",
+            "end": "2026-01-23T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T15:30:00-08:00",
+            "end": "2026-01-23T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T16:00:00-08:00",
+            "end": "2026-01-23T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T16:30:00-08:00",
+            "end": "2026-01-23T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T17:00:00-08:00",
+            "end": "2026-01-23T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T17:30:00-08:00",
+            "end": "2026-01-23T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T18:00:00-08:00",
+            "end": "2026-01-23T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T18:30:00-08:00",
+            "end": "2026-01-23T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T19:00:00-08:00",
+            "end": "2026-01-23T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T19:30:00-08:00",
+            "end": "2026-01-23T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        },
+        {
+            "start": "2026-01-23T20:00:00-08:00",
+            "end": "2026-01-23T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44710"
+        }
+    ],
+    "Gateway 2108": [
+        {
+            "start": "2026-01-21T15:00:00-08:00",
+            "end": "2026-01-21T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T15:30:00-08:00",
+            "end": "2026-01-21T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T16:00:00-08:00",
+            "end": "2026-01-21T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T16:30:00-08:00",
+            "end": "2026-01-21T17:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T17:00:00-08:00",
+            "end": "2026-01-21T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T17:30:00-08:00",
+            "end": "2026-01-21T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T18:00:00-08:00",
+            "end": "2026-01-21T18:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T18:30:00-08:00",
+            "end": "2026-01-21T19:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T19:00:00-08:00",
+            "end": "2026-01-21T19:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T19:30:00-08:00",
+            "end": "2026-01-21T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T20:00:00-08:00",
+            "end": "2026-01-21T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T20:30:00-08:00",
+            "end": "2026-01-21T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T21:00:00-08:00",
+            "end": "2026-01-21T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T21:30:00-08:00",
+            "end": "2026-01-21T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T22:00:00-08:00",
+            "end": "2026-01-21T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T22:30:00-08:00",
+            "end": "2026-01-21T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T23:00:00-08:00",
+            "end": "2026-01-21T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-21T23:30:00-08:00",
+            "end": "2026-01-22T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T00:00:00-08:00",
+            "end": "2026-01-22T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T08:00:00-08:00",
+            "end": "2026-01-22T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T08:30:00-08:00",
+            "end": "2026-01-22T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T09:00:00-08:00",
+            "end": "2026-01-22T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T09:30:00-08:00",
+            "end": "2026-01-22T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T10:00:00-08:00",
+            "end": "2026-01-22T10:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T10:30:00-08:00",
+            "end": "2026-01-22T11:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T11:00:00-08:00",
+            "end": "2026-01-22T11:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T11:30:00-08:00",
+            "end": "2026-01-22T12:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T12:00:00-08:00",
+            "end": "2026-01-22T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T12:30:00-08:00",
+            "end": "2026-01-22T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T13:00:00-08:00",
+            "end": "2026-01-22T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T13:30:00-08:00",
+            "end": "2026-01-22T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T14:00:00-08:00",
+            "end": "2026-01-22T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T14:30:00-08:00",
+            "end": "2026-01-22T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T15:00:00-08:00",
+            "end": "2026-01-22T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T15:30:00-08:00",
+            "end": "2026-01-22T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T16:00:00-08:00",
+            "end": "2026-01-22T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T16:30:00-08:00",
+            "end": "2026-01-22T17:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T17:00:00-08:00",
+            "end": "2026-01-22T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T17:30:00-08:00",
+            "end": "2026-01-22T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T18:00:00-08:00",
+            "end": "2026-01-22T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T18:30:00-08:00",
+            "end": "2026-01-22T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T19:00:00-08:00",
+            "end": "2026-01-22T19:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T19:30:00-08:00",
+            "end": "2026-01-22T20:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T20:00:00-08:00",
+            "end": "2026-01-22T20:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T20:30:00-08:00",
+            "end": "2026-01-22T21:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T21:00:00-08:00",
+            "end": "2026-01-22T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T21:30:00-08:00",
+            "end": "2026-01-22T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T22:00:00-08:00",
+            "end": "2026-01-22T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T22:30:00-08:00",
+            "end": "2026-01-22T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T23:00:00-08:00",
+            "end": "2026-01-22T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-22T23:30:00-08:00",
+            "end": "2026-01-23T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T00:00:00-08:00",
+            "end": "2026-01-23T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T08:00:00-08:00",
+            "end": "2026-01-23T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T08:30:00-08:00",
+            "end": "2026-01-23T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T09:00:00-08:00",
+            "end": "2026-01-23T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T09:30:00-08:00",
+            "end": "2026-01-23T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T10:00:00-08:00",
+            "end": "2026-01-23T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T10:30:00-08:00",
+            "end": "2026-01-23T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T11:00:00-08:00",
+            "end": "2026-01-23T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T11:30:00-08:00",
+            "end": "2026-01-23T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T12:00:00-08:00",
+            "end": "2026-01-23T12:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T12:30:00-08:00",
+            "end": "2026-01-23T13:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T13:00:00-08:00",
+            "end": "2026-01-23T13:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T13:30:00-08:00",
+            "end": "2026-01-23T14:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T14:00:00-08:00",
+            "end": "2026-01-23T14:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T14:30:00-08:00",
+            "end": "2026-01-23T15:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T15:00:00-08:00",
+            "end": "2026-01-23T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T15:30:00-08:00",
+            "end": "2026-01-23T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T16:00:00-08:00",
+            "end": "2026-01-23T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T16:30:00-08:00",
+            "end": "2026-01-23T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T17:00:00-08:00",
+            "end": "2026-01-23T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T17:30:00-08:00",
+            "end": "2026-01-23T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T18:00:00-08:00",
+            "end": "2026-01-23T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T18:30:00-08:00",
+            "end": "2026-01-23T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T19:00:00-08:00",
+            "end": "2026-01-23T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T19:30:00-08:00",
+            "end": "2026-01-23T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        },
+        {
+            "start": "2026-01-23T20:00:00-08:00",
+            "end": "2026-01-23T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117634"
+        }
+    ],
+    "Gateway 2109": [
+        {
+            "start": "2026-01-21T15:00:00-08:00",
+            "end": "2026-01-21T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T15:30:00-08:00",
+            "end": "2026-01-21T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T16:00:00-08:00",
+            "end": "2026-01-21T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T16:30:00-08:00",
+            "end": "2026-01-21T17:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T17:00:00-08:00",
+            "end": "2026-01-21T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T17:30:00-08:00",
+            "end": "2026-01-21T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T18:00:00-08:00",
+            "end": "2026-01-21T18:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T18:30:00-08:00",
+            "end": "2026-01-21T19:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T19:00:00-08:00",
+            "end": "2026-01-21T19:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T19:30:00-08:00",
+            "end": "2026-01-21T20:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T20:00:00-08:00",
+            "end": "2026-01-21T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T20:30:00-08:00",
+            "end": "2026-01-21T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T21:00:00-08:00",
+            "end": "2026-01-21T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T21:30:00-08:00",
+            "end": "2026-01-21T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T22:00:00-08:00",
+            "end": "2026-01-21T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T22:30:00-08:00",
+            "end": "2026-01-21T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T23:00:00-08:00",
+            "end": "2026-01-21T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-21T23:30:00-08:00",
+            "end": "2026-01-22T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T00:00:00-08:00",
+            "end": "2026-01-22T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T08:00:00-08:00",
+            "end": "2026-01-22T08:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T08:30:00-08:00",
+            "end": "2026-01-22T09:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T09:00:00-08:00",
+            "end": "2026-01-22T09:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T09:30:00-08:00",
+            "end": "2026-01-22T10:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T10:00:00-08:00",
+            "end": "2026-01-22T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T10:30:00-08:00",
+            "end": "2026-01-22T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T11:00:00-08:00",
+            "end": "2026-01-22T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T11:30:00-08:00",
+            "end": "2026-01-22T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T12:00:00-08:00",
+            "end": "2026-01-22T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T12:30:00-08:00",
+            "end": "2026-01-22T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T13:00:00-08:00",
+            "end": "2026-01-22T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T13:30:00-08:00",
+            "end": "2026-01-22T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T14:00:00-08:00",
+            "end": "2026-01-22T14:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T14:30:00-08:00",
+            "end": "2026-01-22T15:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T15:00:00-08:00",
+            "end": "2026-01-22T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T15:30:00-08:00",
+            "end": "2026-01-22T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T16:00:00-08:00",
+            "end": "2026-01-22T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T16:30:00-08:00",
+            "end": "2026-01-22T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T17:00:00-08:00",
+            "end": "2026-01-22T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T17:30:00-08:00",
+            "end": "2026-01-22T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T18:00:00-08:00",
+            "end": "2026-01-22T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T18:30:00-08:00",
+            "end": "2026-01-22T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T19:00:00-08:00",
+            "end": "2026-01-22T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T19:30:00-08:00",
+            "end": "2026-01-22T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T20:00:00-08:00",
+            "end": "2026-01-22T20:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T20:30:00-08:00",
+            "end": "2026-01-22T21:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T21:00:00-08:00",
+            "end": "2026-01-22T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T21:30:00-08:00",
+            "end": "2026-01-22T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T22:00:00-08:00",
+            "end": "2026-01-22T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T22:30:00-08:00",
+            "end": "2026-01-22T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T23:00:00-08:00",
+            "end": "2026-01-22T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-22T23:30:00-08:00",
+            "end": "2026-01-23T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T00:00:00-08:00",
+            "end": "2026-01-23T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T08:00:00-08:00",
+            "end": "2026-01-23T08:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T08:30:00-08:00",
+            "end": "2026-01-23T09:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T09:00:00-08:00",
+            "end": "2026-01-23T09:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T09:30:00-08:00",
+            "end": "2026-01-23T10:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T10:00:00-08:00",
+            "end": "2026-01-23T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T10:30:00-08:00",
+            "end": "2026-01-23T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T11:00:00-08:00",
+            "end": "2026-01-23T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T11:30:00-08:00",
+            "end": "2026-01-23T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T12:00:00-08:00",
+            "end": "2026-01-23T12:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T12:30:00-08:00",
+            "end": "2026-01-23T13:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T13:00:00-08:00",
+            "end": "2026-01-23T13:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T13:30:00-08:00",
+            "end": "2026-01-23T14:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T14:00:00-08:00",
+            "end": "2026-01-23T14:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T14:30:00-08:00",
+            "end": "2026-01-23T15:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T15:00:00-08:00",
+            "end": "2026-01-23T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T15:30:00-08:00",
+            "end": "2026-01-23T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T16:00:00-08:00",
+            "end": "2026-01-23T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T16:30:00-08:00",
+            "end": "2026-01-23T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T17:00:00-08:00",
+            "end": "2026-01-23T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T17:30:00-08:00",
+            "end": "2026-01-23T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T18:00:00-08:00",
+            "end": "2026-01-23T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T18:30:00-08:00",
+            "end": "2026-01-23T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T19:00:00-08:00",
+            "end": "2026-01-23T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T19:30:00-08:00",
+            "end": "2026-01-23T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        },
+        {
+            "start": "2026-01-23T20:00:00-08:00",
+            "end": "2026-01-23T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_117629"
+        }
+    ],
+    "Gateway 2110": [
+        {
+            "start": "2026-01-21T15:00:00-08:00",
+            "end": "2026-01-21T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T15:30:00-08:00",
+            "end": "2026-01-21T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T16:00:00-08:00",
+            "end": "2026-01-21T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T16:30:00-08:00",
+            "end": "2026-01-21T17:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T17:00:00-08:00",
+            "end": "2026-01-21T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T17:30:00-08:00",
+            "end": "2026-01-21T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T18:00:00-08:00",
+            "end": "2026-01-21T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T18:30:00-08:00",
+            "end": "2026-01-21T19:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T19:00:00-08:00",
+            "end": "2026-01-21T19:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T19:30:00-08:00",
+            "end": "2026-01-21T20:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T20:00:00-08:00",
+            "end": "2026-01-21T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T20:30:00-08:00",
+            "end": "2026-01-21T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T21:00:00-08:00",
+            "end": "2026-01-21T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T21:30:00-08:00",
+            "end": "2026-01-21T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T22:00:00-08:00",
+            "end": "2026-01-21T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T22:30:00-08:00",
+            "end": "2026-01-21T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T23:00:00-08:00",
+            "end": "2026-01-21T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-21T23:30:00-08:00",
+            "end": "2026-01-22T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T00:00:00-08:00",
+            "end": "2026-01-22T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T08:00:00-08:00",
+            "end": "2026-01-22T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T08:30:00-08:00",
+            "end": "2026-01-22T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T09:00:00-08:00",
+            "end": "2026-01-22T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T09:30:00-08:00",
+            "end": "2026-01-22T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T10:00:00-08:00",
+            "end": "2026-01-22T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T10:30:00-08:00",
+            "end": "2026-01-22T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T11:00:00-08:00",
+            "end": "2026-01-22T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T11:30:00-08:00",
+            "end": "2026-01-22T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T12:00:00-08:00",
+            "end": "2026-01-22T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T12:30:00-08:00",
+            "end": "2026-01-22T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T13:00:00-08:00",
+            "end": "2026-01-22T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T13:30:00-08:00",
+            "end": "2026-01-22T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T14:00:00-08:00",
+            "end": "2026-01-22T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T14:30:00-08:00",
+            "end": "2026-01-22T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T15:00:00-08:00",
+            "end": "2026-01-22T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T15:30:00-08:00",
+            "end": "2026-01-22T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T16:00:00-08:00",
+            "end": "2026-01-22T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T16:30:00-08:00",
+            "end": "2026-01-22T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T17:00:00-08:00",
+            "end": "2026-01-22T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T17:30:00-08:00",
+            "end": "2026-01-22T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T18:00:00-08:00",
+            "end": "2026-01-22T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T18:30:00-08:00",
+            "end": "2026-01-22T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T19:00:00-08:00",
+            "end": "2026-01-22T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T19:30:00-08:00",
+            "end": "2026-01-22T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T20:00:00-08:00",
+            "end": "2026-01-22T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T20:30:00-08:00",
+            "end": "2026-01-22T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T21:00:00-08:00",
+            "end": "2026-01-22T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T21:30:00-08:00",
+            "end": "2026-01-22T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T22:00:00-08:00",
+            "end": "2026-01-22T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T22:30:00-08:00",
+            "end": "2026-01-22T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T23:00:00-08:00",
+            "end": "2026-01-22T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-22T23:30:00-08:00",
+            "end": "2026-01-23T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T00:00:00-08:00",
+            "end": "2026-01-23T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T08:00:00-08:00",
+            "end": "2026-01-23T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T08:30:00-08:00",
+            "end": "2026-01-23T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T09:00:00-08:00",
+            "end": "2026-01-23T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T09:30:00-08:00",
+            "end": "2026-01-23T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T10:00:00-08:00",
+            "end": "2026-01-23T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T10:30:00-08:00",
+            "end": "2026-01-23T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T11:00:00-08:00",
+            "end": "2026-01-23T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T11:30:00-08:00",
+            "end": "2026-01-23T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T12:00:00-08:00",
+            "end": "2026-01-23T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T12:30:00-08:00",
+            "end": "2026-01-23T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T13:00:00-08:00",
+            "end": "2026-01-23T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T13:30:00-08:00",
+            "end": "2026-01-23T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T14:00:00-08:00",
+            "end": "2026-01-23T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T14:30:00-08:00",
+            "end": "2026-01-23T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T15:00:00-08:00",
+            "end": "2026-01-23T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T15:30:00-08:00",
+            "end": "2026-01-23T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T16:00:00-08:00",
+            "end": "2026-01-23T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T16:30:00-08:00",
+            "end": "2026-01-23T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T17:00:00-08:00",
+            "end": "2026-01-23T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T17:30:00-08:00",
+            "end": "2026-01-23T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T18:00:00-08:00",
+            "end": "2026-01-23T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T18:30:00-08:00",
+            "end": "2026-01-23T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T19:00:00-08:00",
+            "end": "2026-01-23T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T19:30:00-08:00",
+            "end": "2026-01-23T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        },
+        {
+            "start": "2026-01-23T20:00:00-08:00",
+            "end": "2026-01-23T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44711"
+        }
+    ],
+    "Gateway 2111": [
+        {
+            "start": "2026-01-21T15:00:00-08:00",
+            "end": "2026-01-21T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T15:30:00-08:00",
+            "end": "2026-01-21T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T16:00:00-08:00",
+            "end": "2026-01-21T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T16:30:00-08:00",
+            "end": "2026-01-21T17:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T17:00:00-08:00",
+            "end": "2026-01-21T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T17:30:00-08:00",
+            "end": "2026-01-21T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T18:00:00-08:00",
+            "end": "2026-01-21T18:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T18:30:00-08:00",
+            "end": "2026-01-21T19:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T19:00:00-08:00",
+            "end": "2026-01-21T19:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T19:30:00-08:00",
+            "end": "2026-01-21T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T20:00:00-08:00",
+            "end": "2026-01-21T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T20:30:00-08:00",
+            "end": "2026-01-21T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T21:00:00-08:00",
+            "end": "2026-01-21T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T21:30:00-08:00",
+            "end": "2026-01-21T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T22:00:00-08:00",
+            "end": "2026-01-21T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T22:30:00-08:00",
+            "end": "2026-01-21T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T23:00:00-08:00",
+            "end": "2026-01-21T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-21T23:30:00-08:00",
+            "end": "2026-01-22T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T00:00:00-08:00",
+            "end": "2026-01-22T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T08:00:00-08:00",
+            "end": "2026-01-22T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T08:30:00-08:00",
+            "end": "2026-01-22T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T09:00:00-08:00",
+            "end": "2026-01-22T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T09:30:00-08:00",
+            "end": "2026-01-22T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T10:00:00-08:00",
+            "end": "2026-01-22T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T10:30:00-08:00",
+            "end": "2026-01-22T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T11:00:00-08:00",
+            "end": "2026-01-22T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T11:30:00-08:00",
+            "end": "2026-01-22T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T12:00:00-08:00",
+            "end": "2026-01-22T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T12:30:00-08:00",
+            "end": "2026-01-22T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T13:00:00-08:00",
+            "end": "2026-01-22T13:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T13:30:00-08:00",
+            "end": "2026-01-22T14:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T14:00:00-08:00",
+            "end": "2026-01-22T14:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T14:30:00-08:00",
+            "end": "2026-01-22T15:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T15:00:00-08:00",
+            "end": "2026-01-22T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T15:30:00-08:00",
+            "end": "2026-01-22T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T16:00:00-08:00",
+            "end": "2026-01-22T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T16:30:00-08:00",
+            "end": "2026-01-22T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T17:00:00-08:00",
+            "end": "2026-01-22T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T17:30:00-08:00",
+            "end": "2026-01-22T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T18:00:00-08:00",
+            "end": "2026-01-22T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T18:30:00-08:00",
+            "end": "2026-01-22T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T19:00:00-08:00",
+            "end": "2026-01-22T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T19:30:00-08:00",
+            "end": "2026-01-22T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T20:00:00-08:00",
+            "end": "2026-01-22T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T20:30:00-08:00",
+            "end": "2026-01-22T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T21:00:00-08:00",
+            "end": "2026-01-22T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T21:30:00-08:00",
+            "end": "2026-01-22T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T22:00:00-08:00",
+            "end": "2026-01-22T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T22:30:00-08:00",
+            "end": "2026-01-22T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T23:00:00-08:00",
+            "end": "2026-01-22T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-22T23:30:00-08:00",
+            "end": "2026-01-23T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T00:00:00-08:00",
+            "end": "2026-01-23T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T08:00:00-08:00",
+            "end": "2026-01-23T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T08:30:00-08:00",
+            "end": "2026-01-23T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T09:00:00-08:00",
+            "end": "2026-01-23T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T09:30:00-08:00",
+            "end": "2026-01-23T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T10:00:00-08:00",
+            "end": "2026-01-23T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T10:30:00-08:00",
+            "end": "2026-01-23T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T11:00:00-08:00",
+            "end": "2026-01-23T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T11:30:00-08:00",
+            "end": "2026-01-23T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T12:00:00-08:00",
+            "end": "2026-01-23T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T12:30:00-08:00",
+            "end": "2026-01-23T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T13:00:00-08:00",
+            "end": "2026-01-23T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T13:30:00-08:00",
+            "end": "2026-01-23T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T14:00:00-08:00",
+            "end": "2026-01-23T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T14:30:00-08:00",
+            "end": "2026-01-23T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T15:00:00-08:00",
+            "end": "2026-01-23T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T15:30:00-08:00",
+            "end": "2026-01-23T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T16:00:00-08:00",
+            "end": "2026-01-23T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T16:30:00-08:00",
+            "end": "2026-01-23T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T17:00:00-08:00",
+            "end": "2026-01-23T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T17:30:00-08:00",
+            "end": "2026-01-23T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T18:00:00-08:00",
+            "end": "2026-01-23T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T18:30:00-08:00",
+            "end": "2026-01-23T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T19:00:00-08:00",
+            "end": "2026-01-23T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T19:30:00-08:00",
+            "end": "2026-01-23T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        },
+        {
+            "start": "2026-01-23T20:00:00-08:00",
+            "end": "2026-01-23T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44712"
+        }
+    ],
+    "Gateway 2112": [
+        {
+            "start": "2026-01-21T15:00:00-08:00",
+            "end": "2026-01-21T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T15:30:00-08:00",
+            "end": "2026-01-21T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T16:00:00-08:00",
+            "end": "2026-01-21T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T16:30:00-08:00",
+            "end": "2026-01-21T17:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T17:00:00-08:00",
+            "end": "2026-01-21T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T17:30:00-08:00",
+            "end": "2026-01-21T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T18:00:00-08:00",
+            "end": "2026-01-21T18:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T18:30:00-08:00",
+            "end": "2026-01-21T19:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T19:00:00-08:00",
+            "end": "2026-01-21T19:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T19:30:00-08:00",
+            "end": "2026-01-21T20:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T20:00:00-08:00",
+            "end": "2026-01-21T20:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T20:30:00-08:00",
+            "end": "2026-01-21T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T21:00:00-08:00",
+            "end": "2026-01-21T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T21:30:00-08:00",
+            "end": "2026-01-21T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T22:00:00-08:00",
+            "end": "2026-01-21T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T22:30:00-08:00",
+            "end": "2026-01-21T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T23:00:00-08:00",
+            "end": "2026-01-21T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-21T23:30:00-08:00",
+            "end": "2026-01-22T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T00:00:00-08:00",
+            "end": "2026-01-22T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T08:00:00-08:00",
+            "end": "2026-01-22T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T08:30:00-08:00",
+            "end": "2026-01-22T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T09:00:00-08:00",
+            "end": "2026-01-22T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T09:30:00-08:00",
+            "end": "2026-01-22T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T10:00:00-08:00",
+            "end": "2026-01-22T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T10:30:00-08:00",
+            "end": "2026-01-22T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T11:00:00-08:00",
+            "end": "2026-01-22T11:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T11:30:00-08:00",
+            "end": "2026-01-22T12:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T12:00:00-08:00",
+            "end": "2026-01-22T12:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T12:30:00-08:00",
+            "end": "2026-01-22T13:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T13:00:00-08:00",
+            "end": "2026-01-22T13:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T13:30:00-08:00",
+            "end": "2026-01-22T14:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T14:00:00-08:00",
+            "end": "2026-01-22T14:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T14:30:00-08:00",
+            "end": "2026-01-22T15:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T15:00:00-08:00",
+            "end": "2026-01-22T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T15:30:00-08:00",
+            "end": "2026-01-22T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T16:00:00-08:00",
+            "end": "2026-01-22T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T16:30:00-08:00",
+            "end": "2026-01-22T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T17:00:00-08:00",
+            "end": "2026-01-22T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T17:30:00-08:00",
+            "end": "2026-01-22T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T18:00:00-08:00",
+            "end": "2026-01-22T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T18:30:00-08:00",
+            "end": "2026-01-22T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T19:00:00-08:00",
+            "end": "2026-01-22T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T19:30:00-08:00",
+            "end": "2026-01-22T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T20:00:00-08:00",
+            "end": "2026-01-22T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T20:30:00-08:00",
+            "end": "2026-01-22T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T21:00:00-08:00",
+            "end": "2026-01-22T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T21:30:00-08:00",
+            "end": "2026-01-22T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T22:00:00-08:00",
+            "end": "2026-01-22T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T22:30:00-08:00",
+            "end": "2026-01-22T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T23:00:00-08:00",
+            "end": "2026-01-22T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-22T23:30:00-08:00",
+            "end": "2026-01-23T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T00:00:00-08:00",
+            "end": "2026-01-23T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T08:00:00-08:00",
+            "end": "2026-01-23T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T08:30:00-08:00",
+            "end": "2026-01-23T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T09:00:00-08:00",
+            "end": "2026-01-23T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T09:30:00-08:00",
+            "end": "2026-01-23T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T10:00:00-08:00",
+            "end": "2026-01-23T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T10:30:00-08:00",
+            "end": "2026-01-23T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T11:00:00-08:00",
+            "end": "2026-01-23T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T11:30:00-08:00",
+            "end": "2026-01-23T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T12:00:00-08:00",
+            "end": "2026-01-23T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T12:30:00-08:00",
+            "end": "2026-01-23T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T13:00:00-08:00",
+            "end": "2026-01-23T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T13:30:00-08:00",
+            "end": "2026-01-23T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T14:00:00-08:00",
+            "end": "2026-01-23T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T14:30:00-08:00",
+            "end": "2026-01-23T15:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T15:00:00-08:00",
+            "end": "2026-01-23T15:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T15:30:00-08:00",
+            "end": "2026-01-23T16:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T16:00:00-08:00",
+            "end": "2026-01-23T16:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T16:30:00-08:00",
+            "end": "2026-01-23T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T17:00:00-08:00",
+            "end": "2026-01-23T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T17:30:00-08:00",
+            "end": "2026-01-23T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T18:00:00-08:00",
+            "end": "2026-01-23T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T18:30:00-08:00",
+            "end": "2026-01-23T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T19:00:00-08:00",
+            "end": "2026-01-23T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T19:30:00-08:00",
+            "end": "2026-01-23T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        },
+        {
+            "start": "2026-01-23T20:00:00-08:00",
+            "end": "2026-01-23T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44713"
+        }
+    ],
+    "Gateway 2113": [
+        {
+            "start": "2026-01-21T15:00:00-08:00",
+            "end": "2026-01-21T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T15:30:00-08:00",
+            "end": "2026-01-21T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T16:00:00-08:00",
+            "end": "2026-01-21T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T16:30:00-08:00",
+            "end": "2026-01-21T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T17:00:00-08:00",
+            "end": "2026-01-21T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T17:30:00-08:00",
+            "end": "2026-01-21T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T18:00:00-08:00",
+            "end": "2026-01-21T18:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T18:30:00-08:00",
+            "end": "2026-01-21T19:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T19:00:00-08:00",
+            "end": "2026-01-21T19:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T19:30:00-08:00",
+            "end": "2026-01-21T20:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T20:00:00-08:00",
+            "end": "2026-01-21T20:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T20:30:00-08:00",
+            "end": "2026-01-21T21:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T21:00:00-08:00",
+            "end": "2026-01-21T21:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T21:30:00-08:00",
+            "end": "2026-01-21T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T22:00:00-08:00",
+            "end": "2026-01-21T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T22:30:00-08:00",
+            "end": "2026-01-21T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T23:00:00-08:00",
+            "end": "2026-01-21T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-21T23:30:00-08:00",
+            "end": "2026-01-22T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T00:00:00-08:00",
+            "end": "2026-01-22T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T08:00:00-08:00",
+            "end": "2026-01-22T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T08:30:00-08:00",
+            "end": "2026-01-22T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T09:00:00-08:00",
+            "end": "2026-01-22T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T09:30:00-08:00",
+            "end": "2026-01-22T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T10:00:00-08:00",
+            "end": "2026-01-22T10:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T10:30:00-08:00",
+            "end": "2026-01-22T11:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T11:00:00-08:00",
+            "end": "2026-01-22T11:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T11:30:00-08:00",
+            "end": "2026-01-22T12:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T12:00:00-08:00",
+            "end": "2026-01-22T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T12:30:00-08:00",
+            "end": "2026-01-22T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T13:00:00-08:00",
+            "end": "2026-01-22T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T13:30:00-08:00",
+            "end": "2026-01-22T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T14:00:00-08:00",
+            "end": "2026-01-22T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T14:30:00-08:00",
+            "end": "2026-01-22T15:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T15:00:00-08:00",
+            "end": "2026-01-22T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T15:30:00-08:00",
+            "end": "2026-01-22T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T16:00:00-08:00",
+            "end": "2026-01-22T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T16:30:00-08:00",
+            "end": "2026-01-22T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T17:00:00-08:00",
+            "end": "2026-01-22T17:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T17:30:00-08:00",
+            "end": "2026-01-22T18:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T18:00:00-08:00",
+            "end": "2026-01-22T18:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T18:30:00-08:00",
+            "end": "2026-01-22T19:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T19:00:00-08:00",
+            "end": "2026-01-22T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T19:30:00-08:00",
+            "end": "2026-01-22T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T20:00:00-08:00",
+            "end": "2026-01-22T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T20:30:00-08:00",
+            "end": "2026-01-22T21:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T21:00:00-08:00",
+            "end": "2026-01-22T21:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T21:30:00-08:00",
+            "end": "2026-01-22T22:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T22:00:00-08:00",
+            "end": "2026-01-22T22:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T22:30:00-08:00",
+            "end": "2026-01-22T23:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T23:00:00-08:00",
+            "end": "2026-01-22T23:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-22T23:30:00-08:00",
+            "end": "2026-01-23T00:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T00:00:00-08:00",
+            "end": "2026-01-23T00:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T08:00:00-08:00",
+            "end": "2026-01-23T08:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T08:30:00-08:00",
+            "end": "2026-01-23T09:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T09:00:00-08:00",
+            "end": "2026-01-23T09:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T09:30:00-08:00",
+            "end": "2026-01-23T10:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T10:00:00-08:00",
+            "end": "2026-01-23T10:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T10:30:00-08:00",
+            "end": "2026-01-23T11:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T11:00:00-08:00",
+            "end": "2026-01-23T11:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T11:30:00-08:00",
+            "end": "2026-01-23T12:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T12:00:00-08:00",
+            "end": "2026-01-23T12:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T12:30:00-08:00",
+            "end": "2026-01-23T13:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T13:00:00-08:00",
+            "end": "2026-01-23T13:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T13:30:00-08:00",
+            "end": "2026-01-23T14:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T14:00:00-08:00",
+            "end": "2026-01-23T14:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T14:30:00-08:00",
+            "end": "2026-01-23T15:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T15:00:00-08:00",
+            "end": "2026-01-23T15:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T15:30:00-08:00",
+            "end": "2026-01-23T16:00:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T16:00:00-08:00",
+            "end": "2026-01-23T16:30:00-08:00",
+            "isAvailable": false,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T16:30:00-08:00",
+            "end": "2026-01-23T17:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T17:00:00-08:00",
+            "end": "2026-01-23T17:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T17:30:00-08:00",
+            "end": "2026-01-23T18:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T18:00:00-08:00",
+            "end": "2026-01-23T18:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T18:30:00-08:00",
+            "end": "2026-01-23T19:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T19:00:00-08:00",
+            "end": "2026-01-23T19:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T19:30:00-08:00",
+            "end": "2026-01-23T20:00:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        },
+        {
+            "start": "2026-01-23T20:00:00-08:00",
+            "end": "2026-01-23T20:30:00-08:00",
+            "isAvailable": true,
+            "resourceId": "eid_44714"
+        }
+    ]
+}

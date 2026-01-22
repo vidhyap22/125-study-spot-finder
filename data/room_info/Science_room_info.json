@@ -1,0 +1,219 @@
+[
+    {
+        "id": 111031,
+        "name": "Science 277",
+        "capacity": 6,
+        "tech_enhanced": true,
+        "location": "Science"
+    },
+    {
+        "id": 44667,
+        "name": "Science 371",
+        "capacity": 8,
+        "tech_enhanced": true,
+        "location": "Science"
+    },
+    {
+        "id": 44668,
+        "name": "Science 402",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44669,
+        "name": "Science 410",
+        "capacity": 6,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44670,
+        "name": "Science 471",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44671,
+        "name": "Science 472",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44672,
+        "name": "Science 476",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44673,
+        "name": "Science 477",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44674,
+        "name": "Science 478",
+        "capacity": 8,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44675,
+        "name": "Science 479",
+        "capacity": 5,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44676,
+        "name": "Science 482",
+        "capacity": 5,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 111030,
+        "name": "Science 483",
+        "capacity": 5,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44677,
+        "name": "Science 484",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44678,
+        "name": "Science 486",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44679,
+        "name": "Science 490",
+        "capacity": 5,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44683,
+        "name": "Science 520",
+        "capacity": 5,
+        "tech_enhanced": true,
+        "location": "Science"
+    },
+    {
+        "id": 44684,
+        "name": "Science 521",
+        "capacity": 4,
+        "tech_enhanced": true,
+        "location": "Science"
+    },
+    {
+        "id": 44685,
+        "name": "Science 522",
+        "capacity": 4,
+        "tech_enhanced": true,
+        "location": "Science"
+    },
+    {
+        "id": 44686,
+        "name": "Science 526",
+        "capacity": 5,
+        "tech_enhanced": true,
+        "location": "Science"
+    },
+    {
+        "id": 44687,
+        "name": "Science 527",
+        "capacity": 5,
+        "tech_enhanced": true,
+        "location": "Science"
+    },
+    {
+        "id": 44688,
+        "name": "Science 528",
+        "capacity": 4,
+        "tech_enhanced": true,
+        "location": "Science"
+    },
+    {
+        "id": 44689,
+        "name": "Science 529",
+        "capacity": 4,
+        "tech_enhanced": true,
+        "location": "Science"
+    },
+    {
+        "id": 44690,
+        "name": "Science 530",
+        "capacity": 6,
+        "tech_enhanced": true,
+        "location": "Science"
+    },
+    {
+        "id": 44691,
+        "name": "Science 531",
+        "capacity": 4,
+        "tech_enhanced": true,
+        "location": "Science"
+    },
+    {
+        "id": 44693,
+        "name": "Science 533",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44680,
+        "name": "Science 574",
+        "capacity": 5,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44681,
+        "name": "Science 579",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44694,
+        "name": "Science 602",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 44695,
+        "name": "Science 610",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 178733,
+        "name": "Study Pod 2A",
+        "capacity": 1,
+        "tech_enhanced": false,
+        "location": "Science"
+    },
+    {
+        "id": 178734,
+        "name": "Study Pod 2B",
+        "capacity": 1,
+        "tech_enhanced": false,
+        "location": "Science"
+    }
+]

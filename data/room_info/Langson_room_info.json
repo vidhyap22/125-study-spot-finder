@@ -1,0 +1,121 @@
+[
+    {
+        "id": 44696,
+        "name": "Langson 380",
+        "capacity": 6,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 44697,
+        "name": "Langson 382",
+        "capacity": 6,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 44698,
+        "name": "Langson 386",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 44699,
+        "name": "Langson 388",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 44700,
+        "name": "Langson 390",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 44701,
+        "name": "Langson 392",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 44702,
+        "name": "Langson 394",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 44703,
+        "name": "Langson 396",
+        "capacity": 4,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 155343,
+        "name": "Study Pod 1A",
+        "capacity": 1,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 155344,
+        "name": "Study Pod 1B",
+        "capacity": 1,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 168432,
+        "name": "Study Pod 1C",
+        "capacity": 1,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 168433,
+        "name": "Study Pod 1D",
+        "capacity": 1,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 168434,
+        "name": "Study Pod 1E",
+        "capacity": 1,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 168435,
+        "name": "Study Pod 2A",
+        "capacity": 1,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 168436,
+        "name": "Study Pod 2B",
+        "capacity": 1,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 168437,
+        "name": "Study Pod 2C",
+        "capacity": 1,
+        "tech_enhanced": false,
+        "location": "Langson"
+    },
+    {
+        "id": 168438,
+        "name": "Study Pod 2D",
+        "capacity": 1,
+        "tech_enhanced": false,
+        "location": "Langson"
+    }
+]
