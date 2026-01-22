@@ -1,7 +1,803 @@
 {
-	"SLIB": { "latitude": 33.645751466897906, "longitude": -117.84655896516696 },
-	"LLIB": { "latitude": 33.64725208711623, "longitude": 117.8409255543131 },
-	"ALP": { "latitude": 33.64718037556207, "longitude": -117.84455436965455 },
-	"MLTM": { "latitude": 33.645751466897906, "longitude": -117.84655896516696 },
-	"GSC": { "latitude": 33.64761756279868, "longitude": -117.84138220662724 }
+    "ACT": {
+        "name": "Art, Culture & Technology",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.65079230398093,
+		"longtitude":-117.84476401472463
+    },
+    "AIRB": {
+        "name": "Anteater Instruction & Research Building",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64300026273339,
+		"longtitude": -117.83818605579852
+    },
+    "AITR": {
+        "name": "Arts Instruction & Technology Resource Center",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64991536143659,
+		"longtitude": -117.84380206023748
+    },
+    "ALH": {
+        "name": "Aldrich Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64856692564726,
+		"longtitude": -117.84140214989665
+    },
+	"ALP": { 
+		"name": "Anteater Learning Pavilion",
+        "has_printer": true,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+		"latitude": 33.64718037556207, 
+		"longitude": -117.84455436965455 
+	},
+    "APL": {
+        "name": "Air Pollution Labs",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.66493082786525, 
+		"longitude": -117.85388613376253 
+    },
+    "ARAN": {
+        "name": "Arts Annex",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64678801677363,
+        "longtitude": -117.84678705351122
+    },
+    "ARBO": {
+        "name": "Arboretum (North Campus)",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.66389172833955, 
+        "longtitude": -117.85279740231393
+    },
+    "ARC": {
+        "name": "Anteater Recreation Center",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64357084510194, 
+        "longtitude": -117.82792937424409
+    },
+    "ART": {
+        "name": "Art Studio",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64966515005925, 
+        "longtitude": -117.84520454354399
+    },
+    "BH": {
+        "name": "Berk Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64624522518412, 
+        "longtitude": -117.84945075890222
+    },
+    "BIMO": {
+        "name": "Bison Modular",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.643968307827855, 
+        "longtitude": -117.84629424356037
+    },
+    "BLI": {
+        "name": "Beckman Laser Institute",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64440121408898,
+        "longtitude": -117.84997606075052
+    },
+    "BOAT": {
+        "name": "Boat House",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": null,
+        "longtitude": null
+    },
+    "BRL": {
+        "name": "Bonney Research Laboratory (CNLM)",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.646351949750155, 
+        "longtitude": -117.84622460626805
+    },
+    "QRL": {
+        "name": "Qureshey Research Laboratory (CNLM)",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.646715360264615, 
+        "longtitude": -117.84578300207677
+    },
+    "BS3": {
+        "name": "Biological Sciences III",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64550387306577, 
+        "longtitude": -117.84607654356033
+    },
+    "CD": {
+        "name": "Child Development Center (North Campus)",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.647728500024, 
+        "longtitude": -117.83005793191498
+    },
+    "CH": {
+        "name": "Crawford Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64816391133876, 
+        "longtitude": -117.84814360492767
+    },
+    "CNLM": {
+        "name": "Center for the Neurobiology of Learning and Memory",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.6466740764027,
+        "longtitude":  -117.84539932637018
+    },
+    "CRCC": {
+        "name": "Cross-Cultural Center",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.689085610351945, 
+        "longtitude": -117.83359141287174
+    },
+    "CRH": {
+        "name": "Croul Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.644010261615456, 
+        "longtitude": -117.8441303110285
+    },
+    "CTT": {
+        "name": "(Claire) Trevor Theatre",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.649559509310905, 
+        "longtitude": -117.84528317424383
+    },
+    "CV": {
+        "name": "Campus Village",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64548838366712, 
+        "longtitude": -117.84689928773766
+    },
+    "DBH": {
+        "name": "(Donald) Bren Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64318070773372, 
+        "longtitude": -117.84188948898534
+    },
+    "DRA": {
+        "name": "Drama Building",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.65076427991895, 
+        "longtitude": -117.84455479938282
+    },
+    "DS": {
+        "name": "Dance Studios",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": null,
+        "longtitude": null
+    },
+    "ECT": {
+        "name": "Engineering & Computing Trailer",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.644106790380505,
+        "longtitude": -117.84016360307963
+    },
+    "EDUC": {
+        "name": "Education Building",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64744675280029, 
+        "longtitude": -117.83589227116457
+    },
+    "EG": {
+        "name": "Engineering Gateway",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64314127318741, 
+        "longtitude": -117.8395970165731
+    },
+    "EH": {
+        "name": "Engineering Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64383296213047, 
+        "longtitude": -117.84125014171217
+    },
+    "ELF": {
+        "name": "Engineering Laboratory Facility",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64396129827313, 
+        "longtitude": -117.83972864171203
+    },
+    "ELH": {
+        "name": "Engineering Lecture Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.643943439617374, 
+        "longtitude": -117.84117028958599
+    },
+    "ET": {
+        "name": "Engineering Tower",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.644656582559996, 
+        "longtitude": -117.8412772779696
+    },
+    "FARMSCHOOL": {
+        "name": "Farm School/Red Barn",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64708878728553, 
+        "longtitude": -117.83912613191485
+    },
+    "FRF": {
+        "name": "Faculty Research Facility (North Campus)",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.66436061013759, 
+        "longtitude": -117.85425139725615
+    },
+    "FRH": {
+        "name": "(Frederick) Reines Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.644228980462536, 
+        "longtitude": -117.8435551337633
+    },
+    "GNRF": {
+        "name": "Gillespie Neuroscience Research Facility",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.644230895160455, 
+        "longtitude": -117.85103401657312
+    },
+    "GSC": {
+        "name": "Grunigen Medical Library",
+        "has_printer": true,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64761756279868,
+        "longtitude": -117.84138220662724
+    },
+    "HG": {
+        "name": "Humanities Gateway",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.648512273626366, 
+        "longtitude": -117.84459133561133
+    },
+    "HH": {
+        "name": "Humanities Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64743711239491, 
+        "longtitude": -117.84409780492764
+    },
+    "HIB": {
+        "name": "Humanities Instructional Building",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.648442354619625, 
+        "longtitude": -117.8439688472566
+    },
+    "HICF": {
+        "name": "Humanities Interim Classroom Facility",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64698913738917, 
+        "longtitude": -117.84686408958586
+    },
+    "HRH": {
+        "name": "Hewitt Research Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.643657472009046, 
+        "longtitude": -117.85203100307957
+    },
+    "HSLH": {
+        "name": "(Howard) Schneiderman Lecture Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64569354113719,
+        "longtitude": -117.84469561657303
+    },
+    "IAB": {
+        "name": "Intercollegiate Athletics Building",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64832821110015, 
+        "longtitude": -117.84541073006675
+    },
+    "ICF": {
+        "name": "Interim Classroom Facility",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64456431656865, 
+        "longtitude": -117.84005694725678
+    },
+    "ICS": {
+        "name": "Information & Computer Science",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64447007290868,
+        "longtitude": -117.84183290890215
+    },
+    "ICS2": {
+        "name": "Information & Computer Science II",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64404137196536,
+        "longtitude": -117.84154139927314
+    },
+    "IH": {
+        "name": "Irvine Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64445915336631, 
+        "longtitude": -117.8526001300667
+    },
+    "KH": {
+        "name": "Krieger Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64775504326982, 
+        "longtitude": -117.84349254540844
+    },
+    "LAW": {
+        "name": "Law Building",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64691191889003, 
+        "longtitude": -117.83628330492766
+    },
+    "LLIB": {
+        "name": "Langson Library",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64725208711623,
+        "longtitude": -117.8409255543131
+    },
+    "MAB": {
+        "name": "Mesa Arts Building",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.65040568767273, 
+        "longtitude": -117.8461447417118
+    },
+    "MDE": {
+        "name": "McDonnell Douglas Engineering Auditorium",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.643942017472675, 
+        "longtitude": -117.8405145570539
+    },
+    "MH": {
+        "name": "McGaugh Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64524592601376,
+        "longtitude": -117.84480078958593
+    },
+    "MM": {
+        "name": "Music & Media Building",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.649734517382974,
+        "longtitude": -117.84437517239563
+    },
+    "MPAA": {
+        "name": "Multipurpose Academic and Administrative Building",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64712759305557, 
+        "longtitude": -117.83700693191487
+    },
+    "MLTM": {
+        "name": "Multimedia Resources Center",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.645751466897906,
+        "longtitude": -117.84655896516696
+    },
+    "MS1": {
+        "name": "Medical Surge I",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64661247087991, 
+        "longtitude": -117.85023299143408
+    },
+    "MS2": {
+        "name": "Medical Surge II",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64701697008244, 
+        "longtitude": -117.85009601842125
+    },
+    "MS-A": {
+        "name": "Medical Sciences A",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64517052087812, 
+        "longtitude": -117.84979997424412
+    },
+    "MS-B": {
+        "name": "Medical Sciences B",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64567926739372,
+        "longtitude":  -117.84989458773764
+    },
+    "MS-C": {
+        "name": "Medical Sciences C",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.645831672321854, 
+        "longtitude": -117.85048130000001
+    },
+    "MS-D": {
+        "name": "Medical Sciences D",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64565971497722, 
+        "longtitude": -117.85109873376332
+    },
+    "MS-E": {
+        "name": "Medical Sciences E",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64573846239304, 
+        "longtitude": -117.85151057139308
+    },
+    "MSCF": {
+        "name": "Medical Sciences Classroom Facility",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64547217839813, 
+        "longtitude": -117.85228368588933
+    },
+    "MSTB": {
+        "name": "Multipurpose Science & Technology Building",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.642193415757745, 
+        "longtitude": -117.84439351657319
+    },
+    "NS1": {
+        "name": "Natural Sciences I",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64454661160688, 
+        "longtitude": -117.8457736184215
+    },
+    "NS2": {
+        "name": "Natural Sciences II",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64406116627339, 
+        "longtitude": -117.84570037424403
+    },
+    "PCB": {
+        "name": "Parkview Classroom Building",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64467057470871, 
+        "longtitude": -117.84270818773776
+    },
+    "PH": {
+        "name": "Plumwood House",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.645096021713506, 
+        "longtitude": -117.851118831915
+    },
+    "PSCB": {
+        "name": "Physical Sciences Classroom Building",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64363449448449, 
+        "longtitude": -117.84352477609231
+    },
+    "PSLH": {
+        "name": "Physical Sciences Lecture Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64357030356419, 
+        "longtitude": -117.84393974255764
+    },
+    "PSTU": {
+        "name": "Performance Studios",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.65064104911531, 
+        "longtitude": -117.84534146749704
+    },
+    "REC": {
+        "name": "Rockwell Engineering Center",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.644021890468764, 
+        "longtitude": -117.84048197239578
+    },
+    "RH": {
+        "name": "Rowland Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.644356065508475, 
+        "longtitude": -117.84407695890224
+    },
+    "SAIL": {
+        "name": "Sail Base",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": null,
+        "longtitude": null
+    },
+    "SB": {
+        "name": "Merage School of Business",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.647073833836146, 
+        "longtitude": -117.83784018673492
+    },
+    "SC CCA": {
+        "name": "Student Center Crystal Cove Auditorium",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64936844725203, 
+        "longtitude": -117.84233403191475
+    },
+    "SCS": {
+        "name": "Sculpture and Ceramic Studios",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.650638493984054, 
+        "longtitude": -117.84450043191472
+    },
+    "SE": {
+        "name": "Social Ecology I",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64638207133428, 
+        "longtitude": -117.8388950165731
+    },
+    "SE2": {
+        "name": "Social Ecology II",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64669355058356, 
+        "longtitude": -117.83919721842122
+    },
+    "SH": {
+        "name": "Steinhaus Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": null,
+        "longtitude": null
+    },
+    "SLIB": {
+        "name": "Science Library",
+        "has_printer": true,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.645751466897906,
+        "longtitude": -117.84655896516696
+    },
+    "SPH": {
+        "name": "Sprague Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.646390771316995, 
+        "longtitude": -117.8449815202695
+    },
+    "SS1": {
+        "name": "Student Services I",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64815468166238,
+        "longtitude": -117.84255088238052
+    },
+    "SS2": {
+        "name": "Student Services II",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64815468166238, 
+        "longtitude": -117.84255088238052
+    },
+    "SSH": {
+        "name": "Social Science Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64646129152862, 
+        "longtitude": -117.8399267417119
+    },
+    "SSL": {
+        "name": "Social Science Laboratory",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64602234596724,
+        "longtitude": 117.84005370492777
+    },
+    "SSLH": {
+        "name": "Social Science Lecture Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64734775564215, 
+        "longtitude": -117.83975750307938
+    },
+    "SSPA": {
+        "name": "Social Science Plaza A",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64711587566908, 
+        "longtitude": -117.83955024540843
+    },
+    "SSPB": {
+        "name": "Social Science Plaza B",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.647133432666024, 
+        "longtitude": -117.83903890307943
+    },
+    "SST": {
+        "name": "Social Science Tower",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.646636907919465, 
+        "longtitude": -117.84011383191499
+    },
+    "SSTR": {
+        "name": "Social Science Trailer",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.647115607074774, 
+        "longtitude": -117.84023160307942
+    },
+    "STU4": {
+        "name": "Studio Four",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.650328721316, 
+        "longtitude": -117.84560094048078
+    },
+    "UCI BARN": {
+        "name": "Farm School/Red Barn",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.64266343306177, 
+        "longtitude": -117.82922842794055
+    },
+    "UCI MC": {
+        "name": "UCI Medical Center",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.788633240097504, 
+        "longtitude": -117.88874099955613
+    },
+    "UNEXA": {
+        "name": "University Extension A",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": null,
+        "longtitude": null
+    },
+    "WSH": {
+        "name": "(Winifred) Smith Hall",
+        "has_printer": null,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.649888455864506, 
+        "longtitude": -117.84439568773749
+    }
 }
+
