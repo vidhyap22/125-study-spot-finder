@@ -25,11 +25,3 @@ CREATE TABLE study_spaces (
   building_id TEXT,
   FOREIGN KEY (building_id) REFERENCES buildings(building_id)
 );
-
--- Insert buildings manually
-INSERT INTO buildings (building_id, name) VALUES 
-  ('ALP', 'Anteater Learning Pavillion'),
-  ('GC', 'Gateway Study Center'),
-  ('LLIB', 'Langson Library'),
-  ('MRC', 'Multimedia Resources Center'),
-  ('SLIB', 'Science Library');
