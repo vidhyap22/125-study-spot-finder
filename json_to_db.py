@@ -22,7 +22,7 @@ ROOMS_JSON = [
     ROOM_DATA_DIR / "Science_room_info.json",
 ]
 
-BUILDINGS_JSON = BUILDINGS_DATA_DIR / "buildings.json"
+BUILDINGS_JSON = BUILDINGS_DATA_DIR / "buildings_info.json"
 
 def bool_to_int(value):
     """Convert Python boolean or None to SQLite-friendly int"""
