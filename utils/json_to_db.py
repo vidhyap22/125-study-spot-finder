@@ -9,7 +9,7 @@ import sqlite3
 import json
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent
+BASE_DIR = Path(__file__).resolve().parent.parent
 ROOM_DATA_DIR = BASE_DIR / "data" / "scraped_info" / "room_info"
 BUILDINGS_DATA_DIR = BASE_DIR / "data" / "scraped_info"
 DB_PATH = BASE_DIR / "data" / "database" / "app.db"
