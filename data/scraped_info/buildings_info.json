@@ -6,6 +6,7 @@
         "closing_time": "22:00",
         "latitude": 33.65079230398093,
 		"longitude":-117.84476401472463
+		"longitude":-117.84476401472463
     },
     "AIRB": {
         "name": "Anteater Instruction & Research Building",
@@ -13,6 +14,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64300026273339,
+		"longitude": -117.83818605579852
 		"longitude": -117.83818605579852
     },
     "AITR": {
@@ -22,6 +24,7 @@
         "closing_time": "22:00",
         "latitude": 33.64991536143659,
 		"longitude": -117.84380206023748
+		"longitude": -117.84380206023748
     },
     "ALH": {
         "name": "Aldrich Hall",
@@ -29,6 +32,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64856692564726,
+		"longitude": -117.84140214989665
 		"longitude": -117.84140214989665
     },
 	"ALP": { 
@@ -54,6 +58,7 @@
         "closing_time": "22:00",
         "latitude": 33.64678801677363,
         "longitude": -117.84678705351122
+        "longitude": -117.84678705351122
     },
     "ARBO": {
         "name": "Arboretum (North Campus)",
@@ -61,6 +66,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.66389172833955, 
+        "longitude": -117.85279740231393
         "longitude": -117.85279740231393
     },
     "ARC": {
@@ -70,6 +76,7 @@
         "closing_time": "22:00",
         "latitude": 33.64357084510194, 
         "longitude": -117.82792937424409
+        "longitude": -117.82792937424409
     },
     "ART": {
         "name": "Art Studio",
@@ -77,6 +84,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64966515005925, 
+        "longitude": -117.84520454354399
         "longitude": -117.84520454354399
     },
     "BH": {
@@ -86,6 +94,7 @@
         "closing_time": "22:00",
         "latitude": 33.64624522518412, 
         "longitude": -117.84945075890222
+        "longitude": -117.84945075890222
     },
     "BIMO": {
         "name": "Bison Modular",
@@ -94,6 +103,7 @@
         "closing_time": "22:00",
         "latitude": 33.643968307827855, 
         "longitude": -117.84629424356037
+        "longitude": -117.84629424356037
     },
     "BLI": {
         "name": "Beckman Laser Institute",
@@ -101,6 +111,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64440121408898,
+        "longitude": -117.84997606075052
         "longitude": -117.84997606075052
     },
     "BOAT": {
@@ -118,6 +129,7 @@
         "closing_time": "22:00",
         "latitude": 33.646351949750155, 
         "longitude": -117.84622460626805
+        "longitude": -117.84622460626805
     },
     "QRL": {
         "name": "Qureshey Research Laboratory (CNLM)",
@@ -125,6 +137,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.646715360264615, 
+        "longitude": -117.84578300207677
         "longitude": -117.84578300207677
     },
     "BS3": {
@@ -134,6 +147,7 @@
         "closing_time": "22:00",
         "latitude": 33.64550387306577, 
         "longitude": -117.84607654356033
+        "longitude": -117.84607654356033
     },
     "CD": {
         "name": "Child Development Center (North Campus)",
@@ -141,6 +155,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.647728500024, 
+        "longitude": -117.83005793191498
         "longitude": -117.83005793191498
     },
     "CH": {
@@ -150,6 +165,7 @@
         "closing_time": "22:00",
         "latitude": 33.64816391133876, 
         "longitude": -117.84814360492767
+        "longitude": -117.84814360492767
     },
     "CNLM": {
         "name": "Center for the Neurobiology of Learning and Memory",
@@ -157,6 +173,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.6466740764027,
+        "longitude":  -117.84539932637018
         "longitude":  -117.84539932637018
     },
     "CRCC": {
@@ -166,6 +183,7 @@
         "closing_time": "22:00",
         "latitude": 33.689085610351945, 
         "longitude": -117.83359141287174
+        "longitude": -117.83359141287174
     },
     "CRH": {
         "name": "Croul Hall",
@@ -173,6 +191,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.644010261615456, 
+        "longitude": -117.8441303110285
         "longitude": -117.8441303110285
     },
     "CTT": {
@@ -182,6 +201,7 @@
         "closing_time": "22:00",
         "latitude": 33.649559509310905, 
         "longitude": -117.84528317424383
+        "longitude": -117.84528317424383
     },
     "CV": {
         "name": "Campus Village",
@@ -189,6 +209,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64548838366712, 
+        "longitude": -117.84689928773766
         "longitude": -117.84689928773766
     },
     "DBH": {
@@ -198,6 +219,7 @@
         "closing_time": "22:00",
         "latitude": 33.64318070773372, 
         "longitude": -117.84188948898534
+        "longitude": -117.84188948898534
     },
     "DRA": {
         "name": "Drama Building",
@@ -205,6 +227,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.65076427991895, 
+        "longitude": -117.84455479938282
         "longitude": -117.84455479938282
     },
     "DS": {
@@ -222,6 +245,7 @@
         "closing_time": "22:00",
         "latitude": 33.644106790380505,
         "longitude": -117.84016360307963
+        "longitude": -117.84016360307963
     },
     "EDUC": {
         "name": "Education Building",
@@ -229,6 +253,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64744675280029, 
+        "longitude": -117.83589227116457
         "longitude": -117.83589227116457
     },
     "EG": {
@@ -238,6 +263,7 @@
         "closing_time": "22:00",
         "latitude": 33.64314127318741, 
         "longitude": -117.8395970165731
+        "longitude": -117.8395970165731
     },
     "EH": {
         "name": "Engineering Hall",
@@ -245,6 +271,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64383296213047, 
+        "longitude": -117.84125014171217
         "longitude": -117.84125014171217
     },
     "ELF": {
@@ -254,6 +281,7 @@
         "closing_time": "22:00",
         "latitude": 33.64396129827313, 
         "longitude": -117.83972864171203
+        "longitude": -117.83972864171203
     },
     "ELH": {
         "name": "Engineering Lecture Hall",
@@ -261,6 +289,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.643943439617374, 
+        "longitude": -117.84117028958599
         "longitude": -117.84117028958599
     },
     "ET": {
@@ -270,6 +299,7 @@
         "closing_time": "22:00",
         "latitude": 33.644656582559996, 
         "longitude": -117.8412772779696
+        "longitude": -117.8412772779696
     },
     "FARMSCHOOL": {
         "name": "Farm School/Red Barn",
@@ -277,6 +307,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64708878728553, 
+        "longitude": -117.83912613191485
         "longitude": -117.83912613191485
     },
     "FRF": {
@@ -286,6 +317,7 @@
         "closing_time": "22:00",
         "latitude": 33.66436061013759, 
         "longitude": -117.85425139725615
+        "longitude": -117.85425139725615
     },
     "FRH": {
         "name": "(Frederick) Reines Hall",
@@ -294,6 +326,7 @@
         "closing_time": "22:00",
         "latitude": 33.644228980462536, 
         "longitude": -117.8435551337633
+        "longitude": -117.8435551337633
     },
     "GNRF": {
         "name": "Gillespie Neuroscience Research Facility",
@@ -301,6 +334,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.644230895160455, 
+        "longitude": -117.85103401657312
         "longitude": -117.85103401657312
     },
     "GSC": {
@@ -311,6 +345,7 @@
         "closing_time": "22:00",
         "latitude": 33.64761756279868,
         "longitude": -117.84138220662724
+        "longitude": -117.84138220662724
     },
     "HG": {
         "name": "Humanities Gateway",
@@ -318,6 +353,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.648512273626366, 
+        "longitude": -117.84459133561133
         "longitude": -117.84459133561133
     },
     "HH": {
@@ -327,6 +363,7 @@
         "closing_time": "22:00",
         "latitude": 33.64743711239491, 
         "longitude": -117.84409780492764
+        "longitude": -117.84409780492764
     },
     "HIB": {
         "name": "Humanities Instructional Building",
@@ -334,6 +371,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.648442354619625, 
+        "longitude": -117.8439688472566
         "longitude": -117.8439688472566
     },
     "HICF": {
@@ -343,6 +381,7 @@
         "closing_time": "22:00",
         "latitude": 33.64698913738917, 
         "longitude": -117.84686408958586
+        "longitude": -117.84686408958586
     },
     "HRH": {
         "name": "Hewitt Research Hall",
@@ -350,6 +389,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.643657472009046, 
+        "longitude": -117.85203100307957
         "longitude": -117.85203100307957
     },
     "HSLH": {
@@ -359,6 +399,7 @@
         "closing_time": "22:00",
         "latitude": 33.64569354113719,
         "longitude": -117.84469561657303
+        "longitude": -117.84469561657303
     },
     "IAB": {
         "name": "Intercollegiate Athletics Building",
@@ -366,6 +407,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64832821110015, 
+        "longitude": -117.84541073006675
         "longitude": -117.84541073006675
     },
     "ICF": {
@@ -375,6 +417,7 @@
         "closing_time": "22:00",
         "latitude": 33.64456431656865, 
         "longitude": -117.84005694725678
+        "longitude": -117.84005694725678
     },
     "ICS": {
         "name": "Information & Computer Science",
@@ -382,6 +425,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64447007290868,
+        "longitude": -117.84183290890215
         "longitude": -117.84183290890215
     },
     "ICS2": {
@@ -391,6 +435,7 @@
         "closing_time": "22:00",
         "latitude": 33.64404137196536,
         "longitude": -117.84154139927314
+        "longitude": -117.84154139927314
     },
     "IH": {
         "name": "Irvine Hall",
@@ -398,6 +443,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64445915336631, 
+        "longitude": -117.8526001300667
         "longitude": -117.8526001300667
     },
     "KH": {
@@ -407,6 +453,7 @@
         "closing_time": "22:00",
         "latitude": 33.64775504326982, 
         "longitude": -117.84349254540844
+        "longitude": -117.84349254540844
     },
     "LAW": {
         "name": "Law Building",
@@ -414,6 +461,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64691191889003, 
+        "longitude": -117.83628330492766
         "longitude": -117.83628330492766
     },
     "LLIB": {
@@ -423,6 +471,7 @@
         "closing_time": "22:00",
         "latitude": 33.64725208711623,
         "longitude": -117.8409255543131
+        "longitude": -117.8409255543131
     },
     "MAB": {
         "name": "Mesa Arts Building",
@@ -430,6 +479,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.65040568767273, 
+        "longitude": -117.8461447417118
         "longitude": -117.8461447417118
     },
     "MDE": {
@@ -439,6 +489,7 @@
         "closing_time": "22:00",
         "latitude": 33.643942017472675, 
         "longitude": -117.8405145570539
+        "longitude": -117.8405145570539
     },
     "MH": {
         "name": "McGaugh Hall",
@@ -446,6 +497,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64524592601376,
+        "longitude": -117.84480078958593
         "longitude": -117.84480078958593
     },
     "MM": {
@@ -455,6 +507,7 @@
         "closing_time": "22:00",
         "latitude": 33.649734517382974,
         "longitude": -117.84437517239563
+        "longitude": -117.84437517239563
     },
     "MPAA": {
         "name": "Multipurpose Academic and Administrative Building",
@@ -462,6 +515,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64712759305557, 
+        "longitude": -117.83700693191487
         "longitude": -117.83700693191487
     },
     "MLTM": {
@@ -471,6 +525,7 @@
         "closing_time": "22:00",
         "latitude": 33.645751466897906,
         "longitude": -117.84655896516696
+        "longitude": -117.84655896516696
     },
     "MS1": {
         "name": "Medical Surge I",
@@ -478,6 +533,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64661247087991, 
+        "longitude": -117.85023299143408
         "longitude": -117.85023299143408
     },
     "MS2": {
@@ -487,6 +543,7 @@
         "closing_time": "22:00",
         "latitude": 33.64701697008244, 
         "longitude": -117.85009601842125
+        "longitude": -117.85009601842125
     },
     "MS-A": {
         "name": "Medical Sciences A",
@@ -494,6 +551,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64517052087812, 
+        "longitude": -117.84979997424412
         "longitude": -117.84979997424412
     },
     "MS-B": {
@@ -503,6 +561,7 @@
         "closing_time": "22:00",
         "latitude": 33.64567926739372,
         "longitude":  -117.84989458773764
+        "longitude":  -117.84989458773764
     },
     "MS-C": {
         "name": "Medical Sciences C",
@@ -510,6 +569,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.645831672321854, 
+        "longitude": -117.85048130000001
         "longitude": -117.85048130000001
     },
     "MS-D": {
@@ -519,6 +579,7 @@
         "closing_time": "22:00",
         "latitude": 33.64565971497722, 
         "longitude": -117.85109873376332
+        "longitude": -117.85109873376332
     },
     "MS-E": {
         "name": "Medical Sciences E",
@@ -526,6 +587,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64573846239304, 
+        "longitude": -117.85151057139308
         "longitude": -117.85151057139308
     },
     "MSCF": {
@@ -535,6 +597,7 @@
         "closing_time": "22:00",
         "latitude": 33.64547217839813, 
         "longitude": -117.85228368588933
+        "longitude": -117.85228368588933
     },
     "MSTB": {
         "name": "Multipurpose Science & Technology Building",
@@ -542,6 +605,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.642193415757745, 
+        "longitude": -117.84439351657319
         "longitude": -117.84439351657319
     },
     "NS1": {
@@ -551,6 +615,7 @@
         "closing_time": "22:00",
         "latitude": 33.64454661160688, 
         "longitude": -117.8457736184215
+        "longitude": -117.8457736184215
     },
     "NS2": {
         "name": "Natural Sciences II",
@@ -558,6 +623,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64406116627339, 
+        "longitude": -117.84570037424403
         "longitude": -117.84570037424403
     },
     "PCB": {
@@ -567,6 +633,7 @@
         "closing_time": "22:00",
         "latitude": 33.64467057470871, 
         "longitude": -117.84270818773776
+        "longitude": -117.84270818773776
     },
     "PH": {
         "name": "Plumwood House",
@@ -574,6 +641,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.645096021713506, 
+        "longitude": -117.851118831915
         "longitude": -117.851118831915
     },
     "PSCB": {
@@ -583,6 +651,7 @@
         "closing_time": "22:00",
         "latitude": 33.64363449448449, 
         "longitude": -117.84352477609231
+        "longitude": -117.84352477609231
     },
     "PSLH": {
         "name": "Physical Sciences Lecture Hall",
@@ -590,6 +659,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64357030356419, 
+        "longitude": -117.84393974255764
         "longitude": -117.84393974255764
     },
     "PSTU": {
@@ -599,6 +669,7 @@
         "closing_time": "22:00",
         "latitude": 33.65064104911531, 
         "longitude": -117.84534146749704
+        "longitude": -117.84534146749704
     },
     "REC": {
         "name": "Rockwell Engineering Center",
@@ -606,6 +677,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.644021890468764, 
+        "longitude": -117.84048197239578
         "longitude": -117.84048197239578
     },
     "RH": {
@@ -615,6 +687,7 @@
         "closing_time": "22:00",
         "latitude": 33.644356065508475, 
         "longitude": -117.84407695890224
+        "longitude": -117.84407695890224
     },
     "SAIL": {
         "name": "Sail Base",
@@ -622,6 +695,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": null,
+        "longitude": null
         "longitude": null
     },
     "SB": {
@@ -631,6 +705,7 @@
         "closing_time": "22:00",
         "latitude": 33.647073833836146, 
         "longitude": -117.83784018673492
+        "longitude": -117.83784018673492
     },
     "SC CCA": {
         "name": "Student Center Crystal Cove Auditorium",
@@ -638,6 +713,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64936844725203, 
+        "longitude": -117.84233403191475
         "longitude": -117.84233403191475
     },
     "SCS": {
@@ -647,6 +723,7 @@
         "closing_time": "22:00",
         "latitude": 33.650638493984054, 
         "longitude": -117.84450043191472
+        "longitude": -117.84450043191472
     },
     "SE": {
         "name": "Social Ecology I",
@@ -654,6 +731,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64638207133428, 
+        "longitude": -117.8388950165731
         "longitude": -117.8388950165731
     },
     "SE2": {
@@ -663,6 +741,7 @@
         "closing_time": "22:00",
         "latitude": 33.64669355058356, 
         "longitude": -117.83919721842122
+        "longitude": -117.83919721842122
     },
     "SH": {
         "name": "Steinhaus Hall",
@@ -670,6 +749,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": null,
+        "longitude": null
         "longitude": null
     },
     "SLIB": {
@@ -680,6 +760,7 @@
         "closing_time": "22:00",
         "latitude": 33.645751466897906,
         "longitude": -117.84655896516696
+        "longitude": -117.84655896516696
     },
     "SPH": {
         "name": "Sprague Hall",
@@ -687,6 +768,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.646390771316995, 
+        "longitude": -117.8449815202695
         "longitude": -117.8449815202695
     },
     "SS1": {
@@ -696,6 +778,7 @@
         "closing_time": "22:00",
         "latitude": 33.64815468166238,
         "longitude": -117.84255088238052
+        "longitude": -117.84255088238052
     },
     "SS2": {
         "name": "Student Services II",
@@ -703,6 +786,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64815468166238, 
+        "longitude": -117.84255088238052
         "longitude": -117.84255088238052
     },
     "SSH": {
@@ -712,6 +796,7 @@
         "closing_time": "22:00",
         "latitude": 33.64646129152862, 
         "longitude": -117.8399267417119
+        "longitude": -117.8399267417119
     },
     "SSL": {
         "name": "Social Science Laboratory",
@@ -719,6 +804,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64602234596724,
+        "longitude": 117.84005370492777
         "longitude": 117.84005370492777
     },
     "SSLH": {
@@ -728,6 +814,7 @@
         "closing_time": "22:00",
         "latitude": 33.64734775564215, 
         "longitude": -117.83975750307938
+        "longitude": -117.83975750307938
     },
     "SSPA": {
         "name": "Social Science Plaza A",
@@ -735,6 +822,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64711587566908, 
+        "longitude": -117.83955024540843
         "longitude": -117.83955024540843
     },
     "SSPB": {
@@ -744,6 +832,7 @@
         "closing_time": "22:00",
         "latitude": 33.647133432666024, 
         "longitude": -117.83903890307943
+        "longitude": -117.83903890307943
     },
     "SST": {
         "name": "Social Science Tower",
@@ -751,6 +840,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.646636907919465, 
+        "longitude": -117.84011383191499
         "longitude": -117.84011383191499
     },
     "SSTR": {
@@ -760,6 +850,7 @@
         "closing_time": "22:00",
         "latitude": 33.647115607074774, 
         "longitude": -117.84023160307942
+        "longitude": -117.84023160307942
     },
     "STU4": {
         "name": "Studio Four",
@@ -767,6 +858,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.650328721316, 
+        "longitude": -117.84560094048078
         "longitude": -117.84560094048078
     },
     "UCI BARN": {
@@ -776,6 +868,7 @@
         "closing_time": "22:00",
         "latitude": 33.64266343306177, 
         "longitude": -117.82922842794055
+        "longitude": -117.82922842794055
     },
     "UCI MC": {
         "name": "UCI Medical Center",
@@ -783,6 +876,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.788633240097504, 
+        "longitude": -117.88874099955613
         "longitude": -117.88874099955613
     },
     "UNEXA": {
@@ -792,6 +886,7 @@
         "closing_time": "22:00",
         "latitude": null,
         "longitude": null
+        "longitude": null
     },
     "WSH": {
         "name": "(Winifred) Smith Hall",
@@ -799,6 +894,7 @@
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.649888455864506, 
+        "longitude": -117.84439568773749
         "longitude": -117.84439568773749
     }
 }
