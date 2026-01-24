@@ -307,6 +307,7 @@
         "name": "Grunigen Medical Library",
         "has_printer": true,
         "opening_time": "08:00",
+        "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.64761756279868,
         "longitude": -117.84138220662724
@@ -674,6 +675,7 @@
     "SLIB": {
         "name": "Science Library",
         "has_printer": true,
+        "opening_time": "08:00",
         "opening_time": "08:00",
         "closing_time": "22:00",
         "latitude": 33.645751466897906,
