@@ -9,6 +9,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 DATA_DIR = BASE_DIR / "data" / "scraped_info" / "room_info"
 DB_PATH = BASE_DIR / "data" / "database" / "app.db"
+LOCATION_PATH = BASE_DIR / "data" / "locations.json"
 
 ROOMS_JSON = [
     DATA_DIR / "ALP_room_info.json", 
@@ -55,16 +56,42 @@ def insert_study_spaces(cursor, rooms):
             r.get("building_id")
         ))
 
+def insert_buildings(cursor, data):
+    for building_id, info in data.items():
+        cursor.execute("""
+            INSERT OR REPLACE INTO buildings (
+                building_id,
+                name,
+                has_printer,
+                opening_time,
+                closing_time,
+                longitude,
+                latitude
+            ) VALUES (?, ?, ?, ?, ?, ?, ?)
+        """, (
+            building_id,
+            info.get("name"),
+            info.get("has_printer"),
+            info.get("opening_time"),
+            info.get("closing_time"),
+            info.get("longitude"),
+            info.get("latitude")
+        ))
+
 
 def main():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
+    #insert study spaces to database
     for json_file in ROOMS_JSON:
         print(f"Processing {json_file.name}...")
         rooms = load_json(json_file)
         insert_study_spaces(cursor, rooms)
 
+    #insert buildings to database
+    locations = load_json(LOCATION_PATH)
+    insert_buildings(cursor, locations)
     conn.commit()
     conn.close()
 
