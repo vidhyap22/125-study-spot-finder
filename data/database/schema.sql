@@ -1,6 +1,7 @@
 -- Drop existing tables if they exist
 DROP TABLE IF EXISTS study_spaces;
 DROP TABLE IF EXISTS buildings;
+DROP TABLE IF EXISTS library_traffic;
 
 -- Create Building/Location Table 
 CREATE TABLE buildings (
@@ -24,4 +25,15 @@ CREATE TABLE study_spaces (
   is_talking_allowed INTEGER,
   building_id TEXT,
   FOREIGN KEY (building_id) REFERENCES buildings(building_id)
+);
+
+-- Create library traffic table
+CREATE TABLE library_traffic (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    building_id TEXT,
+    location_name TEXT,
+    traffic_count INTEGER,
+    traffic_percentage REAL,
+    timestamp TEXT,
+    FOREIGN KEY (building_id) REFERENCES buildings(building_id)
 );
