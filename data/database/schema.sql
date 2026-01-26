@@ -2,6 +2,7 @@
 DROP TABLE IF EXISTS study_spaces;
 DROP TABLE IF EXISTS buildings;
 DROP TABLE IF EXISTS library_traffic;
+DROP TABLE IF EXISTS hourly_weather;
 
 -- Create Building/Location Table 
 CREATE TABLE buildings (
@@ -36,4 +37,17 @@ CREATE TABLE library_traffic (
     traffic_percentage REAL,
     timestamp TEXT,
     FOREIGN KEY (building_id) REFERENCES buildings(building_id)
+);
+
+-- Create hourly weather table
+CREATE TABLE IF NOT EXISTS hourly_weather (
+    time_local TEXT PRIMARY KEY,
+    date TEXT NOT NULL,
+    hour TEXT NOT NULL,
+    temperature_c REAL,
+    precip_mm REAL,
+    is_raining INTEGER NOT NULL,
+    weather_code INTEGER,
+    weather_text TEXT,
+    fetched_at TEXT NOT NULL
 );
