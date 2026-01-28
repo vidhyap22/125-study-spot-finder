@@ -206,17 +206,56 @@ def filter_by_distance(space_details, user_lat, user_lon, max_distance_miles):
     return filtered_spaces
 
 
-def query_study_spaces(filters=None, user_location=None, max_distance=None):
+def get_available_rooms(start_time=None, end_time=None):
     """
-    Main query function that combines filter search and distance filtering
+    Get rooms available during a specific time window
     
     Args:
-        filters (dict): Filter criteria (optional)
-        user_location (dict): {"latitude": float, "longitude": float} (optional)
-        max_distance (float): Maximum distance in miles (optional)
+        start_time (str): ISO format datetime (optional)
+        end_time (str): ISO format datetime (optional)
     
     Returns:
-        list: List of matching study spaces with details
+        list: Study space IDs that are available
+    """
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    
+    if start_time and end_time:
+        # Find rooms with NO conflicting unavailable bookings
+        cursor.execute("""
+            SELECT DISTINCT s.study_space_id
+            FROM study_spaces s
+            WHERE s.must_reserve = 1
+            AND s.study_space_id NOT IN (
+                SELECT study_space_id
+                FROM room_availability
+                WHERE is_available = 0
+                AND (
+                    (start_time <= ? AND end_time > ?)
+                    OR (start_time < ? AND end_time >= ?)
+                    OR (start_time >= ? AND end_time <= ?)
+                )
+                AND datetime(scraped_at) > datetime('now', '-24 hours')
+            )
+        """, (start_time, start_time, end_time, end_time, start_time, end_time))
+    else:
+        # Get all rooms that require reservation
+        cursor.execute("""
+            SELECT study_space_id
+            FROM study_spaces
+            WHERE must_reserve = 1
+        """)
+    
+    available_ids = [row[0] for row in cursor.fetchall()]
+    conn.close()
+    
+    return available_ids
+
+
+def query_study_spaces(filters=None, user_location=None, max_distance=None, 
+                       check_availability=False, start_time=None, end_time=None):
+    """
+    Updated query function with availability checking
     """
     # Step 1: Apply filters using inverted index
     if filters:
@@ -224,17 +263,23 @@ def query_study_spaces(filters=None, user_location=None, max_distance=None):
         if not matching_ids:
             return []
     else:
-        # No filters - get all study spaces
         conn = sqlite3.connect(DB_PATH)
         cursor = conn.cursor()
         cursor.execute("SELECT study_space_id FROM study_spaces")
         matching_ids = [row[0] for row in cursor.fetchall()]
         conn.close()
     
-    # Step 2: Get full details
+    # Step 2: Filter by availability if requested
+    if check_availability and start_time and end_time:
+        available_ids = get_available_rooms(start_time, end_time)
+        matching_ids = list(set(matching_ids) & set(available_ids))
+        if not matching_ids:
+            return []
+    
+    # Step 3: Get full details
     space_details = get_space_details(matching_ids)
     
-    # Step 3: Apply distance filter if specified
+    # Step 4: Apply distance filter if specified
     if user_location and max_distance:
         user_lat = user_location.get("latitude")
         user_lon = user_location.get("longitude")
@@ -242,7 +287,6 @@ def query_study_spaces(filters=None, user_location=None, max_distance=None):
             space_details = filter_by_distance(space_details, user_lat, user_lon, max_distance)
     
     return space_details
-
 
 def get_available_buildings():
     """Get list of all available buildings"""

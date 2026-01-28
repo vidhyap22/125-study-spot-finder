@@ -37,37 +37,24 @@ def get_buildings():
 
 @app.route('/api/search', methods=['POST'])
 def search_spaces():
-    """
-    Search for study spaces based on filters
-    
-    Request body:
-    {
-        "filters": {
-            "capacity_range": "5-10",
-            "talking_allowed": true,
-            "study_room": false,
-            "indoor": true,
-            "tech_enhanced": true,
-            "has_printer": true,
-            "building": "LANGSON"
-        },
-        "user_location": {
-            "latitude": 33.6459,
-            "longitude": -117.8443
-        },
-        "max_distance": 0.5
-    }
-    """
     try:
         data = request.json
         filters = data.get('filters')
         user_location = data.get('user_location')
         max_distance = data.get('max_distance')
         
+        # New: availability parameters
+        check_availability = data.get('check_availability', False)
+        start_time = data.get('start_time')  # ISO format: "2026-01-21T19:30:00-08:00"
+        end_time = data.get('end_time')
+        
         results = query_study_spaces(
             filters=filters,
             user_location=user_location,
-            max_distance=max_distance
+            max_distance=max_distance,
+            check_availability=check_availability,
+            start_time=start_time,
+            end_time=end_time
         )
         
         return jsonify({
