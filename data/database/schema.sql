@@ -3,6 +3,7 @@ DROP TABLE IF EXISTS study_spaces;
 DROP TABLE IF EXISTS buildings;
 DROP TABLE IF EXISTS library_traffic;
 DROP TABLE IF EXISTS hourly_weather;
+DROP TABLE IF EXISTS room_availability;
 
 -- Create Building/Location Table 
 CREATE TABLE buildings (
@@ -50,4 +51,15 @@ CREATE TABLE IF NOT EXISTS hourly_weather (
     weather_code INTEGER,
     weather_text TEXT,
     fetched_at TEXT NOT NULL
+);
+
+-- Create room availability table
+CREATE TABLE IF NOT EXISTS room_availability (
+    availability_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    study_space_id INTEGER NOT NULL,
+    start_time TEXT NOT NULL,
+    end_time TEXT NOT NULL,
+    is_available INTEGER NOT NULL,
+    scraped_at TEXT NOT NULL,
+    FOREIGN KEY (study_space_id) REFERENCES study_spaces(study_space_id)
 );
