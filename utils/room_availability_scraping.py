@@ -2,9 +2,10 @@ from playwright.sync_api import sync_playwright
 import json
 import re
 import os 
+from datetime import datetime
 
 BASE_URL = "https://spaces.lib.uci.edu"
-OUTPUT_DIR = "./data"
+OUTPUT_DIR = "./data/scraped_info"
 os.makedirs(OUTPUT_DIR, exist_ok=True)
 os.makedirs(f'{OUTPUT_DIR}/room_availability', exist_ok=True)
 
@@ -75,7 +76,6 @@ SCRAPING_JS_CODE_BLOCK = """
                 const resourceIdRaw = laneTd.dataset.resourceId;
                 if (!resourceIdRaw) return;
 
-                // ✅ SAME ID extraction logic as previous script
                 const roomId = parseInt(resourceIdRaw.split("_")[1]);
                 if (isNaN(roomId)) return;
 
@@ -112,52 +112,65 @@ SCRAPING_JS_CODE_BLOCK = """
             return results;
         }
         """
+
 def extract_space_id(url):
     match = re.search(r"/space/(\\d+)", url)
     return match.group(1) if match else None
 
 
-with sync_playwright() as p:
-    browser = p.chromium.launch(headless=True)
-    page = browser.new_page()
+def main():
+    print(f"🕐 Starting availability scrape at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+    
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
 
-    locations = {
-        "Science": 6580,
-        "Langson": 6539,
-        "Gateway": 6579,
-        "Multimedia": 6581
-    }
+        locations = {
+            "Science": 6580,
+            "Langson": 6539,
+            "Gateway": 6579,
+            "Multimedia": 6581
+        }
 
-    for location, l_id in locations.items():
-        page.goto(f"https://spaces.lib.uci.edu/spaces?lid={l_id}", timeout=60000)
-        page.wait_for_selector(".fc-timeline-body")
-        page.wait_for_selector(".fc-timeline-events a.fc-timeline-event", timeout=60000)
+        for location, l_id in locations.items():
+            try:
+                page.goto(f"https://spaces.lib.uci.edu/spaces?lid={l_id}", timeout=60000)
+                page.wait_for_selector(".fc-timeline-body")
+                page.wait_for_selector(".fc-timeline-events a.fc-timeline-event", timeout=60000)
 
-        data = page.evaluate(SCRAPING_JS_CODE_BLOCK)
+                data = page.evaluate(SCRAPING_JS_CODE_BLOCK)
 
-        with open(
-            f"{OUTPUT_DIR}/room_availability/{location}_room_availability.json",
-            "w",
-            encoding="utf-8"
-        ) as f:
-            json.dump(data, f, indent=4)
+                output_file = f"{OUTPUT_DIR}/room_availability/{location}_room_availability.json"
+                
+                # Write data (will replace if file exists)
+                with open(output_file, "w", encoding="utf-8") as f:
+                    json.dump(data, f, indent=4)
 
-        print(f"{location} availability saved")
+                print(f"✅ {location} availability saved ({len(data)} rooms)")
+            except Exception as e:
+                print(f"❌ Error scraping {location}: {e}")
 
-    # ALP
-    page.goto("https://scheduler.oit.uci.edu/reserve/Antcaves", timeout=60000)
-    page.wait_for_selector(".fc-timeline-body")
-    page.wait_for_selector(".fc-timeline-events a.fc-timeline-event", timeout=60000)
+        # ALP
+        try:
+            page.goto("https://scheduler.oit.uci.edu/reserve/Antcaves", timeout=60000)
+            page.wait_for_selector(".fc-timeline-body")
+            page.wait_for_selector(".fc-timeline-events a.fc-timeline-event", timeout=60000)
 
-    data = page.evaluate(SCRAPING_JS_CODE_BLOCK)
+            data = page.evaluate(SCRAPING_JS_CODE_BLOCK)
 
-    with open(
-        f"{OUTPUT_DIR}/room_availability/ALP_room_availability.json",
-        "w",
-        encoding="utf-8"
-    ) as f:
-        json.dump(data, f, indent=4)
+            output_file = f"{OUTPUT_DIR}/room_availability/ALP_room_availability.json"
+            
+            with open(output_file, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=4)
 
-    print("ALP availability saved")
+            print(f"✅ ALP availability saved ({len(data)} rooms)")
+        except Exception as e:
+            print(f"❌ Error scraping ALP: {e}")
 
-    browser.close()
+        browser.close()
+    
+    print(f"✅ Scraping completed at {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
+
+
+if __name__ == "__main__":
+    main()
