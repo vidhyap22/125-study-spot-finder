@@ -75,7 +75,7 @@ SCRAPING_JS_CODE_BLOCK = """
                 const resourceIdRaw = laneTd.dataset.resourceId;
                 if (!resourceIdRaw) return;
 
-                // ✅ SAME ID extraction logic as previous script
+                //   SAME ID extraction logic as previous script
                 const roomId = parseInt(resourceIdRaw.split("_")[1]);
                 if (isNaN(roomId)) return;
 

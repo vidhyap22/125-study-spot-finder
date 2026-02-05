@@ -88,7 +88,7 @@ def build_filter_indexes():
     with open(INDEX_PATH, 'w') as f:
         json.dump(indexes, f, indent=2)
     
-    print(f"✅ Built filter indexes")
+    print(f"  Built filter indexes")
     for filter_name, filter_values in indexes.items():
         print(f"   {filter_name}: {len(filter_values)} values")
     

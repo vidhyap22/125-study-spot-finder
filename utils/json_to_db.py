@@ -122,26 +122,26 @@ def main():
     print(f'Inserting buildings...')
     buildings = load_json(BUILDINGS_JSON)
     insert_buildings(cursor, buildings)
-    print(f"✅ Inserted {len(buildings)} buildings")
+    print(f"  Inserted {len(buildings)} buildings")
     
     print(f'Inserting study rooms...')
     for json_file in ROOMS_JSON:
         rooms = load_json(json_file)
         insert_study_spaces(cursor, rooms)
-        print(f"✅ Inserted {len(rooms)} study spaces from {json_file.name}")
+        print(f"  Inserted {len(rooms)} study spaces from {json_file.name}")
     
     print(f'Inserting room availability...')
     for json_file in ROOM_AVAILABILITY_JSON:
             room_availability = load_json(json_file)
             insert_room_availability(cursor, room_availability)
-            print(f"✅ Inserted {len(room_availability)} room's availability from {json_file.name}")
+            print(f"  Inserted {len(room_availability)} room's availability from {json_file.name}")
 
     print("🗄️  Done populating database...")
 
     conn.commit()
     conn.close()
 
-    print("✅ Database populated successfully")
+    print("  Database populated successfully")
 
 
 if __name__ == "__main__":
