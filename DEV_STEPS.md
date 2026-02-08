@@ -14,3 +14,7 @@
 ## Index
 ### Building Index
 1. Run ```python utils/build_filters_index.py```
+
+## Personal Model
+### Create Personal Model and Analyze Average Preference
+1. run ```python personal_model/personal_model_process.py```
