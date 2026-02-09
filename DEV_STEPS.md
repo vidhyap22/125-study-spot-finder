@@ -10,6 +10,8 @@
 2. Type SQL commands to get some info.
 3. Exit database: ```.quit```
 
+### Database Updates
+1. Run ```python utils/update_room_availability.py``` to automatically delete old info in db and update with newly scraped info.
 
 ## Index
 ### Building Index
@@ -17,4 +19,4 @@
 
 ## Personal Model
 ### Create Personal Model and Analyze Average Preference
-1. run ```python personal_model/personal_model_process.py```
+1. Run ```python personal_model/personal_model_process.py```
