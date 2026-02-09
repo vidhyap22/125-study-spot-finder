@@ -51,32 +51,32 @@ def search_with_filters(filters):
             return []  # Invalid capacity range
     
     if "talking_allowed" in filters and filters["talking_allowed"] is not None:
-        key = str(filters["talking_allowed"])
+        key = str(filters["talking_allowed"]).lower()
         if key in indexes["talking_allowed"]:
             result_sets.append(set(indexes["talking_allowed"][key]))
     
     if "study_room" in filters and filters["study_room"] is not None:
-        key = str(filters["study_room"])
+        key = str(filters["study_room"]).lower()
         if key in indexes["study_room"]:
             result_sets.append(set(indexes["study_room"][key]))
     
     if "indoor" in filters and filters["indoor"] is not None:
-        key = str(filters["indoor"])
+        key = str(filters["indoor"]).lower()
         if key in indexes["indoor"]:
             result_sets.append(set(indexes["indoor"][key]))
     
     if "tech_enhanced" in filters and filters["tech_enhanced"] is not None:
-        key = str(filters["tech_enhanced"])
+        key = str(filters["tech_enhanced"]).lower()
         if key in indexes["tech_enhanced"]:
             result_sets.append(set(indexes["tech_enhanced"][key]))
     
     if "has_printer" in filters and filters["has_printer"] is not None:
-        key = str(filters["has_printer"])
+        key = str(filters["has_printer"]).lower()
         if key in indexes["has_printer"]:
             result_sets.append(set(indexes["has_printer"][key]))
     
     if "building" in filters and filters["building"]:
-        key = filters["building"]
+        key = filters["building"].upper()
         if key in indexes["building"]:
             result_sets.append(set(indexes["building"][key]))
         else:
@@ -205,6 +205,63 @@ def filter_by_distance(space_details, user_lat, user_lon, max_distance_miles):
     
     return filtered_spaces
 
+def rank_spaces(space_details, filters=None, user_location=None):
+    """
+    Assign a ranking score to each study space
+    
+    Higher score = better match
+    """
+
+    ranked = []
+
+    for space in space_details:
+        score = 0
+
+        # --------------------------
+        # Distance scoring
+        # --------------------------
+        if user_location and "distance" in space:
+            # closer = higher score
+            score += max(0, 10 - space["distance"])
+
+        # --------------------------
+        # Filter preference scoring
+        # --------------------------
+        if filters:
+
+            if filters.get("tech_enhanced") and space["tech_enhanced"]:
+                score += 3
+
+            if filters.get("indoor") and space["indoor"]:
+                score += 2
+
+            if filters.get("talking_allowed") == space["talking_allowed"]:
+                score += 2
+
+            if filters.get("has_printer") and space["has_printer"]:
+                score += 2
+
+            # Capacity preference example
+            if filters.get("capacity_range") and space["capacity"]:
+                try:
+                    low, high = map(int, filters["capacity_range"].split('-'))
+                    if low <= space["capacity"] <= high:
+                        score += 3
+                except:
+                    pass
+
+        # Availability bonus
+        if not space["must_reserve"]:
+            score += 1
+
+        space["score"] = round(score, 2)
+        ranked.append(space)
+
+    # Sort descending by score
+    ranked.sort(key=lambda x: x["score"], reverse=True)
+
+    return ranked
+
 
 def get_available_rooms(start_time=None, end_time=None):
     """
@@ -223,21 +280,13 @@ def get_available_rooms(start_time=None, end_time=None):
     if start_time and end_time:
         # Find rooms with NO conflicting unavailable bookings
         cursor.execute("""
-            SELECT DISTINCT s.study_space_id
-            FROM study_spaces s
-            WHERE s.must_reserve = 1
-            AND s.study_space_id NOT IN (
-                SELECT study_space_id
-                FROM room_availability
-                WHERE is_available = 0
-                AND (
-                    (start_time <= ? AND end_time > ?)
-                    OR (start_time < ? AND end_time >= ?)
-                    OR (start_time >= ? AND end_time <= ?)
-                )
-                AND datetime(scraped_at) > datetime('now', '-24 hours')
-            )
-        """, (start_time, start_time, end_time, end_time, start_time, end_time))
+        SELECT DISTINCT study_space_id
+        FROM room_availability
+        WHERE is_available = 1
+        AND start_time >= ?
+        AND end_time <= ?
+        AND datetime(scraped_at) > datetime('now', '-24 hours')
+    """, (start_time, end_time))
     else:
         # Get all rooms that require reservation
         cursor.execute("""
@@ -260,6 +309,7 @@ def query_study_spaces(filters=None, user_location=None, max_distance=None,
     # Step 1: Apply filters using inverted index
     if filters:
         matching_ids = search_with_filters(filters)
+        print("matching_ids from filters:", len(matching_ids))
         if not matching_ids:
             return []
     else:
@@ -272,20 +322,34 @@ def query_study_spaces(filters=None, user_location=None, max_distance=None,
     # Step 2: Filter by availability if requested
     if check_availability and start_time and end_time:
         available_ids = get_available_rooms(start_time, end_time)
+        print("available_ids:", len(available_ids))
         matching_ids = list(set(matching_ids) & set(available_ids))
         if not matching_ids:
-            return []
+            print('intersection was empty')
+            return []            
     
     # Step 3: Get full details
     space_details = get_space_details(matching_ids)
     
-    # Step 4: Apply distance filter if specified
+    # Step 4: Apply distance filter
     if user_location and max_distance:
         user_lat = user_location.get("latitude")
         user_lon = user_location.get("longitude")
         if user_lat and user_lon:
-            space_details = filter_by_distance(space_details, user_lat, user_lon, max_distance)
-    
+            space_details = filter_by_distance(
+                space_details,
+                user_lat,
+                user_lon,
+                max_distance
+            )
+
+    # Step 5: Rank results
+    space_details = rank_spaces(
+        space_details,
+        filters=filters,
+        user_location=user_location
+    )
+
     return space_details
 
 def get_available_buildings():
