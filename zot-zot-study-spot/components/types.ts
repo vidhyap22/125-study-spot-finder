@@ -6,6 +6,7 @@ export type StudySpace = {
 	techEnhanced?: boolean;
 	environment: "indoors" | "outdoors";
 	reservable: boolean;
+	talkingAllowed: boolean;
 };
 
 export type LocationResult = {

@@ -8,12 +8,13 @@ import type { StudySpace } from "./types";
 
 type Props = {
 	locationTitle: string;
+	locationId: string;
 	spaceType: string;
 	spaces: StudySpace[];
 	onBack?: () => void;
 };
 
-export function LocationDetailsPanel({ locationTitle, spaceType, spaces, onBack }: Props) {
+export function LocationDetailsPanel({ locationTitle, locationId, spaceType, spaces, onBack }: Props) {
 	return (
 		<View style={styles.container}>
 			{/* Header */}
@@ -54,6 +55,9 @@ export function LocationDetailsPanel({ locationTitle, spaceType, spaces, onBack 
 						techEnhanced={item.techEnhanced}
 						environment={item.environment}
 						reservable={item.reservable}
+						talkingAllowed={item.talkingAllowed}
+						roomId={item.id}
+						locationId={locationId}
 						onPress={() => console.log("Tapped space:", item.id)}
 					/>
 				)}

@@ -1,7 +1,9 @@
 import React, { useMemo } from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
-
+import { FontAwesome6 } from "@expo/vector-icons";
 import { Brand } from "@/constants/theme";
+import { Linking } from "react-native";
+import { RESERVATION_LINKS } from "@/components/reservation-links";
 
 type Environment = "indoors" | "outdoors";
 
@@ -13,15 +15,48 @@ type Props = {
 	techEnhanced?: boolean;
 	environment: Environment;
 	reservable: boolean;
+	talkingAllowed: boolean;
+	roomId: string;
+	locationId: string;
 
 	onPress?: () => void;
 };
 
-export function StudySpaceRow({ backgroundColor = "#FFFFFF", title, capacity, techEnhanced, environment, reservable, onPress }: Props) {
+export function StudySpaceRow({
+	backgroundColor = "#FFFFFF",
+	title,
+	capacity,
+	techEnhanced,
+	environment,
+	reservable,
+	talkingAllowed,
+	locationId,
+	roomId,
+	onPress,
+}: Props) {
+	const handleReservePress = async () => {
+		const base = RESERVATION_LINKS[locationId];
+
+		if (!base) {
+			console.warn("No reservation link for location:", locationId);
+			return;
+		}
+
+		const url = `${base}${roomId}`;
+
+		const supported = await Linking.canOpenURL(url);
+
+		if (supported) {
+			await Linking.openURL(url);
+		} else {
+			console.warn("Can't open URL:", url);
+		}
+	};
+
 	const metaText = useMemo(() => {
 		const parts: string[] = [];
-		// Reservable
-		// if (reservable) parts.push("Reservable");
+		// Talking Allowed
+		if (talkingAllowed) parts.push("Talking Allowed");
 		// Capacity
 		if (Number.isFinite(capacity)) parts.push(`Capacity ${capacity}`);
 
@@ -36,33 +71,20 @@ export function StudySpaceRow({ backgroundColor = "#FFFFFF", title, capacity, te
 	}, [capacity, techEnhanced, environment]);
 
 	const content = (
-		<>
-			<Text style={styles.title} numberOfLines={1}>
-				{title}
-			</Text>
+		<View style={styles.rowInner}>
+			<View style={styles.textContainer}>
+				<Text style={styles.title}>{title}</Text>
 
-			<Text style={styles.meta} numberOfLines={1}>
-				{metaText}
-			</Text>
-		</>
+				<Text style={styles.meta}>{metaText}</Text>
+			</View>
+
+			{reservable && (
+				<Pressable onPress={handleReservePress} style={({ pressed }) => [styles.rowIcon, pressed && styles.rowIconPressed]}>
+					<FontAwesome6 name="calendar-plus" size={15} color={Brand.purple} />
+				</Pressable>
+			)}
+		</View>
 	);
-
-	if (onPress) {
-		return (
-			<Pressable
-				onPress={onPress}
-				android_ripple={{ color: "#E5E7EB" }}
-				style={({ pressed }) => [
-					styles.row,
-					{
-						backgroundColor: pressed ? "#f8eeff" : backgroundColor,
-					},
-				]}
-			>
-				{content}
-			</Pressable>
-		);
-	}
 
 	return <View style={[styles.row, { backgroundColor }]}>{content}</View>;
 }
@@ -76,6 +98,15 @@ const styles = StyleSheet.create({
 		borderBottomColor: "#E5E7EB",
 		overflow: "hidden",
 	},
+	rowInner: {
+		flexDirection: "row",
+		alignItems: "center",
+	},
+	textContainer: {
+		flex: 1,
+		paddingRight: 12,
+	},
+
 	title: {
 		fontSize: 18,
 		lineHeight: 22,
@@ -87,5 +118,16 @@ const styles = StyleSheet.create({
 		fontSize: 13,
 		lineHeight: 16,
 		color: "#6B7280",
+	},
+	rowIcon: {
+		height: 40,
+		width: 40,
+		borderRadius: 20,
+		alignItems: "center",
+		justifyContent: "center",
+		backgroundColor: "#9b4afe2e",
+	},
+	rowIconPressed: {
+		backgroundColor: "#7c3aed33",
 	},
 });

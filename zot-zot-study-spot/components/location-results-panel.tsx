@@ -109,6 +109,7 @@ export function LocationResultsPage({ visible, onRequestClose, locations }: Page
 				{stage === "spaces" && selectedLocation && (
 					<LocationDetailsPanel
 						locationTitle={selectedLocation.title}
+						locationId={selectedLocation.id}
 						spaceType={spaceFilter === "reservable" ? "Reservable Spaces" : "Public Spaces"}
 						spaces={filteredSpaces}
 						onBack={() => setStage("category")}
