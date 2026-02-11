@@ -6,6 +6,7 @@ import { Brand } from "@/constants/theme";
 import { StudySpaceRow } from "@/components/space-results-row";
 import type { StudySpace } from "./types";
 
+
 type Props = {
 	locationTitle: string;
 	locationId: string;
@@ -15,6 +16,7 @@ type Props = {
 };
 
 export function LocationDetailsPanel({ locationTitle, locationId, spaceType, spaces, onBack }: Props) {
+	
 	return (
 		<View style={styles.container}>
 			{/* Header */}
@@ -45,6 +47,8 @@ export function LocationDetailsPanel({ locationTitle, locationId, spaceType, spa
 			<View style={styles.divider} />
 
 			{/* Study Spaces */}
+			
+
 			<FlatList
 				data={spaces}
 				keyExtractor={(item) => item.id}

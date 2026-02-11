@@ -50,6 +50,7 @@ type SpaceFilter = "reservable" | "public";
 
 const TAB_BAR_HEIGHT = 80;
 const SHEET_HEIGHT = 420;
+const LARGE_SHEET_HEIGHT = 650;
 
 export function LocationResultsPage({ visible, onRequestClose, locations }: PageProps) {
 	const [stage, setStage] = useState<Stage>("results");
@@ -77,13 +78,13 @@ export function LocationResultsPage({ visible, onRequestClose, locations }: Page
 		<Modal transparent animationType="fade" onRequestClose={onRequestClose}>
 			<Pressable style={styles.backdrop} onPress={onRequestClose} />
 
-			<BottomSheetPanel height={SHEET_HEIGHT} bottomOffset={TAB_BAR_HEIGHT}>
+			<BottomSheetPanel height={stage === "category" ? LARGE_SHEET_HEIGHT : SHEET_HEIGHT} bottomOffset={TAB_BAR_HEIGHT}>
 				{stage === "results" && (
 					<LocationResultsPanel
 						locations={list}
 						onSelectLocation={(loc) => {
 							setSelectedLocation(loc);
-							setStage("category"); // 👈 NEW: go to category page
+							setStage("category");
 						}}
 					/>
 				)}
@@ -91,6 +92,7 @@ export function LocationResultsPage({ visible, onRequestClose, locations }: Page
 				{stage === "category" && selectedLocation && (
 					<SpaceTypePanel
 						locationTitle={selectedLocation.title}
+						locationId={selectedLocation.id}
 						onBack={() => {
 							setSelectedLocation(null);
 							setStage("results");

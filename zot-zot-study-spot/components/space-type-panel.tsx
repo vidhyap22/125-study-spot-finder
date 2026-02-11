@@ -2,14 +2,19 @@ import React from "react";
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import { Brand } from "@/constants/theme";
 import { FontAwesome6 } from "@expo/vector-icons";
+import { Image } from "expo-image";
+import { LOCATION_IMAGES } from "@/components/location-images";
+
 type Props = {
 	locationTitle: string;
+	locationId: string;
 	onBack?: () => void;
 	onSelectReservable: () => void;
 	onSelectPublic: () => void;
 };
 
-export function SpaceTypePanel({ locationTitle, onBack, onSelectReservable, onSelectPublic }: Props) {
+export function SpaceTypePanel({ locationTitle, locationId, onBack, onSelectReservable, onSelectPublic }: Props) {
+	const imageSource = LOCATION_IMAGES[locationId];
 	return (
 		<View style={styles.container}>
 			{/* Header */}
@@ -34,7 +39,9 @@ export function SpaceTypePanel({ locationTitle, onBack, onSelectReservable, onSe
 			</View>
 
 			<View style={styles.divider} />
-
+			{imageSource && (
+				<Image source={imageSource} style={{ margin: 5, width: "95%", aspectRatio: 1.5, alignSelf: "center", borderRadius: 12 }} contentFit="cover" />
+			)}
 			{/* Options */}
 			<Pressable
 				onPress={onSelectReservable}
@@ -96,7 +103,7 @@ const styles = StyleSheet.create({
 	},
 	backText: {
 		fontSize: 16,
-		color: "#fff",
+		color: Brand.purple,
 	},
 	backButtonPlaceholder: {
 		width: 70,
