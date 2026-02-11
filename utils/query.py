@@ -11,6 +11,7 @@ from dateutil import parser
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DB_PATH = BASE_DIR / "data" / "database" / "app.db"
+PERSONAL_MODEL_DB_PATH = BASE_DIR / "data" / "database" / "user_data.db"
 INDEX_PATH = BASE_DIR / "data" / "filters_index.json"
 
 
@@ -166,32 +167,66 @@ def check_current_availability_window(space_ids, db_path, start_time=None, end_t
 
     return available_ids
 
+def load_personal_model_signals(user_id, available_study_ids):
+    """
+    Load personal model signals ONLY for currently available study spaces.
 
-def run(debug=False):
-    # Search by the filters the user inputs into the frontend.
-    filters = {
-        "capacity_range": "1-4",
-        "indoor": True
-    }
+    Args:
+        conn: sqlite3 connection
+        user_id (str): user identifier
+        available_study_ids (list[int]): study spaces currently eligible
 
-    matching_ids = search_with_filters(filters)
+    Returns:
+        dict:
+        {
+            "dwell_map": {study_space_id: total_dwell_ms},
+            "study_session_map": {study_space_id: [(duration_ms, ended_reason)]}
+        }
+    """
 
-    if debug:
-        print("\nMatching study_room_IDs after filters:")
-        print(matching_ids)
-        print("Total:", len(matching_ids))
+    conn = sqlite3.connect(PERSONAL_MODEL_DB_PATH)
+    cursor = conn.cursor()
 
-    # Check room availability for the matching IDs. This will filter out any rooms that require reservation but are not currently available.
-    available_now = check_current_availability_window(
-        matching_ids,
-        DB_PATH
-    )
+    if not available_study_ids:
+        return {
+            "dwell_map": {},
+            "study_session_map": {}
+        }
+
+    placeholders = ",".join(["?"] * len(available_study_ids))
+
+    # User spent some time looking at certain study spaces.
+    cursor.execute(f"""
+        SELECT study_space_id, SUM(COALESCE(dwell_ms,0))
+        FROM spot_detail_views
+        WHERE user_id = ?
+        AND study_space_id IN ({placeholders})
+        GROUP BY study_space_id
+    """, (user_id, *available_study_ids))
+
+    dwell_map = {row[0]: row[1] for row in cursor.fetchall()}
+
+    # User previously studied in some study spaces.
+    cursor.execute(f"""
+        SELECT study_space_id, duration_ms, ended_reason
+        FROM study_sessions
+        WHERE user_id = ?
+        AND study_space_id IN ({placeholders})
+    """, (user_id, *available_study_ids))
+
+    study_session_map = {}
+
+    for study_space_id, duration, reason in cursor.fetchall():
+        if study_space_id not in study_session_map:
+            study_session_map[study_space_id] = []
+        study_session_map[study_space_id].append((duration, reason))
     
-    if debug:
-        print("\nAvailable study_room_IDs RIGHT NOW:")
-        print(available_now)
-        print("Total:", len(available_now))
+    conn.close()
 
+    return {
+        "dwell_map": dwell_map,
+        "study_session_map": study_session_map
+    }
 
 def get_space_details(space_ids):
     """
@@ -250,216 +285,168 @@ def get_space_details(space_ids):
     
     return results
 
+def rank_spaces_with_personal_model(space_details, personal_signals, filters=None):
+    """
+    Rank study spaces by combining filter-based scoring with personal model signals. The personal model signals include:
+        - Dwell time: Total time spent viewing the study space details in the app. 
+        - Study sessions: Past study sessions booked in that space, including duration and how the session ended (e.g., user exit, noise, etc.).
+    """
 
-def haversine_distance(lat1, lon1, lat2, lon2):
-    """
-    Calculate distance in miles between two coordinates using Haversine formula
-    
-    Args:
-        lat1, lon1: First coordinate (user location)
-        lat2, lon2: Second coordinate (building location)
-    
-    Returns:
-        float: Distance in miles
-    """
-    R = 3959  # Earth's radius in miles
-    
-    lat1, lon1, lat2, lon2 = map(math.radians, [lat1, lon1, lat2, lon2])
-    dlat = lat2 - lat1
-    dlon = lon2 - lon1
-    
-    a = math.sin(dlat/2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(dlon/2)**2
-    c = 2 * math.asin(math.sqrt(a))
-    
-    return R * c
-
-
-def filter_by_distance(space_details, user_lat, user_lon, max_distance_miles):
-    """
-    Filter spaces by distance from user location
-    
-    Args:
-        space_details (list): List of space detail dicts
-        user_lat (float): User's latitude
-        user_lon (float): User's longitude
-        max_distance_miles (float): Maximum distance in miles
-    
-    Returns:
-        list: Filtered list of space details with distance added
-    """
-    filtered_spaces = []
-    
-    for space in space_details:
-        building_lat = space["latitude"]
-        building_lon = space["longitude"]
-        
-        if building_lat is not None and building_lon is not None:
-            distance = haversine_distance(user_lat, user_lon, building_lat, building_lon)
-            
-            if distance <= max_distance_miles:
-                space["distance"] = round(distance, 2)
-                filtered_spaces.append(space)
-    
-    # Sort by distance
-    filtered_spaces.sort(key=lambda x: x["distance"])
-    
-    return filtered_spaces
-
-def rank_spaces(space_details, filters=None, user_location=None):
-    """
-    Assign a ranking score to each study space
-    
-    Higher score = better match
-    """
+    dwell_map = personal_signals.get("dwell_map", {})
+    study_session_map = personal_signals.get("study_session_map", {})
 
     ranked = []
 
     for space in space_details:
+        study_space_id = space["id"]
         score = 0
 
-        # --------------------------
-        # Distance scoring
-        # --------------------------
-        if user_location and "distance" in space:
-            # closer = higher score
-            score += max(0, 10 - space["distance"])
-
-        # --------------------------
-        # Filter preference scoring
-        # --------------------------
+        # --- BASELINE RANKING ---
+        # Rank based on filters that user has specified. This ensures that spaces that better match the user's stated preferences are ranked higher.
         if filters:
 
-            if filters.get("tech_enhanced") and space["tech_enhanced"]:
+            if filters.get("tech_enhanced") and space.get("tech_enhanced"):
                 score += 3
 
-            if filters.get("indoor") and space["indoor"]:
+            if filters.get("indoor") and space.get("indoor"):
                 score += 2
 
-            if filters.get("talking_allowed") == space["talking_allowed"]:
+            if filters.get("talking_allowed") == space.get("talking_allowed"):
                 score += 2
 
-            if filters.get("has_printer") and space["has_printer"]:
+            if filters.get("has_printer") and space.get("has_printer"):
                 score += 2
 
-            # Capacity preference example
-            if filters.get("capacity_range") and space["capacity"]:
+            if filters.get("capacity_range") and space.get("capacity"):
                 try:
-                    low, high = map(int, filters["capacity_range"].split('-'))
+                    low, high = map(int, filters["capacity_range"].split("-"))
                     if low <= space["capacity"] <= high:
                         score += 3
                 except:
                     pass
 
-        # Availability bonus
-        if not space["must_reserve"]:
+        if not space.get("must_reserve"):
             score += 1
+
+        # --- PERSONAL MODEL ---
+        # Take dwell time into account when user showed interest in the study space details. This can indicate a stronger preference for that space.
+        dwell = dwell_map.get(study_space_id, 0)
+        if dwell > 0:
+            score += min(5, dwell / 60000)  # ~1 point per minute
+
+        # Take past study sessions users have booked in that space into account. Longer sessions and sessions that ended positively (e.g., user exit) can indicate a stronger preference for that space, while sessions that ended due to noise can indicate a negative experience.
+        if study_space_id in study_session_map:
+            for duration, reason in study_session_map[study_space_id]:
+
+                if duration:
+                    score += min(6, duration / (30 * 60 * 1000))
+
+                if reason == "user_exit":
+                    score += 4
+                elif reason == "noise":
+                    score -= 3
 
         space["score"] = round(score, 2)
         ranked.append(space)
 
-    # Sort descending by score
     ranked.sort(key=lambda x: x["score"], reverse=True)
 
     return ranked
 
-
-def get_available_rooms(start_time=None, end_time=None):
+def display_ranked_results(ranked_spaces, top_n=10):
     """
-    Get rooms available during a specific time window
-    
-    Args:
-        start_time (str): ISO format datetime (optional)
-        end_time (str): ISO format datetime (optional)
-    
-    Returns:
-        list: Study space IDs that are available
+    Display ranked results in a user-friendly format
     """
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-    
-    if start_time and end_time:
-        # Find rooms with NO conflicting unavailable bookings
-        cursor.execute("""
-        SELECT DISTINCT study_space_id
-        FROM room_availability
-        WHERE is_available = 1
-        AND start_time >= ?
-        AND end_time <= ?
-        AND datetime(scraped_at) > datetime('now', '-24 hours')
-    """, (start_time, end_time))
-    else:
-        # Get all rooms that require reservation
-        cursor.execute("""
-            SELECT study_space_id
-            FROM study_spaces
-            WHERE must_reserve = 1
-        """)
-    
-    available_ids = [row[0] for row in cursor.fetchall()]
-    conn.close()
-    
-    return available_ids
+    for space in ranked_spaces[:top_n]:
+        print(f"{space['name']} (Score: {space['score']}) - {space['building_name']} - Capacity: {space['capacity']} - {'Indoor' if space['indoor'] else 'Outdoor'} - {'Tech-Enhanced' if space['tech_enhanced'] else 'Standard'} - {'Talking Allowed' if space['talking_allowed'] else 'Quiet Only'} - {'Must Reserve' if space['must_reserve'] else 'No Reservation Needed'}")
 
+def get_user_1_ranked_results(debug=True):
+    # Search by the filters the user inputs into the frontend.
+    filters = {
+        "capacity_range": "1-4",
+        "indoor": True
+    }
 
-def query_study_spaces(filters=None, user_location=None, max_distance=None, 
-                       check_availability=False, start_time=None, end_time=None):
-    """
-    Updated query function with availability checking
-    """
-    # Step 1: Apply filters using inverted index
-    if filters:
-        matching_ids = search_with_filters(filters)
-        print("matching_ids from filters:", len(matching_ids))
-        if not matching_ids:
-            return []
-    else:
-        conn = sqlite3.connect(DB_PATH)
-        cursor = conn.cursor()
-        cursor.execute("SELECT study_space_id FROM study_spaces")
-        matching_ids = [row[0] for row in cursor.fetchall()]
-        conn.close()
-    
-    # Step 2: Filter by availability if requested
-    if check_availability and start_time and end_time:
-        available_ids = get_available_rooms(start_time, end_time)
-        print("available_ids:", len(available_ids))
-        matching_ids = list(set(matching_ids) & set(available_ids))
-        if not matching_ids:
-            print('intersection was empty')
-            return []            
-    
-    # Step 3: Get full details
-    space_details = get_space_details(matching_ids)
-    
-    # Step 4: Apply distance filter
-    if user_location and max_distance:
-        user_lat = user_location.get("latitude")
-        user_lon = user_location.get("longitude")
-        if user_lat and user_lon:
-            space_details = filter_by_distance(
-                space_details,
-                user_lat,
-                user_lon,
-                max_distance
-            )
+    matching_ids = search_with_filters(filters)
 
-    # Step 5: Rank results
-    space_details = rank_spaces(
-        space_details,
-        filters=filters,
-        user_location=user_location
+    if debug:
+        print("\nMatching study_room_IDs after filters:")
+        print(matching_ids)
+        print("Total:", len(matching_ids))
+
+    # Check room availability for the matching IDs. This will filter out any rooms that require reservation but are not currently available.
+    matching_ids = check_current_availability_window(
+        matching_ids,
+        DB_PATH
     )
+    
+    if debug:
+        print("\nAvailable study_room_IDs RIGHT NOW:")
+        print(matching_ids)
+        print("Total:", len(matching_ids))
 
-    return space_details
+    user_1_personal_model_signals = load_personal_model_signals("USER_001", matching_ids)
+    if debug:
+        print("\nPersonal model signals for USER_001:")
+        print(user_1_personal_model_signals)
+    
+    space_details = get_space_details(matching_ids)
+    if debug:
+        pass
+        #print(space_details)
 
-def get_available_buildings():
-    """Get list of all available buildings"""
-    conn = sqlite3.connect(DB_PATH)
-    cursor = conn.cursor()
-    cursor.execute("SELECT building_id, name FROM buildings ORDER BY name")
-    buildings = [{"id": row[0], "name": row[1]} for row in cursor.fetchall()]
-    conn.close()
-    return buildings
+    ranked1 = rank_spaces_with_personal_model(space_details, user_1_personal_model_signals, filters=filters)    
+    
+    display_ranked_results(ranked1)
+
+def get_user_2_ranked_results(debug=True):
+    # Search by the filters the user inputs into the frontend.
+    filters = {
+        "capacity_range": "1-4",
+        "indoor": True
+    }
+
+    matching_ids = search_with_filters(filters)
+
+    if debug:
+        print("\nMatching study_room_IDs after filters:")
+        print(matching_ids)
+        print("Total:", len(matching_ids))
+
+    # Check room availability for the matching IDs. This will filter out any rooms that require reservation but are not currently available.
+    matching_ids = check_current_availability_window(
+        matching_ids,
+        DB_PATH
+    )
+    
+    if debug:
+        print("\nAvailable study_room_IDs RIGHT NOW:")
+        print(matching_ids)
+        print("Total:", len(matching_ids))
+
+    user_2_personal_model_signals = load_personal_model_signals("USER_002", matching_ids)
+
+    if debug:
+        print("\nPersonal model signals for USER_002:")
+        print(user_2_personal_model_signals)
+    
+    space_details = get_space_details(matching_ids)
+    if debug:
+        pass
+        #print(space_details)
+
+    ranked2 = rank_spaces_with_personal_model(space_details, user_2_personal_model_signals, filters=filters)
+    
+    display_ranked_results(ranked2)
+
+
+def run(debug=False):
+    print("\n\n===== RANKED RESULTS FOR USER 1 =====")
+    get_user_1_ranked_results(debug=debug)
+
+    print("\n\n===== RANKED RESULTS FOR USER 2 =====")
+    get_user_2_ranked_results(debug=debug)
+
 
 if __name__ == "__main__":
     run(debug=True)
