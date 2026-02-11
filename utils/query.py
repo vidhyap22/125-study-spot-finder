@@ -6,6 +6,8 @@ import sqlite3
 import json
 import math
 from pathlib import Path
+from datetime import datetime
+from dateutil import parser  
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DB_PATH = BASE_DIR / "data" / "database" / "app.db"
@@ -21,7 +23,7 @@ def load_index():
 def search_with_filters(filters):
     """
     Based on the filters the user has specified, extract the study rooms matching each filter from the inverted index. Then, intersect to get only the study room ids that match all the filters.
-    
+
     Args:
         filters (dict): Filter criteria
             {
@@ -91,6 +93,104 @@ def search_with_filters(filters):
         matching_spaces = matching_spaces.intersection(result_set)
     
     return list(matching_spaces)
+
+
+def check_current_availability_window(space_ids, db_path, start_time=None, end_time=None):
+    """
+    If a space requires reservation, check if it is currently available. We are only focused on corrently avaiable rooms since users are most likely looking for a place to study immediately. In the future, we can expand to allow users to search for rooms available during a specific time window.
+
+    Logic:
+    - If must_reserve = 0 → always available
+    - If must_reserve = 1 → must have availability window
+
+    Return study_space_ids that are currently available.
+    """
+
+    if not space_ids:
+        return []
+
+    conn = sqlite3.connect(db_path)
+    cursor = conn.cursor()
+
+    placeholders = ",".join("?" * len(space_ids))
+
+    # Case 1: Check availability for a specific time window (not currently used)
+    if start_time and end_time:
+        query = f"""
+        SELECT DISTINCT s.study_space_id
+        FROM study_spaces s
+        LEFT JOIN room_availability ra
+            ON s.study_space_id = ra.study_space_id
+        WHERE s.study_space_id IN ({placeholders})
+        AND (
+            s.must_reserve = 0
+            OR (
+                s.must_reserve = 1
+                AND ra.is_available = 1
+                AND ra.start_time <= ?
+                AND ra.end_time >= ?
+                AND datetime(ra.scraped_at) > datetime('now','-24 hours')
+            )
+        )
+        """
+
+        params = space_ids + [start_time, end_time]
+
+    # Case #2: Check availability for the current time (default)
+    else:
+
+        query = f"""
+        SELECT DISTINCT s.study_space_id
+        FROM study_spaces s
+        LEFT JOIN room_availability ra
+            ON s.study_space_id = ra.study_space_id
+        WHERE s.study_space_id IN ({placeholders})
+        AND (
+            s.must_reserve = 0
+            OR (
+                s.must_reserve = 1
+                AND ra.is_available = 1
+                AND datetime('now') BETWEEN ra.start_time AND ra.end_time
+                AND datetime(ra.scraped_at) > datetime('now','-24 hours')
+            )
+        )
+        """
+
+        params = space_ids
+
+    cursor.execute(query, params)
+
+    available_ids = [row[0] for row in cursor.fetchall()]
+
+    conn.close()
+
+    return available_ids
+
+
+def run(debug=False):
+    # Search by the filters the user inputs into the frontend.
+    filters = {
+        "capacity_range": "1-4",
+        "indoor": True
+    }
+
+    matching_ids = search_with_filters(filters)
+
+    if debug:
+        print("\nMatching study_room_IDs after filters:")
+        print(matching_ids)
+        print("Total:", len(matching_ids))
+
+    # Check room availability for the matching IDs. This will filter out any rooms that require reservation but are not currently available.
+    available_now = check_current_availability_window(
+        matching_ids,
+        DB_PATH
+    )
+    
+    if debug:
+        print("\nAvailable study_room_IDs RIGHT NOW:")
+        print(available_now)
+        print("Total:", len(available_now))
 
 
 def get_space_details(space_ids):
@@ -360,3 +460,6 @@ def get_available_buildings():
     buildings = [{"id": row[0], "name": row[1]} for row in cursor.fetchall()]
     conn.close()
     return buildings
+
+if __name__ == "__main__":
+    run(debug=True)
