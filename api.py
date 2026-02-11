@@ -10,7 +10,7 @@ from pathlib import Path
 # Add utils to path
 sys.path.append(str(Path(__file__).parent / "utils"))
 
-from utils.query import query_study_spaces, get_available_buildings
+from utils.query import retrieve_ranked_study_spaces, get_available_buildings
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for React Native
@@ -38,37 +38,38 @@ def get_buildings():
 @app.route('/api/search', methods=['POST'])
 def search_spaces():
     try:
-        data = request.json
-        filters = data.get('filters')
-        user_location = data.get('user_location')
-        max_distance = data.get('max_distance')
-        
-        # New: availability parameters
-        check_availability = data.get('check_availability', False)
-        start_time = data.get('start_time')  # ISO format: "2026-01-21T19:30:00-08:00"
-        end_time = data.get('end_time')
-        
-        results = query_study_spaces(
+        data = request.json or {}
+
+        filters = data.get('filters', {})
+        user_id = data.get('user_id')  
+        debug = data.get('debug', False)
+
+        if not user_id:
+            return jsonify({
+                "success": False,
+                "error": "user_id is required for personalized ranking"
+            }), 400
+
+        # Call new ranking pipeline
+        results = retrieve_ranked_study_spaces(
+            user_id=user_id,
             filters=filters,
-            user_location=user_location,
-            max_distance=max_distance,
-            check_availability=check_availability,
-            start_time=start_time,
-            end_time=end_time
+            debug=debug
         )
-        
+
         return jsonify({
             "success": True,
             "count": len(results),
             "data": results
         })
-    
+
     except Exception as e:
+        print("API ERROR:", e)  
         return jsonify({
             "success": False,
             "error": str(e)
         }), 500
-
+    
 
 @app.route('/api/health', methods=['GET'])
 def health_check():

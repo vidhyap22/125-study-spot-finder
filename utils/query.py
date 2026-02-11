@@ -387,3 +387,12 @@ def retrieve_ranked_study_spaces(user_id, filters, debug=False):
 
     # Step 5: Rank spaces by combining filter-based scoring with personal model signals.
     ranked_spaces = rank_spaces_with_personal_model(space_details, user_personal_model_signals, filters)
+
+def get_available_buildings():
+    """Get list of all available buildings"""
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("SELECT building_id, name FROM buildings ORDER BY name")
+    buildings = [{"id": row[0], "name": row[1]} for row in cursor.fetchall()]
+    conn.close()
+    return buildings
