@@ -20,7 +20,7 @@ def load_index():
 
 def search_with_filters(filters):
     """
-    Search using pre-built indexes
+    Based on the filters the user has specified, extract the study rooms matching each filter from the inverted index. Then, intersect to get only the study room ids that match all the filters.
     
     Args:
         filters (dict): Filter criteria
