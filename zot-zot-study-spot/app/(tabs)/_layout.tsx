@@ -8,7 +8,6 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import { Colors, Fonts } from "@/constants/theme";
 
 export default function TabLayout() {
-
 	const theme = Colors.light;
 
 	return (
@@ -54,7 +53,13 @@ export default function TabLayout() {
 					tabBarIcon: ({ color }) => <IconSymbol size={20} name="paperplane.fill" color={color} />,
 				}}
 			/>
-
+			<Tabs.Screen
+				name="bookmarks"
+				options={{
+					title: "Bookmarks",
+					tabBarIcon: ({ color }) => <FontAwesome6 name="bookmark" size={20} color={color} />,
+				}}
+			/>
 			<Tabs.Screen
 				name="settings"
 				options={{
