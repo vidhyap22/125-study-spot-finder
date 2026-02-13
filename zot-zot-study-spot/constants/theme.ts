@@ -8,7 +8,7 @@ export const Brand = {
 	black: "#1a191a",
 };
 
-const shared = {
+export const shared = {
 	brand: Brand.purple,
 
 	// surfaces

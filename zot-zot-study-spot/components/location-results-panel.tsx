@@ -1,10 +1,11 @@
-import React, { useEffect, useMemo, useState } from "react";
-import { FlatList, Modal, Pressable, StyleSheet, View, Text } from "react-native";
+import { useEffect, useMemo, useState } from "react";
+import { FlatList, Modal, Pressable, StyleSheet, Text, View } from "react-native";
 
 import { BottomSheetPanel } from "@/components/bottom-sheet-panel";
 import { LocationResultsRow } from "@/components/location-results-row";
-import { LocationDetailsPanel } from "@/components/location-details-panel";
-import type { StudySpace, LocationResult } from "@/components/types";
+import { LocationSpacesList } from "@/components/location-spaces-list";
+import { useSession } from "@/context/session-context";
+import type { LocationResult, StudySpace } from "@/utils/types";
 import { SpaceTypePanel } from "./space-type-panel";
 
 type ResultsPanelProps = {
@@ -39,6 +40,7 @@ export function LocationResultsPanel({ locations, onSelectLocation }: ResultsPan
 		</View>
 	);
 }
+
 type PageProps = {
 	visible: boolean;
 	onRequestClose: () => void;
@@ -53,6 +55,8 @@ const SHEET_HEIGHT = 420;
 const LARGE_SHEET_HEIGHT = 650;
 
 export function LocationResultsPage({ visible, onRequestClose, locations }: PageProps) {
+	const { setSelectedSpot } = useSession();
+
 	const [stage, setStage] = useState<Stage>("results");
 	const [selectedLocation, setSelectedLocation] = useState<LocationResult | null>(null);
 	const [spaceFilter, setSpaceFilter] = useState<SpaceFilter>("reservable");
@@ -109,12 +113,23 @@ export function LocationResultsPage({ visible, onRequestClose, locations }: Page
 				)}
 
 				{stage === "spaces" && selectedLocation && (
-					<LocationDetailsPanel
+					<LocationSpacesList
 						locationTitle={selectedLocation.title}
 						locationId={selectedLocation.id}
 						spaceType={spaceFilter === "reservable" ? "Reservable Spaces" : "Public Spaces"}
 						spaces={filteredSpaces}
 						onBack={() => setStage("category")}
+						onChooseSpace={(spot) => {
+							setSelectedSpot({
+								locationId: spot.locationId,
+								locationTitle: spot.locationTitle,
+								spaceId: spot.spaceId,
+								spaceTitle: spot.spaceTitle,
+								kind: spot.kind,
+							});
+
+							onRequestClose();
+						}}
 					/>
 				)}
 			</BottomSheetPanel>
@@ -123,13 +138,10 @@ export function LocationResultsPage({ visible, onRequestClose, locations }: Page
 }
 
 const styles = StyleSheet.create({
-	// ResultsPanel container
 	resultsContainer: {
 		flex: 1,
 		backgroundColor: "#FFFFFF",
 	},
-
-	// Modal backdrop
 	backdrop: {
 		...StyleSheet.absoluteFillObject,
 		backgroundColor: "rgba(0,0,0,0.25)",

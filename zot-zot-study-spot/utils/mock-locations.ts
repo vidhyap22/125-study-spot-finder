@@ -1,4 +1,4 @@
-import type { LocationResult, StudySpace } from "@/components/types";
+import type { LocationResult, StudySpace } from "@/utils/types";
 
 /** ---------- Raw shapes (match your real data) ---------- */
 type RawRoom = {
@@ -7,7 +7,7 @@ type RawRoom = {
 	capacity: number;
 	must_reserve: boolean;
 	tech_enhanced: boolean;
-	building_id: "SLIB" | "LLIB" | "GSC" | "ALP" | "MLTM";
+	location_id: "SLIB" | "LLIB" | "GSC" | "ALP" | "MLTM";
 	is_indoor: boolean;
 	is_talking_allowed: boolean;
 };
@@ -67,23 +67,23 @@ const RAW_LOCATIONS: Record<string, RawLocationInfo> = {
 
 const RAW_ROOMS: RawRoom[] = [
 	// --- Science Library (SLIB) ---
-	{ id: 111031, name: "Science 277", capacity: 6, must_reserve: true, tech_enhanced: true, building_id: "SLIB", is_indoor: true, is_talking_allowed: true },
-	{ id: 44667, name: "Science 371", capacity: 8, must_reserve: true, tech_enhanced: true, building_id: "SLIB", is_indoor: true, is_talking_allowed: true },
-	{ id: 44668, name: "Science 402", capacity: 4, must_reserve: true, tech_enhanced: false, building_id: "SLIB", is_indoor: true, is_talking_allowed: true },
-	{ id: 44669, name: "Science 410", capacity: 6, must_reserve: true, tech_enhanced: false, building_id: "SLIB", is_indoor: true, is_talking_allowed: true },
-	{ id: 44672, name: "Science 476", capacity: 4, must_reserve: true, tech_enhanced: false, building_id: "SLIB", is_indoor: true, is_talking_allowed: true },
+	{ id: 111031, name: "Science 277", capacity: 6, must_reserve: true, tech_enhanced: true, location_id: "SLIB", is_indoor: true, is_talking_allowed: true },
+	{ id: 44667, name: "Science 371", capacity: 8, must_reserve: true, tech_enhanced: true, location_id: "SLIB", is_indoor: true, is_talking_allowed: true },
+	{ id: 44668, name: "Science 402", capacity: 4, must_reserve: true, tech_enhanced: false, location_id: "SLIB", is_indoor: true, is_talking_allowed: true },
+	{ id: 44669, name: "Science 410", capacity: 6, must_reserve: true, tech_enhanced: false, location_id: "SLIB", is_indoor: true, is_talking_allowed: true },
+	{ id: 44672, name: "Science 476", capacity: 4, must_reserve: true, tech_enhanced: false, location_id: "SLIB", is_indoor: true, is_talking_allowed: true },
 
 	// --- Anteater Learning Pavilion (ALP) ---
-	{ id: 34681, name: "ALP 2210", capacity: 6, must_reserve: true, tech_enhanced: false, building_id: "ALP", is_indoor: true, is_talking_allowed: true },
-	{ id: 34680, name: "ALP 2510", capacity: 10, must_reserve: true, tech_enhanced: false, building_id: "ALP", is_indoor: true, is_talking_allowed: true },
-	{ id: 34682, name: "ALP 2610", capacity: 10, must_reserve: true, tech_enhanced: false, building_id: "ALP", is_indoor: true, is_talking_allowed: true },
-	{ id: 34683, name: "ALP 2710", capacity: 6, must_reserve: true, tech_enhanced: false, building_id: "ALP", is_indoor: true, is_talking_allowed: true },
+	{ id: 34681, name: "ALP 2210", capacity: 6, must_reserve: true, tech_enhanced: false, location_id: "ALP", is_indoor: true, is_talking_allowed: true },
+	{ id: 34680, name: "ALP 2510", capacity: 10, must_reserve: true, tech_enhanced: false, location_id: "ALP", is_indoor: true, is_talking_allowed: true },
+	{ id: 34682, name: "ALP 2610", capacity: 10, must_reserve: true, tech_enhanced: false, location_id: "ALP", is_indoor: true, is_talking_allowed: true },
+	{ id: 34683, name: "ALP 2710", capacity: 6, must_reserve: true, tech_enhanced: false, location_id: "ALP", is_indoor: true, is_talking_allowed: true },
 
 	// --- Langson (LLIB) ---
-	{ id: 44696, name: "Langson 380", capacity: 6, must_reserve: true, tech_enhanced: false, building_id: "LLIB", is_indoor: true, is_talking_allowed: true },
-	{ id: 44697, name: "Langson 382", capacity: 6, must_reserve: true, tech_enhanced: false, building_id: "LLIB", is_indoor: true, is_talking_allowed: true },
-	{ id: 44698, name: "Langson 386", capacity: 4, must_reserve: true, tech_enhanced: false, building_id: "LLIB", is_indoor: true, is_talking_allowed: true },
-	{ id: 44702, name: "Langson 394", capacity: 4, must_reserve: true, tech_enhanced: false, building_id: "LLIB", is_indoor: true, is_talking_allowed: true },
+	{ id: 44696, name: "Langson 380", capacity: 6, must_reserve: true, tech_enhanced: false, location_id: "LLIB", is_indoor: true, is_talking_allowed: true },
+	{ id: 44697, name: "Langson 382", capacity: 6, must_reserve: true, tech_enhanced: false, location_id: "LLIB", is_indoor: true, is_talking_allowed: true },
+	{ id: 44698, name: "Langson 386", capacity: 4, must_reserve: true, tech_enhanced: false, location_id: "LLIB", is_indoor: true, is_talking_allowed: true },
+	{ id: 44702, name: "Langson 394", capacity: 4, must_reserve: true, tech_enhanced: false, location_id: "LLIB", is_indoor: true, is_talking_allowed: true },
 
 	// --- Multimedia (MLTM) ---
 	{
@@ -92,26 +92,26 @@ const RAW_ROOMS: RawRoom[] = [
 		capacity: 4,
 		must_reserve: true,
 		tech_enhanced: false,
-		building_id: "MLTM",
+		location_id: "MLTM",
 		is_indoor: true,
 		is_talking_allowed: true,
 	},
-	{ id: 44718, name: "Study room 173", capacity: 7, must_reserve: true, tech_enhanced: true, building_id: "MLTM", is_indoor: true, is_talking_allowed: true },
+	{ id: 44718, name: "Study room 173", capacity: 7, must_reserve: true, tech_enhanced: true, location_id: "MLTM", is_indoor: true, is_talking_allowed: true },
 	{
 		id: 59309,
 		name: "Study room 174",
 		capacity: 2,
 		must_reserve: true,
 		tech_enhanced: false,
-		building_id: "MLTM",
+		location_id: "MLTM",
 		is_indoor: true,
 		is_talking_allowed: true,
 	},
 
 	// --- Gateway Study Center (GSC) ---
-	{ id: 44704, name: "Gateway 2101", capacity: 4, must_reserve: true, tech_enhanced: false, building_id: "GSC", is_indoor: true, is_talking_allowed: true },
-	{ id: 44705, name: "Gateway 2102", capacity: 4, must_reserve: true, tech_enhanced: false, building_id: "GSC", is_indoor: true, is_talking_allowed: true },
-	{ id: 44708, name: "Gateway 2105", capacity: 4, must_reserve: true, tech_enhanced: false, building_id: "GSC", is_indoor: true, is_talking_allowed: true },
+	{ id: 44704, name: "Gateway 2101", capacity: 4, must_reserve: true, tech_enhanced: false, location_id: "GSC", is_indoor: true, is_talking_allowed: true },
+	{ id: 44705, name: "Gateway 2102", capacity: 4, must_reserve: true, tech_enhanced: false, location_id: "GSC", is_indoor: true, is_talking_allowed: true },
+	{ id: 44708, name: "Gateway 2105", capacity: 4, must_reserve: true, tech_enhanced: false, location_id: "GSC", is_indoor: true, is_talking_allowed: true },
 ];
 
 /** ---------- Helpers: raw -> UI types ---------- */
@@ -124,6 +124,8 @@ function toStudySpace(r: RawRoom): StudySpace {
 		environment: r.is_indoor ? "indoors" : "outdoors",
 		reservable: r.must_reserve,
 		talkingAllowed: r.is_talking_allowed,
+		locationId: r.location_id,
+		locationName: RAW_LOCATIONS[r.location_id]["name"],
 	};
 }
 
@@ -140,6 +142,8 @@ function publicAreasFor(buildingId: string): StudySpace[] {
 					environment: "indoors",
 					reservable: false,
 					talkingAllowed: true,
+					locationId: "SLIB",
+					locationName: "Science Library",
 				},
 				{
 					id: "SLIB-floor4",
@@ -149,6 +153,8 @@ function publicAreasFor(buildingId: string): StudySpace[] {
 					environment: "indoors",
 					reservable: false,
 					talkingAllowed: false,
+					locationId: "SLIB",
+					locationName: "Science Library",
 				},
 			];
 		case "LLIB":
@@ -161,6 +167,8 @@ function publicAreasFor(buildingId: string): StudySpace[] {
 					environment: "indoors",
 					reservable: false,
 					talkingAllowed: true,
+					locationId: "LLIB",
+					locationName: "Langson Library",
 				},
 				{
 					id: "LLIB-floor4",
@@ -170,6 +178,8 @@ function publicAreasFor(buildingId: string): StudySpace[] {
 					environment: "indoors",
 					reservable: false,
 					talkingAllowed: false,
+					locationId: "LLIB",
+					locationName: "Langson Library",
 				},
 			];
 		case "GSC":
@@ -182,6 +192,8 @@ function publicAreasFor(buildingId: string): StudySpace[] {
 					environment: "indoors",
 					reservable: false,
 					talkingAllowed: false,
+					locationId: "GSC",
+					locationName: "Gateway Student Center",
 				},
 			];
 		case "ALP":
@@ -194,6 +206,8 @@ function publicAreasFor(buildingId: string): StudySpace[] {
 					environment: "indoors",
 					reservable: false,
 					talkingAllowed: true,
+					locationId: "ALP",
+					locationName: "Anteater Learning Pavillion",
 				},
 			];
 		case "MLTM":
@@ -206,6 +220,8 @@ function publicAreasFor(buildingId: string): StudySpace[] {
 					environment: "indoors",
 					reservable: false,
 					talkingAllowed: true,
+					locationId: "MLTM",
+					locationName: "Multimedia Center",
 				},
 			];
 		default:
@@ -216,13 +232,13 @@ function publicAreasFor(buildingId: string): StudySpace[] {
 function toLocationResult(buildingId: keyof typeof RAW_LOCATIONS, distanceText: string): LocationResult {
 	const info = RAW_LOCATIONS[buildingId];
 
-	const reservableRooms = RAW_ROOMS.filter((r) => r.building_id === buildingId).map(toStudySpace);
+	const reservableRooms = RAW_ROOMS.filter((r) => r.location_id === buildingId).map(toStudySpace);
 	const publicAreas = publicAreasFor(buildingId);
 
 	const spaces = [...publicAreas, ...reservableRooms];
 
 	return {
-		id: buildingId, // nice: matches building_id
+		id: buildingId, // nice: matches location_id
 		title: info.name,
 		distanceText,
 		printerAvailable: info.has_printer,

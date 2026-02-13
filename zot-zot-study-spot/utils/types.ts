@@ -7,6 +7,8 @@ export type StudySpace = {
 	environment: "indoors" | "outdoors";
 	reservable: boolean;
 	talkingAllowed: boolean;
+	locationId: string;
+	locationName: string;
 };
 
 export type LocationResult = {

@@ -1,9 +1,8 @@
-import React from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
 import { Brand } from "@/constants/theme";
+import { LOCATION_IMAGES } from "@/utils/location-images";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { Image } from "expo-image";
-import { LOCATION_IMAGES } from "@/components/location-images";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 
 type Props = {
 	locationTitle: string;

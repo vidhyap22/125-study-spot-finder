@@ -1,7 +1,7 @@
-import React, { useMemo } from "react";
-import { View, Text, StyleSheet, Pressable, ViewStyle } from "react-native";
+import { useMemo } from "react";
+import { Pressable, StyleSheet, Text } from "react-native";
 
-import { Colors, Brand, Fonts } from "@/constants/theme";
+import { Brand, Colors } from "@/constants/theme";
 
 const theme = Colors.light;
 type Props = {
