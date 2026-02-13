@@ -1,11 +1,12 @@
-import React, { useMemo } from "react";
-import { View, Text, StyleSheet, Pressable } from "react-native";
-import { FontAwesome6 } from "@expo/vector-icons";
 import { Brand } from "@/constants/theme";
-import { Linking } from "react-native";
-import { RESERVATION_LINKS } from "@/components/reservation-links";
+import { RESERVATION_LINKS } from "@/utils/reservation-links";
+import { FontAwesome6 } from "@expo/vector-icons";
+import { useMemo } from "react";
+import { Linking, Pressable, StyleSheet, Text, View } from "react-native";
 
 type Environment = "indoors" | "outdoors";
+
+export type SpaceRef = { id: string; title: string };
 
 type Props = {
 	backgroundColor?: string;
@@ -20,6 +21,12 @@ type Props = {
 	locationId: string;
 
 	onPress?: () => void;
+
+	// reservable flow: leaving app
+	onReserveOpened?: (space: SpaceRef) => void;
+
+	// public flow: choose in-app
+	onChoosePublic?: (space: SpaceRef) => void;
 };
 
 export function StudySpaceRow({
@@ -33,67 +40,69 @@ export function StudySpaceRow({
 	locationId,
 	roomId,
 	onPress,
+	onReserveOpened,
+	onChoosePublic,
 }: Props) {
-	const handleReservePress = async () => {
-		const base = RESERVATION_LINKS[locationId];
+	const handleActionPress = async () => {
+		const spaceRef: SpaceRef = { id: roomId, title };
 
+		if (!reservable) {
+			onChoosePublic?.(spaceRef);
+			return;
+		}
+
+		const base = RESERVATION_LINKS[locationId];
 		if (!base) {
 			console.warn("No reservation link for location:", locationId);
 			return;
 		}
 
 		const url = `${base}${roomId}`;
-
 		const supported = await Linking.canOpenURL(url);
 
-		if (supported) {
-			await Linking.openURL(url);
-		} else {
+		if (!supported) {
 			console.warn("Can't open URL:", url);
+			return;
+		}
+
+		onReserveOpened?.(spaceRef);
+
+		try {
+			await Linking.openURL(url);
+		} catch (e) {
+			console.warn("Failed to open URL:", url, e);
 		}
 	};
 
 	const metaText = useMemo(() => {
 		const parts: string[] = [];
-		// Talking Allowed
 		if (talkingAllowed) parts.push("Talking Allowed");
-		// Capacity
 		if (Number.isFinite(capacity)) parts.push(`Capacity ${capacity}`);
-
-		// Tech enhanced
 		if (techEnhanced) parts.push("Tech enhanced");
-
-		// Environment (only one allowed)
-		if (environment === "indoors") parts.push("Indoors");
-		else parts.push("Outdoors");
-
+		parts.push(environment === "indoors" ? "Indoors" : "Outdoors");
 		return parts.join(" • ");
-	}, [capacity, techEnhanced, environment]);
+	}, [capacity, techEnhanced, environment, talkingAllowed]);
 
-	const content = (
-		<View style={styles.rowInner}>
-			<View style={styles.textContainer}>
-				<Text style={styles.title}>{title}</Text>
+	return (
+		<View style={[styles.row, { backgroundColor }]}>
+			<View style={styles.rowInner}>
+				<View style={styles.textContainer}>
+					<Text style={styles.title}>{title}</Text>
+					<Text style={styles.meta}>{metaText}</Text>
+				</View>
 
-				<Text style={styles.meta}>{metaText}</Text>
-			</View>
-
-			{reservable && (
-				<Pressable onPress={handleReservePress} style={({ pressed }) => [styles.rowIcon, pressed && styles.rowIconPressed]}>
+				<Pressable onPress={handleActionPress} style={({ pressed }) => [styles.rowIcon, pressed && styles.rowIconPressed]}>
 					<FontAwesome6 name="calendar-plus" size={15} color={Brand.purple} />
 				</Pressable>
-			)}
+			</View>
 		</View>
 	);
-
-	return <View style={[styles.row, { backgroundColor }]}>{content}</View>;
 }
 
 const styles = StyleSheet.create({
 	row: {
 		paddingHorizontal: 16,
 		paddingVertical: 14,
-
 		borderBottomWidth: StyleSheet.hairlineWidth,
 		borderBottomColor: "#E5E7EB",
 		overflow: "hidden",
@@ -106,7 +115,6 @@ const styles = StyleSheet.create({
 		flex: 1,
 		paddingRight: 12,
 	},
-
 	title: {
 		fontSize: 18,
 		lineHeight: 22,

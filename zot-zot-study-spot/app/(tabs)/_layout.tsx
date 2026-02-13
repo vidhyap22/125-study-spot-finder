@@ -1,12 +1,10 @@
 import { Tabs } from "expo-router";
-import React from "react";
 
 import { HapticTab } from "@/components/haptic-tab";
 import { IconSymbol } from "@/components/ui/icon-symbol";
-import { FontAwesome6 } from "@expo/vector-icons";
-
 import { Colors, Fonts } from "@/constants/theme";
 
+import { FontAwesome6 } from "@expo/vector-icons";
 export default function TabLayout() {
 	const theme = Colors.light;
 
@@ -51,6 +49,13 @@ export default function TabLayout() {
 				options={{
 					title: "Explore",
 					tabBarIcon: ({ color }) => <IconSymbol size={20} name="paperplane.fill" color={color} />,
+				}}
+			/>
+			<Tabs.Screen
+				name="session"
+				options={{
+					title: "Session",
+					tabBarIcon: ({ color }) => <FontAwesome6 name="clock" size={20} color={color} />,
 				}}
 			/>
 			<Tabs.Screen
