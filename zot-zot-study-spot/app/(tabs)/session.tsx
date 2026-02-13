@@ -15,6 +15,23 @@ function formatMs(ms: number) {
 	return `${pad2(minutes)}:${pad2(seconds)}.${pad2(centis)}`;
 }
 
+function ratingLabel(r: number) {
+	switch (r) {
+		case 1:
+			return "Horrible";
+		case 2:
+			return "Bad";
+		case 3:
+			return "Okay";
+		case 4:
+			return "Good";
+		case 5:
+			return "Amazing";
+		default:
+			return "";
+	}
+}
+
 export default function Session() {
 	const scheme = useColorScheme();
 	const theme = scheme === "dark" ? Colors.dark : Colors.light;
@@ -25,10 +42,14 @@ export default function Session() {
 	const [elapsedMs, setElapsedMs] = useState(0);
 	const [running, setRunning] = useState(false);
 
+	// rating flow
+	const [showRating, setShowRating] = useState(false);
+	const [rating, setRating] = useState<number | null>(null);
+
 	const startedAtRef = useRef<number | null>(null);
 	const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-	const clear = () => {
+	const clearIntervalSafe = () => {
 		if (intervalRef.current) {
 			clearInterval(intervalRef.current);
 			intervalRef.current = null;
@@ -48,7 +69,7 @@ export default function Session() {
 		if (!selectedSpot) return; // guard
 		setRunning(true);
 		startedAtRef.current = Date.now();
-		clear();
+		clearIntervalSafe();
 		intervalRef.current = setInterval(tick, 50);
 	};
 
@@ -56,19 +77,58 @@ export default function Session() {
 		if (!running) return;
 		setRunning(false);
 		startedAtRef.current = null;
-		clear();
+		clearIntervalSafe();
 	};
 
 	const endSession = () => {
+		// stop timer
 		setRunning(false);
 		startedAtRef.current = null;
-		clear();
+		clearIntervalSafe();
+
+		// If there was a real session, ask for rating
+		if (selectedSpot && elapsedMs > 0) {
+			setShowRating(true);
+			setRating(null);
+			return;
+		}
+
+		// Otherwise just clear immediately
+		setElapsedMs(0);
+		clearSelectedSpot();
+		setShowRating(false);
+		setRating(null);
+	};
+
+	const submitRating = () => {
+		// TODO: persist rating somewhere (AsyncStorage / Supabase / context)
+		if (selectedSpot) {
+			console.log("Session rating:", {
+				rating,
+				elapsedMs,
+				locationId: selectedSpot.locationId,
+				locationTitle: selectedSpot.locationTitle,
+				spaceId: selectedSpot.spaceId,
+				spaceTitle: selectedSpot.spaceTitle,
+			});
+		}
+
+		// reset
+		setShowRating(false);
+		setRating(null);
+		setElapsedMs(0);
+		clearSelectedSpot();
+	};
+
+	const skipRating = () => {
+		setShowRating(false);
+		setRating(null);
 		setElapsedMs(0);
 		clearSelectedSpot();
 	};
 
 	useEffect(() => {
-		return () => clear();
+		return () => clearIntervalSafe();
 	}, []);
 
 	return (
@@ -119,6 +179,85 @@ export default function Session() {
 
 				{!selectedSpot && !running && (
 					<Text style={[styles.hint, { color: theme.text, opacity: 0.7 }]}>Select a study spot from the map results to start.</Text>
+				)}
+			</View>
+
+			<View
+				style={[
+					styles.card,
+					{
+						backgroundColor: theme.surface,
+						borderColor: theme.outline,
+						shadowColor: theme.shadow,
+						marginTop: 14,
+						opacity: showRating ? 1 : 0.55,
+					},
+				]}
+			>
+				<Text style={[styles.title, { color: theme.text }]}>Rate your session</Text>
+
+				{!showRating ? (
+					<Text style={[styles.hint, { color: theme.text, opacity: 0.7 }]}>End your session to rate it.</Text>
+				) : (
+					<>
+						<Text style={[styles.ratingPrompt, { color: theme.text, opacity: 0.85 }]}>How was it?</Text>
+
+						<View style={styles.ratingRow}>
+							{[1, 2, 3, 4, 5].map((r) => {
+								const selected = rating === r;
+								return (
+									<Pressable
+										key={r}
+										onPress={() => setRating(r)}
+										style={({ pressed }) => [
+											styles.ratingPill,
+											{
+												backgroundColor: selected ? "rgba(84,56,220,0.14)" : theme.surfaceVariant,
+												borderColor: selected ? theme.brand : theme.outlineSoft,
+												opacity: pressed ? 0.85 : 1,
+											},
+										]}
+									>
+										<Text style={[styles.ratingNumber, { color: selected ? theme.brand : theme.text }]}>{r}</Text>
+									</Pressable>
+								);
+							})}
+						</View>
+
+						<Text style={[styles.ratingLabel, { color: theme.text, opacity: 0.8 }]}>
+							{rating ? `${rating} — ${ratingLabel(rating)}` : "Tap a number (1 = Horrible, 5 = Amazing)"}
+						</Text>
+
+						<View style={[styles.row, { marginTop: 12 }]}>
+							<Pressable
+								onPress={submitRating}
+								disabled={rating == null}
+								style={({ pressed }) => [
+									styles.primaryBtn,
+									{
+										backgroundColor: rating == null ? theme.outlineSoft : pressed ? Brand.dark_purple : theme.brand,
+										opacity: rating == null ? 0.6 : 1,
+									},
+								]}
+							>
+								<Text style={[styles.primaryText, { color: theme.textOnBrand }]}>Save rating</Text>
+							</Pressable>
+
+							<Pressable
+								onPress={skipRating}
+								style={({ pressed }) => [
+									styles.secondaryBtn,
+									{
+										backgroundColor: theme.surfaceVariant,
+										borderColor: theme.outlineSoft,
+										opacity: pressed ? 0.75 : 1,
+									},
+								]}
+							>
+								<Text style={[styles.secondaryText, { color: theme.text }]}>Skip</Text>
+							</Pressable>
+						</View>
+					</>
 				)}
 			</View>
 		</View>
@@ -183,7 +322,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	primaryText: {
-		fontWeight: "600",
+		fontWeight: "700",
 		fontSize: 16,
 	},
 	secondaryBtn: {
@@ -194,11 +333,41 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 	},
 	secondaryText: {
-		fontWeight: "600",
+		fontWeight: "700",
 		fontSize: 16,
 	},
 	hint: {
 		marginTop: 12,
+		textAlign: "center",
+		fontSize: 13,
+	},
+
+	// rating styles
+	ratingPrompt: {
+		textAlign: "center",
+		fontSize: 14,
+		fontWeight: "700",
+		marginBottom: 10,
+	},
+	ratingRow: {
+		flexDirection: "row",
+		justifyContent: "center",
+		gap: 10,
+		marginBottom: 10,
+	},
+	ratingPill: {
+		width: 46,
+		height: 46,
+		borderRadius: 23,
+		alignItems: "center",
+		justifyContent: "center",
+		borderWidth: 1,
+	},
+	ratingNumber: {
+		fontSize: 18,
+		fontWeight: "900",
+	},
+	ratingLabel: {
 		textAlign: "center",
 		fontSize: 13,
 	},

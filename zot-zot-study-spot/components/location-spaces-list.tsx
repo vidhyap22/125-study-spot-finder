@@ -210,7 +210,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		fontSize: 20,
 		fontWeight: "600",
-		color: "#000",
+		color: "#232324",
 		paddingHorizontal: 8,
 	},
 	subtitle: {
