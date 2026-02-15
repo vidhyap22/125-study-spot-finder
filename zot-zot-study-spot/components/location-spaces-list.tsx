@@ -3,6 +3,7 @@ import { SpaceRef, StudySpaceRow } from "@/components/space-results-row";
 import { Brand } from "@/constants/theme";
 import type { StudySpace } from "../utils/types";
 
+import { FontAwesome6 } from "@expo/vector-icons";
 import { useEffect, useRef, useState } from "react";
 import { AppState, AppStateStatus, FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 
@@ -91,7 +92,14 @@ export function LocationSpacesList({ locationTitle, locationId, spaceType, space
 					</Text>
 				</View>
 
-				<View style={styles.backButtonPlaceholder} />
+				<Pressable
+					style={({ hovered, pressed }) => [styles.bookmarkIconWrapper, hovered && styles.bookmarkHover, pressed && { transform: [{ scale: 0.95 }] }]}
+				>
+					<View style={styles.bookmarkIcon}>
+						<FontAwesome6 name="bookmark" size={15} color={Brand.purple} solid />
+						<Text style={styles.bookmarkPlus}>+</Text>
+					</View>
+				</Pressable>
 			</View>
 
 			<View style={styles.divider} />
@@ -224,5 +232,20 @@ const styles = StyleSheet.create({
 		height: StyleSheet.hairlineWidth,
 		backgroundColor: "#E5E7EB",
 		marginTop: 10,
+	},
+	bookmarkIcon: {},
+	bookmarkPlus: {
+		position: "absolute",
+		color: "#fff",
+		top: -2,
+		right: 1,
+		fontSize: 14,
+	},
+	bookmarkIconWrapper: {
+		position: "relative",
+		marginRight: 10,
+	},
+	bookmarkHover: {
+		backgroundColor: "#f1e9fb",
 	},
 });

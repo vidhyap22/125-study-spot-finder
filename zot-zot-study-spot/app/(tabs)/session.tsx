@@ -1,7 +1,7 @@
 import { Brand, Colors } from "@/constants/theme";
 import { useSession } from "@/context/session-context";
 import { useEffect, useRef, useState } from "react";
-import { Pressable, StyleSheet, Text, View, useColorScheme } from "react-native";
+import { Pressable, StyleSheet, Switch, Text, View, useColorScheme } from "react-native";
 
 function pad2(n: number) {
 	return n.toString().padStart(2, "0");
@@ -31,7 +31,13 @@ function ratingLabel(r: number) {
 			return "";
 	}
 }
+function isSpotBookmarked(spotId: string): boolean {
+	return false;
+}
 
+function updateBookmarkStatus(spotId: string, isBookmarked: boolean): void {
+	return;
+}
 export default function Session() {
 	const scheme = useColorScheme();
 	const theme = scheme === "dark" ? Colors.dark : Colors.light;
@@ -48,6 +54,19 @@ export default function Session() {
 
 	const startedAtRef = useRef<number | null>(null);
 	const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+	const [isBookmarked, setIsBookmarkedState] = useState(false);
+	useEffect(() => {
+		if (!selectedSpot) return;
+		const initial = isSpotBookmarked(selectedSpot.spaceId);
+		setIsBookmarkedState(initial);
+	}, [selectedSpot?.spaceId]);
+
+	const onToggleBookmark = (newState: boolean) => {
+		if (!selectedSpot) return;
+		setIsBookmarkedState(newState);
+		updateBookmarkStatus(selectedSpot.spaceId, newState);
+	};
 
 	const clearIntervalSafe = () => {
 		if (intervalRef.current) {
@@ -181,7 +200,6 @@ export default function Session() {
 					<Text style={[styles.hint, { color: theme.text, opacity: 0.7 }]}>Select a study spot from the map results to start.</Text>
 				)}
 			</View>
-
 			<View
 				style={[
 					styles.card,
@@ -260,6 +278,46 @@ export default function Session() {
 					</>
 				)}
 			</View>
+			const showBookmark = !!selectedSpot; // or !!selectedSpotId
+			<View
+				style={[
+					styles.card,
+					{
+						backgroundColor: theme.surface,
+						borderColor: theme.outline,
+						shadowColor: theme.shadow,
+						marginTop: 14,
+						opacity: selectedSpot ? 1 : 0.55,
+					},
+				]}
+			>
+				<Text style={[styles.title, { color: theme.text }]}>Bookmark</Text>
+
+				{!selectedSpot ? (
+					<Text style={[styles.hint, { color: theme.text, opacity: 0.7 }]}>Select a spot to bookmark it.</Text>
+				) : (
+					<>
+						<Text style={[styles.ratingPrompt, { color: theme.text, opacity: 0.85 }]}>Save this spot for later?</Text>
+
+						<View style={[styles.row, { marginTop: 10 }]}>
+							<Text style={[styles.ratingLabel, { color: theme.text, opacity: 0.8 }]}>{isBookmarked ? "Bookmarked" : "Not bookmarked"}</Text>
+
+							<Switch
+								// stys
+								value={isBookmarked}
+								onValueChange={onToggleBookmark}
+								disabled={!selectedSpot}
+								trackColor={{
+									false: "rgba(0,0,0,0.18)",
+									true: "rgba(84,56,220,0.35)",
+								}}
+								thumbColor={isBookmarked ? theme.brand : "#f4f3f4"}
+								ios_backgroundColor="rgba(0,0,0,0.18)"
+							/>
+						</View>
+					</>
+				)}
+			</View>
 		</View>
 	);
 }
@@ -314,6 +372,8 @@ const styles = StyleSheet.create({
 	row: {
 		flexDirection: "row",
 		gap: 12,
+		alignItems: "center",
+		justifyContent: "center",
 	},
 	primaryBtn: {
 		flex: 1,
