@@ -285,21 +285,63 @@ class PersonalModel():
             if spot in self.low_rating:
                 spots.remove(spot)
         return spots
+    
+    def build_marginal_pref(self, df, attrs, alpha=1.0):
+        """
+        returns:
+        {
+            attr: {value: probability}
+        }
+        """
+        pref = {}
 
-    def joint_probability(self, df, spot_condition:dict):
-            filtered = df.copy()
+        if df is None or df.empty:
+            return {a: {} for a in attrs}
 
-            for col, val in spot_condition.items():
-                filtered = filtered[filtered[col] == val]
+        n = len(df)
 
-            if len(df) == 0:
-                return 0.0
+        for a in attrs:
+            counts = df[a].value_counts(dropna=False).to_dict()
 
-            return len(filtered) / len(df)
+            # Laplace smoothing
+            k = len(counts)
+            dist = {}
+            for val, c in counts.items():
+                dist[val] = (c + alpha) / (n + alpha * k)
+
+            pref[a] = dist
+        return pref
+    
+    def score_spot_condition(self, pref, spot_condition, attr_weights=None):
+        num, den = 0.0, 0.0
+
+        for attr, val in spot_condition.items():
+            if attr not in pref:
+                continue
+
+            dist = pref[attr]
+            if not dist:
+                continue
+
+            p = dist.get(val, 0.0) 
+
+            w = 1.0 if attr_weights is None else attr_weights.get(attr, 1.0)
+
+            num += w * p
+            den += w
+
+        return num / den if den > 0 else 0.0
             
     def probability(self, spots):
         #given a list of spot_id, return the probability that the user will like the spot in descending order
+        results = []
         spots = self.filter_out_low_rating_spot(spots)
+        attrs = ["must_reserve", "tech_enhanced", "capacity",
+            "is_indoor", "is_talking_allowed", "has_printer"]
+        
+        pref_sessions  = self.build_marginal_pref(self.df_sessions, attrs)
+        pref_bookmarks = self.build_marginal_pref(self.df_bookmarks, attrs)
+        pref_views     = self.build_marginal_pref(self.df_views, attrs)
 
         for spot in spots:
             with sqlite3.connect(self.APP_DB) as conn:
@@ -313,11 +355,15 @@ class PersonalModel():
                 df = pd.read_sql_query(query, conn, params=(spot,))
                 spot_condition = df.iloc[0].to_dict()
 
-            joint_probability_sessions = self.joint_probability(self.df_sessions, spot_condition)
-            joint_probability_bookmarks = self.joint_probability(self.df_bookmarks, spot_condition)
-            joint_probability_views = self.joint_probability(self.df_views, spot_condition)
+            s_score = self.score_spot_condition(pref_sessions, spot_condition)
+            b_score = self.score_spot_condition(pref_bookmarks, spot_condition)
+            v_score = self.score_spot_condition(pref_views, spot_condition)
             
-        
+            final_score = (1.0*s_score + 1.5*b_score + 0.5*v_score) / (1.0 + 1.5 + 0.5)   
+            results.append((spot, final_score))
+        results.sort(key=lambda x: x[1], reverse=True)
+        return results
+                
 
     
 
@@ -326,4 +372,5 @@ class PersonalModel():
 if __name__ == "__main__":
     user1 = PersonalModel("USER_001", USER_DB, APP_DB)
     user1.user_context_for_ranking()
-    user1.probability([44672, 34681])
+    result = user1.probability([44672, 34681])
+    print(result)
