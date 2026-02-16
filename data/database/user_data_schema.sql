@@ -1,5 +1,5 @@
 PRAGMA foreign_keys = ON;
-DROP TABLE IF EXISTS study_sessions;
+DROP TABLE IF EXISTS spot_feedback;
 
 CREATE TABLE IF NOT EXISTS users (
   user_id TEXT PRIMARY KEY,
@@ -45,7 +45,7 @@ CREATE TABLE IF NOT EXISTS spot_feedback (
   user_id TEXT NOT NULL,
   study_space_id INTEGER NOT NULL,
   building_id INTEGER NOT NULL,
-  thumb TEXT NOT NULL CHECK (thumb IN ('UP','DOWN')),
+  rating INTEGER NOR NULL,
   updated_at TEXT NOT NULL,
   PRIMARY KEY (user_id, study_space_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)

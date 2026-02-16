@@ -1,5 +1,4 @@
 import sqlite3
-import requests
 from pathlib import Path
 
 
@@ -8,6 +7,10 @@ USER_DB = BASE_DIR / "data" / "database" / "user_data.db"
 APP_DB = BASE_DIR / "data" / "database" / "app.db"
 SCHEMA_PATH = BASE_DIR / "data" / "database" / "user_data_schema.sql"
 
+
+
+def clear_spot_feedback(cursor):
+    cursor.execute("DELETE FROM spot_feedback;")
 
 def main():
 
@@ -162,6 +165,13 @@ def main():
             "created_at": "2026-02-02 16:45:00",
             "deleted_at": None,
         },
+        {
+            "user_id": "USER_001",
+            "study_space_id": 44708,
+            "building_id": "GSC",
+            "created_at": "2026-02-11 09:45:00",
+            "deleted_at": None,
+        },
     ]
 
     spot_feedback = [
@@ -169,36 +179,43 @@ def main():
             "user_id": "USER_001",
             "study_space_id": 44672,
             "building_id": "SLIB",
-            "thumb": "UP",
+            "rating": "4",
             "updated_at": "2026-02-05 20:10:00",
         },
         {
             "user_id": "USER_002",
             "study_space_id": 34681,
             "building_id": "ALP",
-            "thumb": "DOWN",
+            "rating": "5",
             "updated_at": "2026-02-06 20:20:00",
         },
         {
-        "user_id": "USER_001",
-        "study_space_id": 44668,
-        "building_id": "SLIB",
-        "thumb": "UP",
-        "updated_at": "2026-02-08 14:10:00",
+            "user_id": "USER_001",
+            "study_space_id": 44668,
+            "building_id": "SLIB",
+            "rating": "4",
+            "updated_at": "2026-02-08 14:10:00",
         },
         {
             "user_id": "USER_002",
             "study_space_id": 44706,
             "building_id": "GSC",
-            "thumb": "DOWN",
+            "rating": "1",
             "updated_at": "2026-02-08 18:15:00",
         },
         {
             "user_id": "USER_001",
             "study_space_id": 155343,
             "building_id": "LLIB",
-            "thumb": "UP",
+            "rating": "3",
             "updated_at": "2026-02-09 11:05:00",
+        },
+        {
+            "user_id": "USER_001",
+            "study_space_id": 168435,
+            "building_id": "LLIB",
+            "rating": "1",
+            "updated_at": "2026-02-14 09:05:00",
         },
     ]
 
@@ -308,16 +325,16 @@ def main():
 
 
 if __name__ == "__main__":
-    conn = sqlite3.connect(USER_DB)
-    cur = conn.cursor()
+    #conn = sqlite3.connect(USER_DB)
+    #cur = conn.cursor()
 
-    # Read schema SQL
-    schema_sql = SCHEMA_PATH.read_text(encoding="utf-8")
-
-    # Execute schema
-    cur.executescript(schema_sql)
-
-    conn.commit()
-    conn.close()
+    #read schema SQL
+    #schema_sql = SCHEMA_PATH.read_text(encoding="utf-8")
+    
+    # execute schema
+    #clear_spot_feedback(cur)
+    #cur.executescript(schema_sql)
+    #conn.commit()
+    #conn.close()
 
     main()
