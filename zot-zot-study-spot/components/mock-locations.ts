@@ -22,7 +22,7 @@ type RawLocationInfo = {
 };
 
 /** ---------- Realistic mock “API” data ---------- */
-const RAW_LOCATIONS: Record<string, RawLocationInfo> = {
+export const RAW_LOCATIONS: Record<string, RawLocationInfo> = {
 	SLIB: {
 		name: "Science Library",
 		has_printer: true,
@@ -247,4 +247,48 @@ export const MOCK_LOCATIONS: LocationResult[] = [
 	toLocationResult("GSC", "0.3 mi"),
 	toLocationResult("ALP", "0.5 mi"),
 	toLocationResult("MLTM", "0.6 mi"),
+];
+
+
+export const MOCK_MARKERS: RawLocationInfo[] = [
+	{
+		name: "Science Library",
+		has_printer: true,
+		opening_time: "08:00",
+		closing_time: "22:00",
+		latitude: 33.645751466897906,
+		longitude: -117.84655896516696,
+	},
+	{
+		name: "Langson Library",
+		has_printer: false,
+		opening_time: "08:00",
+		closing_time: "22:00",
+		latitude: 33.64725208711623,
+		longitude: -117.8409255543131,
+	},
+	{
+		name: "Gateway Study Center",
+		has_printer: true,
+		opening_time: "08:00",
+		closing_time: "22:00",
+		latitude: 33.64753724953823,
+		longitude: -117.8417469762085,
+	},
+	{
+		name: "Anteater Learning Pavilion",
+		has_printer: true,
+		opening_time: "08:00",
+		closing_time: "22:00",
+		latitude: 33.64718037556207,
+		longitude: -117.84455436965455,
+	},
+	{
+		name: "Multimedia Resources Center",
+		has_printer: false,
+		opening_time: "08:00",
+		closing_time: "22:00",
+		latitude: 33.645751466897906, // you had same coords as SLIB in your snippet—keeping for now
+		longitude: -117.84655896516696,
+	}
 ];
