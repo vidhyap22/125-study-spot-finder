@@ -7,7 +7,7 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import MapView, { LatLng, Geojson, Marker} from "react-native-maps";
 import { Colors, Brand, Fonts } from "@/constants/theme";
 import {RAW_LOCATIONS, MOCK_LOCATIONS, MOCK_MARKERS } from "@/components/mock-locations";
-import type RawLocationInfo from "@/components/mock-locations";
+import BUILDING_DATA from "@/components/building-data.json";
 //import {check, request, PERMISSIONS, RESULTS} from 'react-native-permissions';
 import * as Location from "expo-location";
 
@@ -96,7 +96,7 @@ export default function HomeScreen() {
 	
 	const theme = Colors.light;
 	const [showResults, setShowResults] = useState(false);
-	const [markers, SetMarkers] = useState(MOCK_MARKERS); //this is mock data, don't forget
+	const [markers, SetMarkers] = useState(BUILDING_DATA); //this is mock data, don't forget
 	
 	useEffect(() => {
     async function getCurrentLocation() {
@@ -106,10 +106,10 @@ export default function HomeScreen() {
       }
 
       let location = await Location.getCurrentPositionAsync({});
+	  console.log(location)
     }
   	}, []);
 
-	get_buildings_from_backend()
 	
 	return (
 		<View style={[styles.container, { backgroundColor: theme.background }]}>
@@ -197,32 +197,6 @@ function get_marker_coordinates()
 
 	}, [])
 }
-
-const send_location_to_backend() = async()=>
-{
-	const response = await fetch('/api/location', 
-	{
-		method: 'POST', 
-		headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json', // Indicate the content type is JSON
-      },
-      body: JSON.stringify(Location.getCurrentPositionAsync())
-	});
-	if (!response.ok)
-	{
-		console.log("failed to post location")
-	}
-}
-
-const get_buildings_from_backend() = async()=>
-{
-	const response = await fetch('/api/buildings');
-	let result = response.json();
-	console.log(result)
-	return result
-}
-
 
 const styles = StyleSheet.create({
 	container: { flex: 1 },
