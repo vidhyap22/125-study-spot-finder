@@ -64,6 +64,18 @@ CREATE TABLE IF NOT EXISTS spot_detail_views (
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
+CREATE TABLE IF NOT EXISTS search_filters(
+  user_id TEXT NOT NULL,
+  search_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  min_capacity INTEGER,
+  max_capacity INTEGER,
+  tech_enhanced INTEGER,
+  has_printer INTEGER,
+  in_door INTEGER,
+  is_talking_allowed INTEGER,
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
 CREATE INDEX IF NOT EXISTS idx_bookmarks_user
 ON bookmarks(user_id);
 

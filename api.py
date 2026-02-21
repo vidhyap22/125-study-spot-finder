@@ -69,7 +69,49 @@ def search_spaces():
             "success": False,
             "error": str(e)
         }), 500
-    
+
+"""
+@app.route('/api/search', methods=['POST'])
+def search_spaces_personal_model():
+    try:
+        data = request.get_json(silent=True)
+
+        if not data:
+            return jsonify({
+                "success": False,
+                "error": "No JSON body provided"
+            }), 400
+
+        user_id = data.get("user_id")
+        filters = data.get("filters")
+        debug = data.get("debug", False)
+
+        if not user_id:
+            return jsonify({
+                "success": False,
+                "error": "user_id is required"
+            }), 400
+
+        if not isinstance(filters, dict):
+            return jsonify({
+                "success": False,
+                "error": "filters must be a JSON object"
+            }), 400
+
+
+        print("Received filters:", filters)
+
+        return jsonify({
+            "success": True,
+            "received_filters": filters
+        })
+
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+"""
 
 @app.route('/api/health', methods=['GET'])
 def health_check():
