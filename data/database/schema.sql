@@ -1,6 +1,9 @@
 -- Drop existing tables if they exist
 DROP TABLE IF EXISTS study_spaces;
 DROP TABLE IF EXISTS buildings;
+DROP TABLE IF EXISTS library_traffic;
+DROP TABLE IF EXISTS hourly_weather;
+DROP TABLE IF EXISTS room_availability;
 
 -- Create Building/Location Table 
 CREATE TABLE buildings (
@@ -26,10 +29,37 @@ CREATE TABLE study_spaces (
   FOREIGN KEY (building_id) REFERENCES buildings(building_id)
 );
 
--- Insert buildings manually
-INSERT INTO buildings (building_id, name) VALUES 
-  ('ALP', 'Anteater Learning Pavillion'),
-  ('GC', 'Gateway Study Center'),
-  ('LLIB', 'Langson Library'),
-  ('MRC', 'Multimedia Resources Center'),
-  ('SLIB', 'Science Library');
+-- Create library traffic table
+CREATE TABLE library_traffic (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    building_id TEXT,
+    location_name TEXT,
+    traffic_count INTEGER,
+    traffic_percentage REAL,
+    timestamp TEXT,
+    FOREIGN KEY (building_id) REFERENCES buildings(building_id)
+);
+
+-- Create hourly weather table
+CREATE TABLE IF NOT EXISTS hourly_weather (
+    time_local TEXT PRIMARY KEY,
+    date TEXT NOT NULL,
+    hour TEXT NOT NULL,
+    temperature_c REAL,
+    precip_mm REAL,
+    is_raining INTEGER NOT NULL,
+    weather_code INTEGER,
+    weather_text TEXT,
+    fetched_at TEXT NOT NULL
+);
+
+-- Create room availability table
+CREATE TABLE IF NOT EXISTS room_availability (
+    availability_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    study_space_id INTEGER NOT NULL,
+    start_time TEXT NOT NULL,
+    end_time TEXT NOT NULL,
+    is_available INTEGER NOT NULL,
+    scraped_at TEXT NOT NULL,
+    FOREIGN KEY (study_space_id) REFERENCES study_spaces(study_space_id)
+);
