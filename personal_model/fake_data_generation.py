@@ -304,59 +304,59 @@ def main():
 
     search_filters =  [
     {
-        "user_id": "1",
+        "user_id": "USER_001",
         "min_capacity": 1,
         "max_capacity": 4,
         "tech_enhanced": 1,
         "has_printer": 1,
-        "in_door": 1,
+        "is_indoor": 1,
         "is_talking_allowed": 0
     },
     {
-        "user_id": "1",
+        "user_id": "USER_001",
         "min_capacity": 2,
         "max_capacity": 6,
         "tech_enhanced": 0,
         "has_printer": 1,
-        "in_door": 1,
+        "is_indoor": 1,
         "is_talking_allowed": 1
     },
     {
-        "user_id": "1",
+        "user_id": "USER_001",
         "min_capacity": 1,
         "max_capacity": 2,
         "tech_enhanced": 0,
         "has_printer": 0,
-        "in_door": 1,
+        "is_indoor": 1,
         "is_talking_allowed": 0
     },
 
     # USER 2 — three searches
     {
-        "user_id": "2",
+        "user_id": "USER_002",
         "min_capacity": 3,
         "max_capacity": 8,
         "tech_enhanced": 1,
         "has_printer": 0,
-        "in_door": 1,
+        "is_indoor": 1,
         "is_talking_allowed": 1
     },
     {
-        "user_id": "2",
+        "user_id": "USER_002",
         "min_capacity": 2,
         "max_capacity": 5,
         "tech_enhanced": 1,
         "has_printer": 1,
-        "in_door": 0,
+        "is_indoor": 0,
         "is_talking_allowed": 0
     },
     {
-        "user_id": "2",
+        "user_id": "USER_002",
         "min_capacity": 4,
         "max_capacity": 10,
         "tech_enhanced": 0,
         "has_printer": 1,
-        "in_door": 1,
+        "is_indoor": 1,
         "is_talking_allowed": 1
     }
 ]
@@ -384,6 +384,7 @@ def main():
 
 
 if __name__ == "__main__":
+
     conn = sqlite3.connect(USER_DB)
     cur = conn.cursor()
 

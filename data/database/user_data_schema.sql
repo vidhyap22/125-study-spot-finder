@@ -1,5 +1,10 @@
 PRAGMA foreign_keys = ON;
+DROP TABLE IF EXISTS search_filters;
+DROP TABLE IF EXISTS study_sessions;
+DROP TABLE IF EXISTS bookmarks;
 DROP TABLE IF EXISTS spot_feedback;
+DROP TABLE IF EXISTS spot_detail_views;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE IF NOT EXISTS users (
   user_id TEXT PRIMARY KEY,
@@ -71,7 +76,7 @@ CREATE TABLE IF NOT EXISTS search_filters(
   max_capacity INTEGER,
   tech_enhanced INTEGER,
   has_printer INTEGER,
-  in_door INTEGER,
+  is_indoor INTEGER,
   is_talking_allowed INTEGER,
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );

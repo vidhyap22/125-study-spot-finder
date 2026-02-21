@@ -11,6 +11,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent / "utils"))
 
 from utils.query import retrieve_ranked_study_spaces, get_available_buildings
+from personal_model.personal_model_helpers import store_filter_info
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for React Native
@@ -70,7 +71,7 @@ def search_spaces():
             "error": str(e)
         }), 500
 
-"""
+
 @app.route('/api/search', methods=['POST'])
 def search_spaces_personal_model():
     try:
@@ -85,7 +86,7 @@ def search_spaces_personal_model():
         user_id = data.get("user_id")
         filters = data.get("filters")
         debug = data.get("debug", False)
-
+        
         if not user_id:
             return jsonify({
                 "success": False,
@@ -100,7 +101,7 @@ def search_spaces_personal_model():
 
 
         print("Received filters:", filters)
-
+        store_filter_info(user_id, filters, debug)
         return jsonify({
             "success": True,
             "received_filters": filters
@@ -111,7 +112,7 @@ def search_spaces_personal_model():
             "success": False,
             "error": str(e)
         }), 500
-"""
+
 
 @app.route('/api/health', methods=['GET'])
 def health_check():
