@@ -8,7 +8,8 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE IF NOT EXISTS users (
   user_id TEXT PRIMARY KEY,
-  created_at TEXT NOT NULL
+  created_at TEXT NOT NULL,
+  ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS study_sessions (

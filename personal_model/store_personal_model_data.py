@@ -113,7 +113,7 @@ def store_bookmarks(user_id, data, debug):
             user_id,
             study_space_id,
             building_id,
-            created_at,
+            created_at
         ) VALUES (?,?,?,?)
         """, (
             user_id,
@@ -139,7 +139,7 @@ def delete_bookmarks(user_id, data, debug):
         WHERE user_id = ? AND study_space_id = ?
         """, (
             user_id,
-            data["study_space_id"],
+            data["study_space_id"]
         ))
     
     user_conn.commit()
@@ -165,7 +165,7 @@ def store_spot_view(user_id, data, debug):
             dwell_ms,
             source,
             list_rank                    
-        ) VALUES (?,?,?,?,?,?,?,?,?)
+        ) VALUES (?,?,?,?,?,?,?,?)
         """, (
             user_id,
             data["study_space_id"],
@@ -191,7 +191,7 @@ def store_spot_feedback(user_id, data, debug):
     user_conn = sqlite3.connect(USER_DB)
     user_cur = user_conn.cursor()
     user_cur.execute("""
-        INSERT OR REPLACE INTO spot_detail_views (
+        INSERT OR REPLACE INTO spot_feedback(
             user_id,
             study_space_id,
             building_id,
