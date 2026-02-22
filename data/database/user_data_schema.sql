@@ -1,9 +1,15 @@
 PRAGMA foreign_keys = ON;
+DROP TABLE IF EXISTS search_filters;
+DROP TABLE IF EXISTS study_sessions;
+DROP TABLE IF EXISTS bookmarks;
 DROP TABLE IF EXISTS spot_feedback;
+DROP TABLE IF EXISTS spot_detail_views;
+DROP TABLE IF EXISTS users;
 
 CREATE TABLE IF NOT EXISTS users (
   user_id TEXT PRIMARY KEY,
-  created_at TEXT NOT NULL
+  created_at TEXT NOT NULL,
+  ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS study_sessions (
@@ -13,11 +19,12 @@ CREATE TABLE IF NOT EXISTS study_sessions (
   building_id TEXT NOT NULL,
 
   started_at TEXT NOT NULL,
-  ended_at TEXT,
+  ended_at TEXT NOT NULL,
   duration_ms INTEGER,
   ended_reason TEXT,
 
   start_date TEXT NOT NULL,
+  end_date TEXT NOT NULL,
   start_weather_time_local TEXT,
 
   session_traffic REAL,
@@ -36,7 +43,6 @@ CREATE TABLE IF NOT EXISTS bookmarks (
   study_space_id INTEGER NOT NULL,
   building_id INTEGER NOT NULL,
   created_at TEXT NOT NULL,
-  deleted_at TEXT,
   PRIMARY KEY (user_id, study_space_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
@@ -61,6 +67,18 @@ CREATE TABLE IF NOT EXISTS spot_detail_views (
   dwell_ms INTEGER,
   source TEXT,
   list_rank INTEGER,
+  FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE IF NOT EXISTS search_filters(
+  user_id TEXT NOT NULL,
+  search_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  min_capacity INTEGER,
+  max_capacity INTEGER,
+  tech_enhanced INTEGER,
+  has_printer INTEGER,
+  is_indoor INTEGER,
+  is_talking_allowed INTEGER,
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 

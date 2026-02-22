@@ -16,10 +16,10 @@ class PersonalModel():
         self.APP_DB = APP_DB
 
         #joint table with more information
-        self.df_sessions, self.df_bookmarks, self.df_feedback, self.df_views = self.enrich_and_store()
+        self.df_sessions, self.df_bookmarks, self.df_feedback, self.df_views, self.df_searchfilters = self.enrich_and_store()
 
         #basic statistic on event
-        self.event_stats=self.collect_stats(self.df_sessions, self.df_bookmarks, self.df_feedback, self.df_views)
+        self.event_stats=self.collect_stats(self.df_sessions, self.df_bookmarks, self.df_feedback, self.df_views, self.df_searchfilters)
 
     def enrich_and_store(self):
         # load dimension tables from APP_DB (static info)
@@ -45,6 +45,7 @@ class PersonalModel():
         df_bookmarks = load_user_table("bookmarks")
         df_feedback = load_user_table("spot_feedback")
         df_views = load_user_table("spot_detail_views")
+        df_search = load_user_table("search_filters")
 
         # helper: enrich one event df
         def enrich(df_event: pd.DataFrame) -> pd.DataFrame:
@@ -81,6 +82,7 @@ class PersonalModel():
             enrich(df_bookmarks),
             enrich(df_feedback),
             enrich(df_views),
+            df_search,
         )
 
     def show_df(self, name, df, max_rows=10):
@@ -88,11 +90,12 @@ class PersonalModel():
         print(f"shape: {df.shape}")
         print(df.head(max_rows).to_string(index=False))
 
-    def visualization(self,df_sessions,df_bookmarks,df_feedback,df_views):
-        self.show_df("study_sessions", df_sessions)
-        self.show_df("bookmarks", df_bookmarks)
-        self.show_df("spot_feedback", df_feedback)
-        self.show_df("spot_detail_views", df_views)
+    def visualization(self):
+        self.show_df("study_sessions", self.df_sessions)
+        self.show_df("bookmarks", self.df_bookmarks)
+        self.show_df("spot_feedback", self.df_feedback)
+        self.show_df("spot_detail_views", self.df_views)
+        self.show_df("search_filters", self.df_searchfilters)
 
     def event_stats(self, df, event_name):
         if df.empty:
@@ -128,6 +131,23 @@ class PersonalModel():
                 #average session traffic
                 "session_traffic": df["session_traffic"].mean(),
             }
+        elif event_name == "search_filters":
+            return {
+                    "event": event_name,
+                    "count": len(df),
+
+                    # capacity information
+                    "avg_capacity": df[["min_capacity", "max_capacity"]].mean(),
+                    "min_capacity": df["min_capacity"].min(),
+                    "max_capacity": df["max_capacity"].max(),
+
+
+                    # percentages (mean of binary columns)
+                    "has_printer_pct": df["has_printer"].mean(),
+                    "is_indoor_pct": df["is_indoor"].mean(),
+                    "is_talking_allowed_pct": df["is_talking_allowed"].mean(),
+                    "tech_enhanced_pct": df["tech_enhanced"].mean(),
+                }
         else:
             return {
                 "event": event_name,
@@ -148,12 +168,13 @@ class PersonalModel():
                 "tech_enhanced_pct": df["tech_enhanced"].mean(),
             }
     
-    def collect_stats(self, df_sessions,df_bookmarks,df_feedback,df_views):
+    def collect_stats(self, df_sessions,df_bookmarks,df_feedback,df_views, df_search_filters):
         stats = {
         "study_session": self.event_stats(df_sessions, "study_sessions"),
         "bookmarks": self.event_stats(df_bookmarks, "bookmarks"),
         "spot_feedback": self.event_stats(df_feedback, "spot_feedback"),
         "spot_detail_views": self.event_stats(df_views, "spot_detail_views"),
+        "search_filters": self.event_stats(df_search_filters, "search_filters")
         }
         return stats
     
@@ -162,6 +183,7 @@ class PersonalModel():
         "study_sessions": 1.0,
         "bookmarks": 1.5,
         "spot_detail_views": 0.5,
+        "search_filters": 0.5,
         } 
         
         ATTRS = [
@@ -243,7 +265,7 @@ class PersonalModel():
         #user1.visualization(df_sessions, df_bookmarks, df_feedback, df_views)
 
         #average_preference
-        self.average_preference = self.analyze_stats([self.event_stats["study_session"], self.event_stats["bookmarks"], self.event_stats["spot_detail_views"]])
+        self.average_preference = self.analyze_stats([self.event_stats["study_session"], self.event_stats["bookmarks"], self.event_stats["spot_detail_views"], self.event_stats["search_filters"]])
         print("="*50)
         print("average preference statisic: ", self.average_preference)
 
@@ -273,7 +295,7 @@ class PersonalModel():
             "preference": self.filter_preference,
             "history": self.history,
             "low_rating_rooms": self.low_rating,
-            "bookmarks": self.bookmarks_spots
+            "bookmarks": self.bookmarks_spots,
         }
         return self.user_context
 

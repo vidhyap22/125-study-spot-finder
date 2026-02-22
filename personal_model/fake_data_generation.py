@@ -36,11 +36,12 @@ def main():
             "user_id": "USER_001",
             "study_space_id": 44672,
             "building_id": "SLIB",
-            "started_at": "2026-02-05 18:30:00",
-            "ended_at": "2026-02-05 20:00:00",
+            "started_at": "18:30",
+            "ended_at": "20:00",
             "duration_ms": 5400000,
             "ended_reason": "user_end",
             "start_date": "2026-02-05",
+            "end_date": "2026-02-05",
             "start_weather_time_local": "Fog",
             "session_traffic": 0.32,
         },
@@ -49,11 +50,12 @@ def main():
             "user_id": "USER_002",
             "study_space_id": 34681,
             "building_id": "ALP",
-            "started_at": "2026-02-06 19:00:00",
-            "ended_at": "2026-02-06 20:15:00",
+            "started_at": "19:00",
+            "ended_at": "20:15",
             "duration_ms": 4500000,
             "ended_reason": "app_background",
             "start_date": "2026-02-06",
+            "end_date": "2026-02-06",
             "start_weather_time_local": "Clear",
             "session_traffic": 0.55,
         },
@@ -62,11 +64,12 @@ def main():
             "user_id": "USER_001",
             "study_space_id": 44672,
             "building_id": "SLIB",
-            "started_at": "2026-02-07 14:30:00",
-            "ended_at": "2026-02-07 16:10:00",
+            "started_at": "14:30",
+            "ended_at": "16:10",
             "duration_ms": 6000000,
             "ended_reason": "user_exit",
             "start_date": "2026-02-07",
+            "end_date": "2026-02-07",
             "start_weather_time_local": "Rain",
             "session_traffic": 0.70,
         },
@@ -75,11 +78,12 @@ def main():
             "user_id": "USER_002",
             "study_space_id": 34681,
             "building_id": "ALP",
-            "started_at": "2026-02-07 18:40:00",
-            "ended_at": "2026-02-07 19:05:00",
+            "started_at": "18:40",
+            "ended_at": "19:05",
             "duration_ms": 1500000,
             "ended_reason": "app_background",
             "start_date": "2026-02-07",
+            "end_date": "2026-02-07",
             "start_weather_time_local": "Clear",
             "session_traffic": 0.38,
         },
@@ -88,11 +92,12 @@ def main():
             "user_id": "USER_001",
             "study_space_id": 44704,
             "building_id": "GSC",
-            "started_at": "2026-02-08 09:10:00",
-            "ended_at": None,
-            "duration_ms": None,
+            "started_at": "09:10",
+            "ended_at": "10:00",
+            "duration_ms": 36000,
             "ended_reason": None,
             "start_date": "2026-02-08",
+            "end_date": "2026-02-08",
             "start_weather_time_local": "Fog",
             "session_traffic": 0.05,
         },
@@ -101,11 +106,12 @@ def main():
             "user_id": "USER_001",
             "study_space_id": 44668,
             "building_id": "SLIB",
-            "started_at": "2026-02-08 13:20:00",
-            "ended_at": "2026-02-08 14:05:00",
+            "started_at": "13:20",
+            "ended_at": "14:05",
             "duration_ms": 2700000,
             "ended_reason": "user_exit",
             "start_date": "2026-02-08",
+            "end_date": "2026-02-08",
             "start_weather_time_local": "Partly Cloudy",
             "session_traffic": 0.43,
         },
@@ -114,11 +120,12 @@ def main():
             "user_id": "USER_002",
             "study_space_id": 44706,
             "building_id": "GSC",
-            "started_at": "2026-02-08 17:50:00",
-            "ended_at": "2026-02-08 18:10:00",
+            "started_at": "17:50",
+            "ended_at": "18:10",
             "duration_ms": 1200000,
             "ended_reason": "noise",
             "start_date": "2026-02-08",
+            "end_date": "2026-02-08",
             "start_weather_time_local": "Clear",
             "session_traffic": 0.33,
         },
@@ -127,11 +134,12 @@ def main():
             "user_id": "USER_001",
             "study_space_id": 155343,
             "building_id": "LLIB",
-            "started_at": "2026-02-09 09:30:00",
-            "ended_at": "2026-02-09 11:00:00",
+            "started_at": "09:30",
+            "ended_at": "11:00",
             "duration_ms": 5400000,
             "ended_reason": "user_exit",
             "start_date": "2026-02-09",
+            "end_date": "2026-02-09",
             "start_weather_time_local": "Fog",
             "session_traffic": 0.43,
         },
@@ -140,11 +148,12 @@ def main():
             "user_id": "USER_002",
             "study_space_id": 34682,
             "building_id": "ALP",
-            "started_at": "2026-02-09 15:10:00",
-            "ended_at": None,
-            "duration_ms": None,
+            "started_at": "15:10",
+            "ended_at": "15:20",
+            "duration_ms": 72000,
             "ended_reason": None,
             "start_date": "2026-02-09",
+            "end_date": "2026-02-09",
             "start_weather_time_local": "Cloudy",
             "session_traffic": 0.70,
         },
@@ -155,22 +164,19 @@ def main():
             "user_id": "USER_001",
             "study_space_id": 44704,
             "building_id": "GSC",
-            "created_at": "2026-02-01 10:00:00",
-            "deleted_at": None,
+            "created_at": "2026-02-01 10:00:00"
         },
         {
             "user_id": "USER_002",
             "study_space_id": 155343,
             "building_id": "LLIB",
-            "created_at": "2026-02-02 16:45:00",
-            "deleted_at": None,
+            "created_at": "2026-02-02 16:45:00"
         },
         {
             "user_id": "USER_001",
             "study_space_id": 44708,
             "building_id": "GSC",
-            "created_at": "2026-02-11 09:45:00",
-            "deleted_at": None,
+            "created_at": "2026-02-11 09:45:00"
         },
     ]
 
@@ -302,6 +308,64 @@ def main():
         },
     ]
 
+    search_filters =  [
+    {
+        "user_id": "USER_001",
+        "min_capacity": 1,
+        "max_capacity": 4,
+        "tech_enhanced": 1,
+        "has_printer": 1,
+        "is_indoor": 1,
+        "is_talking_allowed": 0
+    },
+    {
+        "user_id": "USER_001",
+        "min_capacity": 2,
+        "max_capacity": 6,
+        "tech_enhanced": 0,
+        "has_printer": 1,
+        "is_indoor": 1,
+        "is_talking_allowed": 1
+    },
+    {
+        "user_id": "USER_001",
+        "min_capacity": 1,
+        "max_capacity": 2,
+        "tech_enhanced": 0,
+        "has_printer": 0,
+        "is_indoor": 1,
+        "is_talking_allowed": 0
+    },
+
+    # USER 2 — three searches
+    {
+        "user_id": "USER_002",
+        "min_capacity": 3,
+        "max_capacity": 8,
+        "tech_enhanced": 1,
+        "has_printer": 0,
+        "is_indoor": 1,
+        "is_talking_allowed": 1
+    },
+    {
+        "user_id": "USER_002",
+        "min_capacity": 2,
+        "max_capacity": 5,
+        "tech_enhanced": 1,
+        "has_printer": 1,
+        "is_indoor": 0,
+        "is_talking_allowed": 0
+    },
+    {
+        "user_id": "USER_002",
+        "min_capacity": 4,
+        "max_capacity": 10,
+        "tech_enhanced": 0,
+        "has_printer": 1,
+        "is_indoor": 1,
+        "is_talking_allowed": 1
+    }
+]
     def insert_dicts(table, rows):
         if not rows:
             return
@@ -317,6 +381,7 @@ def main():
     insert_dicts("bookmarks", bookmarks)
     insert_dicts("spot_feedback", spot_feedback)
     insert_dicts("spot_detail_views", spot_detail_views)
+    insert_dicts("search_filters ", search_filters)
 
     user_conn.commit()
     user_conn.close()
@@ -325,16 +390,17 @@ def main():
 
 
 if __name__ == "__main__":
-    #conn = sqlite3.connect(USER_DB)
-    #cur = conn.cursor()
+
+    conn = sqlite3.connect(USER_DB)
+    cur = conn.cursor()
 
     #read schema SQL
-    #schema_sql = SCHEMA_PATH.read_text(encoding="utf-8")
+    schema_sql = SCHEMA_PATH.read_text(encoding="utf-8")
     
     # execute schema
-    #clear_spot_feedback(cur)
-    #cur.executescript(schema_sql)
-    #conn.commit()
-    #conn.close()
+    clear_spot_feedback(cur)
+    cur.executescript(schema_sql)
+    conn.commit()
+    conn.close()
 
     main()
