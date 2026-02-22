@@ -72,18 +72,18 @@ def test_store_spot_view():
     
 def test_store_spot_feedback():
     fake_feedback = {
-    "study_space_id": 44701,
-    "building_id": "LLIB",
-    "rating": 1,
-    "updated_at": "2026-02-22 18:35:42"
+        "study_space_id": 44701,
+        "building_id": "LLIB",
+        "rating": 1,
+        "updated_at": "2026-02-22 18:35:42"
     }
     store_spot_feedback("USER_001", fake_feedback, True)
 
 def test_add_user():
     fake_user_data = {
-    "created_at": "2026-02-22 19:15:00"
+        "created_at": "2026-02-22 19:15:00"
     }
-    add_user("USER_003", fake_user_data, True)
+    add_user("USER_004", fake_user_data, True)
 
 if __name__ == "__main__":
     test_store_filter_info()

@@ -171,8 +171,8 @@ def store_spot_view(user_id, data, debug):
             data["study_space_id"],
             data["building_id"],
             data["opened_at"],
-            data["closed_at"],
-            data["dwell_ms"],
+            data["closed_at"] if "closed_at" in data.keys() else None,
+            data["dwell_ms"] if "dwell_ms" in data.keys() else None,
             data["source"] if "source" in data.keys() else None,
             data["list_rank"] if "list_rank" in data.keys() else None
         ))
