@@ -72,8 +72,8 @@ def search_spaces():
         }), 500
 
 
-@app.route('/api/search', methods=['POST'])
-def search_spaces_personal_model():
+@app.route('/api/personal_model', methods=['POST'])
+def store_search_filter():
     try:
         data = request.get_json(silent=True)
 
@@ -105,6 +105,53 @@ def search_spaces_personal_model():
         return jsonify({
             "success": True,
             "received_filters": filters
+        })
+
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+    
+@app.route('/api/personal_model', methods=['POST'])
+def store_study_session():
+    try:
+        data = request.get_json(silent=True)
+
+        if not data:
+            return jsonify({
+                "success": False,
+                "error": "No JSON body provided"
+            }), 400
+
+        user_id = data.get("user_id")
+        session = data.get("session")
+        debug = data.get("debug", False)
+        
+        if not user_id:
+            return jsonify({
+                "success": False,
+                "error": "user_id is required"
+            }), 400
+
+        if not isinstance(session, dict):
+            return jsonify({
+                "success": False,
+                "error": "session must be a JSON object"
+            }), 400
+
+        fields = session.keys()
+        if "study_space_id" not in fields or "building_id" not in fields or "started_at" not in fields or "ended_at" not in fields or "start_date" not in fields or "end_date" not in fields:
+           return jsonify({
+                "success": False,
+                "error": "session miss required fields"
+            }), 400 
+
+        print("Received session:", session)
+        store_study_session(user_id, session, debug)
+        return jsonify({
+            "success": True,
+            "received_filters": session
         })
 
     except Exception as e:
