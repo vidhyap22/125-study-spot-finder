@@ -11,7 +11,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent / "utils"))
 
 from utils.query import retrieve_ranked_study_spaces, get_available_buildings
-from personal_model.personal_model_helpers import store_filter_info
+from personal_model.store_personal_model_data import store_filter_info
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for React Native

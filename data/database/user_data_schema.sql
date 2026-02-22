@@ -23,6 +23,7 @@ CREATE TABLE IF NOT EXISTS study_sessions (
   ended_reason TEXT,
 
   start_date TEXT NOT NULL,
+  end_date TEXT NOT NULL,
   start_weather_time_local TEXT,
 
   session_traffic REAL,

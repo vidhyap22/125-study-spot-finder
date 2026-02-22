@@ -6,8 +6,7 @@ import sys
 ROOT_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(str(ROOT_DIR))
 
-from personal_model.helpers import get_closest_time_weather
-
+from personal_model.helpers import get_closest_time_weather, get_library_traffic, round_to_nearest_hour
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 USER_DB = BASE_DIR / "data" / "database" / "user_data.db"
@@ -55,11 +54,16 @@ def store_study_session(user_id:str, data:dict, debug:bool):
     
     start_time = data["started_at"]
     end_time = data["ended_at"]
-    date = data["start_date"]
+    start_date = data["start_date"]
+    end_date = data["end_date"]
+    
+    session_traffic = get_library_traffic(data["building_id"], data["study_space_id"], start_time, end_time, start_date, end_date)
 
-    session_traffic = None
-    start_weather_time_local = get_closest_time_weather(start_time, date)
+    start_weather_time_local = get_closest_time_weather(start_date, start_time)
 
+    if debug:
+        print(f"traffic: {session_traffic}")
+        print(f"weather: {start_weather_time_local}")
 
     user_conn = sqlite3.connect(USER_DB)
     user_cur = user_conn.cursor()
@@ -73,9 +77,10 @@ def store_study_session(user_id:str, data:dict, debug:bool):
                 duration_ms,
                 ended_reason,
                 start_date,
+                end_date,
                 start_weather_time_local,
                 session_traffic
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?,?,?,?)
         """, (
             user_id,
             data["study_space_id"],
@@ -85,8 +90,9 @@ def store_study_session(user_id:str, data:dict, debug:bool):
             data["duration_ms"],
             None if "ended_reason" not in data.keys() else data["ended_reason"],
             data["start_date"],
-            session_traffic,
+            data["end_date"],
             start_weather_time_local,
+            session_traffic
         ))
     
     user_conn.commit()
