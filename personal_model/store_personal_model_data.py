@@ -101,6 +101,143 @@ def store_study_session(user_id:str, data:dict, debug:bool):
     print("user study session data inserted into user_data.db")    
 
 
+def store_bookmarks(user_id, data, debug):
+    if debug:
+        print(f"user_id: {user_id}")
+        print(f"data: {data}")
+
+    user_conn = sqlite3.connect(USER_DB)
+    user_cur = user_conn.cursor()
+    user_cur.execute("""
+        INSERT OR REPLACE INTO bookmarks (
+            user_id,
+            study_space_id,
+            building_id,
+            created_at,
+        ) VALUES (?,?,?,?)
+        """, (
+            user_id,
+            data["study_space_id"],
+            data["building_id"],
+            data["created_at"]
+        ))
+    
+    user_conn.commit()
+    user_conn.close()
+
+    print("user bookmarks data inserted into user_data.db") 
+
+def delete_bookmarks(user_id, data, debug):
+    if debug:
+        print(f"user_id: {user_id}")
+        print(f"data: {data}")
+
+    user_conn = sqlite3.connect(USER_DB)
+    user_cur = user_conn.cursor()
+    user_cur.execute("""
+        DELETE FROM bookmarks
+        WHERE user_id = ? AND study_space_id = ?
+        """, (
+            user_id,
+            data["study_space_id"],
+        ))
+    
+    user_conn.commit()
+    user_conn.close()
+
+    print("user bookmarks data deleted from user_data.db") 
+
+
+def store_spot_view(user_id, data, debug):
+    if debug:
+        print(f"user_id: {user_id}")
+        print(f"data: {data}")
+
+    user_conn = sqlite3.connect(USER_DB)
+    user_cur = user_conn.cursor()
+    user_cur.execute("""
+        INSERT OR REPLACE INTO spot_detail_views (
+            user_id,
+            study_space_id,
+            building_id,
+            opened_at,
+            closed_at,
+            dwell_ms,
+            source,
+            list_rank                    
+        ) VALUES (?,?,?,?,?,?,?,?,?)
+        """, (
+            user_id,
+            data["study_space_id"],
+            data["building_id"],
+            data["opened_at"],
+            data["closed_at"],
+            data["dwell_ms"],
+            data["source"] if "source" in data.keys() else None,
+            data["list_rank"] if "list_rank" in data.keys() else None
+        ))
+    
+    user_conn.commit()
+    user_conn.close()
+
+    print("user bookmarks data inserted into user_data.db") 
+
+
+def store_spot_feedback(user_id, data, debug):
+    if debug:
+        print(f"user_id: {user_id}")
+        print(f"data: {data}")
+
+    user_conn = sqlite3.connect(USER_DB)
+    user_cur = user_conn.cursor()
+    user_cur.execute("""
+        INSERT OR REPLACE INTO spot_detail_views (
+            user_id,
+            study_space_id,
+            building_id,
+            rating,
+            updated_at              
+        ) VALUES (?,?,?,?,?)
+        """, (
+            user_id,
+            data["study_space_id"],
+            data["building_id"],
+            data["rating"],
+            data["updated_at"]
+        ))
+    
+    user_conn.commit()
+    user_conn.close()
+
+    print("user spot feedback data inserted into user_data.db") 
+
+
+def add_user(user_id, data, debug):
+    if debug:
+        print(f"user_id: {user_id}")
+        print(f"data: {data}")
+    
+
+    user_conn = sqlite3.connect(USER_DB)
+    user_cur = user_conn.cursor()
+    user_cur.execute("""
+        INSERT INTO users (
+            user_id,
+            created_at      
+        ) VALUES (?,?)
+        """, (
+            user_id,
+            data["created_at"],
+        ))
+    
+    user_conn.commit()
+    user_conn.close()
+
+    print("user inserted into user_data.db") 
+
+
+
+
 def main():
     result = get_closest_time_weather("2026-02-09", "10:11")
     print(result)

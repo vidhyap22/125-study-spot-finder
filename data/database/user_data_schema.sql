@@ -42,7 +42,6 @@ CREATE TABLE IF NOT EXISTS bookmarks (
   study_space_id INTEGER NOT NULL,
   building_id INTEGER NOT NULL,
   created_at TEXT NOT NULL,
-  deleted_at TEXT,
   PRIMARY KEY (user_id, study_space_id),
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
