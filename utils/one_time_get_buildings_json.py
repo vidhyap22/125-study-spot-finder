@@ -13,16 +13,14 @@ cursor = conn.cursor()
 cursor.execute("""SELECT building_id, name, has_printer, opening_time, closing_time, longitude, latitude FROM buildings;""")
 result = cursor.fetchall()
 
-ts_result = []
+ts_result = {}
 for building in result:
-    ts_result.append({"building_id": building[0], "name": building[1], "has_printer": building[2], "opening_time": building[3], "closing_time": building[4], "longitude": building[5], "latitude": building[6]})
+    ts_result[building[0]] = {"building_id": building[0], "name": building[1], "has_printer": building[2], "opening_time": building[3], "closing_time": building[4], "longitude": building[5], "latitude": building[6]}
 #ts_string = str(ts_result)
 #ts_string = '\n{'.join(ts_string.split('{'))
 #print(ts_string)
-for building in ts_result:
-    if building["longitude"] is None:
-        print(building)
-file = open('zot-zot-study-spot/components/building-data.json', 'w')
+
+file = open('zot-zot-study-spot/components/alt_building-data.json', 'w')
 json.dump(ts_result, file)
 file.close()
 conn.close()

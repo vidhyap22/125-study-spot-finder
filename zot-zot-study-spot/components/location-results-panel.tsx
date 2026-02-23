@@ -43,24 +43,27 @@ type PageProps = {
 	visible: boolean;
 	onRequestClose: () => void;
 	locations: LocationResult[];
+	curr_location: LocationResult | null;
+	current_stage: Stage;
 };
 
-type Stage = "results" | "category" | "spaces";
+export type Stage = "results" | "category" | "spaces";
 type SpaceFilter = "reservable" | "public";
 
 const TAB_BAR_HEIGHT = 80;
 const SHEET_HEIGHT = 420;
 const LARGE_SHEET_HEIGHT = 650;
 
-export function LocationResultsPage({ visible, onRequestClose, locations }: PageProps) {
-	const [stage, setStage] = useState<Stage>("results");
-	const [selectedLocation, setSelectedLocation] = useState<LocationResult | null>(null);
+
+export function LocationResultsPage({ visible, onRequestClose, locations, curr_location = null, current_stage= "results"}: PageProps) {
+	const [stage, setStage] = useState<Stage>(current_stage);
+	const [selectedLocation, setSelectedLocation] = useState<LocationResult | null>(curr_location);
 	const [spaceFilter, setSpaceFilter] = useState<SpaceFilter>("reservable");
 
 	useEffect(() => {
 		if (visible) {
-			setStage("results");
-			setSelectedLocation(null);
+			setStage(current_stage);
+			setSelectedLocation(curr_location);
 			setSpaceFilter("reservable");
 		}
 	}, [visible]);

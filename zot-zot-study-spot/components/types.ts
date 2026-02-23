@@ -11,10 +11,15 @@ export type StudySpace = {
 
 export type LocationResult = {
 	id: string;
-	title: string;
+	name: string;
 	distanceText: string;
-	printerAvailable?: boolean;
-	isIndoors?: boolean;
-	isOutdoors?: boolean;
-	spaces: StudySpace[];
+	has_printer?: boolean;
+	opening_time:string;
+	closing_time:string;
+	longitude:number;
+	lattidue:number;
+	//isIndoors?: boolean; <- I think we should remove these two since this information is in StudySpace
+	//isOutdoors?: boolean;
+	//spaces: StudySpace[]; <- I temporarily took this out to test something but put it back after
+							//recreating the json with a JOIN with study space to get their ids?
 };
