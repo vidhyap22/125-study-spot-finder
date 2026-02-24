@@ -6,7 +6,10 @@ import { FontAwesome6 } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import MapView, { Marker } from "react-native-maps";
+import { apiSearchSpaces, toApiFilters, apiGetBuildings } from "@/utils/api-client";
+import type { LocationResult } from "@/utils/types";
 
+const USER_ID = "1";
 const myPlace = {
 	type: "FeatureCollection",
 	features: [
@@ -102,6 +105,9 @@ import * as Location from "expo-location";
 
 //put <Geojson geojson={route} /> inside mapview to show a route
 export default function HomeScreen() {
+	const [locations, setLocations] = useState<LocationResult[]>([]);
+	const [isSearching, setIsSearching] = useState(false);
+	const [searchError, setSearchError] = useState<string | null>(null);
 	const [filters, setFilters] = useState<Filters>({
 		capacity: null,
 		environment: "any",
@@ -122,6 +128,32 @@ export default function HomeScreen() {
 		}
 	}, []);
 
+	async function onSearchPress() {
+		setIsSearching(true);
+		setSearchError(null);
+
+		const apiFilters = toApiFilters(filters);
+
+		const res = await apiSearchSpaces({
+			user_id: USER_ID,
+			filters: apiFilters,
+			debug: false,
+		});
+
+		setIsSearching(false);
+
+		if (!res.success) {
+			setSearchError(res.error);
+			// TODO: error UI
+			setLocations([]);
+			setShowResults(true);
+			return;
+		}
+		console.log(res.data[0]);
+
+		setLocations(res.data as LocationResult[]);
+		setShowResults(true);
+	}
 	return (
 		<View style={[styles.container, { backgroundColor: theme.background }]}>
 			{/* Map */}
@@ -158,7 +190,8 @@ export default function HomeScreen() {
 
 				<View style={[styles.findButtonShadow, { shadowColor: theme.shadow }]}>
 					<Pressable
-						onPress={() => setShowResults(true)}
+						onPress={onSearchPress}
+						disabled={isSearching}
 						android_ripple={{ color: "rgba(255,255,255,0.2)", borderless: false }}
 						style={({ pressed }) => [
 							styles.findButton,
@@ -175,7 +208,7 @@ export default function HomeScreen() {
 
 			{/* Pin (example) */}
 			{/* <FontAwesome6 name="map-marker" size={24} color={theme.brand} /> */}
-			<LocationResultsPage visible={showResults} onRequestClose={() => setShowResults(false)} locations={MOCK_LOCATIONS} />
+			<LocationResultsPage visible={showResults} onRequestClose={() => setShowResults(false)} locations={locations} />
 		</View>
 	);
 }
