@@ -1,4 +1,3 @@
-// types.ts (optional, or keep in the same file)
 export type StudySpace = {
 	id: string;
 	title: string;

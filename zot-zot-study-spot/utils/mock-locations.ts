@@ -238,21 +238,13 @@ function toLocationResult(buildingId: keyof typeof RAW_LOCATIONS, distanceText: 
 	const spaces = [...publicAreas, ...reservableRooms];
 
 	return {
-		id: buildingId, // nice: matches location_id
+		id: buildingId, //
 		title: info.name,
 		distanceText,
 		printerAvailable: info.has_printer,
-		isIndoors: true, // these buildings are indoor locations
+		isIndoors: true,
 		isOutdoors: false,
-
-		// Your UI expects this
 		spaces,
-
-		// Optional extras (won’t break anything if your type allows them later)
-		// openingTime: info.opening_time,
-		// closingTime: info.closing_time,
-		// latitude: info.latitude,
-		// longitude: info.longitude,
 	};
 }
 

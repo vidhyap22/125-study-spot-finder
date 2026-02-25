@@ -1,7 +1,7 @@
 import { Brand, Colors } from "@/constants/theme";
 import { useSession } from "@/context/session-context";
 import { useEffect, useRef, useState } from "react";
-import { Pressable, Switch, StyleSheet, Text, View, useColorScheme } from "react-native";
+import { Pressable, StyleSheet, Switch, Text, View, useColorScheme } from "react-native";
 import { apiStoreStudySession, apiStoreSpotFeedback } from "@/utils/api-client";
 
 function pad2(n: number) {
@@ -58,7 +58,19 @@ export default function Session() {
 	const startedAtRef = useRef<number | null>(null);
 	const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
+	useEffect(() => {
+		if (!selectedSpot) return;
+		const initial = isSpotBookmarked(selectedSpot.spaceId);
+		setIsBookmarkedState(initial);
+	}, [selectedSpot?.spaceId]);
+
 	const [endedAtIso, setEndedAtIso] = useState<string | null>(null); // use for updated timestamp
+
+	useEffect(() => {
+		if (!selectedSpot) return;
+		const initial = isSpotBookmarked(selectedSpot.spaceId);
+		setIsBookmarkedState(initial);
+	}, [selectedSpot?.spaceId]);
 
 	const [isBookmarked, setIsBookmarkedState] = useState(false);
 	useEffect(() => {
@@ -122,6 +134,7 @@ export default function Session() {
 		const spot = selectedSpot;
 		const startEpoch = sessionStartEpochRef.current;
 
+		// stop timer
 		// stop timer
 		setRunning(false);
 		startedAtRef.current = null;

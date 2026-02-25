@@ -151,7 +151,7 @@ const styles = StyleSheet.create({
 		textAlign: "center",
 		fontSize: 20,
 		fontWeight: "600",
-		color: "#000",
+		color: "#232324",
 		paddingTop: 15,
 		paddingBottom: 7,
 		verticalAlign: "middle",

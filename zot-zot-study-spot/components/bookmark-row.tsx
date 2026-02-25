@@ -17,17 +17,22 @@ type Props = {
 	environment: Environment;
 	reservable: boolean;
 	talkingAllowed: boolean;
+
 	roomId: string;
 	locationId: string;
 
+	locationTitle?: string;
+
 	onPress?: () => void;
 
+	// reservable flow: leaving app
 	onReserveOpened?: (space: SpaceRef) => void;
 
+	// public flow: choose in-app
 	onChoosePublic?: (space: SpaceRef) => void;
 };
 
-export function StudySpaceRow({
+export function BookmarkRow({
 	backgroundColor = "#FFFFFF",
 	title,
 	capacity,
@@ -44,11 +49,13 @@ export function StudySpaceRow({
 	const handleActionPress = async () => {
 		const spaceRef: SpaceRef = { id: roomId, title };
 
+		// PUBLIC: no external link
 		if (!reservable) {
 			onChoosePublic?.(spaceRef);
 			return;
 		}
 
+		// RESERVABLE: open external reservation page
 		const base = RESERVATION_LINKS[locationId];
 		if (!base) {
 			console.warn("No reservation link for location:", locationId);
@@ -57,7 +64,6 @@ export function StudySpaceRow({
 
 		const url = `${base}${roomId}`;
 		const supported = await Linking.canOpenURL(url);
-
 		if (!supported) {
 			console.warn("Can't open URL:", url);
 			return;
@@ -82,18 +88,20 @@ export function StudySpaceRow({
 	}, [capacity, techEnhanced, environment, talkingAllowed]);
 
 	return (
-		<View style={[styles.row, { backgroundColor }]}>
-			<View style={styles.rowInner}>
-				<View style={styles.textContainer}>
-					<Text style={styles.title}>{title}</Text>
-					<Text style={styles.meta}>{metaText}</Text>
-				</View>
+		<Pressable onPress={onPress} style={({ pressed }) => [{ opacity: pressed ? 0.98 : 1 }]}>
+			<View style={[styles.row, { backgroundColor }]}>
+				<View style={styles.rowInner}>
+					<View style={styles.textContainer}>
+						<Text style={styles.title}>{title}</Text>
+						<Text style={styles.meta}>{metaText}</Text>
+					</View>
 
-				<Pressable onPress={handleActionPress} style={({ pressed }) => [styles.rowIcon, pressed && styles.rowIconPressed]}>
-					<FontAwesome6 name="calendar-plus" size={15} color={Brand.purple} />
-				</Pressable>
+					<Pressable onPress={handleActionPress} hitSlop={8} style={({ pressed }) => [styles.rowIcon, pressed && styles.rowIconPressed]}>
+						<FontAwesome6 name="calendar-plus" size={15} color={Brand.purple} />
+					</Pressable>
+				</View>
 			</View>
-		</View>
+		</Pressable>
 	);
 }
 
