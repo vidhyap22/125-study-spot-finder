@@ -7,6 +7,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(str(ROOT_DIR))
 
 from personal_model.helpers import get_closest_time_weather, get_library_traffic, round_to_nearest_hour
+from utils.query import get_space_details
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 USER_DB = BASE_DIR / "data" / "database" / "user_data.db"
@@ -100,7 +101,82 @@ def store_study_session(user_id:str, data:dict, debug:bool):
 
     print("user study session data inserted into user_data.db")    
 
+def check_bookmark_status(user_id, study_space_id, debug=False):
+    if debug:
+        print(f"user_id: {user_id}")
+        print(f"study_space_id: {study_space_id}")
 
+    user_conn = sqlite3.connect(USER_DB)
+    user_cur = user_conn.cursor()
+
+    user_cur.execute("""
+        SELECT EXISTS(
+            SELECT 1
+            FROM bookmarks
+            WHERE user_id = ?
+              AND study_space_id = ?
+        )
+    """, (
+        user_id,
+        study_space_id
+    ))
+
+    result = user_cur.fetchone()[0]  
+
+    user_conn.close()
+
+    return bool(result)
+
+
+def get_bookmarked_space_ids(user_id: str, debug: bool = False):
+    if debug:
+        print(f"user_id: {user_id}")
+
+    user_conn = sqlite3.connect(USER_DB)
+    user_cur = user_conn.cursor()
+
+    user_cur.execute("""
+        SELECT study_space_id
+        FROM bookmarks
+        WHERE user_id = ?
+        ORDER BY created_at DESC
+    """, (user_id,))
+
+    ids = [row[0] for row in user_cur.fetchall()]
+    user_conn.close()
+
+    if debug:
+        print(f"bookmarked ids: {ids}")
+
+    return ids
+
+def get_bookmarked_space_info(user_id: str, debug: bool = False):
+    """
+    Return full bookmarked study space details by:
+      - pulling bookmarked ids from USER_DB (user_data.db)
+      - fetching full details from APP_DB (app.db) using query.py:get_space_details
+    """
+    if debug:
+        print(f"user_id: {user_id}")
+
+    bookmarked_ids = get_bookmarked_space_ids(user_id, debug=debug)
+
+    if not bookmarked_ids:
+        return []
+    
+    user_conn = sqlite3.connect(APP_DB)
+    
+    try:
+        details = get_space_details(user_conn, bookmarked_ids)
+    finally:
+        user_conn.close()
+
+    id_to_idx = {str(sid): i for i, sid in enumerate(bookmarked_ids)}
+    details.sort(key=lambda x: id_to_idx.get(str(x.get("id")), 10**9))
+
+    if debug:
+        print(f"returned {len(details)} bookmarked spaces")
+    return details
 def store_bookmarks(user_id, data, debug):
     if debug:
         print(f"user_id: {user_id}")

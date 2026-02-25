@@ -2,7 +2,7 @@ import { Brand, Colors } from "@/constants/theme";
 import { useSession } from "@/context/session-context";
 import { useEffect, useRef, useState } from "react";
 import { Pressable, StyleSheet, Switch, Text, View, useColorScheme } from "react-native";
-import { apiStoreStudySession, apiStoreSpotFeedback } from "@/utils/api-client";
+import { apiStoreStudySession, apiStoreSpotFeedback, apiGetBookmarkStatus, apiAddBookmark, apiDeleteBookmark } from "@/utils/api-client";
 
 function pad2(n: number) {
 	return n.toString().padStart(2, "0");
@@ -32,13 +32,8 @@ function ratingLabel(r: number) {
 			return "";
 	}
 }
-function isSpotBookmarked(spotId: string): boolean {
-	return false;
-}
 
-function updateBookmarkStatus(spotId: string, isBookmarked: boolean): void {
-	return;
-}
+function updateBookmarkStatus(spotId: string, isBookmarked: boolean): void {}
 export default function Session() {
 	const scheme = useColorScheme();
 	const theme = scheme === "dark" ? Colors.dark : Colors.light;
@@ -54,36 +49,28 @@ export default function Session() {
 	// rating flow
 	const [showRating, setShowRating] = useState(false);
 	const [rating, setRating] = useState<number | null>(null);
+	const [endedAtIso, setEndedAtIso] = useState<string | null>(null);
 
+	// bookmark
+	const [isBookmarked, setIsBookmarkedState] = useState(false);
+
+	// timer internals
 	const startedAtRef = useRef<number | null>(null);
 	const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
-	useEffect(() => {
-		if (!selectedSpot) return;
-		const initial = isSpotBookmarked(selectedSpot.spaceId);
-		setIsBookmarkedState(initial);
-	}, [selectedSpot?.spaceId]);
+	// ---- helpers ----
+	function toYMD(d: Date) {
+		const y = d.getFullYear();
+		const m = String(d.getMonth() + 1).padStart(2, "0");
+		const day = String(d.getDate()).padStart(2, "0");
+		return `${y}-${m}-${day}`;
+	}
 
-	const [endedAtIso, setEndedAtIso] = useState<string | null>(null); // use for updated timestamp
-
-	useEffect(() => {
-		if (!selectedSpot) return;
-		const initial = isSpotBookmarked(selectedSpot.spaceId);
-		setIsBookmarkedState(initial);
-	}, [selectedSpot?.spaceId]);
-
-	const [isBookmarked, setIsBookmarkedState] = useState(false);
-	useEffect(() => {
-		if (!selectedSpot) return;
-		const initial = isSpotBookmarked(selectedSpot.spaceId);
-		setIsBookmarkedState(initial);
-	}, [selectedSpot?.spaceId]);
-
-	const onToggleBookmark = (newState: boolean) => {
-		if (!selectedSpot) return;
-		setIsBookmarkedState(newState);
-		updateBookmarkStatus(selectedSpot.spaceId, newState);
-	};
+	function toHM(d: Date) {
+		const h = String(d.getHours()).padStart(2, "0");
+		const m = String(d.getMinutes()).padStart(2, "0");
+		return `${h}:${m}`;
+	}
 
 	const clear = () => {
 		if (intervalRef.current) {
@@ -100,11 +87,92 @@ export default function Session() {
 		setElapsedMs((prev) => prev + delta);
 	};
 
+	// cleanup timer on unmount
+	useEffect(() => {
+		return () => clear();
+	}, []);
+
+	// load bookmark status whenever selected spot changes
+	useEffect(() => {
+		let cancelled = false;
+
+		(async () => {
+			if (!selectedSpot) {
+				setIsBookmarkedState(false);
+				return;
+			}
+
+			const res = await apiGetBookmarkStatus({
+				user_id: "1",
+				study_space_id: selectedSpot.spaceId,
+				debug: false,
+			});
+
+			if (cancelled) return;
+
+			if (!res.success) {
+				console.log("bookmark_status failed:", res.error);
+				return;
+			}
+
+			// backend returns { success: true, data: boolean } OR { success: true, is_bookmarked: boolean }
+			const bookmarked = (res as any).is_bookmarked ?? (res as any).data ?? false;
+			setIsBookmarkedState(!!bookmarked);
+		})();
+
+		return () => {
+			cancelled = true;
+		};
+	}, [selectedSpot?.spaceId]);
+
+	const onToggleBookmark = async (newState: boolean) => {
+		if (!selectedSpot) return;
+
+		// optimistic UI
+		setIsBookmarkedState(newState);
+
+		if (newState) {
+			const res = await apiAddBookmark({
+				user_id: "1",
+				bookmark: {
+					study_space_id: selectedSpot.spaceId,
+					building_id: selectedSpot.locationId,
+					created_at: new Date().toISOString(),
+				},
+				debug: false,
+			});
+
+			if (!res.success) {
+				console.log("apiAddBookmark failed:", res.error);
+				setIsBookmarkedState(false); // rollback
+			}
+		} else {
+			const res = await apiDeleteBookmark({
+				user_id: "1",
+				bookmark: {
+					study_space_id: selectedSpot.spaceId,
+				},
+				debug: false,
+			});
+
+			if (!res.success) {
+				console.log("apiDeleteBookmark failed:", res.error);
+				setIsBookmarkedState(true); // rollback
+			}
+		}
+	};
+
 	const start = () => {
 		if (running) return;
-		if (!selectedSpot) return; // guard
+		if (!selectedSpot) return;
+
 		setRunning(true);
-		sessionStartEpochRef.current = Date.now();
+
+		// only set session start once (so pause/resume doesn't reset)
+		if (sessionStartEpochRef.current == null) {
+			sessionStartEpochRef.current = Date.now();
+		}
+
 		startedAtRef.current = Date.now();
 		clear();
 		intervalRef.current = setInterval(tick, 50);
@@ -117,34 +185,19 @@ export default function Session() {
 		clear();
 	};
 
-	function toYMD(d: Date) {
-		const y = d.getFullYear();
-		const m = String(d.getMonth() + 1).padStart(2, "0");
-		const day = String(d.getDate()).padStart(2, "0");
-		return `${y}-${m}-${day}`;
-	}
-
-	function toHM(d: Date) {
-		const h = String(d.getHours()).padStart(2, "0");
-		const m = String(d.getMinutes()).padStart(2, "0");
-		return `${h}:${m}`;
-	}
-
 	const endSession = async () => {
 		const spot = selectedSpot;
 		const startEpoch = sessionStartEpochRef.current;
 
 		// stop timer
-		// stop timer
 		setRunning(false);
 		startedAtRef.current = null;
 		clear();
 
-		// send telemetry if we have enough info
+		// send study session telemetry
 		if (spot && startEpoch != null) {
 			const startedAt = new Date(startEpoch);
 			const endedAt = new Date();
-			console.log(startedAt.toISOString(), endedAt.toISOString());
 
 			const req = {
 				user_id: "1",
@@ -157,7 +210,7 @@ export default function Session() {
 					end_date: toYMD(endedAt),
 					duration_ms: elapsedMs,
 					ended_reason: "user_exit",
-					kind: spot.kind, // optional extra field (backend allows [k: string]: any)
+					kind: spot.kind,
 				},
 				debug: false,
 			};
@@ -165,32 +218,29 @@ export default function Session() {
 			const res = await apiStoreStudySession(req);
 			if (!res.success) {
 				console.log("apiStoreStudySession failed:", res.error);
-				// optional: don't clear selection if you want user to retry
 			}
 		}
-		// If there was a real session, ask for rating
-		if (selectedSpot && elapsedMs > 0) {
+
+		// show rating UI if it was a real session
+		if (spot && elapsedMs > 0) {
 			setEndedAtIso(new Date().toISOString());
 			setShowRating(true);
 			setRating(null);
 			return;
 		}
-		// reset local state
+
+		// reset
 		sessionStartEpochRef.current = null;
 		setElapsedMs(0);
+		setEndedAtIso(null);
+		setShowRating(false);
+		setRating(null);
 		clearSelectedSpot();
 	};
 
 	const submitRating = async () => {
 		if (!selectedSpot || rating == null) return;
-		console.log("Session rating:", {
-			rating,
-			elapsedMs,
-			locationId: selectedSpot.locationId,
-			locationTitle: selectedSpot.locationTitle,
-			spaceId: selectedSpot.spaceId,
-			spaceTitle: selectedSpot.spaceTitle,
-		});
+
 		const req = {
 			user_id: "1",
 			feedback: {
@@ -199,29 +249,32 @@ export default function Session() {
 				rating,
 				updated_at: endedAtIso ?? new Date().toISOString(),
 			},
+			debug: false,
 		};
 
 		const res = await apiStoreSpotFeedback(req);
 		if (!res.success) {
-			console.log("apiStoreSpotFeedback failed", res.error);
+			console.log("apiStoreSpotFeedback failed:", res.error);
 			return;
 		}
-		// reset
+
+		// reset after rating saved
 		setShowRating(false);
 		setRating(null);
-		setElapsedMs(0);
-		clearSelectedSpot();
-	};
-	const skipRating = () => {
-		setShowRating(false);
-		setRating(null);
+		setEndedAtIso(null);
+		sessionStartEpochRef.current = null;
 		setElapsedMs(0);
 		clearSelectedSpot();
 	};
 
-	useEffect(() => {
-		return () => clear();
-	}, []);
+	const skipRating = () => {
+		setShowRating(false);
+		setRating(null);
+		setEndedAtIso(null);
+		sessionStartEpochRef.current = null;
+		setElapsedMs(0);
+		clearSelectedSpot();
+	};
 
 	return (
 		<View style={[styles.root, { backgroundColor: theme.background }]}>
@@ -273,6 +326,7 @@ export default function Session() {
 					<Text style={[styles.hint, { color: theme.text, opacity: 0.7 }]}>Select a study spot from the map results to start.</Text>
 				)}
 			</View>
+
 			<View
 				style={[
 					styles.card,
@@ -376,7 +430,6 @@ export default function Session() {
 							<Text style={[styles.ratingLabel, { color: theme.text, opacity: 0.8 }]}>{isBookmarked ? "Bookmarked" : "Not bookmarked"}</Text>
 
 							<Switch
-								// stys
 								value={isBookmarked}
 								onValueChange={onToggleBookmark}
 								disabled={!selectedSpot}

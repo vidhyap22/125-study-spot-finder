@@ -12,6 +12,26 @@ export type SearchResponse = {
 	count: number;
 	data: LocationResult[] | StudySpace[] | any[];
 };
+export type GetBookmarksReq = {
+	user_id: string;
+	debug?: boolean;
+};
+
+export type GetBookmarksRes = {
+	success: true;
+	count: number;
+	data: any[]; // later we normalize to StudySpace[]
+};
+export type BookmarkStatusReq = {
+	user_id: string;
+	study_space_id: string | number;
+	debug?: boolean;
+};
+
+export type BookmarkStatusRes = {
+	success: true;
+	is_bookmarked: boolean;
+};
 
 export type ApiFailure = { success: false; error: string };
 export type ApiResponse<T> = T | ApiFailure;
@@ -99,7 +119,14 @@ export type SpotFeedbackReq = {
 	debug?: boolean;
 };
 
-export const API_BASE_URL = "http://172.31.33.138:3000"; // Currently copy pasting from output after starting api.py
+export type Filters = {
+	capacity: number | null;
+	environment: "any" | "indoors" | "outdoors";
+	techEnhanced: boolean;
+	printerAvailable: boolean;
+	talkingAllowed: boolean;
+};
+export const API_BASE_URL = "http://172.31.254.225:3000"; // Currently copy pasting from output after starting api.py
 
 // ---- Helpers ----
 
@@ -110,6 +137,16 @@ type FetchOpts = {
 	timeoutMs?: number;
 	headers?: Record<string, string>;
 };
+
+function toQuery(params: Record<string, any>) {
+	const usp = new URLSearchParams();
+	for (const [k, v] of Object.entries(params)) {
+		if (v === undefined || v === null) continue;
+		usp.append(k, String(v));
+	}
+	const qs = usp.toString();
+	return qs ? `?${qs}` : "";
+}
 
 async function fetchJson<T>({ method = "GET", path, body, timeoutMs = 15000, headers }: FetchOpts): Promise<T> {
 	const controller = new AbortController();
@@ -220,10 +257,23 @@ export function normalizeLocationResult(obj: any): LocationResult {
 		spaces,
 	};
 }
+// api-client.ts
+export function toTelemetryFilters(f: Filters): Record<string, any> {
+	return {
+		min_capacity: typeof f.capacity === "number" ? f.capacity : null,
+		max_capacity: null,
 
+		tech_enhanced: f.techEnhanced ? 1 : 0,
+		has_printer: f.printerAvailable ? 1 : 0,
+
+		is_indoor: f.environment === "any" ? null : f.environment === "indoors" ? 1 : 0,
+		is_talking_allowed: f.talkingAllowed ? 1 : 0,
+	};
+}
 export function toApiFilters(f: Filters) {
 	const api: Record<string, any> = {};
 
+	// Capacity → capacity_range
 	if (typeof f.capacity === "number") {
 		const cap = f.capacity;
 
@@ -233,19 +283,30 @@ export function toApiFilters(f: Filters) {
 		else api.capacity_range = "20+";
 	}
 
-	if (typeof f.techEnhanced === "boolean" && f.techEnhanced) {
-		api.tech_enhanced = f.techEnhanced;
+	// Tech enhanced
+	if (f.techEnhanced) {
+		api.tech_enhanced = true;
 	}
 
+	// Environment
 	if (f.environment === "indoors") {
 		api.indoor = true;
 	} else if (f.environment === "outdoors") {
 		api.indoor = false;
 	}
 
+	// Printer available
+	if (f.printerAvailable) {
+		api.has_printer = true;
+	}
+
+	// Talking allowed
+	if (f.talkingAllowed) {
+		api.talking_allowed = true;
+	}
+
 	return api;
 }
-
 // ---- Endpoint functions  ----
 
 export async function apiIndex(): Promise<string | ApiFailure> {
@@ -259,6 +320,46 @@ export async function apiIndex(): Promise<string | ApiFailure> {
 // GET /api/health
 export async function apiHealth(): Promise<{ success: true; message: string } | ApiFailure> {
 	return safe(() => fetchJson<{ success: true; message: string }>({ path: "/api/health", method: "GET" }));
+}
+// GET /api/personal_model/get_bookmarks?user_id=...&debug=...
+export async function apiGetBookmarkedSpaces(req: GetBookmarksReq): Promise<{ success: true; count: number; data: StudySpace[] } | ApiFailure> {
+	return safe(async () => {
+		const qs = toQuery({ user_id: req.user_id, debug: req.debug ?? false });
+
+		const raw = await fetchJson<{ success: true; data: any[]; count?: number }>({
+			path: `/api/personal_model/get_bookmarks${qs}`,
+			method: "GET",
+		});
+
+		const rows = Array.isArray(raw.data) ? raw.data : [];
+		const spaces = rows.map((r) =>
+			normalizeStudySpace({
+				// adapt get_space_details() keys -> normalizeStudySpace expectations
+				study_space_id: r.id ?? r.study_space_id,
+				name: r.name,
+				capacity: r.capacity,
+				is_talking_allowed: r.talking_allowed,
+				must_reserve: r.must_reserve,
+				is_indoor: r.indoor,
+				tech_enhanced: r.tech_enhanced,
+				building_id: r.building_id,
+				building_name: r.building_name,
+			}),
+		);
+
+		return { success: true, count: raw.count ?? spaces.length, data: spaces };
+	});
+}
+
+// POST /api/personal_model/bookmark_status
+export async function apiGetBookmarkStatus(req: BookmarkStatusReq): Promise<BookmarkStatusRes | ApiFailure> {
+	return safe(() =>
+		fetchJson<BookmarkStatusRes>({
+			path: "/api/personal_model/bookmark_status",
+			method: "POST",
+			body: req,
+		}),
+	);
 }
 
 // GET /api/buildings
@@ -288,6 +389,10 @@ export async function apiGetBuildings(): Promise<SearchResponse | ApiFailure> {
 
 // POST /api/search: TODO: change to normalize to study space type instead of location type
 export async function apiSearchSpaces(req: SearchRequest): Promise<SearchResponse | ApiFailure> {
+	const userLocationData = await getUserLocationOrNull();
+
+	const userLongitude = userLocationData?.coords?.longitude ?? null;
+	const userLatitude = userLocationData?.coords?.latitude ?? null;
 	const result = await safe(() =>
 		fetchJson<SearchResponse>({
 			path: "/api/search",
@@ -295,6 +400,8 @@ export async function apiSearchSpaces(req: SearchRequest): Promise<SearchRespons
 			body: {
 				user_id: req.user_id,
 				filters: req.filters ?? {},
+				user_latitude: userLongitude,
+				user_longitude: userLongitude,
 				debug: req.debug ?? false,
 			},
 		}),
@@ -307,11 +414,9 @@ export async function apiSearchSpaces(req: SearchRequest): Promise<SearchRespons
 	if (ok.success && Array.isArray(ok.data)) {
 		const rows = ok.data as any[];
 
-		// Detect "joined flat rows" from your /api/search
 		const looksLikeJoinedRow =
 			rows.length > 0 && ("study_space_id" in rows[0] || "id" in rows[0]) && ("building_id" in rows[0] || "building_name" in rows[0]);
 
-		// Detect "already grouped LocationResult"
 		const looksLikeLocationResult = rows.length > 0 && "spaces" in rows[0];
 
 		if (looksLikeLocationResult) {

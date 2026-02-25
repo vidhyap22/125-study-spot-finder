@@ -96,8 +96,8 @@ export function LocationSpacesList({ locationTitle, locationId, spaceType, space
 					style={({ hovered, pressed }) => [styles.bookmarkIconWrapper, hovered && styles.bookmarkHover, pressed && { transform: [{ scale: 0.95 }] }]}
 				>
 					<View style={styles.bookmarkIcon}>
-						<FontAwesome6 name="bookmark" size={15} color={Brand.purple} solid />
-						<Text style={styles.bookmarkPlus}>+</Text>
+						{/* <FontAwesome6 name="bookmark" size={15} color={Brand.purple} solid /> */}
+						{/* <Text style={styles.bookmarkPlus}>+</Text> */}
 					</View>
 				</Pressable>
 			</View>

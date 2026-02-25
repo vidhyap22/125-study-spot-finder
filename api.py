@@ -11,7 +11,7 @@ from pathlib import Path
 sys.path.append(str(Path(__file__).parent / "utils"))
 
 from utils.query import retrieve_ranked_study_spaces, get_available_buildings
-from personal_model.store_personal_model_data import add_user, delete_bookmarks, store_bookmarks, store_filter_info, store_spot_feedback, store_spot_view, store_study_session
+from personal_model.store_personal_model_data import add_user, delete_bookmarks, store_bookmarks, store_filter_info, store_spot_feedback, store_spot_view, store_study_session, check_bookmark_status, get_bookmarked_space_info
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for React Native
@@ -34,7 +34,6 @@ def get_buildings():
             "success": False,
             "error": str(e)
         }), 500
-
 
 @app.route('/api/search', methods=['POST'])
 def search_spaces():
@@ -71,7 +70,45 @@ def search_spaces():
             "error": str(e)
         }), 500
 
+@app.route('/api/personal_model/bookmark_status', methods=['POST'])    
+def get_bookmark_status():
+    """Check if study spot is bookmarked"""
+    try:   
+        data = request.get_json(silent=True)
 
+        if not data:
+            return jsonify({
+                "success": False,
+                "error": "No JSON body provided"
+            }), 400
+
+        user_id = data.get("user_id")
+        study_space_id = data.get("study_space_id")
+        debug = data.get("debug", False)
+        
+        if not user_id:
+            return jsonify({
+                "success": False,
+                "error": "user_id is required"
+            }), 400
+        if not study_space_id:
+            return jsonify({
+                "success": False,
+                "error": "study_space_id is required"
+            }), 400
+        is_bookmarked = check_bookmark_status(user_id, study_space_id, debug)
+        print(is_bookmarked)
+        return jsonify({
+            "success": True,
+            "is_bookmarked": is_bookmarked
+        })
+    
+    except Exception as e:
+        return jsonify({
+            "success": False,
+            "error": str(e)
+        }), 500
+    
 @app.route('/api/personal_model/search_filter', methods=['POST'])
 def search_filter_todata():
     try:
@@ -112,7 +149,7 @@ def search_filter_todata():
             "success": False,
             "error": str(e)
         }), 500
-    
+
 @app.route('/api/personal_model/study_session', methods=['POST'])
 def study_session_todata():
     try:
@@ -254,6 +291,27 @@ def delete_bookmarks_todata():
             "error": str(e)
         }), 500
 
+
+@app.route('/api/personal_model/get_bookmarks', methods=['GET'])
+def get_bookmarks():
+    """Return user's bookmarked spaces joined with building info."""
+    try:
+        user_id = request.args.get("user_id")
+        debug = request.args.get("debug", "0").lower() in ("1", "true", "yes")
+
+        if not user_id:
+            return jsonify({"success": False, "error": "user_id is required"}), 400
+
+        data = get_bookmarked_space_info(user_id, debug=debug)
+
+        return jsonify({
+            "success": True,
+            "count": len(data),
+            "data": data
+        }), 200
+
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
 @app.route('/api/personal_model/spot_view', methods=['POST'])
 def spot_view_todata():
     try:
