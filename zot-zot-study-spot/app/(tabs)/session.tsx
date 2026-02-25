@@ -1,7 +1,8 @@
 import { Brand, Colors } from "@/constants/theme";
 import { useSession } from "@/context/session-context";
 import { useEffect, useRef, useState } from "react";
-import { Pressable, StyleSheet, Text, View, useColorScheme } from "react-native";
+import { Pressable, Switch, StyleSheet, Text, View, useColorScheme } from "react-native";
+import { apiStoreStudySession, apiStoreSpotFeedback } from "@/utils/api-client";
 
 function pad2(n: number) {
 	return n.toString().padStart(2, "0");
@@ -15,6 +16,29 @@ function formatMs(ms: number) {
 	return `${pad2(minutes)}:${pad2(seconds)}.${pad2(centis)}`;
 }
 
+function ratingLabel(r: number) {
+	switch (r) {
+		case 1:
+			return "Horrible";
+		case 2:
+			return "Bad";
+		case 3:
+			return "Okay";
+		case 4:
+			return "Good";
+		case 5:
+			return "Amazing";
+		default:
+			return "";
+	}
+}
+function isSpotBookmarked(spotId: string): boolean {
+	return false;
+}
+
+function updateBookmarkStatus(spotId: string, isBookmarked: boolean): void {
+	return;
+}
 export default function Session() {
 	const scheme = useColorScheme();
 	const theme = scheme === "dark" ? Colors.dark : Colors.light;
@@ -25,8 +49,29 @@ export default function Session() {
 	const [elapsedMs, setElapsedMs] = useState(0);
 	const [running, setRunning] = useState(false);
 
+	const sessionStartEpochRef = useRef<number | null>(null);
+
+	// rating flow
+	const [showRating, setShowRating] = useState(false);
+	const [rating, setRating] = useState<number | null>(null);
+
 	const startedAtRef = useRef<number | null>(null);
 	const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+	const [endedAtIso, setEndedAtIso] = useState<string | null>(null); // use for updated timestamp
+
+	const [isBookmarked, setIsBookmarkedState] = useState(false);
+	useEffect(() => {
+		if (!selectedSpot) return;
+		const initial = isSpotBookmarked(selectedSpot.spaceId);
+		setIsBookmarkedState(initial);
+	}, [selectedSpot?.spaceId]);
+
+	const onToggleBookmark = (newState: boolean) => {
+		if (!selectedSpot) return;
+		setIsBookmarkedState(newState);
+		updateBookmarkStatus(selectedSpot.spaceId, newState);
+	};
 
 	const clear = () => {
 		if (intervalRef.current) {
@@ -47,6 +92,7 @@ export default function Session() {
 		if (running) return;
 		if (!selectedSpot) return; // guard
 		setRunning(true);
+		sessionStartEpochRef.current = Date.now();
 		startedAtRef.current = Date.now();
 		clear();
 		intervalRef.current = setInterval(tick, 50);
@@ -59,10 +105,103 @@ export default function Session() {
 		clear();
 	};
 
-	const endSession = () => {
+	function toYMD(d: Date) {
+		const y = d.getFullYear();
+		const m = String(d.getMonth() + 1).padStart(2, "0");
+		const day = String(d.getDate()).padStart(2, "0");
+		return `${y}-${m}-${day}`;
+	}
+
+	function toHM(d: Date) {
+		const h = String(d.getHours()).padStart(2, "0");
+		const m = String(d.getMinutes()).padStart(2, "0");
+		return `${h}:${m}`;
+	}
+
+	const endSession = async () => {
+		const spot = selectedSpot;
+		const startEpoch = sessionStartEpochRef.current;
+
+		// stop timer
 		setRunning(false);
 		startedAtRef.current = null;
 		clear();
+
+		// send telemetry if we have enough info
+		if (spot && startEpoch != null) {
+			const startedAt = new Date(startEpoch);
+			const endedAt = new Date();
+			console.log(startedAt.toISOString(), endedAt.toISOString());
+
+			const req = {
+				user_id: "1",
+				session: {
+					study_space_id: spot.spaceId,
+					building_id: spot.locationId,
+					started_at: toHM(startedAt),
+					ended_at: toHM(endedAt),
+					start_date: toYMD(startedAt),
+					end_date: toYMD(endedAt),
+					duration_ms: elapsedMs,
+					ended_reason: "user_exit",
+					kind: spot.kind, // optional extra field (backend allows [k: string]: any)
+				},
+				debug: false,
+			};
+
+			const res = await apiStoreStudySession(req);
+			if (!res.success) {
+				console.log("apiStoreStudySession failed:", res.error);
+				// optional: don't clear selection if you want user to retry
+			}
+		}
+		// If there was a real session, ask for rating
+		if (selectedSpot && elapsedMs > 0) {
+			setEndedAtIso(new Date().toISOString());
+			setShowRating(true);
+			setRating(null);
+			return;
+		}
+		// reset local state
+		sessionStartEpochRef.current = null;
+		setElapsedMs(0);
+		clearSelectedSpot();
+	};
+
+	const submitRating = async () => {
+		if (!selectedSpot || rating == null) return;
+		console.log("Session rating:", {
+			rating,
+			elapsedMs,
+			locationId: selectedSpot.locationId,
+			locationTitle: selectedSpot.locationTitle,
+			spaceId: selectedSpot.spaceId,
+			spaceTitle: selectedSpot.spaceTitle,
+		});
+		const req = {
+			user_id: "1",
+			feedback: {
+				study_space_id: selectedSpot.spaceId,
+				building_id: selectedSpot.locationId,
+				rating,
+				updated_at: endedAtIso ?? new Date().toISOString(),
+			},
+		};
+
+		const res = await apiStoreSpotFeedback(req);
+		if (!res.success) {
+			console.log("apiStoreSpotFeedback failed", res.error);
+			return;
+		}
+		// reset
+		setShowRating(false);
+		setRating(null);
+		setElapsedMs(0);
+		clearSelectedSpot();
+	};
+	const skipRating = () => {
+		setShowRating(false);
+		setRating(null);
 		setElapsedMs(0);
 		clearSelectedSpot();
 	};
@@ -121,6 +260,124 @@ export default function Session() {
 					<Text style={[styles.hint, { color: theme.text, opacity: 0.7 }]}>Select a study spot from the map results to start.</Text>
 				)}
 			</View>
+			<View
+				style={[
+					styles.card,
+					{
+						backgroundColor: theme.surface,
+						borderColor: theme.outline,
+						shadowColor: theme.shadow,
+						marginTop: 14,
+						opacity: showRating ? 1 : 0.55,
+					},
+				]}
+			>
+				<Text style={[styles.title, { color: theme.text }]}>Rate your session</Text>
+
+				{!showRating ? (
+					<Text style={[styles.hint, { color: theme.text, opacity: 0.7 }]}>End your session to rate it.</Text>
+				) : (
+					<>
+						<Text style={[styles.ratingPrompt, { color: theme.text, opacity: 0.85 }]}>How was it?</Text>
+
+						<View style={styles.ratingRow}>
+							{[1, 2, 3, 4, 5].map((r) => {
+								const selected = rating === r;
+								return (
+									<Pressable
+										key={r}
+										onPress={() => setRating(r)}
+										style={({ pressed }) => [
+											styles.ratingPill,
+											{
+												backgroundColor: selected ? "rgba(84,56,220,0.14)" : theme.surfaceVariant,
+												borderColor: selected ? theme.brand : theme.outlineSoft,
+												opacity: pressed ? 0.85 : 1,
+											},
+										]}
+									>
+										<Text style={[styles.ratingNumber, { color: selected ? theme.brand : theme.text }]}>{r}</Text>
+									</Pressable>
+								);
+							})}
+						</View>
+
+						<Text style={[styles.ratingLabel, { color: theme.text, opacity: 0.8 }]}>
+							{rating ? `${rating} — ${ratingLabel(rating)}` : "Tap a number (1 = Horrible, 5 = Amazing)"}
+						</Text>
+
+						<View style={[styles.row, { marginTop: 12 }]}>
+							<Pressable
+								onPress={submitRating}
+								disabled={rating == null}
+								style={({ pressed }) => [
+									styles.primaryBtn,
+									{
+										backgroundColor: rating == null ? theme.outlineSoft : pressed ? Brand.dark_purple : theme.brand,
+										opacity: rating == null ? 0.6 : 1,
+									},
+								]}
+							>
+								<Text style={[styles.primaryText, { color: theme.textOnBrand }]}>Save rating</Text>
+							</Pressable>
+
+							<Pressable
+								onPress={skipRating}
+								style={({ pressed }) => [
+									styles.secondaryBtn,
+									{
+										backgroundColor: theme.surfaceVariant,
+										borderColor: theme.outlineSoft,
+										opacity: pressed ? 0.75 : 1,
+									},
+								]}
+							>
+								<Text style={[styles.secondaryText, { color: theme.text }]}>Skip</Text>
+							</Pressable>
+						</View>
+					</>
+				)}
+			</View>
+
+			<View
+				style={[
+					styles.card,
+					{
+						backgroundColor: theme.surface,
+						borderColor: theme.outline,
+						shadowColor: theme.shadow,
+						marginTop: 14,
+						opacity: selectedSpot ? 1 : 0.55,
+					},
+				]}
+			>
+				<Text style={[styles.title, { color: theme.text }]}>Bookmark</Text>
+
+				{!selectedSpot ? (
+					<Text style={[styles.hint, { color: theme.text, opacity: 0.7 }]}>Select a spot to bookmark it.</Text>
+				) : (
+					<>
+						<Text style={[styles.ratingPrompt, { color: theme.text, opacity: 0.85 }]}>Save this spot for later?</Text>
+
+						<View style={[styles.row, { marginTop: 10 }]}>
+							<Text style={[styles.ratingLabel, { color: theme.text, opacity: 0.8 }]}>{isBookmarked ? "Bookmarked" : "Not bookmarked"}</Text>
+
+							<Switch
+								// stys
+								value={isBookmarked}
+								onValueChange={onToggleBookmark}
+								disabled={!selectedSpot}
+								trackColor={{
+									false: "rgba(0,0,0,0.18)",
+									true: "rgba(84,56,220,0.35)",
+								}}
+								thumbColor={isBookmarked ? theme.brand : "#f4f3f4"}
+								ios_backgroundColor="rgba(0,0,0,0.18)"
+							/>
+						</View>
+					</>
+				)}
+			</View>
 		</View>
 	);
 }
@@ -175,6 +432,8 @@ const styles = StyleSheet.create({
 	row: {
 		flexDirection: "row",
 		gap: 12,
+		alignItems: "center",
+		justifyContent: "center",
 	},
 	primaryBtn: {
 		flex: 1,
@@ -183,7 +442,7 @@ const styles = StyleSheet.create({
 		alignItems: "center",
 	},
 	primaryText: {
-		fontWeight: "600",
+		fontWeight: "700",
 		fontSize: 16,
 	},
 	secondaryBtn: {
@@ -194,11 +453,41 @@ const styles = StyleSheet.create({
 		borderWidth: 1,
 	},
 	secondaryText: {
-		fontWeight: "600",
+		fontWeight: "700",
 		fontSize: 16,
 	},
 	hint: {
 		marginTop: 12,
+		textAlign: "center",
+		fontSize: 13,
+	},
+
+	// rating styles
+	ratingPrompt: {
+		textAlign: "center",
+		fontSize: 14,
+		fontWeight: "700",
+		marginBottom: 10,
+	},
+	ratingRow: {
+		flexDirection: "row",
+		justifyContent: "center",
+		gap: 10,
+		marginBottom: 10,
+	},
+	ratingPill: {
+		width: 46,
+		height: 46,
+		borderRadius: 23,
+		alignItems: "center",
+		justifyContent: "center",
+		borderWidth: 1,
+	},
+	ratingNumber: {
+		fontSize: 18,
+		fontWeight: "900",
+	},
+	ratingLabel: {
 		textAlign: "center",
 		fontSize: 13,
 	},

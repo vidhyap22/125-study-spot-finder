@@ -1,6 +1,6 @@
 import { Filters } from "@/components/filter-bar";
 import type { StudySpace, LocationResult } from "./types";
-
+import { getUserLocationOrNull } from "./user-location";
 export type SearchRequest = {
 	user_id: string;
 	filters?: Record<string, any>;
@@ -26,12 +26,14 @@ export type StudySessionTelemetryReq = {
 	user_id: string;
 	session: {
 		study_space_id: string | number;
-		building_id: string;
-		started_at: string;
-		ended_at: string;
-		start_date: string;
-		end_date: string;
+		building_id: string | number;
+		started_at: string; // ISO string
+		ended_at: string; // ISO string
+		start_date: string; // YYYY-MM-DD
+		end_date: string; // YYYY-MM-DD
+		duration_ms: number;
 
+		ended_reason?: string;
 		[k: string]: any;
 	};
 	debug?: boolean;
@@ -97,7 +99,7 @@ export type SpotFeedbackReq = {
 	debug?: boolean;
 };
 
-export const API_BASE_URL = "http://192.168.0.85:3000"; // Currently copy pasting from output after starting api.py
+export const API_BASE_URL = "http://172.31.33.138:3000"; // Currently copy pasting from output after starting api.py
 
 // ---- Helpers ----
 
@@ -321,7 +323,7 @@ export async function apiSearchSpaces(req: SearchRequest): Promise<SearchRespons
 			ok.data = rows;
 		}
 	}
-
+	console.log(getUserLocationOrNull());
 	return ok;
 }
 // POST /api/personal_model/search_filter
