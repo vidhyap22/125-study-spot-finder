@@ -9,6 +9,7 @@ DB_PATH = BASE_DIR / "data" / "database" / "app.db"
 
 from utils.library_traffic import LibraryTraffic
 from utils.weather_api import WeatherAPI
+from utils.update_room_availability import update_availability
 
 """
 set the class up
@@ -17,10 +18,7 @@ library_traffic = LibraryTraffic("https://anteaterapi.com/v2/rest/libraryTraffic
 weather_api = WeatherAPI()
     
 def update_data():
-    """
-    Replace this with existing update function call(s).
-    Example:
-    """
     library_traffic.update_database()
     weather_api.update_weather_database()
+    update_availability()
     pass
