@@ -1,0 +1,82 @@
+[
+    {
+        "id": 1,
+        "name": "Outside Rowland Hall",
+        "capacity": 30,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "RH",
+        "is_indoor": false,
+        "is_talking_allowed": true
+    },
+    {
+        "id": 2,
+        "name": "Outside Engineering Hall",
+        "capacity": 100,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "EH",
+        "is_indoor": false,
+        "is_talking_allowed": true
+    },
+    {
+        "id": 3,
+        "name": "Outside Social Science Towers",
+        "capacity": 100,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "SST",
+        "is_indoor": false,
+        "is_talking_allowed": true
+    },
+    {
+        "id": 4,
+        "name": "ICS OAI",
+        "capacity": 20,
+        "must_reserve": false,
+        "tech_enhanced": true,
+        "building_id": "ICS2",
+        "is_indoor": true,
+        "is_talking_allowed": true
+    },
+    {
+        "id": 5,
+        "name": "3rd Floor Engineering Tower",
+        "capacity": 100,
+        "must_reserve": false,
+        "tech_enhanced": true,
+        "building_id": "ET",
+        "is_indoor": false,
+        "is_talking_allowed": true
+    },
+    {
+        "id": 6,
+        "name": "Inside School of Social Ecology",
+        "capacity": 20,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "SE",
+        "is_indoor": true,
+        "is_talking_allowed": true
+    },
+    {
+        "id": 7,
+        "name": "2nd Floor Interdisciplinary Science and Engineering Building",
+        "capacity": 30,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "ISEB",
+        "is_indoor": true,
+        "is_talking_allowed": true
+    },
+    {
+        "id": 8,
+        "name": "2nd Floor Interdisciplinary Science and Engineering Building",
+        "capacity": 100,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "ISEB",
+        "is_indoor": false,
+        "is_talking_allowed": true
+    }
+]

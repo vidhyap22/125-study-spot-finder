@@ -407,6 +407,14 @@
         "latitude": 33.64445915336631, 
         "longitude": -117.8526001300667
     },
+    "ISEB": {
+        "name": "Interdisciplinary Science and Engineering Building",
+        "has_printer": false,
+        "opening_time": "08:00",
+        "closing_time": "22:00",
+        "latitude": 33.6431, 
+        "longitude": -117.8437
+    },
     "KH": {
         "name": "Krieger Hall",
         "has_printer": false,

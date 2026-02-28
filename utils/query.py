@@ -8,6 +8,7 @@ import math
 from pathlib import Path
 from datetime import datetime
 from dateutil import parser  
+from personal_model.personal_model_process import PersonalModel
 from floor_info import correspondence
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,7 +21,6 @@ def load_index():
     """Load the pre-built filter index"""
     with open(INDEX_PATH, 'r') as f:
         return json.load(f)
-
 
 def search_with_filters(filters):
     """
@@ -35,71 +35,64 @@ def search_with_filters(filters):
                 "indoor": True,
                 "tech_enhanced": True,
                 "has_printer": True,
-                "building": "LANGSON"
             }
     
     Returns:
         list: List of matching study_space_ids
     """
     indexes = load_index()
-    
-    # Start with all possible study spaces
     result_sets = []
-    
-    # Apply each filter
+
     if "capacity_range" in filters and filters["capacity_range"]:
         key = str(filters["capacity_range"])
         if key in indexes["capacity_ranges"]:
             result_sets.append(set(indexes["capacity_ranges"][key]))
         else:
-            return []  # Invalid capacity range
-    
+            return []
+
     if "talking_allowed" in filters and filters["talking_allowed"] is not None:
         key = str(filters["talking_allowed"]).lower()
         if key in indexes["talking_allowed"]:
             result_sets.append(set(indexes["talking_allowed"][key]))
-    
+
     if "study_room" in filters and filters["study_room"] is not None:
         key = str(filters["study_room"]).lower()
         if key in indexes["study_room"]:
             result_sets.append(set(indexes["study_room"][key]))
-    
+
     if "indoor" in filters and filters["indoor"] is not None:
         key = str(filters["indoor"]).lower()
         if key in indexes["indoor"]:
             result_sets.append(set(indexes["indoor"][key]))
-    
+
     if "tech_enhanced" in filters and filters["tech_enhanced"] is not None:
         key = str(filters["tech_enhanced"]).lower()
         if key in indexes["tech_enhanced"]:
             result_sets.append(set(indexes["tech_enhanced"][key]))
-    
+
     if "has_printer" in filters and filters["has_printer"] is not None:
         key = str(filters["has_printer"]).lower()
         if key in indexes["has_printer"]:
             result_sets.append(set(indexes["has_printer"][key]))
-    
-    if "building" in filters and filters["building"]:
-        key = filters["building"].upper()
-        if key in indexes["building"]:
-            result_sets.append(set(indexes["building"][key]))
-        else:
-            return []  # Invalid building
-    
-    # Intersect all sets to find spaces matching ALL filters
+
     if not result_sets:
         return []
-    
+
     matching_spaces = result_sets[0]
     for result_set in result_sets[1:]:
         matching_spaces = matching_spaces.intersection(result_set)
-    
+
     return list(matching_spaces)
 
 
 def check_current_availability_window(db_conn, space_ids, start_time=None, end_time=None):
     """
-    If a space requires reservation, check if it is currently available. We are only focused on corrently avaiable rooms since users are most likely looking for a place to study immediately. In the future, we can expand to allow users to search for rooms available during a specific time window.
+    If a space requires reservation, check if it is currently available.
+    We are only focused on currently available rooms since users are most likely
+    looking for a place to study immediately.
+
+    In the future, we can expand to allow users to search for rooms available
+    during a specific time window.
 
     Logic:
     - If must_reserve = 0 → always available
@@ -112,7 +105,6 @@ def check_current_availability_window(db_conn, space_ids, start_time=None, end_t
         return []
 
     cursor = db_conn.cursor()
-
     placeholders = ",".join("?" * len(space_ids))
 
     # Case 1: Check availability for a specific time window (not currently used)
@@ -128,18 +120,16 @@ def check_current_availability_window(db_conn, space_ids, start_time=None, end_t
             OR (
                 s.must_reserve = 1
                 AND ra.is_available = 1
-                AND ra.start_time <= ?
-                AND ra.end_time >= ?
-                AND datetime(ra.scraped_at) > datetime('now','-24 hours')
+                AND datetime(?) BETWEEN datetime(ra.start_time) AND datetime(ra.end_time)
+                AND datetime(ra.scraped_at) > datetime('now', '-24 hours')
             )
         )
         """
 
-        params = space_ids + [start_time, end_time]
+        params = space_ids + [start_time]
 
-    # Case #2: Check availability for the current time (default)
+    # Case 2: Check availability for the current time (default)
     else:
-
         query = f"""
         SELECT DISTINCT s.study_space_id
         FROM study_spaces s
@@ -151,8 +141,10 @@ def check_current_availability_window(db_conn, space_ids, start_time=None, end_t
             OR (
                 s.must_reserve = 1
                 AND ra.is_available = 1
-                AND datetime('now') BETWEEN ra.start_time AND ra.end_time
-                AND datetime(ra.scraped_at) > datetime('now','-24 hours')
+                AND datetime('now') 
+                    BETWEEN datetime(ra.start_time) 
+                    AND datetime(ra.end_time)
+                AND datetime(ra.scraped_at) > datetime('now', '-24 hours')
             )
         )
         """
@@ -160,70 +152,12 @@ def check_current_availability_window(db_conn, space_ids, start_time=None, end_t
         params = space_ids
 
     cursor.execute(query, params)
-
     available_ids = [row[0] for row in cursor.fetchall()]
 
     return available_ids
 
-def load_personal_model_signals(personal_model_db_conn, user_id, available_study_ids):
-    """
-    Load personal model signals ONLY for currently available study spaces.
 
-    Args:
-        conn: sqlite3 connection
-        user_id (str): user identifier
-        available_study_ids (list[int]): study spaces currently eligible
-
-    Returns:
-        dict:
-        {
-            "dwell_map": {study_space_id: total_dwell_ms},
-            "study_session_map": {study_space_id: [(duration_ms, ended_reason)]}
-        }
-    """
-
-    cursor = personal_model_db_conn.cursor()
-
-    if not available_study_ids:
-        return {
-            "dwell_map": {},
-            "study_session_map": {}
-        }
-
-    placeholders = ",".join(["?"] * len(available_study_ids))
-
-    # User spent some time looking at certain study spaces.
-    cursor.execute(f"""
-        SELECT study_space_id, SUM(COALESCE(dwell_ms,0))
-        FROM spot_detail_views
-        WHERE user_id = ?
-        AND study_space_id IN ({placeholders})
-        GROUP BY study_space_id
-    """, (user_id, *available_study_ids))
-
-    dwell_map = {row[0]: row[1] for row in cursor.fetchall()}
-
-    # User previously studied in some study spaces.
-    cursor.execute(f"""
-        SELECT study_space_id, duration_ms, ended_reason
-        FROM study_sessions
-        WHERE user_id = ?
-        AND study_space_id IN ({placeholders})
-    """, (user_id, *available_study_ids))
-
-    study_session_map = {}
-
-    for study_space_id, duration, reason in cursor.fetchall():
-        if study_space_id not in study_session_map:
-            study_session_map[study_space_id] = []
-        study_session_map[study_space_id].append((duration, reason))
-
-    return {
-        "dwell_map": dwell_map,
-        "study_session_map": study_session_map
-    }
-
-def get_space_details(db_conn, space_ids):
+def get_space_details(db_conn, space_ids, filters=None):
     """
     Fetch full details for matching spaces
     
@@ -235,11 +169,11 @@ def get_space_details(db_conn, space_ids):
     """
     if not space_ids:
         return []
-    
+
     cursor = db_conn.cursor()
-    
     placeholders = ','.join('?' * len(space_ids))
-    cursor.execute(f"""
+
+    query = f"""
         SELECT 
             s.study_space_id,
             s.name,
@@ -256,8 +190,16 @@ def get_space_details(db_conn, space_ids):
         FROM study_spaces s
         LEFT JOIN buildings b ON s.building_id = b.building_id
         WHERE s.study_space_id IN ({placeholders})
-    """, space_ids)
-    
+    """
+
+    params = space_ids
+
+    if filters and "building" in filters and filters["building"]:
+        query += " AND UPPER(b.name) = ?"
+        params = space_ids + [filters["building"].upper()]
+
+    cursor.execute(query, params)
+
     results = []
     for row in cursor.fetchall():
         results.append({
@@ -274,122 +216,222 @@ def get_space_details(db_conn, space_ids):
             "latitude": row[10],
             "longitude": row[11]
         })
-    
+
     return results
 
-def rank_spaces_with_personal_model(space_details, personal_signals, filters=None):
+
+def calculate_distance(lat1, lon1, lat2, lon2):
+    R = 6371  # km
+    phi1 = math.radians(lat1)
+    phi2 = math.radians(lat2)
+    delta_phi = math.radians(lat2 - lat1)
+    delta_lambda = math.radians(lon2 - lon1)
+
+    a = math.sin(delta_phi/2)**2 + \
+        math.cos(phi1) * math.cos(phi2) * math.sin(delta_lambda/2)**2
+
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+    return R * c  # distance in km
+
+
+def compute_final_score(space, probability_map, user_location=None, 
+                        prob_weight=0.8, distance_weight=0.2, 
+                        distance_decay_km=2):
     """
-    Rank study spaces by combining filter-based scoring with personal model signals. The personal model signals include:
-        - Dwell time: Total time spent viewing the study space details in the app. 
-        - Study sessions: Past study sessions booked in that space, including duration and how the session ended (e.g., user exit, noise, etc.).
+    Compute final ranking score for a study space.
+
+    Args:
+        space (dict): Study space details
+        probability_map (dict): {space_id: probability_score}
+        user_location (dict): {"lat": float, "lon": float}
+        prob_weight (float): Weight for personalization score
+        distance_weight (float): Weight for distance boost
+        distance_decay_km (float): Distance window for normalization
+
+    Returns:
+        float: Final weighted score
     """
 
-    dwell_map = personal_signals.get("dwell_map", {})
-    study_session_map = personal_signals.get("study_session_map", {})
+    spot_id = space["id"]
+    base_score = probability_map.get(spot_id, 0.0)
 
-    ranked = []
+    distance_score = 0.0
+    if (user_location and space.get("latitude") is not None and space.get("longitude") is not None):
+        distance_km = calculate_distance(user_location["latitude"], user_location["longitude"], space["latitude"], space["longitude"])
 
-    for space in space_details:
-        study_space_id = space["id"]
-        score = 0
+        distance_score = max(0, 1 - (distance_km / distance_decay_km))
 
-        # --- BASELINE RANKING ---
-        # Rank based on filters that user has specified. This ensures that spaces that better match the user's stated preferences are ranked higher.
-        if filters:
+    final_score = (prob_weight * base_score) + (distance_weight * distance_score)
 
-            if filters.get("tech_enhanced") and space.get("tech_enhanced"):
-                score += 3
+    return round(final_score, 4)
 
-            if filters.get("indoor") and space.get("indoor"):
-                score += 2
-
-            if filters.get("talking_allowed") == space.get("talking_allowed"):
-                score += 2
-
-            if filters.get("has_printer") and space.get("has_printer"):
-                score += 2
-
-            if filters.get("capacity_range") and space.get("capacity"):
-                try:
-                    low, high = map(int, filters["capacity_range"].split("-"))
-                    if low <= space["capacity"] <= high:
-                        score += 3
-                except:
-                    pass
-
-        if not space.get("must_reserve"):
-            score += 1
-
-        # --- PERSONAL MODEL ---
-        # Take dwell time into account when user showed interest in the study space details. This can indicate a stronger preference for that space.
-        dwell = dwell_map.get(study_space_id, 0)
-        if dwell > 0:
-            score += min(5, dwell / 60000)  # ~1 point per minute
-
-        # Take past study sessions users have booked in that space into account. Longer sessions and sessions that ended positively (e.g., user exit) can indicate a stronger preference for that space, while sessions that ended due to noise can indicate a negative experience.
-        if study_space_id in study_session_map:
-            for duration, reason in study_session_map[study_space_id]:
-
-                if duration:
-                    score += min(6, duration / (30 * 60 * 1000))
-
-                if reason == "user_exit":
-                    score += 4
-                elif reason == "noise":
-                    score -= 3
-
-        space["score"] = round(score, 2)
-        ranked.append(space)
-
-    ranked.sort(key=lambda x: x["score"], reverse=True)
-
-    return ranked
 
 def display_ranked_results(ranked_spaces, top_n=10):
     """
     Display ranked results in a user-friendly format
     """
+    if not ranked_spaces:
+        return 
+    
     print(f"\nTop {top_n} Ranked Study Spaces:")
     for space in ranked_spaces[:top_n]:
         print(f"{space['name']} (Score: {space['score']}) - {space['building_name']} - Capacity: {space['capacity']} - {'Indoor' if space['indoor'] else 'Outdoor'} - {'Tech-Enhanced' if space['tech_enhanced'] else 'Standard'} - {'Talking Allowed' if space['talking_allowed'] else 'Quiet Only'} - {'Must Reserve' if space['must_reserve'] else 'No Reservation Needed'}")
 
-def retrieve_ranked_study_spaces(user_id, filters, debug=False):
-    db_conn = sqlite3.connect(DB_PATH)
-    personal_model_db_conn = sqlite3.connect(PERSONAL_MODEL_DB_PATH)
 
-    # Step 1: Search by the filters the user inputs into the frontend.
-    matching_ids = search_with_filters(filters)
-    if debug:
-        print("\nMatching study_room_IDs after filters:")
-        print(matching_ids)
-        print("Total:", len(matching_ids))
-    
-    if not matching_ids:
+def progressive_filter_search(filters, avg_stats, debug=False, min_results=10):
+    """
+    Relax constraints in order of lowest user preference strength
+    until we get at least `min_results` matches or run out of constraints.
+    """
+    if not filters:
         return []
 
-    # Step 2: Check room availability for the matching IDs. This will filter out any rooms that require reservation but are not currently available.
-    available_ids = check_current_availability_window(db_conn, matching_ids)
+    importance_map = {}
+
+    if "indoor" in filters:
+        importance_map["indoor"] = avg_stats["is_indoor_pct"]
+    if "talking_allowed" in filters:
+        importance_map["talking_allowed"] = avg_stats["is_talking_allowed_pct"]
+    if "has_printer" in filters:
+        importance_map["has_printer"] = avg_stats["has_printer_pct"]
+    if "tech_enhanced" in filters:
+        importance_map["tech_enhanced"] = avg_stats["tech_enhanced_pct"]
+    if "capacity_range" in filters:
+        importance_map["capacity_range"] = 1.0  
+
+    # Sort filters by lowest importance first (relax weakest preference first)
+    relax_order = sorted(importance_map.keys(), key=lambda k: importance_map[k])
+
+    active_filters = filters.copy()
+    best_so_far = []
+
+    while True:
+        matching_ids = search_with_filters(active_filters)
+
+        if debug:
+            print(f"Current filters: {active_filters}")
+            print(f"Matching count: {len(matching_ids)}")
+            print(f"Matching IDs: {matching_ids}")
+
+        # Keep track of best result seen so far
+        if len(matching_ids) > len(best_so_far):
+            best_so_far = matching_ids
+
+        # Stop if we have enough results
+        if len(matching_ids) >= min_results:
+            if debug:
+                print("Reached minimum result threshold.")
+            return matching_ids
+
+        # Stop if there are no more constraints to relax.
+        if not relax_order:
+            break
+
+        # Remove lowest-importance constraint.
+        to_remove = relax_order.pop(0)
+        active_filters.pop(to_remove, None)
+
+        if debug:
+            print(f"Relaxing constraint: {to_remove}")
+
+    # If we exit loop without hitting min_results, return the largest set of results we found.
     if debug:
-        print("\nAvailable study_room_IDs RIGHT NOW:")
-        print(available_ids)
-        print("Total:", len(available_ids))
+        print("Ran out of constraints. Returning best available set.")
+
+    return best_so_far
+
+
+def get_all_study_space_ids(db_conn):
+    cursor = db_conn.cursor()
+    cursor.execute("SELECT study_space_id FROM study_spaces")
+    return [row[0] for row in cursor.fetchall()]
+
+
+def retrieve_ranked_study_spaces(user_id, filters=None, user_location=None, debug=False):
+    db_conn = sqlite3.connect(DB_PATH)
+
+    if user_location is None:
+        if debug:
+            print("No user location provided. Using default.")
+        # Default location is Aldrich Park.
+        user_location = {"latitude": 33.6461, "longitude": -117.8427}
+
+    # Step 1: If no filters are provided, return closest rooms based on user location. This ensures we always return some results even if the user doesn't specify any filters.
+    if not filters or all(v in [None, "", False] for v in filters.values()):
+        if debug:
+            print("No filters specified. Returning closest rooms.")
+
+        all_ids = get_all_study_space_ids(db_conn)
+        available_ids = check_current_availability_window(db_conn, all_ids)
+        space_details = get_space_details(db_conn, available_ids)
+
+        if space_details is not None:
+            for space in space_details:
+                space["score"] = compute_final_score(space, probability_map={}, user_location=user_location,prob_weight=0, distance_weight=1)
+            return sorted(space_details, key=lambda x: x["score"], reverse=True)
+
+    # Build personal model.
+    personal_model = PersonalModel(user_id, USER_DB=PERSONAL_MODEL_DB_PATH, APP_DB=DB_PATH)
+    user_context = personal_model.user_context_for_ranking()
+
+    # Extract average preference statistics (used for adaptive relaxation)
+    user_average_filter_preference = user_context["average_preference"]
+    if debug:
+        print(f"User filter preferences: {user_average_filter_preference}")
+
+    # Step 2: Search for rooms matching the filters. If no exact matches, 
+    # progressively relax filters (based on user preference strength) until we get some results. 
+    # This ensures we return relevant results even if the user's criteria are very strict.
+    matching_ids = progressive_filter_search(filters, user_average_filter_preference, debug=debug)
+
+    # If after relaxing filters we still get nothing, fallback to getting the closest rooms.
+    if not matching_ids:
+        if debug:
+            print("No filters matched. Falling back to closest rooms.")
+        matching_ids = get_all_study_space_ids(db_conn)
+
+    # Step 3: Check room availability for the matching IDs. 
+    # This will filter out any rooms that require reservation but are not currently available.
+    available_ids = check_current_availability_window(db_conn, matching_ids)
+
+    # If no rooms are reservable, fallback to getting the closest rooms.
+    if not available_ids:
+        if debug:
+            print("No filtered rooms available. Returning closest available rooms.")
+
+        all_ids = get_all_study_space_ids(db_conn)
+        available_ids = check_current_availability_window(db_conn, all_ids)
 
     if not available_ids:
+        if debug:
+            print("No rooms available at all.")
         return []
 
-    # Step 3: Load personal model signals for the currently available study spaces.
-    user_personal_model_signals = load_personal_model_signals(personal_model_db_conn, user_id, available_ids)
-    if debug:
-        print(f"\nPersonal model signals for User (user_id={user_id}):")
-        print(user_personal_model_signals)
-    
-    # Step 4: Fetch full details for the currently available study spaces.
+    # Step 5: Fetch full details for the currently available study spaces.
     space_details = get_space_details(db_conn, available_ids)
 
-    # Step 5: Rank spaces by combining filter-based scoring with personal model signals.
-    ranked_spaces = rank_spaces_with_personal_model(space_details, user_personal_model_signals, filters)
+    # Step 6: Use personal model signals from the probability model to adjust the ranking 
+    # of the study spaces. This allows us to personalize the results based on the user's 
+    # past interactions and preferences.
+    probability_results = personal_model.probability(available_ids)
+    probability_map = {spot_id: score for spot_id, score in probability_results}
+
+    if debug:
+        print("Probability map:", probability_map)
+
+    # Step 6: Sort the study spaces by the combined score (filter-based + personal model) 
+    # to get a personalized ranking of study spaces for the user.
+    for space in space_details:
+        space["score"] = compute_final_score(
+            space,
+            probability_map,
+            user_location
+        )
+
+    ranked_spaces = sorted(space_details, key=lambda x: x["score"], reverse=True)
 
     return ranked_spaces
+
 
 def get_available_buildings():
     """Get list of all available buildings"""
