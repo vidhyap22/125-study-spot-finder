@@ -216,9 +216,9 @@ def get_space_details(db_conn, space_ids, filters=None):
             "building_id": row[7],
             "floor": row[8],
             "building_name": row[9],
-            "has_printer": bool(row[10]) if row[11] is not None else None,
-            "latitude": row[12],
-            "longitude": row[13]
+            "has_printer": bool(row[10]) if row[10] is not None else None,
+            "latitude": row[11],
+            "longitude": row[12]
         })
 
     return results
