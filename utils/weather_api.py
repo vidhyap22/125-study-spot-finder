@@ -6,6 +6,7 @@ import pandas as pd
 import requests_cache
 import requests
 from retry_requests import retry
+from datetime import datetime, timedelta
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DB_PATH = BASE_DIR / "data" / "database" / "app.db"
@@ -138,14 +139,50 @@ class WeatherAPI():
             (time_local, date, hour, temperature_c, precip_mm, is_raining, weather_code, weather_text, fetched_at)
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);
         """, rows)
+    
+    def round_to_nearest_hour(self, dt: datetime) -> datetime:
+        rounded = dt.replace(minute=0, second=0, microsecond=0)
 
+        if dt.minute >= 30:
+            rounded += timedelta(hours=1)
+
+        return rounded
+    
     def update_weather_database(self):
+        now = datetime.now()
+
+        rounded_dt = self.round_to_nearest_hour(now)
+
+        date_str = rounded_dt.strftime("%Y-%m-%d")
+        hour_str = rounded_dt.strftime("%H:00")   # ⭐ "11:00"
+
         conn = sqlite3.connect(self.DB_PATH)
         cur = conn.cursor()
+
+        cur.execute("""
+            SELECT 1
+            FROM hourly_weather
+            WHERE date = ? AND hour = ?
+            LIMIT 1
+        """, (date_str, hour_str))
+
+        exists = cur.fetchone() is not None
+
+        if exists:
+            conn.close()
+            print("Weather already exists for this rounded hour")
+            return
+
+        # otherwise update
+
         self.clear_weather_database(cur)
         self.store_hourly_weather(cur)
+
         conn.commit()
         conn.close()
+        print("Weather updated")
+
+
 
     
 def main():
