@@ -9,7 +9,7 @@ from pathlib import Path
 from datetime import datetime
 from dateutil import parser  
 from personal_model.personal_model_process import PersonalModel
-from floor_info import correspondence
+from personal_model.floor_info import correspondence
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DB_PATH = BASE_DIR / "data" / "database" / "app.db"
