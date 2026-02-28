@@ -8,12 +8,11 @@ DROP TABLE IF EXISTS users;
 
 CREATE TABLE IF NOT EXISTS users (
   user_id TEXT PRIMARY KEY,
-  created_at TEXT NOT NULL,
-  ON DELETE CASCADE
+  created_at TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS study_sessions (
-  session_id TEXT PRIMARY KEY,
+  session_id INTEGER PRIMARY KEY AUTOINCREMENT,
   user_id TEXT NOT NULL,
   study_space_id INTEGER NOT NULL,
   building_id TEXT NOT NULL,
@@ -28,7 +27,6 @@ CREATE TABLE IF NOT EXISTS study_sessions (
   start_weather_time_local TEXT,
 
   session_traffic REAL,
-
   FOREIGN KEY (user_id) REFERENCES users(user_id)
 );
 
