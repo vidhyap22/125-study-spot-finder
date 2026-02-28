@@ -273,11 +273,11 @@ def display_ranked_results(ranked_spaces, top_n=10):
         print(f"{space['name']} (Score: {space['score']}) - {space['building_name']} - Capacity: {space['capacity']} - {'Indoor' if space['indoor'] else 'Outdoor'} - {'Tech-Enhanced' if space['tech_enhanced'] else 'Standard'} - {'Talking Allowed' if space['talking_allowed'] else 'Quiet Only'} - {'Must Reserve' if space['must_reserve'] else 'No Reservation Needed'}")
 
 
-def progressive_filter_search(filters, avg_stats, debug=False):
+def progressive_filter_search(filters, avg_stats, debug=False, min_results=10):
     """
-    Relax constraints in order of lowest user preference strength.
+    Relax constraints in order of lowest user preference strength
+    until we get at least `min_results` matches or run out of constraints.
     """
-
     if not filters:
         return []
 
@@ -285,47 +285,54 @@ def progressive_filter_search(filters, avg_stats, debug=False):
 
     if "indoor" in filters:
         importance_map["indoor"] = avg_stats["is_indoor_pct"]
-
     if "talking_allowed" in filters:
         importance_map["talking_allowed"] = avg_stats["is_talking_allowed_pct"]
-
     if "has_printer" in filters:
         importance_map["has_printer"] = avg_stats["has_printer_pct"]
-
     if "tech_enhanced" in filters:
         importance_map["tech_enhanced"] = avg_stats["tech_enhanced_pct"]
-
-    # Capacity handled separately (numeric range logic)
     if "capacity_range" in filters:
-        importance_map["capacity_range"] = 1.0  # treat as high priority
+        importance_map["capacity_range"] = 1.0  
 
-    # Sort filters by LOWEST importance first
-    relax_order = sorted(
-        importance_map.keys(),
-        key=lambda k: importance_map[k]
-    )
+    # Sort filters by lowest importance first (relax weakest preference first)
+    relax_order = sorted(importance_map.keys(), key=lambda k: importance_map[k])
 
     active_filters = filters.copy()
+    best_so_far = []
 
     while True:
         matching = search_with_filters(active_filters)
 
-        if matching:
+        if debug:
+            print(f"Current filters: {active_filters}")
+            print(f"Matching count: {len(matching)}")
+
+        # Keep track of best result seen so far
+        if len(matching) > len(best_so_far):
+            best_so_far = matching
+
+        # Stop if we have enough results
+        if len(matching) >= min_results:
             if debug:
-                print("Matched with filters:", active_filters)
+                print("Reached minimum result threshold.")
             return matching
 
+        # Stop if there are no more constraints to relax.
         if not relax_order:
             break
 
-        # Remove lowest-importance constraint
+        # Remove lowest-importance constraint.
         to_remove = relax_order.pop(0)
         active_filters.pop(to_remove, None)
 
         if debug:
             print(f"Relaxing constraint: {to_remove}")
 
-    return []
+    # If we exit loop without hitting min_results, return the largest set of results we found.
+    if debug:
+        print("Ran out of constraints. Returning best available set.")
+
+    return best_so_far
 
 
 def get_all_study_space_ids(db_conn):
