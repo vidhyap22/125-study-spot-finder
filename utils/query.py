@@ -8,6 +8,7 @@ import math
 from pathlib import Path
 from datetime import datetime
 from dateutil import parser  
+from personal_model.personal_model_process import PersonalModel
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DB_PATH = BASE_DIR / "data" / "database" / "app.db"
@@ -352,7 +353,7 @@ def display_ranked_results(ranked_spaces, top_n=10):
     for space in ranked_spaces[:top_n]:
         print(f"{space['name']} (Score: {space['score']}) - {space['building_name']} - Capacity: {space['capacity']} - {'Indoor' if space['indoor'] else 'Outdoor'} - {'Tech-Enhanced' if space['tech_enhanced'] else 'Standard'} - {'Talking Allowed' if space['talking_allowed'] else 'Quiet Only'} - {'Must Reserve' if space['must_reserve'] else 'No Reservation Needed'}")
 
-def retrieve_ranked_study_spaces(user_id, filters, debug=False):
+def retrieve_ranked_study_spaces(user_id, filters, debug):
     db_conn = sqlite3.connect(DB_PATH)
     personal_model_db_conn = sqlite3.connect(PERSONAL_MODEL_DB_PATH)
 
@@ -374,21 +375,69 @@ def retrieve_ranked_study_spaces(user_id, filters, debug=False):
         print("Total:", len(available_ids))
 
     if not available_ids:
+        if debug:
+            print("No study spaces are currently available based on the filters and availability.")
         return []
-
-    # Step 3: Load personal model signals for the currently available study spaces.
-    user_personal_model_signals = load_personal_model_signals(personal_model_db_conn, user_id, available_ids)
-    if debug:
-        print(f"\nPersonal model signals for User (user_id={user_id}):")
-        print(user_personal_model_signals)
     
-    # Step 4: Fetch full details for the currently available study spaces.
+    # Step 3: Fetch full details for the currently available study spaces.
     space_details = get_space_details(db_conn, available_ids)
 
-    # Step 5: Rank spaces by combining filter-based scoring with personal model signals.
-    ranked_spaces = rank_spaces_with_personal_model(space_details, user_personal_model_signals, filters)
+    # Step 4: Use personal model signals from the probability model to adjust the ranking of the study spaces. This allows us to personalize the results based on the user's past interactions and preferences.
+    personal_model = PersonalModel(user_id, USER_DB=PERSONAL_MODEL_DB_PATH, APP_DB=DB_PATH)
+    personal_model.user_context_for_ranking()
+    probability_results = personal_model.probability(available_ids)
+    if debug:
+        print(f"\nPersonal model probabilities for User (user_id={user_id}):")
+        print(probability_results)
+    probability_map = {spot_id: score for spot_id, score in probability_results}
+
+    # Step 5: Attach score after weighting personal model signals to each study space.
+    for space in space_details:
+        spot_id = space["id"]
+        space["score"] = round(probability_map.get(spot_id, 0.0), 4)
+    
+    # Step 6: Sort the study spaces by the combined score (filter-based + personal model) to get a personalized ranking of study spaces for the user.
+    ranked_spaces = sorted(space_details, key=lambda x: x["score"], reverse=True)
 
     return ranked_spaces
+
+# def retrieve_ranked_study_spaces(user_id, filters, debug=False):
+#     db_conn = sqlite3.connect(DB_PATH)
+#     personal_model_db_conn = sqlite3.connect(PERSONAL_MODEL_DB_PATH)
+
+#     # Step 1: Search by the filters the user inputs into the frontend.
+#     matching_ids = search_with_filters(filters)
+#     if debug:
+#         print("\nMatching study_room_IDs after filters:")
+#         print(matching_ids)
+#         print("Total:", len(matching_ids))
+    
+#     if not matching_ids:
+#         return []
+
+#     # Step 2: Check room availability for the matching IDs. This will filter out any rooms that require reservation but are not currently available.
+#     available_ids = check_current_availability_window(db_conn, matching_ids)
+#     if debug:
+#         print("\nAvailable study_room_IDs RIGHT NOW:")
+#         print(available_ids)
+#         print("Total:", len(available_ids))
+
+#     if not available_ids:
+#         return []
+
+#     # Step 3: Load personal model signals for the currently available study spaces.
+#     user_personal_model_signals = load_personal_model_signals(personal_model_db_conn, user_id, available_ids)
+#     if debug:
+#         print(f"\nPersonal model signals for User (user_id={user_id}):")
+#         print(user_personal_model_signals)
+    
+#     # Step 4: Fetch full details for the currently available study spaces.
+#     space_details = get_space_details(db_conn, available_ids)
+
+#     # Step 5: Rank spaces by combining filter-based scoring with personal model signals.
+#     ranked_spaces = rank_spaces_with_personal_model(space_details, user_personal_model_signals, filters)
+
+#     return ranked_spaces
 
 def get_available_buildings():
     """Get list of all available buildings"""
