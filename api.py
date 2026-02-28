@@ -6,7 +6,9 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 import sys
 from pathlib import Path
-
+from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.triggers.interval import IntervalTrigger
+from utils.query import update_data
 # Add utils to path
 sys.path.append(str(Path(__file__).parent / "utils"))
 
@@ -16,6 +18,11 @@ from personal_model.store_personal_model_data import add_user, delete_bookmarks,
 
 app = Flask(__name__)
 CORS(app)  # Enable CORS for React Native
+
+_scheduler = BackgroundScheduler()
+_JOB_ID = "global_update_job"
+
+CACHE = {"updated_at": None, "payload": None}
 
 @app.route('/')
 def index():
@@ -587,6 +594,7 @@ def add_user_todata():
             "success": False,
             "error": str(e)
         }), 500
+
 
 @app.route('/api/health', methods=['GET'])
 def health_check():
