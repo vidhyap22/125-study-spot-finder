@@ -86,7 +86,7 @@ def update_database():
         conn.close()
 
 
-def main():
+def update_availability():
     print("="*60)
     print(f"🔄 AVAILABILITY UPDATE STARTED")
     print(f"📅 {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
@@ -113,4 +113,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    update_availability()

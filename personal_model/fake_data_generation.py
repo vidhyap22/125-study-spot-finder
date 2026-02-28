@@ -9,9 +9,6 @@ SCHEMA_PATH = BASE_DIR / "data" / "database" / "user_data_schema.sql"
 
 
 
-def clear_spot_feedback(cursor):
-    cursor.execute("DELETE FROM spot_feedback;")
-
 def main():
 
 
@@ -32,7 +29,6 @@ def main():
 
     study_sessions = [
         {
-            "session_id": "sess_001",
             "user_id": "USER_001",
             "study_space_id": 44672,
             "building_id": "SLIB",
@@ -46,7 +42,6 @@ def main():
             "session_traffic": 0.32,
         },
         {
-            "session_id": "sess_002",
             "user_id": "USER_002",
             "study_space_id": 34681,
             "building_id": "ALP",
@@ -60,7 +55,6 @@ def main():
             "session_traffic": 0.55,
         },
         {
-            "session_id": "sess_003",
             "user_id": "USER_001",
             "study_space_id": 44672,
             "building_id": "SLIB",
@@ -74,7 +68,6 @@ def main():
             "session_traffic": 0.70,
         },
         {
-            "session_id": "sess_004",
             "user_id": "USER_002",
             "study_space_id": 34681,
             "building_id": "ALP",
@@ -88,7 +81,6 @@ def main():
             "session_traffic": 0.38,
         },
         {
-            "session_id": "sess_005",
             "user_id": "USER_001",
             "study_space_id": 44704,
             "building_id": "GSC",
@@ -102,7 +94,6 @@ def main():
             "session_traffic": 0.05,
         },
         {
-            "session_id": "sess_006",
             "user_id": "USER_001",
             "study_space_id": 44668,
             "building_id": "SLIB",
@@ -116,7 +107,6 @@ def main():
             "session_traffic": 0.43,
         },
         {
-            "session_id": "sess_007",
             "user_id": "USER_002",
             "study_space_id": 44706,
             "building_id": "GSC",
@@ -130,7 +120,6 @@ def main():
             "session_traffic": 0.33,
         },
         {
-            "session_id": "sess_008",
             "user_id": "USER_001",
             "study_space_id": 155343,
             "building_id": "LLIB",
@@ -144,7 +133,6 @@ def main():
             "session_traffic": 0.43,
         },
         {
-            "session_id": "sess_009",
             "user_id": "USER_002",
             "study_space_id": 34682,
             "building_id": "ALP",
@@ -390,7 +378,6 @@ def main():
 
 
 if __name__ == "__main__":
-
     conn = sqlite3.connect(USER_DB)
     cur = conn.cursor()
 
@@ -398,7 +385,6 @@ if __name__ == "__main__":
     schema_sql = SCHEMA_PATH.read_text(encoding="utf-8")
     
     # execute schema
-    clear_spot_feedback(cur)
     cur.executescript(schema_sql)
     conn.commit()
     conn.close()

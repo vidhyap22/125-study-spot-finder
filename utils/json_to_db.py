@@ -10,6 +10,11 @@ import json
 from pathlib import Path
 from datetime import datetime
 
+import sys
+sys.path.append(str(Path(__file__).resolve().parent.parent))
+from personal_model.floor_info import correspondence
+
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 ROOM_DATA_DIR = BASE_DIR / "data" / "scraped_info" / "room_info"
 ROOM_AVAILABILITY_DATA_DIR = BASE_DIR / "data" / "scraped_info" / "room_availability"
@@ -22,6 +27,7 @@ ROOMS_JSON = [
     ROOM_DATA_DIR / "Langson_room_info.json",
     ROOM_DATA_DIR / "Multimedia_room_info.json",
     ROOM_DATA_DIR / "Science_room_info.json",
+    ROOM_DATA_DIR / "manually_collected_room_info.json"
 ]
 
 BUILDINGS_JSON = BUILDINGS_DATA_DIR / "buildings_info.json"
@@ -113,6 +119,38 @@ def insert_room_availability(cursor, availability_data):
                 1 if slot["isAvailable"] else 0,
                 scraped_at
             ))
+            
+def add_floor_column():
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    try:
+        cur.execute("ALTER TABLE study_spaces ADD COLUMN floor TEXT")
+        conn.commit()
+    except sqlite3.OperationalError as e:
+        # column already exists or other schema error
+        if "duplicate column name" not in str(e).lower():
+            raise
+    finally:
+        conn.close()
+
+def store_floor_information():
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+
+    updates = [
+        (building_and_floor[1], study_space_id)   # value[1] is floor text
+        for study_space_id, building_and_floor in correspondence.items()
+    ]
+
+    cur.executemany("""
+        UPDATE study_spaces
+        SET floor = ?
+        WHERE study_space_id = ?
+    """, updates)
+
+    conn.commit()
+    conn.close()
+
 
 def main():
     conn = sqlite3.connect(DB_PATH)

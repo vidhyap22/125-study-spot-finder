@@ -266,28 +266,28 @@ class PersonalModel():
 
         #average_preference
         self.average_preference = self.analyze_stats([self.event_stats["study_session"], self.event_stats["bookmarks"], self.event_stats["spot_detail_views"], self.event_stats["search_filters"]])
-        print("="*50)
-        print("average preference statisic: ", self.average_preference)
+        #print("="*50)
+        #print("average preference statisic: ", self.average_preference)
 
         #preference used for filter
         self.filter_preference = self.user_preference(self.average_preference)
-        print("="*50)
-        print("preference used for recommendation: ", self.filter_preference)
+        #print("="*50)
+        #print("preference used for recommendation: ", self.filter_preference)
         
         #history of room and building
         self.history=self.room_history(self.df_sessions)
-        print("="*50)
-        print("user history: ", self.history)
+        #print("="*50)
+        #print("user history: ", self.history)
 
         #can be used to filter out low rating spot
         self.low_rating = self.low_rating_spot(self.df_feedback)
-        print("="*50)
-        print("low rating study spot: ", self.low_rating)
+        #print("="*50)
+        #print("low rating study spot: ", self.low_rating)
 
         #return the bookmarked spot
         self.bookmarks_spots = self.bookmarks_room(self.df_bookmarks)
-        print("="*50)
-        print("bookmarks: ", self.bookmarks_spots)
+        #print("="*50)
+        #print("bookmarks: ", self.bookmarks_spots)
         
         self.user_context = {
             "event_stats": self.event_stats,
