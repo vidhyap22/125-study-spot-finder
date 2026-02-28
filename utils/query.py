@@ -86,7 +86,12 @@ def search_with_filters(filters):
 
 def check_current_availability_window(db_conn, space_ids, start_time=None, end_time=None):
     """
-    If a space requires reservation, check if it is currently available. We are only focused on corrently avaiable rooms since users are most likely looking for a place to study immediately. In the future, we can expand to allow users to search for rooms available during a specific time window.
+    If a space requires reservation, check if it is currently available.
+    We are only focused on currently available rooms since users are most likely
+    looking for a place to study immediately.
+
+    In the future, we can expand to allow users to search for rooms available
+    during a specific time window.
 
     Logic:
     - If must_reserve = 0 → always available
@@ -99,7 +104,6 @@ def check_current_availability_window(db_conn, space_ids, start_time=None, end_t
         return []
 
     cursor = db_conn.cursor()
-
     placeholders = ",".join("?" * len(space_ids))
 
     # Case 1: Check availability for a specific time window (not currently used)
@@ -115,18 +119,16 @@ def check_current_availability_window(db_conn, space_ids, start_time=None, end_t
             OR (
                 s.must_reserve = 1
                 AND ra.is_available = 1
-                AND ra.start_time <= ?
-                AND ra.end_time >= ?
-                AND datetime(ra.scraped_at) > datetime('now','-24 hours')
+                AND datetime(?) BETWEEN datetime(ra.start_time) AND datetime(ra.end_time)
+                AND datetime(ra.scraped_at) > datetime('now', '-24 hours')
             )
         )
         """
 
-        params = space_ids + [start_time, end_time]
+        params = space_ids + [start_time]
 
-    # Case #2: Check availability for the current time (default)
+    # Case 2: Check availability for the current time (default)
     else:
-
         query = f"""
         SELECT DISTINCT s.study_space_id
         FROM study_spaces s
@@ -138,8 +140,10 @@ def check_current_availability_window(db_conn, space_ids, start_time=None, end_t
             OR (
                 s.must_reserve = 1
                 AND ra.is_available = 1
-                AND datetime('now') BETWEEN ra.start_time AND ra.end_time
-                AND datetime(ra.scraped_at) > datetime('now','-24 hours')
+                AND datetime('now') 
+                    BETWEEN datetime(ra.start_time) 
+                    AND datetime(ra.end_time)
+                AND datetime(ra.scraped_at) > datetime('now', '-24 hours')
             )
         )
         """
@@ -147,10 +151,10 @@ def check_current_availability_window(db_conn, space_ids, start_time=None, end_t
         params = space_ids
 
     cursor.execute(query, params)
-
     available_ids = [row[0] for row in cursor.fetchall()]
 
     return available_ids
+
 
 def get_space_details(db_conn, space_ids, filters=None):
     """
@@ -301,21 +305,22 @@ def progressive_filter_search(filters, avg_stats, debug=False, min_results=10):
     best_so_far = []
 
     while True:
-        matching = search_with_filters(active_filters)
+        matching_ids = search_with_filters(active_filters)
 
         if debug:
             print(f"Current filters: {active_filters}")
-            print(f"Matching count: {len(matching)}")
+            print(f"Matching count: {len(matching_ids)}")
+            print(f"Matching IDs: {matching_ids}")
 
         # Keep track of best result seen so far
-        if len(matching) > len(best_so_far):
-            best_so_far = matching
+        if len(matching_ids) > len(best_so_far):
+            best_so_far = matching_ids
 
         # Stop if we have enough results
-        if len(matching) >= min_results:
+        if len(matching_ids) >= min_results:
             if debug:
                 print("Reached minimum result threshold.")
-            return matching
+            return matching_ids
 
         # Stop if there are no more constraints to relax.
         if not relax_order:

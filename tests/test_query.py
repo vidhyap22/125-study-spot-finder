@@ -50,7 +50,7 @@ def get_user_1_results_for_indoor_and_techenhanced_filter(debug=True):
 
 def get_user_1_results_for_capacity_1to4_and_indoor_filter_updated_with_probs_from_personal_model(debug=True):
     filters = {
-        "capacity_range": "1-4",
+        "capacity_range": "5-10",
         "indoor": True
     }
 
