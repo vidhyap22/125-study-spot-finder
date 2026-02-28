@@ -185,6 +185,7 @@ def get_space_details(db_conn, space_ids, filters=None):
             s.is_indoor,
             s.tech_enhanced,
             s.building_id,
+            s.floor,
             b.name as building_name,
             b.has_printer,
             b.latitude,
@@ -213,10 +214,11 @@ def get_space_details(db_conn, space_ids, filters=None):
             "indoor": bool(row[5]),
             "tech_enhanced": bool(row[6]),
             "building_id": row[7],
-            "building_name": row[8],
-            "has_printer": bool(row[9]) if row[9] is not None else None,
-            "latitude": row[10],
-            "longitude": row[11]
+            "floor": row[8],
+            "building_name": row[9],
+            "has_printer": bool(row[9]) if row[10] is not None else None,
+            "latitude": row[11],
+            "longitude": row[12]
         })
 
     return results
@@ -277,7 +279,17 @@ def display_ranked_results(ranked_spaces, top_n=10):
     
     print(f"\nTop {top_n} Ranked Study Spaces:")
     for space in ranked_spaces[:top_n]:
-        print(f"{space['name']} (Score: {space['score']}) - {space['building_name']} - Capacity: {space['capacity']} - {'Indoor' if space['indoor'] else 'Outdoor'} - {'Tech-Enhanced' if space['tech_enhanced'] else 'Standard'} - {'Talking Allowed' if space['talking_allowed'] else 'Quiet Only'} - {'Must Reserve' if space['must_reserve'] else 'No Reservation Needed'}")
+        floor_text = f" - Floor: {space['floor']}" if space.get("floor") not in [None, "N", ""] else ""
+
+        print(
+            f"{space['name']} (Score: {space['score']})\n "
+            f"  {space['building_name']}{floor_text}\n "
+            f"  Capacity: {space['capacity']}\n"
+            f"  {' Indoor' if space['indoor'] else ' Outdoor'}\n "
+            f"  {'Tech-Enhanced' if space['tech_enhanced'] else 'Standard'}\n "
+            f"  {'Talking Allowed' if space['talking_allowed'] else 'Quiet Only'}\n "
+            f"  {'Must Reserve' if space['must_reserve'] else 'No Reservation Needed'}\n"
+        )
 
 
 def progressive_filter_search(filters, avg_stats, debug=False, min_results=10):

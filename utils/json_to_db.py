@@ -9,6 +9,9 @@ import sqlite3
 import json
 from pathlib import Path
 from datetime import datetime
+
+import sys
+sys.path.append(str(Path(__file__).resolve().parent.parent))
 from personal_model.floor_info import correspondence
 
 
