@@ -67,7 +67,7 @@ def print_filters_and_ranked_results(filters, ranked_spaces_result):
     print("\nApplied Filters:")
     for key, value in filters.items():
         print(f"  {key}: {value}")
-    display_ranked_results(ranked_spaces_result)
+    display_ranked_results(ranked_spaces_result, top_n=50)
 
 def run():
     # print("\n\n===== RANKED RESULTS FOR USER 1 =====")

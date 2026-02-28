@@ -21,7 +21,6 @@ def load_index():
     with open(INDEX_PATH, 'r') as f:
         return json.load(f)
 
-
 def search_with_filters(filters):
     """
     Based on the filters the user has specified, extract the study rooms matching each filter from the inverted index. Then, intersect to get only the study room ids that match all the filters.
@@ -35,65 +34,53 @@ def search_with_filters(filters):
                 "indoor": True,
                 "tech_enhanced": True,
                 "has_printer": True,
-                "building": "LANGSON"
             }
     
     Returns:
         list: List of matching study_space_ids
     """
     indexes = load_index()
-    
-    # Start with all possible study spaces
     result_sets = []
-    
-    # Apply each filter
+
     if "capacity_range" in filters and filters["capacity_range"]:
         key = str(filters["capacity_range"])
         if key in indexes["capacity_ranges"]:
             result_sets.append(set(indexes["capacity_ranges"][key]))
         else:
-            return []  # Invalid capacity range
-    
+            return []
+
     if "talking_allowed" in filters and filters["talking_allowed"] is not None:
         key = str(filters["talking_allowed"]).lower()
         if key in indexes["talking_allowed"]:
             result_sets.append(set(indexes["talking_allowed"][key]))
-    
+
     if "study_room" in filters and filters["study_room"] is not None:
         key = str(filters["study_room"]).lower()
         if key in indexes["study_room"]:
             result_sets.append(set(indexes["study_room"][key]))
-    
+
     if "indoor" in filters and filters["indoor"] is not None:
         key = str(filters["indoor"]).lower()
         if key in indexes["indoor"]:
             result_sets.append(set(indexes["indoor"][key]))
-    
+
     if "tech_enhanced" in filters and filters["tech_enhanced"] is not None:
         key = str(filters["tech_enhanced"]).lower()
         if key in indexes["tech_enhanced"]:
             result_sets.append(set(indexes["tech_enhanced"][key]))
-    
+
     if "has_printer" in filters and filters["has_printer"] is not None:
         key = str(filters["has_printer"]).lower()
         if key in indexes["has_printer"]:
             result_sets.append(set(indexes["has_printer"][key]))
-    
-    if "building" in filters and filters["building"]:
-        key = filters["building"].upper()
-        if key in indexes["building"]:
-            result_sets.append(set(indexes["building"][key]))
-        else:
-            return []  # Invalid building
-    
-    # Intersect all sets to find spaces matching ALL filters
+
     if not result_sets:
         return []
-    
+
     matching_spaces = result_sets[0]
     for result_set in result_sets[1:]:
         matching_spaces = matching_spaces.intersection(result_set)
-    
+
     return list(matching_spaces)
 
 
@@ -165,7 +152,7 @@ def check_current_availability_window(db_conn, space_ids, start_time=None, end_t
 
     return available_ids
 
-def get_space_details(db_conn, space_ids):
+def get_space_details(db_conn, space_ids, filters=None):
     """
     Fetch full details for matching spaces
     
@@ -177,11 +164,11 @@ def get_space_details(db_conn, space_ids):
     """
     if not space_ids:
         return []
-    
+
     cursor = db_conn.cursor()
-    
     placeholders = ','.join('?' * len(space_ids))
-    cursor.execute(f"""
+
+    query = f"""
         SELECT 
             s.study_space_id,
             s.name,
@@ -198,8 +185,16 @@ def get_space_details(db_conn, space_ids):
         FROM study_spaces s
         LEFT JOIN buildings b ON s.building_id = b.building_id
         WHERE s.study_space_id IN ({placeholders})
-    """, space_ids)
-    
+    """
+
+    params = space_ids
+
+    if filters and "building" in filters and filters["building"]:
+        query += " AND UPPER(b.name) = ?"
+        params = space_ids + [filters["building"].upper()]
+
+    cursor.execute(query, params)
+
     results = []
     for row in cursor.fetchall():
         results.append({
@@ -216,8 +211,55 @@ def get_space_details(db_conn, space_ids):
             "latitude": row[10],
             "longitude": row[11]
         })
-    
+
     return results
+
+
+def calculate_distance(lat1, lon1, lat2, lon2):
+    R = 6371  # km
+    phi1 = math.radians(lat1)
+    phi2 = math.radians(lat2)
+    delta_phi = math.radians(lat2 - lat1)
+    delta_lambda = math.radians(lon2 - lon1)
+
+    a = math.sin(delta_phi/2)**2 + \
+        math.cos(phi1) * math.cos(phi2) * math.sin(delta_lambda/2)**2
+
+    c = 2 * math.atan2(math.sqrt(a), math.sqrt(1-a))
+    return R * c  # distance in km
+
+
+def compute_final_score(space, probability_map, user_location=None, 
+                        prob_weight=0.8, distance_weight=0.2, 
+                        distance_decay_km=2):
+    """
+    Compute final ranking score for a study space.
+
+    Args:
+        space (dict): Study space details
+        probability_map (dict): {space_id: probability_score}
+        user_location (dict): {"lat": float, "lon": float}
+        prob_weight (float): Weight for personalization score
+        distance_weight (float): Weight for distance boost
+        distance_decay_km (float): Distance window for normalization
+
+    Returns:
+        float: Final weighted score
+    """
+
+    spot_id = space["id"]
+    base_score = probability_map.get(spot_id, 0.0)
+
+    distance_score = 0.0
+    if (user_location and space.get("latitude") is not None and space.get("longitude") is not None):
+        distance_km = calculate_distance(user_location["latitude"], user_location["longitude"], space["latitude"], space["longitude"])
+
+        distance_score = max(0, 1 - (distance_km / distance_decay_km))
+
+    final_score = (prob_weight * base_score) + (distance_weight * distance_score)
+
+    return round(final_score, 4)
+
 
 def display_ranked_results(ranked_spaces, top_n=10):
     """
@@ -227,9 +269,16 @@ def display_ranked_results(ranked_spaces, top_n=10):
     for space in ranked_spaces[:top_n]:
         print(f"{space['name']} (Score: {space['score']}) - {space['building_name']} - Capacity: {space['capacity']} - {'Indoor' if space['indoor'] else 'Outdoor'} - {'Tech-Enhanced' if space['tech_enhanced'] else 'Standard'} - {'Talking Allowed' if space['talking_allowed'] else 'Quiet Only'} - {'Must Reserve' if space['must_reserve'] else 'No Reservation Needed'}")
 
+
 def retrieve_ranked_study_spaces(user_id, filters, user_location=None, debug=False):
     db_conn = sqlite3.connect(DB_PATH)
     personal_model_db_conn = sqlite3.connect(PERSONAL_MODEL_DB_PATH)
+
+    if user_location == None:
+        if debug:
+            print("No user location provided. Assigning default.")
+        user_location = {"longitude": -117.8417469762085, "latitude": 33.64753724953823}  
+
 
     # Step 1: Search by the filters the user inputs into the frontend.
     matching_ids = search_with_filters(filters)
@@ -251,29 +300,29 @@ def retrieve_ranked_study_spaces(user_id, filters, user_location=None, debug=Fal
     if not available_ids:
         if debug:
             print("No study spaces are currently available based on the filters and availability.")
-        return []
+        #return [] # TODO: uncomment
     
     # Step 3: Fetch full details for the currently available study spaces.
-    space_details = get_space_details(db_conn, available_ids)
+    space_details = get_space_details(db_conn, matching_ids) # TODO: change matching_ids to available_ids
 
     # Step 4: Use personal model signals from the probability model to adjust the ranking of the study spaces. This allows us to personalize the results based on the user's past interactions and preferences.
     personal_model = PersonalModel(user_id, USER_DB=PERSONAL_MODEL_DB_PATH, APP_DB=DB_PATH)
     personal_model.user_context_for_ranking()
-    probability_results = personal_model.probability(available_ids)
+    probability_results = personal_model.probability(matching_ids) # TODO: change matching_ids to available_ids
     if debug:
         print(f"\nPersonal model probabilities for User (user_id={user_id}):")
         print(probability_results)
     probability_map = {spot_id: score for spot_id, score in probability_results}
 
-    # Step 5: Attach score after weighting personal model signals to each study space.
+    # Step 5: Attach score after weighting personal model signals to each study space and take proximity of study space into account.
     for space in space_details:
-        spot_id = space["id"]
-        space["score"] = round(probability_map.get(spot_id, 0.0), 4)
+        space["score"] = compute_final_score(space, probability_map, user_location)
     
     # Step 6: Sort the study spaces by the combined score (filter-based + personal model) to get a personalized ranking of study spaces for the user.
     ranked_spaces = sorted(space_details, key=lambda x: x["score"], reverse=True)
 
     return ranked_spaces
+
 
 def get_available_buildings():
     """Get list of all available buildings"""

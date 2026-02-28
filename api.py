@@ -42,6 +42,7 @@ def search_spaces():
 
         filters = data.get('filters', {})
         user_id = data.get('user_id')  
+        user_location = data.get("user_location")  # expecting {latitude: float, longitude: float}
         debug = data.get('debug', False)
 
         if not user_id:
@@ -54,6 +55,7 @@ def search_spaces():
         results = retrieve_ranked_study_spaces(
             user_id=user_id,
             filters=filters,
+            user_location=user_location,
             debug=debug
         )
 
