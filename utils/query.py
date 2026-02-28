@@ -265,6 +265,9 @@ def display_ranked_results(ranked_spaces, top_n=10):
     """
     Display ranked results in a user-friendly format
     """
+    if not ranked_spaces:
+        return 
+    
     print(f"\nTop {top_n} Ranked Study Spaces:")
     for space in ranked_spaces[:top_n]:
         print(f"{space['name']} (Score: {space['score']}) - {space['building_name']} - Capacity: {space['capacity']} - {'Indoor' if space['indoor'] else 'Outdoor'} - {'Tech-Enhanced' if space['tech_enhanced'] else 'Standard'} - {'Talking Allowed' if space['talking_allowed'] else 'Quiet Only'} - {'Must Reserve' if space['must_reserve'] else 'No Reservation Needed'}")
@@ -273,12 +276,6 @@ def display_ranked_results(ranked_spaces, top_n=10):
 def retrieve_ranked_study_spaces(user_id, filters, user_location=None, debug=False):
     db_conn = sqlite3.connect(DB_PATH)
     personal_model_db_conn = sqlite3.connect(PERSONAL_MODEL_DB_PATH)
-
-    if user_location == None:
-        if debug:
-            print("No user location provided. Assigning default.")
-        user_location = {"longitude": -117.8417469762085, "latitude": 33.64753724953823}  
-
 
     # Step 1: Search by the filters the user inputs into the frontend.
     matching_ids = search_with_filters(filters)
@@ -300,15 +297,15 @@ def retrieve_ranked_study_spaces(user_id, filters, user_location=None, debug=Fal
     if not available_ids:
         if debug:
             print("No study spaces are currently available based on the filters and availability.")
-        #return [] # TODO: uncomment
+        return 
     
     # Step 3: Fetch full details for the currently available study spaces.
-    space_details = get_space_details(db_conn, matching_ids) # TODO: change matching_ids to available_ids
+    space_details = get_space_details(db_conn, available_ids)
 
     # Step 4: Use personal model signals from the probability model to adjust the ranking of the study spaces. This allows us to personalize the results based on the user's past interactions and preferences.
     personal_model = PersonalModel(user_id, USER_DB=PERSONAL_MODEL_DB_PATH, APP_DB=DB_PATH)
     personal_model.user_context_for_ranking()
-    probability_results = personal_model.probability(matching_ids) # TODO: change matching_ids to available_ids
+    probability_results = personal_model.probability(available_ids)
     if debug:
         print(f"\nPersonal model probabilities for User (user_id={user_id}):")
         print(probability_results)
