@@ -7,7 +7,10 @@ import json
 import math
 from pathlib import Path
 from datetime import datetime
+import sys
 from dateutil import parser  
+ROOT_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(str(ROOT_DIR))
 from personal_model.personal_model_process import PersonalModel
 from personal_model.floor_info import correspondence
 
@@ -473,3 +476,5 @@ def store_floor_information():
     conn.commit()
     conn.close()
 
+add_floor_column()
+store_floor_information()
