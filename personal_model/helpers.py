@@ -155,3 +155,4 @@ def get_library_traffic(building, spot_id, start_time, end_time, start_date, end
             return non_library_traffic(start_date, start_time, end_date, end_time)
         else:
             return result["avg_traffic"]
+        
