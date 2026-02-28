@@ -22,6 +22,7 @@ ROOMS_JSON = [
     ROOM_DATA_DIR / "Langson_room_info.json",
     ROOM_DATA_DIR / "Multimedia_room_info.json",
     ROOM_DATA_DIR / "Science_room_info.json",
+    ROOM_DATA_DIR / "manually_collected_room_info.json"
 ]
 
 BUILDINGS_JSON = BUILDINGS_DATA_DIR / "buildings_info.json"

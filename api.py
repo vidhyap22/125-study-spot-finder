@@ -13,6 +13,7 @@ from utils.query import update_data
 sys.path.append(str(Path(__file__).parent / "utils"))
 
 from utils.query import retrieve_ranked_study_spaces, get_available_buildings
+from utils.update_room_availability import update_availability
 from personal_model.store_personal_model_data import add_user, delete_bookmarks, store_bookmarks, store_filter_info, store_spot_feedback, store_spot_view, store_study_session, check_bookmark_status, get_bookmarked_space_info
 
 app = Flask(__name__)
@@ -42,6 +43,14 @@ def get_buildings():
             "error": str(e)
         }), 500
 
+@app.route('/api/update-availability', methods=['POST'])
+def update_availability():
+    try:
+        update_availability()
+        return jsonify({"success": True})
+    except Exception as e:
+        return jsonify({"success": False, "error": str(e)}), 500
+
 @app.route('/api/search', methods=['POST'])
 def search_spaces():
     try:
@@ -49,6 +58,7 @@ def search_spaces():
 
         filters = data.get('filters', {})
         user_id = data.get('user_id')  
+        user_location = data.get("user_location")  # expecting {latitude: float, longitude: float}
         debug = data.get('debug', False)
 
         if not user_id:
@@ -61,6 +71,7 @@ def search_spaces():
         results = retrieve_ranked_study_spaces(
             user_id=user_id,
             filters=filters,
+            user_location=user_location,
             debug=debug
         )
 
