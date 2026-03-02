@@ -178,14 +178,15 @@ class PersonalModel():
         }
         return stats
     
+
     def analyze_stats(self, event_stats_list):
         EVENT_WEIGHTS = {
-        "study_sessions": 1.0,
-        "bookmarks": 1.5,
-        "spot_detail_views": 0.5,
-        "search_filters": 0.5,
-        } 
-        
+            "study_sessions": 1.0,
+            "bookmarks": 1.5,
+            "spot_detail_views": 0.5,
+            "search_filters": 0.5,
+        }
+
         ATTRS = [
             "avg_capacity",
             "min_capacity",
@@ -200,24 +201,24 @@ class PersonalModel():
         weighted_sum = {a: 0.0 for a in ATTRS}
         total_weight = 0.0
         average_traffic = None
+
         for stats in event_stats_list:
             event = stats["event"]
             w = EVENT_WEIGHTS.get(event)
 
-            # skip events we don't care about
             if w is None:
                 continue
 
             if event == "study_sessions":
-                average_traffic = stats["session_traffic"]
+                average_traffic = stats.get("session_traffic")
 
-            # skip empty / invalid stats
             if stats["count"] == 0:
                 continue
 
             for a in ATTRS:
                 val = stats.get(a)
-                if val is not None:
+
+                if val is not None and not (isinstance(val, float) and math.isnan(val)):
                     weighted_sum[a] += w * val
 
             total_weight += w
@@ -225,10 +226,17 @@ class PersonalModel():
         if total_weight == 0:
             return {a: None for a in ATTRS}
 
-        result = {a: weighted_sum[a] / total_weight for a in ATTRS}
-        result["library_traffic"] = average_traffic 
-        return result
+        result = {}
+        for a in ATTRS:
+            value = weighted_sum[a] / total_weight
 
+            if isinstance(value, float) and math.isnan(value):
+                result[a] = None
+            else:
+                result[a] = value
+
+        result["library_traffic"] = average_traffic
+        return result
     def user_preference(self, average_preference):
         #process user preference
         preference = {}

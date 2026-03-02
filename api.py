@@ -8,7 +8,7 @@ import sys
 from pathlib import Path
 from apscheduler.schedulers.background import BackgroundScheduler
 from apscheduler.triggers.interval import IntervalTrigger
-from utils.query import update_data
+from automation.update_tasks import update_data
 # Add utils to path
 sys.path.append(str(Path(__file__).parent / "utils"))
 
@@ -377,52 +377,6 @@ def spot_view_todata():
             "error": str(e)
         }), 500
 
-@app.route('/api/personal_model/spot_view', methods=['POST'])
-def spot_view_todata():
-    try:
-        data = request.get_json(silent=True)
-
-        if not data:
-            return jsonify({
-                "success": False,
-                "error": "No JSON body provided"
-            }), 400
-
-        user_id = data.get("user_id")
-        view = data.get("view")
-        debug = data.get("debug", False)
-        
-        if not user_id:
-            return jsonify({
-                "success": False,
-                "error": "user_id is required"
-            }), 400
-
-        if not isinstance(view, dict):
-            return jsonify({
-                "success": False,
-                "error": "view must be a JSON object"
-            }), 400
-
-        fields = view.keys()
-        if "study_space_id" not in fields or "building_id" not in fields or "opened_at" not in fields:
-           return jsonify({
-                "success": False,
-                "error": "view miss required fields"
-            }), 400 
-
-        print("Received view:", view)
-        store_spot_view(user_id, view, debug)
-        return jsonify({
-            "success": True,
-            "received_view": view
-        }), 200
-
-    except Exception as e:
-        return jsonify({
-            "success": False,
-            "error": str(e)
-        }), 500
 
 @app.route('/api/personal_model/spot_feedback', methods=['POST'])
 def spot_feedback_todata():
@@ -492,53 +446,6 @@ def get_study_session_history():
         return jsonify({
             "success": True,
             "received_user": user_id
-        }), 200
-
-    except Exception as e:
-        return jsonify({
-            "success": False,
-            "error": str(e)
-        }), 500
-
-@app.route('/api/personal_model/spot_feedback', methods=['POST'])
-def spot_feedback_todata():
-    try:
-        data = request.get_json(silent=True)
-
-        if not data:
-            return jsonify({
-                "success": False,
-                "error": "No JSON body provided"
-            }), 400
-
-        user_id = data.get("user_id")
-        feedback = data.get("feedback")
-        debug = data.get("debug", False)
-        
-        if not user_id:
-            return jsonify({
-                "success": False,
-                "error": "user_id is required"
-            }), 400
-
-        if not isinstance(feedback, dict):
-            return jsonify({
-                "success": False,
-                "error": "feedback must be a JSON object"
-            }), 400
-
-        fields = feedback.keys()
-        if "study_space_id" not in fields or "building_id" not in fields or "rating" not in fields or "updated_at" not in fields:
-           return jsonify({
-                "success": False,
-                "error": "feedback miss required fields"
-            }), 400 
-
-        print("Received feedback:", feedback)
-        store_spot_feedback(user_id, feedback, debug)
-        return jsonify({
-            "success": True,
-            "received_feedback": feedback
         }), 200
 
     except Exception as e:
