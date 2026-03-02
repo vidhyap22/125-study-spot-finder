@@ -199,65 +199,6 @@ def check_next_slot_availability_window(db_conn, space_ids):
     return [row[0] for row in cursor.fetchall()]
 
 
-# def check_current_availability_window(db_conn, space_ids, start_time=None, end_time=None):
-#     """
-#     If a space requires reservation, check if it is currently available.
-#     We are only focused on currently available rooms since users are most likely
-#     looking for a place to study immediately.
-
-#     Logic:
-#     - If must_reserve = 0 → always available
-#     - If must_reserve = 1 → must have a valid availability window
-#     """
-#     if not space_ids:
-#         return []
-
-#     cursor = db_conn.cursor()
-#     placeholders = ",".join("?" * len(space_ids))
-
-#     if start_time and end_time:
-#         query = f"""
-#         SELECT DISTINCT s.study_space_id
-#         FROM study_spaces s
-#         LEFT JOIN room_availability ra
-#             ON s.study_space_id = ra.study_space_id
-#         WHERE s.study_space_id IN ({placeholders})
-#         AND (
-#             s.must_reserve = 0
-#             OR (
-#                 s.must_reserve = 1
-#                 AND ra.is_available = 1
-#                 AND datetime(?) BETWEEN datetime(ra.start_time) AND datetime(ra.end_time)
-#                 AND datetime(ra.scraped_at) > datetime('now', '-24 hours')
-#             )
-#         )
-#         """
-#         params = space_ids + [start_time]
-#     else:
-#         query = f"""
-#         SELECT DISTINCT s.study_space_id
-#         FROM study_spaces s
-#         LEFT JOIN room_availability ra
-#             ON s.study_space_id = ra.study_space_id
-#         WHERE s.study_space_id IN ({placeholders})
-#         AND (
-#             s.must_reserve = 0
-#             OR (
-#                 s.must_reserve = 1
-#                 AND ra.is_available = 1
-#                 AND datetime('now')
-#                     BETWEEN datetime(ra.start_time)
-#                     AND datetime(ra.end_time)
-#                 AND datetime(ra.scraped_at) > datetime('now', '-24 hours')
-#             )
-#         )
-#         """
-#         params = space_ids
-
-#     cursor.execute(query, params)
-#     return [row[0] for row in cursor.fetchall()]
-
-
 def get_space_details(db_conn, space_ids, filters=None):
     """
     Fetch full details for matching spaces.
@@ -532,7 +473,7 @@ def retrieve_ranked_study_spaces(user_id, filters=None, user_location=None, debu
     # ------------------------------------------------------------------
     if debug:
         print(f'[retrieve] STEP 1')
-        
+
     if not filters or all(v in [None, "", False] for v in filters.values()):
         if debug:
             print("[retrieve] No filters specified. Returning closest available rooms.")
