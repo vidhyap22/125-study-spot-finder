@@ -9,6 +9,11 @@ import sqlite3
 import json
 from pathlib import Path
 from datetime import datetime
+import sys
+
+ROOT_DIR = Path(__file__).resolve().parent.parent
+sys.path.append(str(ROOT_DIR))
+
 from personal_model.floor_info import correspondence
 
 
@@ -130,6 +135,24 @@ def add_floor_column():
     finally:
         conn.close()
 
+def store_floor_info_manually_collected():
+    rooms = load_json(ROOMS_JSON[-1])
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+
+    for r in rooms:
+        cur.execute("""
+            UPDATE study_spaces
+            SET floor = ?
+            WHERE study_space_id = ?
+        """, (
+            r.get("floor"),   # safer than manual key check
+            r["id"]
+    ))
+        
+    conn.commit()
+    conn.close()
+    
 def store_floor_information():
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
@@ -154,23 +177,25 @@ def main():
     cursor = conn.cursor()
 
     print("🗄️  Populating database...")
+
     print(f'Inserting buildings...')
     buildings = load_json(BUILDINGS_JSON)
     insert_buildings(cursor, buildings)
     print(f"  Inserted {len(buildings)} buildings")
-    
+   
     print(f'Inserting study rooms...')
     for json_file in ROOMS_JSON:
         rooms = load_json(json_file)
         insert_study_spaces(cursor, rooms)
         print(f"  Inserted {len(rooms)} study spaces from {json_file.name}")
     
+
     print(f'Inserting room availability...')
     for json_file in ROOM_AVAILABILITY_JSON:
             room_availability = load_json(json_file)
             insert_room_availability(cursor, room_availability)
             print(f"  Inserted {len(room_availability)} room's availability from {json_file.name}")
-
+    
     print("🗄️  Done populating database...")
 
     conn.commit()
@@ -178,6 +203,10 @@ def main():
 
     print("  Database populated successfully")
 
+    print("  Add floor information into database")
+    add_floor_column()
+    store_floor_information()
+    store_floor_info_manually_collected()
 
 if __name__ == "__main__":
     main()

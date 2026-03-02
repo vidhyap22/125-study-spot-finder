@@ -37,7 +37,8 @@
         "tech_enhanced": true,
         "building_id": "ICS2",
         "is_indoor": true,
-        "is_talking_allowed": true
+        "is_talking_allowed": true,
+        "floor": "1st Floor"
     },
     {
         "id": 5,
@@ -47,7 +48,8 @@
         "tech_enhanced": true,
         "building_id": "ET",
         "is_indoor": false,
-        "is_talking_allowed": true
+        "is_talking_allowed": true,
+        "floor": "3rd Floor"
     },
     {
         "id": 6,
@@ -57,7 +59,8 @@
         "tech_enhanced": false,
         "building_id": "SE",
         "is_indoor": true,
-        "is_talking_allowed": true
+        "is_talking_allowed": true,
+        "floor": "1st Floor"
     },
     {
         "id": 7,
@@ -67,16 +70,356 @@
         "tech_enhanced": false,
         "building_id": "ISEB",
         "is_indoor": true,
-        "is_talking_allowed": true
+        "is_talking_allowed": true,
+        "floor": "2nd Floor"
     },
     {
         "id": 8,
-        "name": "2nd Floor Interdisciplinary Science and Engineering Building",
+        "name": "Outside Interdisciplinary Science and Engineering Building",
         "capacity": 100,
         "must_reserve": false,
         "tech_enhanced": false,
         "building_id": "ISEB",
         "is_indoor": false,
         "is_talking_allowed": true
+    },
+    {
+        "id": 9,
+        "name": "2nd Floor Science Library",
+        "capacity": 100,
+        "must_reserve": false,
+        "tech_enhanced": true,
+        "building_id": "SLIB",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "2nd Floor - Active Study Zone"
+    },
+    {
+        "id": 10,
+        "name": "3rd Floor Science Library",
+        "capacity": 50,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "SLIB",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "3rd Floor - Mezzanine"
+    },
+    {
+        "id": 11,
+        "name": "4th Floor Science Library",
+        "capacity": 100,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "SLIB",
+        "is_indoor": true,
+        "is_talking_allowed": false,
+        "floor": "4th Floor"
+    },
+    {
+        "id": 12,
+        "name": "5th Floor Science Library",
+        "capacity": 60,
+        "must_reserve": false,
+        "tech_enhanced": true,
+        "building_id": "SLIB",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "5th Floor"
+    },
+    {
+        "id": 13,
+        "name": "1st Floor Langson Library",
+        "capacity": 60,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "LLIB",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "1st Floor"
+    },
+    {
+        "id": 14,
+        "name": "2nd Floor Langson Library",
+        "capacity": 50,
+        "must_reserve": false,
+        "tech_enhanced": true,
+        "building_id": "LLIB",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "2nd Floor"
+    },
+    {
+        "id": 15,
+        "name": "3rd Floor Langson Library",
+        "capacity": 100,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "LLIB",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "3rd Floor - Collaboration Zone"
+    },
+    {
+        "id": 16,
+        "name": "2nd Floor Gateway Study Center",
+        "capacity": 100,
+        "must_reserve": false,
+        "tech_enhanced": true,
+        "building_id": "GSC",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "2nd Floor"
+    },
+    {
+        "id": 17,
+        "name": "Courtyard Study Lounge",
+        "capacity": 70,
+        "must_reserve": false,
+        "tech_enhanced": true,
+        "building_id": "SC CCA",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "Level 1 · Room B109"
+    },
+    {
+        "id": 18,
+        "name": "Commuter Lounge",
+        "capacity": 10,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "SC CCA",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "Level 1 · Room A138 (Inside the Information Center)"
+    },
+    {
+        "id": 19,
+        "name": "Atrium Hallway Study Pods",
+        "capacity": 4,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "SC CCA",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "Level 1 · Next to the Thomas & Lillian Ma Garden Study Atrium"
+    },
+    {
+        "id": 20,
+        "name": "Crescent Hallway",
+        "capacity": 4,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "SC CCA",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "Level 1 · Outside Crescent Bay Rooms"
+    },
+    {
+        "id": 21,
+        "name": "Gallery Lounge",
+        "capacity": 10,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "SC CCA",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "Level 1 · Room A132"
+    },
+    {
+        "id": 22,
+        "name": "Hillside Lounge",
+        "capacity": 25,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "SC CCA",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "Level 2 · Room B203"
+    },
+    {
+        "id": 23,
+        "name": "Terrace Lobby",
+        "capacity": 25,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "SC CCA",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "Level 2 · Room A217"
+    },
+    {
+        "id": 24,
+        "name": "Terrace Lounge",
+        "capacity": 25,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "SC CCA",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "Level 2 · Room A228"
+    },
+    {
+        "id": 25,
+        "name": "Thomas & Lillian Ma Garden Study Atrium",
+        "capacity": 10,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "SC CCA",
+        "is_indoor": false,
+        "is_talking_allowed": true,
+        "floor": "Level 1 · Next to Courtyard Study Lounge"
+    },
+    {
+        "id": 26,
+        "name": "West Courtyard Lounge",
+        "capacity": 20,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "SC CCA",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "Level 1 · Room A130"
+    },
+    {
+        "id": 27,
+        "name": "Outside of Student Center",
+        "capacity": 50,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "SC CCA",
+        "is_indoor": false,
+        "is_talking_allowed": true
+    },
+    {
+        "id": 28,
+        "name": "1st Floor (Donald) Bren Hall",
+        "capacity": 5,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "DBH",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "1st Floor"
+    },
+    {
+        "id": 29,
+        "name": "2nd Floor (Donald) Bren Hall",
+        "capacity": 10,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "DBH",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "2nd Floor"
+    },
+    {
+        "id": 30,
+        "name": "3rd Floor (Donald) Bren Hall",
+        "capacity": 10,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "DBH",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "3rd Floor"
+    },
+    {
+        "id": 31,
+        "name": "4th Floor (Donald) Bren Hall",
+        "capacity": 10,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "DBH",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "4th Floor"
+    },
+    {
+        "id": 32,
+        "name": "Outside Langson Library",
+        "capacity": 20,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "LLIB",
+        "is_indoor": false,
+        "is_talking_allowed": true
+    },
+    {
+        "id": 33,
+        "name": "Outside Humanities Hall 1st floor",
+        "capacity": 10,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "HH",
+        "is_indoor": false,
+        "is_talking_allowed": true,
+        "floor": "1st Floor"
+    },
+    {
+        "id": 34,
+        "name": "Outside Humanities Hall 2nd floor",
+        "capacity": 10,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "HH",
+        "is_indoor": false,
+        "is_talking_allowed": true,
+        "floor": "2nd Floor"
+    },
+    {
+        "id": 35,
+        "name": "Outside Humanities Hall 2nd floor",
+        "capacity": 10,
+        "must_reserve": false,
+        "tech_enhanced": false,
+        "building_id": "HH",
+        "is_indoor": false,
+        "is_talking_allowed": true,
+        "floor": "2nd Floor"
+    },
+    {
+        "id": 36,
+        "name": "1st Floor Anteater Learning Pavilion",
+        "capacity": 20,
+        "must_reserve": false,
+        "tech_enhanced": true,
+        "building_id": "ALP",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "1st Floor"
+    },
+    {
+        "id": 37,
+        "name": "2nd Floor Anteater Learning Pavilion",
+        "capacity": 20,
+        "must_reserve": false,
+        "tech_enhanced": true,
+        "building_id": "ALP",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "2nd Floor"
+    },
+    {
+        "id": 38,
+        "name": "3rd Floor Anteater Learning Pavilion",
+        "capacity": 20,
+        "must_reserve": false,
+        "tech_enhanced": true,
+        "building_id": "ALP",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "3rd Floor"
+    },
+    {
+        "id": 37,
+        "name": "2nd Floor Anteater Learning Pavilion",
+        "capacity": 20,
+        "must_reserve": false,
+        "tech_enhanced": true,
+        "building_id": "ALP",
+        "is_indoor": true,
+        "is_talking_allowed": true,
+        "floor": "2nd Floor"
     }
 ]
