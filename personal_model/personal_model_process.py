@@ -178,14 +178,15 @@ class PersonalModel():
         }
         return stats
     
+
     def analyze_stats(self, event_stats_list):
         EVENT_WEIGHTS = {
-        "study_sessions": 1.0,
-        "bookmarks": 1.5,
-        "spot_detail_views": 0.5,
-        "search_filters": 0.5,
-        } 
-        
+            "study_sessions": 1.0,
+            "bookmarks": 1.5,
+            "spot_detail_views": 0.5,
+            "search_filters": 0.5,
+        }
+
         ATTRS = [
             "avg_capacity",
             "min_capacity",
@@ -200,24 +201,24 @@ class PersonalModel():
         weighted_sum = {a: 0.0 for a in ATTRS}
         total_weight = 0.0
         average_traffic = None
+
         for stats in event_stats_list:
             event = stats["event"]
             w = EVENT_WEIGHTS.get(event)
 
-            # skip events we don't care about
             if w is None:
                 continue
 
             if event == "study_sessions":
-                average_traffic = stats["session_traffic"]
+                average_traffic = stats.get("session_traffic")
 
-            # skip empty / invalid stats
             if stats["count"] == 0:
                 continue
 
             for a in ATTRS:
                 val = stats.get(a)
-                if val is not None:
+
+                if val is not None and not (isinstance(val, float) and math.isnan(val)):
                     weighted_sum[a] += w * val
 
             total_weight += w
@@ -225,10 +226,17 @@ class PersonalModel():
         if total_weight == 0:
             return {a: None for a in ATTRS}
 
-        result = {a: weighted_sum[a] / total_weight for a in ATTRS}
-        result["library_traffic"] = average_traffic 
-        return result
+        result = {}
+        for a in ATTRS:
+            value = weighted_sum[a] / total_weight
 
+            if isinstance(value, float) and math.isnan(value):
+                result[a] = None
+            else:
+                result[a] = value
+
+        result["library_traffic"] = average_traffic
+        return result
     def user_preference(self, average_preference):
         #process user preference
         preference = {}
@@ -266,28 +274,28 @@ class PersonalModel():
 
         #average_preference
         self.average_preference = self.analyze_stats([self.event_stats["study_session"], self.event_stats["bookmarks"], self.event_stats["spot_detail_views"], self.event_stats["search_filters"]])
-        print("="*50)
-        print("average preference statisic: ", self.average_preference)
+        #print("="*50)
+        #print("average preference statisic: ", self.average_preference)
 
         #preference used for filter
         self.filter_preference = self.user_preference(self.average_preference)
-        print("="*50)
-        print("preference used for recommendation: ", self.filter_preference)
+        #print("="*50)
+        #print("preference used for recommendation: ", self.filter_preference)
         
         #history of room and building
         self.history=self.room_history(self.df_sessions)
-        print("="*50)
-        print("user history: ", self.history)
+        #print("="*50)
+        #print("user history: ", self.history)
 
         #can be used to filter out low rating spot
         self.low_rating = self.low_rating_spot(self.df_feedback)
-        print("="*50)
-        print("low rating study spot: ", self.low_rating)
+        #print("="*50)
+        #print("low rating study spot: ", self.low_rating)
 
         #return the bookmarked spot
         self.bookmarks_spots = self.bookmarks_room(self.df_bookmarks)
-        print("="*50)
-        print("bookmarks: ", self.bookmarks_spots)
+        #print("="*50)
+        #print("bookmarks: ", self.bookmarks_spots)
         
         self.user_context = {
             "event_stats": self.event_stats,
