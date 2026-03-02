@@ -400,8 +400,13 @@ export async function apiSearchSpaces(req: SearchRequest): Promise<SearchRespons
 			body: {
 				user_id: req.user_id,
 				filters: req.filters ?? {},
-				user_latitude: userLongitude,
-				user_longitude: userLongitude,
+				user_location:
+				userLatitude !== null && userLongitude !== null
+					? {
+							latitude: userLatitude,
+							longitude: userLongitude,
+					  }
+					: null,
 				debug: req.debug ?? false,
 			},
 		}),
