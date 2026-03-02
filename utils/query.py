@@ -6,7 +6,8 @@ import sqlite3
 import json
 import math
 from pathlib import Path
-from datetime import datetime
+from datetime import datetime, timezone, timedelta
+import pytz
 import sys
 from dateutil import parser  
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -88,15 +89,35 @@ def search_with_filters(filters):
     return list(matching_spaces)
 
 
+def get_next_slot_start_pacific() -> str:
+    """
+    Returns the next 30-min slot start in Pacific time as an ISO string
+    matching the DB format: 2026-03-02T15:30:00-08:00
+    """
+    pacific = pytz.timezone("America/Los_Angeles")
+    now = datetime.now(pacific)
+    
+    if now.minute < 30:
+        next_slot = now.replace(minute=30, second=0, microsecond=0)
+    else:
+        next_slot = (now + timedelta(hours=1)).replace(minute=0, second=0, microsecond=0)
+    
+    return next_slot.strftime("%Y-%m-%dT%H:%M:%S%z").replace("+0800", "+08:00").replace("-0800", "-08:00")
+
+
+def get_end_of_day_pacific() -> str:
+    """
+    Returns 23:30:00 Pacific today — the last valid slot start.
+    """
+    pacific = pytz.timezone("America/Los_Angeles")
+    now = datetime.now(pacific)
+    end_of_day = now.replace(hour=23, minute=30, second=0, microsecond=0)
+    return end_of_day.strftime("%Y-%m-%dT%H:%M:%S%z").replace("+0800", "+08:00").replace("-0800", "-08:00")
+
+
 def check_current_availability_window(db_conn, space_ids, start_time=None, end_time=None):
     """
-    If a space requires reservation, check if it is currently available.
-    We are only focused on currently available rooms since users are most likely
-    looking for a place to study immediately.
-
-    Logic:
-    - If must_reserve = 0 → always available
-    - If must_reserve = 1 → must have a valid availability window
+    Checks availability for spaces that require reservation starting from the next open 30 minute time slot to the end of day (11:30 PM Pacific).
     """
     if not space_ids:
         return []
@@ -104,45 +125,76 @@ def check_current_availability_window(db_conn, space_ids, start_time=None, end_t
     cursor = db_conn.cursor()
     placeholders = ",".join("?" * len(space_ids))
 
-    if start_time and end_time:
-        query = f"""
-        SELECT DISTINCT s.study_space_id
-        FROM study_spaces s
-        LEFT JOIN room_availability ra
-            ON s.study_space_id = ra.study_space_id
-        WHERE s.study_space_id IN ({placeholders})
-        AND (
-            s.must_reserve = 0
-            OR (
-                s.must_reserve = 1
-                AND ra.is_available = 1
-                AND datetime(?) BETWEEN datetime(ra.start_time) AND datetime(ra.end_time)
-                AND datetime(ra.scraped_at) > datetime('now', '-24 hours')
-            )
-        )
-        """
-        params = space_ids + [start_time]
-    else:
-        query = f"""
-        SELECT DISTINCT s.study_space_id
-        FROM study_spaces s
-        LEFT JOIN room_availability ra
-            ON s.study_space_id = ra.study_space_id
-        WHERE s.study_space_id IN ({placeholders})
-        AND (
-            s.must_reserve = 0
-            OR (
-                s.must_reserve = 1
-                AND ra.is_available = 1
-                AND datetime('now')
-                    BETWEEN datetime(ra.start_time)
-                    AND datetime(ra.end_time)
-                AND datetime(ra.scraped_at) > datetime('now', '-24 hours')
-            )
-        )
-        """
-        params = space_ids
+    slot_start = start_time if start_time else get_next_slot_start_pacific()
+    slot_end = get_end_of_day_pacific()
 
+    # Compare raw strings directly — no datetime() conversion, stays in Pacific
+    query = f"""
+    SELECT DISTINCT s.study_space_id
+    FROM study_spaces s
+    LEFT JOIN room_availability ra
+        ON s.study_space_id = ra.study_space_id
+    WHERE s.study_space_id IN ({placeholders})
+    AND (
+        s.must_reserve = 0
+        OR (
+            s.must_reserve = 1
+            AND ra.is_available = 1
+            AND ra.start_time >= ?
+            AND ra.start_time <= ?
+            AND ra.scraped_at > datetime('now', '-24 hours')
+        )
+    )
+    """
+    params = space_ids + [slot_start, slot_end]
+    cursor.execute(query, params)
+    return [row[0] for row in cursor.fetchall()]
+
+def check_next_slot_availability_window(db_conn, space_ids):
+    """
+    Checks if the immediate next 30-min slot is available.
+    e.g. 3:03pm → checks 3:30-4:00pm slot
+         2:59pm → checks 3:00-3:30pm slot
+         1:00pm → checks 1:30-2:00pm slot
+    """
+    if not space_ids:
+        return []
+
+    pacific = pytz.timezone("America/Los_Angeles")
+    now = datetime.now(pacific)
+
+    # Calculate next slot start
+    if now.minute < 30:
+        next_slot_start = now.replace(minute=30, second=0, microsecond=0)
+    else:
+        next_slot_start = (now + timedelta(hours=1)).replace(minute=0, second=0, microsecond=0)
+
+    next_slot_end = next_slot_start + timedelta(minutes=30)
+
+    slot_start_str = next_slot_start.strftime("%Y-%m-%dT%H:%M:%S%z").replace("+0800", "+08:00").replace("-0800", "-08:00")
+    slot_end_str = next_slot_end.strftime("%Y-%m-%dT%H:%M:%S%z").replace("+0800", "+08:00").replace("-0800", "-08:00")
+
+    cursor = db_conn.cursor()
+    placeholders = ",".join("?" * len(space_ids))
+
+    query = f"""
+    SELECT DISTINCT s.study_space_id
+    FROM study_spaces s
+    LEFT JOIN room_availability ra
+        ON s.study_space_id = ra.study_space_id
+    WHERE s.study_space_id IN ({placeholders})
+    AND (
+        s.must_reserve = 0
+        OR (
+            s.must_reserve = 1
+            AND ra.is_available = 1
+            AND ra.start_time = ?
+            AND ra.end_time = ?
+            AND ra.scraped_at > datetime('now', '-24 hours')
+        )
+    )
+    """
+    params = space_ids + [slot_start_str, slot_end_str]
     cursor.execute(query, params)
     return [row[0] for row in cursor.fetchall()]
 
@@ -419,12 +471,15 @@ def retrieve_ranked_study_spaces(user_id, filters=None, user_location=None, debu
     # ------------------------------------------------------------------
     # Step 1: No filters → proximity-only ranking
     # ------------------------------------------------------------------
+    if debug:
+        print(f'[retrieve] STEP 1')
+
     if not filters or all(v in [None, "", False] for v in filters.values()):
         if debug:
             print("[retrieve] No filters specified. Returning closest available rooms.")
 
         all_ids = get_all_study_space_ids(db_conn)
-        available_ids = check_current_availability_window(db_conn, all_ids)
+        available_ids = check_next_slot_availability_window(db_conn, all_ids)
         space_details = get_space_details(db_conn, available_ids)
 
         for space in space_details:
@@ -438,6 +493,9 @@ def retrieve_ranked_study_spaces(user_id, filters=None, user_location=None, debu
     # ------------------------------------------------------------------
     # Step 2: Build personal model (needed for preference stats + scoring)
     # ------------------------------------------------------------------
+    if debug:
+        print(f'[retrieve] STEP 2')
+
     personal_model = PersonalModel(user_id, USER_DB=PERSONAL_MODEL_DB_PATH, APP_DB=DB_PATH)
     user_context = personal_model.user_context_for_ranking()
     avg_stats = user_context["average_preference"]
@@ -452,6 +510,9 @@ def retrieve_ranked_study_spaces(user_id, filters=None, user_location=None, debu
     # and checks availability. It only relaxes if zero available rooms come
     # back, dropping the weakest constraint each time.
     # ------------------------------------------------------------------
+    if debug:
+        print(f'[retrieve] STEP 3')
+
     available_ids, used_filters = progressive_filter_search(
         db_conn, filters, avg_stats, debug=debug
     )
@@ -464,12 +525,15 @@ def retrieve_ranked_study_spaces(user_id, filters=None, user_location=None, debu
     # Step 4: Ultimate fallback — if even full relaxation found nothing,
     # return all currently-available rooms so the user always sees something.
     # ------------------------------------------------------------------
+    if debug:
+        print(f'[retrieve] STEP 4')
+
     if not available_ids:
         if debug:
             print("[retrieve] No rooms found after full relaxation. Falling back to all available rooms.")
 
         all_ids = get_all_study_space_ids(db_conn)
-        available_ids = check_current_availability_window(db_conn, all_ids)
+        available_ids = check_next_slot_availability_window(db_conn, all_ids)
 
     if not available_ids:
         if debug:
@@ -481,6 +545,8 @@ def retrieve_ranked_study_spaces(user_id, filters=None, user_location=None, debu
     # Personal model signals always influence ranking regardless of whether
     # we took the direct path or had to relax constraints.
     # ------------------------------------------------------------------
+    if debug:
+        print(f'[retrieve] STEP 5')
     space_details = get_space_details(db_conn, available_ids)
     ranked_spaces = _rank_spaces(space_details, personal_model, user_location)
 
