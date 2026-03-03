@@ -127,7 +127,7 @@ export type Filters = {
 	printerAvailable: boolean;
 	talkingAllowed: boolean;
 };
-export const API_BASE_URL = "http://192.168.254.159:3000"; // Currently copy pasting from output after starting api.py
+export const API_BASE_URL = "http://172.31.254.225:3000"; // Currently copy pasting from output after starting api.py
 
 // ---- Helpers ----
 
@@ -403,8 +403,7 @@ export async function apiSearchSpaces(req: SearchRequest): Promise<SearchRespons
 			body: {
 				user_id: req.user_id,
 				filters: req.filters ?? {},
-				user_latitude: userLongitude,
-				user_longitude: userLongitude,
+				user_location: { latitude: userLongitude, longitude: userLongitude },
 				debug: req.debug ?? false,
 			},
 		}),
