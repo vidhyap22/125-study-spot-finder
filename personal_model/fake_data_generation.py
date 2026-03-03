@@ -1,3 +1,4 @@
+import json
 import sqlite3
 from pathlib import Path
 
@@ -7,11 +8,10 @@ USER_DB = BASE_DIR / "data" / "database" / "user_data.db"
 APP_DB = BASE_DIR / "data" / "database" / "app.db"
 SCHEMA_PATH = BASE_DIR / "data" / "database" / "user_data_schema.sql"
 
+FAKE_DATA_PATH = BASE_DIR / "personal_model" / "fake_user_data.json"
 
 
 def main():
-
-
     user_conn = sqlite3.connect(USER_DB)
     user_cur = user_conn.cursor()
 

@@ -1,0 +1,415 @@
+{
+  "study_sessions": [
+    {
+      "user_id": "USER_004",
+      "study_space_id": 12,
+      "building_id": "SLIB",
+      "started_at": "2026-02-20 09:10:00",
+      "ended_at": "2026-02-20 11:05:00",
+      "duration_ms": 6900000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-20",
+      "end_date": "2026-02-20",
+      "start_weather_time_local": "2026-02-20 09:00",
+      "session_traffic": 0.62
+    },
+    {
+      "user_id": "USER_004",
+      "study_space_id": 11,
+      "building_id": "SLIB",
+      "started_at": "2026-02-21 14:20:00",
+      "ended_at": "2026-02-21 16:10:00",
+      "duration_ms": 6600000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-21",
+      "end_date": "2026-02-21",
+      "start_weather_time_local": "2026-02-21 14:00",
+      "session_traffic": 0.58
+    },
+    {
+      "user_id": "USER_004",
+      "study_space_id": 9,
+      "building_id": "SLIB",
+      "started_at": "2026-02-22 10:05:00",
+      "ended_at": "2026-02-22 12:25:00",
+      "duration_ms": 8400000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-22",
+      "end_date": "2026-02-22",
+      "start_weather_time_local": "2026-02-22 10:00",
+      "session_traffic": 0.74
+    },
+    {
+      "user_id": "USER_004",
+      "study_space_id": 10,
+      "building_id": "SLIB",
+      "started_at": "2026-02-23 08:55:00",
+      "ended_at": "2026-02-23 10:10:00",
+      "duration_ms": 4500000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-23",
+      "end_date": "2026-02-23",
+      "start_weather_time_local": "2026-02-23 09:00",
+      "session_traffic": 0.41
+    },
+    {
+      "user_id": "USER_004",
+      "study_space_id": 44680,
+      "building_id": "SLIB",
+      "started_at": "2026-02-24 19:10:00",
+      "ended_at": "2026-02-24 20:05:00",
+      "duration_ms": 3300000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-24",
+      "end_date": "2026-02-24",
+      "start_weather_time_local": "2026-02-24 19:00",
+      "session_traffic": 0.36
+    },
+    {
+      "user_id": "USER_004",
+      "study_space_id": 12,
+      "building_id": "SLIB",
+      "started_at": "2026-02-25 13:35:00",
+      "ended_at": "2026-02-25 15:15:00",
+      "duration_ms": 6000000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-25",
+      "end_date": "2026-02-25",
+      "start_weather_time_local": "2026-02-25 14:00",
+      "session_traffic": 0.65
+    },
+    {
+      "user_id": "USER_004",
+      "study_space_id": 11,
+      "building_id": "SLIB",
+      "started_at": "2026-02-26 09:30:00",
+      "ended_at": "2026-02-26 11:50:00",
+      "duration_ms": 8400000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-26",
+      "end_date": "2026-02-26",
+      "start_weather_time_local": "2026-02-26 10:00",
+      "session_traffic": 0.72
+    },
+    {
+      "user_id": "USER_004",
+      "study_space_id": 13,
+      "building_id": "LLIB",
+      "started_at": "2026-02-27 16:10:00",
+      "ended_at": "2026-02-27 16:55:00",
+      "duration_ms": 2700000,
+      "ended_reason": "interrupted",
+      "start_date": "2026-02-27",
+      "end_date": "2026-02-27",
+      "start_weather_time_local": "2026-02-27 16:00",
+      "session_traffic": 0.79
+    },
+
+    {
+      "user_id": "USER_005",
+      "study_space_id": 15,
+      "building_id": "LLIB",
+      "started_at": "2026-02-20 12:20:00",
+      "ended_at": "2026-02-20 14:00:00",
+      "duration_ms": 6000000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-20",
+      "end_date": "2026-02-20",
+      "start_weather_time_local": "2026-02-20 12:00",
+      "session_traffic": 0.69
+    },
+    {
+      "user_id": "USER_005",
+      "study_space_id": 17,
+      "building_id": "SC CCA",
+      "started_at": "2026-02-21 15:05:00",
+      "ended_at": "2026-02-21 16:20:00",
+      "duration_ms": 4500000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-21",
+      "end_date": "2026-02-21",
+      "start_weather_time_local": "2026-02-21 15:00",
+      "session_traffic": 0.83
+    },
+    {
+      "user_id": "USER_005",
+      "study_space_id": 21,
+      "building_id": "SC CCA",
+      "started_at": "2026-02-22 11:40:00",
+      "ended_at": "2026-02-22 12:35:00",
+      "duration_ms": 3300000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-22",
+      "end_date": "2026-02-22",
+      "start_weather_time_local": "2026-02-22 12:00",
+      "session_traffic": 0.77
+    },
+    {
+      "user_id": "USER_005",
+      "study_space_id": 24,
+      "building_id": "SC CCA",
+      "started_at": "2026-02-23 18:10:00",
+      "ended_at": "2026-02-23 19:25:00",
+      "duration_ms": 4500000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-23",
+      "end_date": "2026-02-23",
+      "start_weather_time_local": "2026-02-23 18:00",
+      "session_traffic": 0.71
+    },
+    {
+      "user_id": "USER_005",
+      "study_space_id": 22,
+      "building_id": "SC CCA",
+      "started_at": "2026-02-24 13:00:00",
+      "ended_at": "2026-02-24 14:10:00",
+      "duration_ms": 4200000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-24",
+      "end_date": "2026-02-24",
+      "start_weather_time_local": "2026-02-24 13:00",
+      "session_traffic": 0.75
+    },
+    {
+      "user_id": "USER_005",
+      "study_space_id": 14,
+      "building_id": "LLIB",
+      "started_at": "2026-02-25 10:30:00",
+      "ended_at": "2026-02-25 11:20:00",
+      "duration_ms": 3000000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-25",
+      "end_date": "2026-02-25",
+      "start_weather_time_local": "2026-02-25 11:00",
+      "session_traffic": 0.64
+    },
+    {
+      "user_id": "USER_005",
+      "study_space_id": 15,
+      "building_id": "LLIB",
+      "started_at": "2026-02-26 16:00:00",
+      "ended_at": "2026-02-26 17:45:00",
+      "duration_ms": 6300000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-26",
+      "end_date": "2026-02-26",
+      "start_weather_time_local": "2026-02-26 16:00",
+      "session_traffic": 0.78
+    },
+    {
+      "user_id": "USER_005",
+      "study_space_id": 23,
+      "building_id": "SC CCA",
+      "started_at": "2026-02-27 12:10:00",
+      "ended_at": "2026-02-27 13:05:00",
+      "duration_ms": 3300000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-27",
+      "end_date": "2026-02-27",
+      "start_weather_time_local": "2026-02-27 12:00",
+      "session_traffic": 0.82
+    },
+
+    {
+      "user_id": "USER_006",
+      "study_space_id": 19,
+      "building_id": "SC CCA",
+      "started_at": "2026-02-20 17:20:00",
+      "ended_at": "2026-02-20 18:10:00",
+      "duration_ms": 3000000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-20",
+      "end_date": "2026-02-20",
+      "start_weather_time_local": "2026-02-20 17:00",
+      "session_traffic": 0.55
+    },
+    {
+      "user_id": "USER_006",
+      "study_space_id": 44668,
+      "building_id": "SLIB",
+      "started_at": "2026-02-21 09:05:00",
+      "ended_at": "2026-02-21 10:05:00",
+      "duration_ms": 3600000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-21",
+      "end_date": "2026-02-21",
+      "start_weather_time_local": "2026-02-21 09:00",
+      "session_traffic": 0.49
+    },
+    {
+      "user_id": "USER_006",
+      "study_space_id": 44671,
+      "building_id": "SLIB",
+      "started_at": "2026-02-22 20:10:00",
+      "ended_at": "2026-02-22 21:00:00",
+      "duration_ms": 3000000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-22",
+      "end_date": "2026-02-22",
+      "start_weather_time_local": "2026-02-22 20:00",
+      "session_traffic": 0.33
+    },
+    {
+      "user_id": "USER_006",
+      "study_space_id": 44705,
+      "building_id": "GSC",
+      "started_at": "2026-02-23 13:40:00",
+      "ended_at": "2026-02-23 14:25:00",
+      "duration_ms": 2700000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-23",
+      "end_date": "2026-02-23",
+      "start_weather_time_local": "2026-02-23 14:00",
+      "session_traffic": 0.57
+    },
+    {
+      "user_id": "USER_006",
+      "study_space_id": 44706,
+      "building_id": "GSC",
+      "started_at": "2026-02-24 10:00:00",
+      "ended_at": "2026-02-24 11:30:00",
+      "duration_ms": 5400000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-24",
+      "end_date": "2026-02-24",
+      "start_weather_time_local": "2026-02-24 10:00",
+      "session_traffic": 0.44
+    },
+    {
+      "user_id": "USER_006",
+      "study_space_id": 44710,
+      "building_id": "GSC",
+      "started_at": "2026-02-25 18:30:00",
+      "ended_at": "2026-02-25 19:10:00",
+      "duration_ms": 2400000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-25",
+      "end_date": "2026-02-25",
+      "start_weather_time_local": "2026-02-25 19:00",
+      "session_traffic": 0.61
+    },
+    {
+      "user_id": "USER_006",
+      "study_space_id": 44669,
+      "building_id": "SLIB",
+      "started_at": "2026-02-26 08:20:00",
+      "ended_at": "2026-02-26 09:10:00",
+      "duration_ms": 3000000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-26",
+      "end_date": "2026-02-26",
+      "start_weather_time_local": "2026-02-26 08:00",
+      "session_traffic": 0.39
+    },
+    {
+      "user_id": "USER_006",
+      "study_space_id": 44711,
+      "building_id": "GSC",
+      "started_at": "2026-02-27 15:20:00",
+      "ended_at": "2026-02-27 16:05:00",
+      "duration_ms": 2700000,
+      "ended_reason": "user_ended",
+      "start_date": "2026-02-27",
+      "end_date": "2026-02-27",
+      "start_weather_time_local": "2026-02-27 15:00",
+      "session_traffic": 0.53
+    }
+  ],
+
+  "bookmarks": [
+    { "user_id": "USER_004", "study_space_id": 12, "building_id": "SLIB", "created_at": "2026-02-20 11:10:00" },
+    { "user_id": "USER_004", "study_space_id": 11, "building_id": "SLIB", "created_at": "2026-02-21 16:15:00" },
+    { "user_id": "USER_004", "study_space_id": 10, "building_id": "SLIB", "created_at": "2026-02-23 10:15:00" },
+    { "user_id": "USER_004", "study_space_id": 9, "building_id": "SLIB", "created_at": "2026-02-22 12:30:00" },
+    { "user_id": "USER_004", "study_space_id": 13, "building_id": "LLIB", "created_at": "2026-02-27 17:10:00" },
+
+    { "user_id": "USER_005", "study_space_id": 15, "building_id": "LLIB", "created_at": "2026-02-20 14:05:00" },
+    { "user_id": "USER_005", "study_space_id": 17, "building_id": "SC CCA", "created_at": "2026-02-21 16:25:00" },
+    { "user_id": "USER_005", "study_space_id": 21, "building_id": "SC CCA", "created_at": "2026-02-22 12:40:00" },
+    { "user_id": "USER_005", "study_space_id": 24, "building_id": "SC CCA", "created_at": "2026-02-23 19:30:00" },
+
+    { "user_id": "USER_006", "study_space_id": 44705, "building_id": "GSC", "created_at": "2026-02-23 14:30:00" },
+    { "user_id": "USER_006", "study_space_id": 44706, "building_id": "GSC", "created_at": "2026-02-24 11:35:00" },
+    { "user_id": "USER_006", "study_space_id": 44668, "building_id": "SLIB", "created_at": "2026-02-21 10:10:00" },
+    { "user_id": "USER_006", "study_space_id": 44671, "building_id": "SLIB", "created_at": "2026-02-22 21:05:00" }
+  ],
+
+  "spot_feedback": [
+    { "user_id": "USER_004", "study_space_id": 12, "building_id": "SLIB", "rating": 5, "updated_at": "2026-02-25 15:20:00" },
+    { "user_id": "USER_004", "study_space_id": 11, "building_id": "SLIB", "rating": 5, "updated_at": "2026-02-26 11:55:00" },
+    { "user_id": "USER_004", "study_space_id": 10, "building_id": "SLIB", "rating": 4, "updated_at": "2026-02-23 10:20:00" },
+    { "user_id": "USER_004", "study_space_id": 9, "building_id": "SLIB", "rating": 4, "updated_at": "2026-02-22 12:35:00" },
+    { "user_id": "USER_004", "study_space_id": 13, "building_id": "LLIB", "rating": 2, "updated_at": "2026-02-27 17:00:00" },
+
+    { "user_id": "USER_005", "study_space_id": 15, "building_id": "LLIB", "rating": 5, "updated_at": "2026-02-26 17:50:00" },
+    { "user_id": "USER_005", "study_space_id": 17, "building_id": "SC CCA", "rating": 5, "updated_at": "2026-02-21 16:30:00" },
+    { "user_id": "USER_005", "study_space_id": 21, "building_id": "SC CCA", "rating": 4, "updated_at": "2026-02-22 12:45:00" },
+    { "user_id": "USER_005", "study_space_id": 24, "building_id": "SC CCA", "rating": 4, "updated_at": "2026-02-23 19:35:00" },
+    { "user_id": "USER_005", "study_space_id": 22, "building_id": "SC CCA", "rating": 4, "updated_at": "2026-02-24 14:15:00" },
+
+    { "user_id": "USER_006", "study_space_id": 44705, "building_id": "GSC", "rating": 5, "updated_at": "2026-02-23 14:35:00" },
+    { "user_id": "USER_006", "study_space_id": 44706, "building_id": "GSC", "rating": 5, "updated_at": "2026-02-24 11:40:00" },
+    { "user_id": "USER_006", "study_space_id": 44710, "building_id": "GSC", "rating": 4, "updated_at": "2026-02-25 19:15:00" },
+    { "user_id": "USER_006", "study_space_id": 44668, "building_id": "SLIB", "rating": 4, "updated_at": "2026-02-21 10:15:00" },
+    { "user_id": "USER_006", "study_space_id": 19, "building_id": "SC CCA", "rating": 2, "updated_at": "2026-02-20 18:15:00" }
+  ],
+
+  "search_filters": [
+    {
+      "user_id": "USER_004",
+      "min_capacity": 4,
+      "max_capacity": 12,
+      "tech_enhanced": 1,
+      "has_printer": 1,
+      "is_indoor": 1,
+      "is_talking_allowed": 0
+    },
+    {
+      "user_id": "USER_004",
+      "min_capacity": 10,
+      "max_capacity": 60,
+      "tech_enhanced": 1,
+      "has_printer": 1,
+      "is_indoor": 1,
+      "is_talking_allowed": 0
+    },
+
+    {
+      "user_id": "USER_005",
+      "min_capacity": 10,
+      "max_capacity": 120,
+      "tech_enhanced": 0,
+      "has_printer": 1,
+      "is_indoor": 1,
+      "is_talking_allowed": 1
+    },
+    {
+      "user_id": "USER_005",
+      "min_capacity": 20,
+      "max_capacity": 120,
+      "tech_enhanced": 0,
+      "has_printer": 0,
+      "is_indoor": 1,
+      "is_talking_allowed": 1
+    },
+
+    {
+      "user_id": "USER_006",
+      "min_capacity": 1,
+      "max_capacity": 6,
+      "tech_enhanced": 0,
+      "has_printer": 1,
+      "is_indoor": 1,
+      "is_talking_allowed": 0
+    },
+    {
+      "user_id": "USER_006",
+      "min_capacity": 1,
+      "max_capacity": 8,
+      "tech_enhanced": 1,
+      "has_printer": 1,
+      "is_indoor": 1,
+      "is_talking_allowed": 0
+    }
+  ]
+}
