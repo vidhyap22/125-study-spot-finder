@@ -19,6 +19,7 @@ type Props = {
 	talkingAllowed: boolean;
 	roomId: string;
 	locationId: string;
+	floor: string;
 
 	onPress?: () => void;
 
@@ -37,6 +38,7 @@ export function StudySpaceRow({
 	talkingAllowed,
 	locationId,
 	roomId,
+	floor,
 	onPress,
 	onReserveOpened,
 	onChoosePublic,
@@ -77,7 +79,11 @@ export function StudySpaceRow({
 		if (talkingAllowed) parts.push("Talking Allowed");
 		if (Number.isFinite(capacity)) parts.push(`Capacity ${capacity}`);
 		if (techEnhanced) parts.push("Tech enhanced");
+
 		parts.push(environment === "indoors" ? "Indoors" : "Outdoors");
+		if (environment === "indoors" && floor) parts.push(floor);
+		console.log("floor is", floor);
+		console.log(environment);
 		return parts.join(" • ");
 	}, [capacity, techEnhanced, environment, talkingAllowed]);
 

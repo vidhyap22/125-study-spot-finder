@@ -1,6 +1,7 @@
-import { Filters } from "@/components/filter-bar";
+// import { Filters } from "@/components/filter-bar";
 import type { StudySpace, LocationResult } from "./types";
 import { getUserLocationOrNull } from "./user-location";
+
 export type SearchRequest = {
 	user_id: string;
 	filters?: Record<string, any>;
@@ -229,7 +230,7 @@ export function groupJoinedRowsToLocationResults(rows: any[]): LocationResult[] 
 	return Array.from(byBuilding.values());
 }
 export function normalizeStudySpace(row: any): StudySpace {
-	const isIndoor = !!(row.is_indoor ?? row.isIndoors ?? row.environment === "indoors");
+	const isIndoor = !!(row.indoor ?? row.is_indoor ?? row.isIndoors ?? row.environment === "indoors");
 	return {
 		id: String(row.study_space_id ?? row.id),
 		title: String(row.name ?? row.title ?? ""),
@@ -240,6 +241,7 @@ export function normalizeStudySpace(row: any): StudySpace {
 		talkingAllowed: row.is_talking_allowed != null ? !!row.is_talking_allowed : !!row.talkingAllowed,
 		locationId: String(row.building_id ?? row.locationId ?? ""),
 		locationName: String(row.building_name ?? row.locationName ?? row.location_title ?? ""),
+		floor: String(row.floor ?? ""),
 	};
 }
 
@@ -344,6 +346,7 @@ export async function apiGetBookmarkedSpaces(req: GetBookmarksReq): Promise<{ su
 				tech_enhanced: r.tech_enhanced,
 				building_id: r.building_id,
 				building_name: r.building_name,
+				floor: r.floor,
 			}),
 		);
 
@@ -401,12 +404,12 @@ export async function apiSearchSpaces(req: SearchRequest): Promise<SearchRespons
 				user_id: req.user_id,
 				filters: req.filters ?? {},
 				user_location:
-				userLatitude !== null && userLongitude !== null
-					? {
-							latitude: userLatitude,
-							longitude: userLongitude,
-					  }
-					: null,
+					userLatitude !== null && userLongitude !== null
+						? {
+								latitude: userLatitude,
+								longitude: userLongitude,
+							}
+						: null,
 				debug: req.debug ?? false,
 			},
 		}),
