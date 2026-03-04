@@ -571,8 +571,17 @@ def retrieve_ranked_study_spaces(user_id, filters=None, user_location=None, debu
     space_details = get_space_details(db_conn, available_ids)
     ranked_spaces = _rank_spaces(space_details, personal_model, user_location)
 
+    # Demote low-rated spots to the end of the list so they're still
+    # visible but never crowd out genuinely good recommendations.
+    low_rating_ids = set(personal_model.low_rating_spot(personal_model.df_feedback))
     if debug:
-        print(f"[retrieve] Returning {len(ranked_spaces)} ranked space(s).")
+        print(f"[retrieve] Low-rated space IDs: {low_rating_ids}")
+    normal = [s for s in ranked_spaces if s["id"] not in low_rating_ids]
+    demoted = [s for s in ranked_spaces if s["id"] in low_rating_ids]
+    ranked_spaces = normal + demoted
+
+    if debug:
+        print(f"[retrieve] Returning {len(ranked_spaces)} ranked space(s) ({len(demoted)} demoted).")
 
     return ranked_spaces
 
