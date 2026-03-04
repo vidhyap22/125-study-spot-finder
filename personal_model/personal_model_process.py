@@ -21,6 +21,9 @@ class PersonalModel():
         #basic statistic on event
         self.event_stats=self.collect_stats(self.df_sessions, self.df_bookmarks, self.df_feedback, self.df_views, self.df_searchfilters)
 
+    def reserve_hours(self):
+        pass
+
     def enrich_and_store(self):
         # load dimension tables from APP_DB (static info)
         with sqlite3.connect(self.APP_DB) as conn:
