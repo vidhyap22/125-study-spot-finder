@@ -277,14 +277,31 @@ def calculate_distance(lat1, lon1, lat2, lon2):
     return R * c
 
 
+def format_distance_text(distance_km):
+    """
+    Format a distance in km into a human-readable miles string.
+
+    Args:
+        distance_km (float): Distance in kilometers
+
+    Returns:
+        str: e.g. "0.3 mi" or "1.2 mi"
+    """
+    distance_miles = distance_km * 0.621371
+    if distance_miles < 0.1:
+        return "< 0.1 mi"
+    return f"{distance_miles:.1f} mi"
+
+
 def compute_final_score(space, probability_map, user_location=None,
                         prob_weight=0.8, distance_weight=0.2,
                         distance_decay_km=2):
     """
-    Compute final ranking score for a study space.
+    Compute final ranking score for a study space, and attach a
+    human-readable distance string to the space dict as `distance_text`.
 
     Args:
-        space (dict): Study space details
+        space (dict): Study space details (mutated in-place to add distance_text)
         probability_map (dict): {space_id: probability_score}
         user_location (dict): {"latitude": float, "longitude": float}
         prob_weight (float): Weight for personalization score
@@ -306,6 +323,9 @@ def compute_final_score(space, probability_map, user_location=None,
             space["latitude"], space["longitude"]
         )
         distance_score = max(0, 1 - (distance_km / distance_decay_km))
+        space["distance_text"] = format_distance_text(distance_km)
+    else:
+        space["distance_text"] = None
 
     return round((prob_weight * base_score) + (distance_weight * distance_score), 4)
 
@@ -318,9 +338,10 @@ def display_ranked_results(ranked_spaces, top_n=10):
     print(f"\nTop {top_n} Ranked Study Spaces:")
     for space in ranked_spaces[:top_n]:
         floor_text = f" - Floor: {space['floor']}" if space.get("floor") not in [None, "N", ""] else ""
+        distance_text = f" - {space['distance_text']}" if space.get("distance_text") else ""
         print(
             f"{space['name']} (Score: {space['score']})\n"
-            f"  {space['building_name']}{floor_text}\n"
+            f"  {space['building_name']}{floor_text}{distance_text}\n"
             f"  Capacity: {space['capacity']}\n"
             f"  {'Indoor' if space['indoor'] else 'Outdoor'}\n"
             f"  {'Tech-Enhanced' if space['tech_enhanced'] else 'Standard'}\n"
