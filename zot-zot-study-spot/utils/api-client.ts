@@ -127,7 +127,7 @@ export type Filters = {
 	printerAvailable: boolean;
 	talkingAllowed: boolean;
 };
-export const API_BASE_URL = "http://172.31.254.225:3000"; // Currently copy pasting from output after starting api.py
+export const API_BASE_URL = "http://0.0.0.0:3000"; // Currently copy pasting from output after starting api.py
 
 // ---- Helpers ----
 

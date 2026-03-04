@@ -9,7 +9,7 @@ ROOT_DIR = Path(__file__).resolve().parent.parent
 sys.path.append(str(ROOT_DIR))
 # Import your already-existing update function(s)
 # e.g. from your_data_module import update_all_context
-from automation.update_tasks import run_update_once
+from automation.update_tasks import update_data
 
 _scheduler = BackgroundScheduler()
 _JOB_ID = "global_update_job"
@@ -36,10 +36,10 @@ def start(interval_sec: int = 300, run_immediately: bool = True) -> dict:
     _ensure_scheduler_started()
 
     if run_immediately:
-        run_update_once()
+        update_data()
 
     _scheduler.add_job(
-        func=run_update_once,
+        func=update_data,
         trigger=IntervalTrigger(seconds=interval_sec),
         id=_JOB_ID,
         replace_existing=True,

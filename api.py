@@ -15,8 +15,10 @@ sys.path.append(str(Path(__file__).parent / "utils"))
 from utils.query import retrieve_ranked_study_spaces, get_available_buildings
 from utils.update_room_availability import update_availability
 from personal_model.store_personal_model_data import add_user, delete_bookmarks, store_bookmarks, store_filter_info, store_spot_feedback, store_spot_view, store_study_session, check_bookmark_status, get_bookmarked_space_info
-
+from automation import updater_service
 app = Flask(__name__)
+import os
+
 CORS(app)  # Enable CORS for React Native
 
 _scheduler = BackgroundScheduler()
@@ -60,6 +62,7 @@ def search_spaces():
         user_id = data.get('user_id')  
         user_location = data.get("user_location")  # expecting {latitude: float, longitude: float}
         debug = data.get('debug', False)
+        debug=True
 
         if not user_id:
             return jsonify({
@@ -74,6 +77,7 @@ def search_spaces():
             user_location=user_location,
             debug=debug
         )
+
 
         return jsonify({
             "success": True,
@@ -513,4 +517,9 @@ def health_check():
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=3000)
+    st = updater_service.start(interval_sec=300, run_immediately=True) # automation will run while the api is running
+
+    HOST = os.getenv("HOST", "0.0.0.0")
+    PORT = int(os.getenv("PORT", "3000"))
+
+    app.run(debug=True, host=HOST, port=PORT)
