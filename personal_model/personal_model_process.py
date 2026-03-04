@@ -237,17 +237,46 @@ class PersonalModel():
 
         result["library_traffic"] = average_traffic
         return result
+
     def user_preference(self, average_preference):
-        #process user preference
         preference = {}
-        #filters for spot
-        preference["min_capacity"] = math.floor(average_preference["min_capacity"])
-        preference["max_capacity"] = math.ceil(average_preference["max_capacity"])
-        preference["is_indoor"] = 0 if average_preference["is_indoor_pct"] < 0.5 else 1
-        preference["is_talking_allowed"] = 0 if average_preference["is_talking_allowed_pct"] < 0.5 else 1
-        preference["library_traffic_range"] = (max(0, average_preference["library_traffic"]-0.2), min(1, average_preference["library_traffic"]+0.2))
-        #filters for building
-        preference["has_printer"] = 0 if average_preference["has_printer_pct"] < 0.5 else 1
+
+        min_capacity = average_preference.get("min_capacity")
+        max_capacity = average_preference.get("max_capacity")
+
+        preference["min_capacity"] = math.floor(min_capacity) if min_capacity is not None else None
+        preference["max_capacity"] = math.ceil(max_capacity) if max_capacity is not None else None
+
+        indoor_pct = average_preference.get("is_indoor_pct")
+        preference["is_indoor"] = (
+            0 if indoor_pct is not None and indoor_pct < 0.5
+            else 1 if indoor_pct is not None
+            else None
+        )
+
+        talking_pct = average_preference.get("is_talking_allowed_pct")
+        preference["is_talking_allowed"] = (
+            0 if talking_pct is not None and talking_pct < 0.5
+            else 1 if talking_pct is not None
+            else None
+        )
+
+        library_traffic = average_preference.get("library_traffic")
+        if library_traffic is not None:
+            preference["library_traffic_range"] = (
+                max(0, library_traffic - 0.2),
+                min(1, library_traffic + 0.2),
+            )
+        else:
+            preference["library_traffic_range"] = None
+
+        printer_pct = average_preference.get("has_printer_pct")
+        preference["has_printer"] = (
+            0 if printer_pct is not None and printer_pct < 0.5
+            else 1 if printer_pct is not None
+            else None
+        )
+
         return preference
 
     def room_history(self, df_sessions):

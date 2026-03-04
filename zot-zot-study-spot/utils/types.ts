@@ -8,6 +8,7 @@ export type StudySpace = {
 	talkingAllowed: boolean;
 	locationId: string;
 	locationName: string;
+	floor: string;
 };
 
 export type LocationResult = {
