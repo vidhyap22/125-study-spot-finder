@@ -1,4 +1,3 @@
-from datetime import date
 import math
 import sqlite3
 from pathlib import Path
@@ -21,19 +20,6 @@ class PersonalModel():
 
         #basic statistic on event
         self.event_stats=self.collect_stats(self.df_sessions, self.df_bookmarks, self.df_feedback, self.df_views, self.df_searchfilters)
-
-        #reserved_hour
-        self.hours = self.reserve_hours()
-
-    def reserve_hours(self):
-        df = self.df_sessions
-        today = date.today().isoformat()
-        hours = (
-            df[(df["start_date"] == today) & (df["must_reserve"] == 1)]
-            ["duration_ms"]
-            .sum() / 3_600_000
-        )
-        return hours
 
     def enrich_and_store(self):
         # load dimension tables from APP_DB (static info)
@@ -144,7 +130,6 @@ class PersonalModel():
                 "tech_enhanced_pct": df["tech_enhanced"].mean(),
                 #average session traffic
                 "session_traffic": df["session_traffic"].mean(),
-                "must_reserve_pct": df['must_reserve'].mean()
             }
         elif event_name == "search_filters":
             return {
@@ -181,7 +166,6 @@ class PersonalModel():
                 "is_indoor_pct": df["is_indoor"].mean(),
                 "is_talking_allowed_pct": df["is_talking_allowed"].mean(),
                 "tech_enhanced_pct": df["tech_enhanced"].mean(),
-                "must_reserve_pct": df['must_reserve'].mean()
             }
     
     def collect_stats(self, df_sessions,df_bookmarks,df_feedback,df_views, df_search_filters):
@@ -211,7 +195,7 @@ class PersonalModel():
             "is_indoor_pct",
             "is_talking_allowed_pct",
             "tech_enhanced_pct",
-            "must_reserve_pct"
+            "must_reserve"
         ]
 
         weighted_sum = {a: 0.0 for a in ATTRS}
@@ -221,6 +205,7 @@ class PersonalModel():
         for stats in event_stats_list:
             event = stats["event"]
             w = EVENT_WEIGHTS.get(event)
+
             if w is None:
                 continue
 
@@ -232,6 +217,7 @@ class PersonalModel():
 
             for a in ATTRS:
                 val = stats.get(a)
+
                 if val is not None and not (isinstance(val, float) and math.isnan(val)):
                     weighted_sum[a] += w * val
 
@@ -290,10 +276,7 @@ class PersonalModel():
             else 1 if printer_pct is not None
             else None
         )
-        preference['must_reserve'] = (
-            0 if self.hours >= 2 or average_preference.get("must_reserve_pct") < 0.5
-            else 1
-        )
+
         return preference
 
     def room_history(self, df_sessions):
@@ -316,7 +299,7 @@ class PersonalModel():
         """
         filter preference include capacity range, indoor outdoor preference, is talking allowed, library traffic rang, and has printer or not
         """
-        #self.visualization()
+        #user1.visualization(df_sessions, df_bookmarks, df_feedback, df_views)
 
         #average_preference
         self.average_preference = self.analyze_stats([self.event_stats["study_session"], self.event_stats["bookmarks"], self.event_stats["spot_detail_views"], self.event_stats["search_filters"]])
