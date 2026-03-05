@@ -632,6 +632,41 @@ def get_current_weather():
     weather = row[0] if row else None
     return weather
 
+def fill_missing_traffic(rows):
+    """
+    rows: list[dict] returned from your SQL query
+    Replace traffic_percentage=None with estimated value based on time of day.
+    """
+
+    estimated_traffic = {
+        "morning": 0.3,
+        "afternoon": 0.6,
+        "evening": 0.4,
+        "night": 0.2
+    }
+
+    current = datetime.now()
+    hour = current.hour
+
+    if 8 <= hour < 12:
+        period = "morning"
+    elif 12 <= hour < 17:
+        period = "afternoon"
+    elif 17 <= hour < 22:
+        period = "evening"
+    else:
+        period = "night"
+
+    default_val = estimated_traffic[period]
+
+    for r in rows:
+        if r["traffic_percentage"] is None:
+            r["traffic_percentage"] = default_val
+            r["traffic_estimated"] = True
+        else:
+            r["traffic_estimated"] = False
+
+    return rows
 
 def get_study_space_traffic_closest_now(window_hours: int = 6):
     now_key = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S")
@@ -678,7 +713,7 @@ def get_study_space_traffic_closest_now(window_hours: int = 6):
     rows = cur.fetchall()
     cols = [d[0] for d in cur.description]
     conn.close()
+    rows = [dict(zip(cols, r)) for r in rows]
+    rows = fill_missing_traffic(rows)
+    return rows
 
-    return [dict(zip(cols, r)) for r in rows]
-
-print(get_study_space_traffic_closest_now())
