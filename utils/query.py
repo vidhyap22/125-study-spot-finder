@@ -594,3 +594,126 @@ def get_available_buildings():
     buildings = [{"id": row[0], "name": row[1]} for row in cursor.fetchall()]
     conn.close()
     return buildings
+
+
+def round_up_to_hour(dt):
+    """
+    Always round up to the next hour.
+    Return (date, time) separately.
+    """
+
+    if dt.minute != 0 or dt.second != 0 or dt.microsecond != 0:
+        dt = dt + timedelta(hours=1)
+
+    dt = dt.replace(minute=0, second=0, microsecond=0)
+
+    date_str = dt.strftime("%Y-%m-%d")
+    hour_str = dt.strftime("%H:00")
+
+    return date_str, hour_str
+
+def get_current_weather():
+    now = datetime.now(timezone.utc)
+    date_str, hour_str = round_up_to_hour(now)
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+
+    # Try common column names for the text weather field
+    cur.execute("""
+        SELECT weather_text
+        FROM hourly_weather
+        WHERE date = ? AND hour = ?
+        LIMIT 1
+    """, (date_str, hour_str))
+    row = cur.fetchone()
+
+    conn.close()
+
+    weather = row[0] if row else None
+    return weather
+
+def fill_missing_traffic(rows):
+    """
+    rows: list[dict] returned from SQL query
+    Replace traffic_percentage=None with estimated value based on time of day.
+    """
+
+    estimated_traffic = {
+        "morning": 0.3,
+        "afternoon": 0.6,
+        "evening": 0.4,
+        "night": 0.2
+    }
+
+    current = datetime.now()
+    hour = current.hour
+
+    if 8 <= hour < 12:
+        period = "morning"
+    elif 12 <= hour < 17:
+        period = "afternoon"
+    elif 17 <= hour < 22:
+        period = "evening"
+    else:
+        period = "night"
+
+    default_val = estimated_traffic[period]
+
+    for r in rows:
+        if r["traffic_percentage"] is None:
+            r["traffic_percentage"] = default_val
+            r["traffic_estimated"] = True
+        else:
+            r["traffic_estimated"] = False
+
+    return rows
+
+def get_study_space_traffic_closest_now(window_hours: int = 6):
+    now_key = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S")
+
+    sql = """
+    WITH traffic_norm AS (
+        SELECT
+            location_name,
+            traffic_percentage,
+            timestamp,
+            substr(timestamp,1,19) AS time_key
+        FROM library_traffic
+    ),
+    ranked AS (
+        SELECT
+            location_name,
+            traffic_percentage,
+            timestamp,
+            ROW_NUMBER() OVER (
+                PARTITION BY location_name
+                ORDER BY ABS(strftime('%s', time_key) - strftime('%s', ?))
+            ) AS rn
+        FROM traffic_norm
+    ),
+    closest AS (
+        SELECT location_name, traffic_percentage, timestamp
+        FROM ranked
+        WHERE rn = 1
+    )
+    SELECT
+        s.study_space_id,
+        s.floor,
+        s.building_id,
+        c.traffic_percentage,
+        c.timestamp
+    FROM study_spaces s
+    LEFT JOIN closest c
+        ON s.floor = c.location_name;
+    """
+
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    cur.execute(sql, (now_key,))
+    rows = cur.fetchall()
+    cols = [d[0] for d in cur.description]
+    conn.close()
+    rows = [dict(zip(cols, r)) for r in rows]
+    rows = fill_missing_traffic(rows)
+    return rows
+
