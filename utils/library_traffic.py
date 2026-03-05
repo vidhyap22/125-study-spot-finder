@@ -49,7 +49,7 @@ class LibraryTraffic:
     def update_database(self):
         conn = sqlite3.connect(self.DB_PATH)
         cursor = conn.cursor()
-        #self.clear_library_database(cursor)
+        self.clear_library_database(cursor)
         for param in params:
             resp = requests.get(url, params=param, timeout=15)
             resp.raise_for_status()

@@ -45,17 +45,6 @@ def main():
             "created_at": "2026-01-15 14:30:00",
         }
     ]
-    
-    #user_cur.execute("""
-    #DELETE FROM study_sessions
-    #WHERE user_id IN ('USER_004','USER_005','USER_006')
-    #""")
-
-    #user_cur.execute("""
-    #DELETE FROM sqlite_sequence
-    #WHERE name='study_sessions'
-    #""")
-
     insert_dicts("users", users, user_cur)
     insert_dicts("study_sessions", study_sessions, user_cur)
     insert_dicts("study_sessions", study_sessions, user_cur)
