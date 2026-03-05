@@ -634,7 +634,7 @@ def get_current_weather():
 
 def fill_missing_traffic(rows):
     """
-    rows: list[dict] returned from your SQL query
+    rows: list[dict] returned from SQL query
     Replace traffic_percentage=None with estimated value based on time of day.
     """
 
