@@ -20,6 +20,7 @@ type Props = {
 	roomId: string;
 	locationId: string;
 	floor: string;
+	traffic: string | null;
 
 	onPress?: () => void;
 
@@ -39,6 +40,7 @@ export function StudySpaceRow({
 	locationId,
 	roomId,
 	floor,
+	traffic,
 	onPress,
 	onReserveOpened,
 	onChoosePublic,
@@ -83,6 +85,9 @@ export function StudySpaceRow({
 		parts.push(environment === "indoors" ? "Indoors" : "Outdoors");
 		if (environment === "indoors" && floor) parts.push(floor);
 		console.log("floor is", floor);
+		if (traffic) {
+			parts.push(`${parseFloat(traffic) * 100}% busy`);
+		}
 		console.log(environment);
 		return parts.join(" • ");
 	}, [capacity, techEnhanced, environment, talkingAllowed]);

@@ -128,6 +128,7 @@ export function LocationSpacesList({ locationTitle, locationId, spaceType, space
 						roomId={item.id}
 						locationId={locationId}
 						floor={item.floor}
+						traffic={item.traffic}
 						onReserveOpened={handleReserveOpened}
 						onChoosePublic={handleChoosePublic}
 					/>

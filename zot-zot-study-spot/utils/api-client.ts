@@ -53,7 +53,7 @@ export type StudySessionTelemetryReq = {
 		start_date: string; // YYYY-MM-DD
 		end_date: string; // YYYY-MM-DD
 		duration_ms: number;
-
+		traffic: string | null;
 		ended_reason?: string;
 		[k: string]: any;
 	};
@@ -231,6 +231,7 @@ export function groupJoinedRowsToLocationResults(rows: any[]): LocationResult[] 
 }
 export function normalizeStudySpace(row: any): StudySpace {
 	const isIndoor = !!(row.indoor ?? row.is_indoor ?? row.isIndoors ?? row.environment === "indoors");
+	const traffic = row.traffic_estimated ? row.traffic_percentage : null;
 	return {
 		id: String(row.study_space_id ?? row.id),
 		title: String(row.name ?? row.title ?? ""),
@@ -242,6 +243,7 @@ export function normalizeStudySpace(row: any): StudySpace {
 		locationId: String(row.building_id ?? row.locationId ?? ""),
 		locationName: String(row.building_name ?? row.locationName ?? row.location_title ?? ""),
 		floor: String(row.floor ?? ""),
+		traffic: traffic,
 	};
 }
 
