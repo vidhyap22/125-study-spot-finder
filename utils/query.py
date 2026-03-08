@@ -560,7 +560,7 @@ def get_available_buildings():
     """Get list of all available buildings"""
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
-    cursor.execute("SELECT building_id, name FROM buildings ORDER BY name")
-    buildings = [{"id": row[0], "name": row[1]} for row in cursor.fetchall()]
+    cursor.execute("""SELECT building_id, name, has_printer, opening_time, closing_time, longitude, latitude FROM buildings ORDER BY name;""")
+    buildings = [{"building_id": building[0], "name": building[1], "has_printer": building[2], "opening_time": building[3], "closing_time": building[4], "longitude": building[5], "latitude": building[6]} for building in cursor.fetchall()]
     conn.close()
     return buildings
