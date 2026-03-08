@@ -9,6 +9,7 @@ export type StudySpace = {
 	locationId: string;
 	locationName: string;
 	floor: string;
+	traffic: string | null;
 };
 
 export type LocationResult = {
