@@ -9,7 +9,7 @@ import MapView, { Marker } from "react-native-maps";
 import { apiSearchSpaces, toApiFilters, apiGetBuildings } from "@/utils/api-client";
 import type { LocationResult } from "@/utils/types";
 
-const USER_ID = "1"; // hardcoding current user ID
+const USER_ID = "USER_001"; // hardcoding current user ID
 const myPlace = {
 	type: "FeatureCollection",
 	features: [

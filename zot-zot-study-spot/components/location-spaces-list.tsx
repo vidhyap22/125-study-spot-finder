@@ -38,7 +38,7 @@ export function LocationSpacesList({ locationTitle, locationId, spaceType, space
 	// 2) public flow: modal immediately on press
 	const [chooseModalVisible, setChooseModalVisible] = useState(false);
 	const pendingChooseSpaceRef = useRef<SpaceRef | null>(null);
-
+	const handleStartNavigation = () => {};
 	useEffect(() => {
 		const sub = AppState.addEventListener("change", (nextState: AppStateStatus) => {
 			if (nextState === "active" && awaitingReturnRef.current) {
@@ -80,7 +80,15 @@ export function LocationSpacesList({ locationTitle, locationId, spaceType, space
 						<Text style={styles.backText}>‹ Back</Text>
 					</Pressable>
 				) : (
-					<View style={styles.backButtonPlaceholder} />
+					<View>
+						<Pressable
+							style={({ hovered, pressed }) => [
+								styles.navigationIconWrapper,
+								hovered && styles.navigationHover,
+								pressed && { transform: [{ scale: 0.95 }] },
+							]}
+						></Pressable>
+					</View>
 				)}
 
 				<View style={styles.titleContainer}>
@@ -95,9 +103,10 @@ export function LocationSpacesList({ locationTitle, locationId, spaceType, space
 				<Pressable
 					style={({ hovered, pressed }) => [styles.bookmarkIconWrapper, hovered && styles.bookmarkHover, pressed && { transform: [{ scale: 0.95 }] }]}
 				>
-					<View style={styles.bookmarkIcon}>
-						{/* <FontAwesome6 name="bookmark" size={15} color={Brand.purple} solid /> */}
-						{/* <Text style={styles.bookmarkPlus}>+</Text> */}
+					<View style={styles.navigationIcon}>
+						<Pressable onPress={handleStartNavigation} hitSlop={8} style={({ pressed }) => [styles.rowIcon, pressed && styles.rowIconPressed]}>
+							<FontAwesome6 name="diamond-turn-right" size={15} color={Brand.purple} />
+						</Pressable>
 					</View>
 				</Pressable>
 			</View>
@@ -119,6 +128,7 @@ export function LocationSpacesList({ locationTitle, locationId, spaceType, space
 						roomId={item.id}
 						locationId={locationId}
 						floor={item.floor}
+						traffic={item.traffic}
 						onReserveOpened={handleReserveOpened}
 						onChoosePublic={handleChoosePublic}
 					/>
@@ -248,5 +258,31 @@ const styles = StyleSheet.create({
 	},
 	bookmarkHover: {
 		backgroundColor: "#f1e9fb",
+	},
+	navigationIcon: {},
+	navigationPlus: {
+		position: "absolute",
+		color: "#fff",
+		top: -2,
+		right: 1,
+		fontSize: 14,
+	},
+	navigationIconWrapper: {
+		position: "relative",
+		marginRight: 10,
+	},
+	navigationHover: {
+		backgroundColor: "#f1e9fb",
+	},
+	rowIconPressed: {
+		backgroundColor: "#7c3aed33",
+	},
+	rowIcon: {
+		height: 40,
+		width: 40,
+		borderRadius: 20,
+		alignItems: "center",
+		justifyContent: "center",
+		backgroundColor: "#9b4afe2e",
 	},
 });

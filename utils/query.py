@@ -293,27 +293,103 @@ def format_distance_text(distance_km):
     return f"{distance_miles:.1f} mi"
 
 
+def build_traffic_map(traffic_rows):
+    """
+    Convert the flat list returned by get_study_space_traffic_closest_now()
+    into a dict keyed by study_space_id for O(1) lookup during scoring.
+
+    Args:
+        traffic_rows (list[dict]): Each dict has at minimum:
+            {
+                "study_space_id": int,
+                "traffic_percentage": float | None,
+                "traffic_estimated": bool,
+            }
+
+    Returns:
+        dict: {study_space_id: {"traffic_percentage": float, "traffic_estimated": bool}}
+    """
+    traffic_map = {}
+    for row in traffic_rows:
+        space_id = row.get("study_space_id")
+        if space_id is not None:
+            traffic_map[space_id] = {
+                "traffic_percentage": row.get("traffic_percentage"),
+                "traffic_estimated": row.get("traffic_estimated", False),
+            }
+    return traffic_map
+
+
+def compute_traffic_score(space_id, traffic_map, preferred_traffic_range):
+    """
+    Score a space based on how well its current traffic matches the user's
+    preferred traffic range (derived from historical session traffic).
+
+    A score of 1.0 means traffic is exactly within the preferred range.
+    Score degrades linearly as traffic deviates outside the range.
+
+    Args:
+        space_id (int): The study space ID to look up in traffic_map
+        traffic_map (dict): {study_space_id: {"traffic_percentage": float, "traffic_estimated": bool}}
+        preferred_traffic_range (tuple | None): (low, high) floats in [0, 1], or None to skip
+
+    Returns:
+        float: Traffic match score in [0.0, 1.0], or 0.5 (neutral) if data is missing
+    """
+    if preferred_traffic_range is None:
+        return 0.5  # neutral — no preference recorded
+
+    traffic_entry = traffic_map.get(space_id)
+    if traffic_entry is None or traffic_entry.get("traffic_percentage") is None:
+        return 0.5  # neutral — no traffic data for this space
+
+    current_traffic = traffic_entry["traffic_percentage"]
+    low, high = preferred_traffic_range
+
+    if low <= current_traffic <= high:
+        return 1.0  # perfectly within preferred range
+
+    # Penalise proportionally to distance outside the preferred range.
+    # Normalised over the full [0, 1] scale so a 0.5 deviation → score 0.
+    deviation = min(abs(current_traffic - low), abs(current_traffic - high))
+    return round(max(0.0, 1.0 - (deviation / 0.5)), 4)
+
+
 def compute_final_score(space, probability_map, user_location=None,
-                        prob_weight=0.8, distance_weight=0.2,
+                        traffic_map=None, preferred_traffic_range=None,
+                        prob_weight=0.6, distance_weight=0.2, traffic_weight=0.2,
                         distance_decay_km=2):
     """
     Compute final ranking score for a study space, and attach a
     human-readable distance string to the space dict as `distance_text`.
 
+    Score is a weighted combination of:
+      - Personalisation probability  (how well the space matches past behaviour)
+      - Proximity                    (closer is better)
+      - Traffic match                (current busyness vs user's preferred busyness)
+
+    When traffic_map is None (e.g. no-filter / proximity-only path), the
+    traffic component is simply omitted and weights are rescaled automatically.
+
     Args:
-        space (dict): Study space details (mutated in-place to add distance_text)
+        space (dict): Study space details (mutated in-place to add
+                      `distance_text`, `traffic_percentage`, `traffic_estimated`)
         probability_map (dict): {space_id: probability_score}
-        user_location (dict): {"latitude": float, "longitude": float}
-        prob_weight (float): Weight for personalization score
-        distance_weight (float): Weight for distance boost
-        distance_decay_km (float): Distance window for normalization
+        user_location (dict | None): {"latitude": float, "longitude": float}
+        traffic_map (dict | None): output of build_traffic_map(), or None
+        preferred_traffic_range (tuple | None): (low, high) from personal model
+        prob_weight (float): Weight for personalisation score     (default 0.6)
+        distance_weight (float): Weight for distance boost        (default 0.2)
+        traffic_weight (float): Weight for traffic match score    (default 0.2)
+        distance_decay_km (float): Distance window for normalisation
 
     Returns:
-        float: Final weighted score
+        float: Final weighted score in [0.0, 1.0]
     """
     spot_id = space["id"]
     base_score = probability_map.get(spot_id, 0.0)
 
+    # --- distance component ---
     distance_score = 0.0
     if (user_location and
             space.get("latitude") is not None and
@@ -322,12 +398,44 @@ def compute_final_score(space, probability_map, user_location=None,
             user_location["latitude"], user_location["longitude"],
             space["latitude"], space["longitude"]
         )
-        distance_score = max(0, 1 - (distance_km / distance_decay_km))
+        distance_score = max(0.0, 1.0 - (distance_km / distance_decay_km))
         space["distance_text"] = format_distance_text(distance_km)
     else:
         space["distance_text"] = None
 
-    return round((prob_weight * base_score) + (distance_weight * distance_score), 4)
+    # --- traffic component ---
+    # Attach current traffic info to the space dict regardless of whether
+    # it influences the score (useful for the UI to display busyness).
+    if traffic_map is not None:
+        traffic_score = compute_traffic_score(spot_id, traffic_map, preferred_traffic_range)
+        entry = traffic_map.get(spot_id)
+        if entry:
+            space["traffic_percentage"] = entry.get("traffic_percentage")
+            space["traffic_estimated"] = entry.get("traffic_estimated", False)
+    else:
+        # No traffic data available — use neutral score and omit the weight
+        traffic_score = None
+
+    # Dynamically rescale weights so they always sum to 1.0.
+    # If traffic is unavailable, redistribute its weight to prob + distance.
+    if traffic_score is None:
+        effective_prob_w = prob_weight + traffic_weight / 2
+        effective_dist_w = distance_weight + traffic_weight / 2
+        effective_traffic_w = 0.0
+        traffic_score = 0.0
+    else:
+        effective_prob_w = prob_weight
+        effective_dist_w = distance_weight
+        effective_traffic_w = traffic_weight
+
+    total_weight = effective_prob_w + effective_dist_w + effective_traffic_w
+    score = (
+        (effective_prob_w * base_score) +
+        (effective_dist_w * distance_score) +
+        (effective_traffic_w * traffic_score)
+    ) / total_weight
+
+    return round(score, 4)
 
 
 def display_ranked_results(ranked_spaces, top_n=10):
@@ -339,6 +447,11 @@ def display_ranked_results(ranked_spaces, top_n=10):
     for space in ranked_spaces[:top_n]:
         floor_text = f" - Floor: {space['floor']}" if space.get("floor") not in [None, "N", ""] else ""
         distance_text = f" - {space['distance_text']}" if space.get("distance_text") else ""
+        traffic_pct = space.get("traffic_percentage")
+        traffic_text = ""
+        if traffic_pct is not None:
+            estimated = " (est.)" if space.get("traffic_estimated") else ""
+            traffic_text = f"\n  Traffic: {int(traffic_pct * 100)}%{estimated}"
         print(
             f"{space['name']} (Score: {space['score']})\n"
             f"  {space['building_name']}{floor_text}{distance_text}\n"
@@ -346,7 +459,8 @@ def display_ranked_results(ranked_spaces, top_n=10):
             f"  {'Indoor' if space['indoor'] else 'Outdoor'}\n"
             f"  {'Tech-Enhanced' if space['tech_enhanced'] else 'Standard'}\n"
             f"  {'Talking Allowed' if space['talking_allowed'] else 'Quiet Only'}\n"
-            f"  {'Must Reserve' if space['must_reserve'] else 'No Reservation Needed'}\n"
+            f"  {'Must Reserve' if space['must_reserve'] else 'No Reservation Needed'}"
+            f"{traffic_text}\n"
         )
 
 
@@ -451,17 +565,39 @@ def get_all_study_space_ids(db_conn):
     return [row[0] for row in cursor.fetchall()]
 
 
-def _rank_spaces(space_details, personal_model, user_location):
+def _rank_spaces(space_details, personal_model, user_location, traffic_map=None):
     """
-    Score and sort a list of space detail dicts using the personal model
-    and distance from the user's current location.
+    Score and sort a list of space detail dicts using the personal model,
+    distance from the user's current location, and live traffic data.
+
+    Args:
+        space_details (list[dict]): Spaces to rank
+        personal_model (PersonalModel): Fitted personal model for the user
+        user_location (dict | None): {"latitude": float, "longitude": float}
+        traffic_map (dict | None): Output of build_traffic_map(), or None
+
+    Returns:
+        list[dict]: Spaces sorted by score descending, each with a "score" key
     """
     available_ids = [s["id"] for s in space_details]
     probability_results = personal_model.probability(available_ids)
     probability_map = {spot_id: score for spot_id, score in probability_results}
 
+    # Pull preferred traffic range from the personal model's user context.
+    # user_context_for_ranking() has already been called upstream, so
+    # filter_preference is available on the instance.
+    preferred_traffic_range = getattr(personal_model, "filter_preference", {}).get(
+        "library_traffic_range", None
+    )
+
     for space in space_details:
-        space["score"] = compute_final_score(space, probability_map, user_location)
+        space["score"] = compute_final_score(
+            space,
+            probability_map,
+            user_location,
+            traffic_map=traffic_map,
+            preferred_traffic_range=preferred_traffic_range,
+        )
 
     return sorted(space_details, key=lambda x: x["score"], reverse=True)
 
@@ -476,11 +612,12 @@ def retrieve_ranked_study_spaces(user_id, filters=None, user_location=None, debu
 
     2. Filters provided:
        a. Build personal model to get preference stats (used for relax ordering).
-       b. Try filters as hard constraints + availability check in one shot.
-       c. If results exist → rank with personal model + distance, return.
-       d. If no results → progressively relax weakest constraints (one at a time),
+       b. Fetch live traffic data once (used in final scoring).
+       c. Try filters as hard constraints + availability check in one shot.
+       d. If results exist → rank with personal model + distance + traffic, return.
+       e. If no results → progressively relax weakest constraints (one at a time),
           re-checking availability at each step, until rooms are found.
-       e. Still nothing → fall back to all available rooms ranked by proximity.
+       f. Still nothing → fall back to all available rooms ranked by proximity.
     """
     db_conn = sqlite3.connect(DB_PATH)
 
@@ -490,7 +627,7 @@ def retrieve_ranked_study_spaces(user_id, filters=None, user_location=None, debu
         user_location = {"latitude": 33.6461, "longitude": -117.8427}
 
     # ------------------------------------------------------------------
-    # Step 1: No filters → proximity-only ranking
+    # Step 1: No filters → proximity-only ranking (no personal model needed)
     # ------------------------------------------------------------------
     if debug:
         print(f'[retrieve] STEP 1')
@@ -503,11 +640,20 @@ def retrieve_ranked_study_spaces(user_id, filters=None, user_location=None, debu
         available_ids = check_next_slot_availability_window(db_conn, all_ids)
         space_details = get_space_details(db_conn, available_ids)
 
+        # Fetch traffic and attach it to each space for display, but don't
+        # use it to re-order results (no preference data available here).
+        traffic_rows = get_study_space_traffic_closest_now()
+        traffic_map = build_traffic_map(traffic_rows)
         for space in space_details:
+            entry = traffic_map.get(space["id"])
+            if entry:
+                space["traffic_percentage"] = entry.get("traffic_percentage")
+                space["traffic_estimated"] = entry.get("traffic_estimated", False)
             space["score"] = compute_final_score(
                 space, probability_map={},
                 user_location=user_location,
-                prob_weight=0, distance_weight=1
+                traffic_map=None,      # no preference → don't let traffic re-order
+                prob_weight=0, distance_weight=1, traffic_weight=0,
             )
         return sorted(space_details, key=lambda x: x["score"], reverse=True)
 
@@ -523,6 +669,15 @@ def retrieve_ranked_study_spaces(user_id, filters=None, user_location=None, debu
 
     if debug:
         print(f"[retrieve] User average preference stats: {avg_stats}")
+
+    # ------------------------------------------------------------------
+    # Step 2b: Fetch live traffic data once — reused for all scoring below
+    # ------------------------------------------------------------------
+    traffic_rows = get_study_space_traffic_closest_now()
+    traffic_map = build_traffic_map(traffic_rows)
+
+    if debug:
+        print(f"[retrieve] Traffic data loaded for {len(traffic_map)} space(s).")
 
     # ------------------------------------------------------------------
     # Step 3: Hard filter pass with progressive relaxation fallback.
@@ -562,14 +717,15 @@ def retrieve_ranked_study_spaces(user_id, filters=None, user_location=None, debu
         return []
 
     # ------------------------------------------------------------------
-    # Step 5: Fetch details and rank using personal model + distance.
+    # Step 5: Fetch details and rank using personal model + distance + traffic.
     # Personal model signals always influence ranking regardless of whether
     # we took the direct path or had to relax constraints.
     # ------------------------------------------------------------------
     if debug:
         print(f'[retrieve] STEP 5')
+
     space_details = get_space_details(db_conn, available_ids)
-    ranked_spaces = _rank_spaces(space_details, personal_model, user_location)
+    ranked_spaces = _rank_spaces(space_details, personal_model, user_location, traffic_map=traffic_map)
 
     # Demote low-rated spots to the end of the list so they're still
     # visible but never crowd out genuinely good recommendations.
@@ -594,7 +750,6 @@ def get_available_buildings():
     buildings = [{"id": row[0], "name": row[1]} for row in cursor.fetchall()]
     conn.close()
     return buildings
-
 
 def round_up_to_hour(dt):
     """
@@ -716,4 +871,3 @@ def get_study_space_traffic_closest_now(window_hours: int = 6):
     rows = [dict(zip(cols, r)) for r in rows]
     rows = fill_missing_traffic(rows)
     return rows
-
