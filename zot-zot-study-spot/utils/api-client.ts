@@ -127,7 +127,7 @@ export type Filters = {
 	printerAvailable: boolean;
 	talkingAllowed: boolean;
 };
-export const API_BASE_URL = "http://192.168.1.41:3000"; // Currently copy pasting from output after starting api.py
+export const API_BASE_URL = "http://127.0.0.1:3000"; // Currently copy pasting from output after starting api.py
 
 // ---- Helpers ----
 
@@ -249,6 +249,7 @@ export function normalizeLocationResult(obj: any): LocationResult {
 	// If backend already returns LocationResult shape, this is basically a no-op.
 	const spacesRaw = obj.spaces ?? obj.data ?? obj.study_spaces ?? [];
 	const spaces = Array.isArray(spacesRaw) ? spacesRaw.map(normalizeStudySpace) : [];
+	console.log(spaces);
 	return {
 		id: String(obj.building_id ?? obj.id ?? ""),
 		title: String(obj.name ?? obj.title ?? ""),

@@ -57,7 +57,6 @@ export default function HomeScreen() {
 		async function retrieve_buildings()
 		{
 			const response = await apiGetBuildings();
-			console.log(response)
 			if (response.success)
 				setMarkers(response.data);
 		}
