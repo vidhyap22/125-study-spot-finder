@@ -83,13 +83,13 @@ def test_add_user():
     fake_user_data = {
         "created_at": "2026-02-22 19:15:00"
     }
-    add_user("USER_004", fake_user_data, True)
+    add_user("USER_007", fake_user_data, True)
 
 if __name__ == "__main__":
-    test_store_filter_info()
-    test_store_study_session()
-    test_store_bookmarks()
-    test_delete_bookmarks()
-    test_store_spot_view()
-    test_store_spot_feedback()
+    #test_store_filter_info()
+    #test_store_study_session()
+    #test_store_bookmarks()
+    #test_delete_bookmarks()
+    #test_store_spot_view()
+    #test_store_spot_feedback()
     test_add_user()

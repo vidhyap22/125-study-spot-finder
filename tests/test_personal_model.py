@@ -22,11 +22,21 @@ def test_user_2():
     result = user2.probability([44672, 34681])
     print(result)
 
+def test_user_7_edgecase():
+    user7 = PersonalModel("USER_007", USER_DB, APP_DB)
+    user_context = user7.user_context_for_ranking()
+    average_preference = user_context["average_preference"]
+    print("average preference: ", '\n', average_preference)
+    result = user7.probability([44672, 34681])
+    print(result)
+
 def main():
-    print('='*50, "user1", '='*50)
-    test_user_1()
-    print('='*50, "user2", '='*50)
-    test_user_2()
+    #print('='*50, "user7", '='*50)
+    #test_user_1()
+    #print('='*50, "user2", '='*50)
+    #test_user_2()
+    print('='*50, "user7", '='*50)
+    test_user_7_edgecase()
 
 if __name__ == '__main__':
     main()
