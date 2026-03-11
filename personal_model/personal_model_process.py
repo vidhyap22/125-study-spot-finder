@@ -63,15 +63,19 @@ class PersonalModel():
 
         # helper: enrich one event df
         def enrich(df_event: pd.DataFrame) -> pd.DataFrame:
-            if df_event.empty:
-                return df_event
+            df = df_event.copy()
 
-            # normalize keys
-            df_event = df_event.copy()
-            df_event["study_space_id"] = df_event["study_space_id"].astype("int64")
+            # if study_space_id is missing entirely, cannot enrich
+            if "study_space_id" not in df.columns:
+                return df
+
+            # normalize key type even if df is empty
+            df["study_space_id"] = df["study_space_id"].astype("int64")
+            df_spaces_local = df_spaces.copy()
+            df_spaces_local["study_space_id"] = df_spaces_local["study_space_id"].astype("int64")
 
             # merge spot info
-            df = df_event.merge(df_spaces, on="study_space_id", how="left", suffixes=("", "_space"))
+            df = df.merge(df_spaces_local, on="study_space_id", how="left", suffixes=("", "_space"))
 
             # resolve building_id if both exist
             if "building_id_space" in df.columns:
@@ -86,10 +90,11 @@ class PersonalModel():
             # merge building info
             if "building_id" in df.columns:
                 df["building_id"] = df["building_id"].astype("string")
-                df = df.merge(df_buildings, on="building_id", how="left", suffixes=("", "_bldg"))
+                df_buildings_local = df_buildings.copy()
+                df_buildings_local["building_id"] = df_buildings_local["building_id"].astype("string")
+                df = df.merge(df_buildings_local, on="building_id", how="left", suffixes=("", "_bldg"))
 
             return df
-
 
         return (
             enrich(df_sessions),
@@ -197,10 +202,10 @@ class PersonalModel():
 
     def analyze_stats(self, event_stats_list):
         EVENT_WEIGHTS = {
-            "study_sessions": 1.0,
-            "bookmarks": 1.5,
-            "spot_detail_views": 0.5,
-            "search_filters": 0.5,
+        "study_sessions": 1.0,
+        "bookmarks": 1.5,
+        "spot_detail_views": 0.5,
+        "search_filters": 0.5,
         }
 
         ATTRS = [
@@ -214,12 +219,23 @@ class PersonalModel():
             "must_reserve_pct"
         ]
 
+        DEFAULTS = {
+            "avg_capacity": 100.5,
+            "min_capacity": 1,
+            "max_capacity": 200,
+            "has_printer_pct": 0.5,
+            "is_indoor_pct": 0.5,
+            "is_talking_allowed_pct": 0.5,
+            "tech_enhanced_pct": 0.5,
+            "must_reserve_pct": 0.5
+        }
+
         weighted_sum = {a: 0.0 for a in ATTRS}
         total_weight = 0.0
         average_traffic = None
 
         for stats in event_stats_list:
-            event = stats["event"]
+            event = stats.get("event")
             w = EVENT_WEIGHTS.get(event)
             if w is None:
                 continue
@@ -227,7 +243,7 @@ class PersonalModel():
             if event == "study_sessions":
                 average_traffic = stats.get("session_traffic")
 
-            if stats["count"] == 0:
+            if stats.get("count", 0) == 0:
                 continue
 
             for a in ATTRS:
@@ -237,19 +253,22 @@ class PersonalModel():
 
             total_weight += w
 
-        if total_weight == 0:
-            return {a: None for a in ATTRS}
-
         result = {}
-        for a in ATTRS:
-            value = weighted_sum[a] / total_weight
 
-            if isinstance(value, float) and math.isnan(value):
-                result[a] = None
-            else:
-                result[a] = value
+        # cold start case
+        if total_weight == 0:
+            result = DEFAULTS.copy()
+        else:
+            for a in ATTRS:
+                value = weighted_sum[a] / total_weight
+                if isinstance(value, float) and math.isnan(value):
+                    result[a] = DEFAULTS[a]
+                else:
+                    result[a] = value
 
-        result["library_traffic"] = average_traffic
+        # handle traffic default
+        result["library_traffic"] = 0.5 if average_traffic is None else average_traffic
+        result["can_reserve_room"] = 1 if  total_weight == 0 or self.hours <= 2 and result.get("must_reserve_pct") > 0.5 else 0
         return result
 
     def user_preference(self, average_preference):
@@ -412,9 +431,16 @@ class PersonalModel():
         #given a list of spot_id, return the probability that the user will like the spot in descending order
         results = []
         spots = self.filter_out_low_rating_spot(spots)
-        attrs = ["must_reserve", "tech_enhanced", "capacity",
-            "is_indoor", "is_talking_allowed", "has_printer"]
-        
+
+        # cold-start check
+        if self.df_sessions.empty and self.df_bookmarks.empty and self.df_views.empty:
+            return [(spot, 0.5) for spot in spots]
+
+        attrs = [
+            "must_reserve", "tech_enhanced", "capacity",
+            "is_indoor", "is_talking_allowed", "has_printer"
+        ]
+
         pref_sessions  = self.build_marginal_pref(self.df_sessions, attrs)
         pref_bookmarks = self.build_marginal_pref(self.df_bookmarks, attrs)
         pref_views     = self.build_marginal_pref(self.df_views, attrs)
@@ -422,7 +448,8 @@ class PersonalModel():
         for spot in spots:
             with sqlite3.connect(self.APP_DB) as conn:
                 query = """
-                    SELECT s.must_reserve, s.tech_enhanced, s.capacity, s.is_indoor, s.is_talking_allowed, b.has_printer
+                    SELECT s.must_reserve, s.tech_enhanced, s.capacity,
+                        s.is_indoor, s.is_talking_allowed, b.has_printer
                     FROM study_spaces s
                     JOIN buildings b
                     ON s.building_id = b.building_id
@@ -434,9 +461,11 @@ class PersonalModel():
             s_score = self.score_spot_condition(pref_sessions, spot_condition)
             b_score = self.score_spot_condition(pref_bookmarks, spot_condition)
             v_score = self.score_spot_condition(pref_views, spot_condition)
-            
-            final_score = (1.0*s_score + 1.5*b_score + 0.5*v_score) / (1.0 + 1.5 + 0.5)   
+
+            final_score = (1.0*s_score + 1.5*b_score + 0.5*v_score) / (1.0 + 1.5 + 0.5)
+
             results.append((spot, final_score))
+
         results.sort(key=lambda x: x[1], reverse=True)
         return results
                 
