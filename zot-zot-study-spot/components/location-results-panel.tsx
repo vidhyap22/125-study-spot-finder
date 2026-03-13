@@ -70,6 +70,8 @@ type PageProps = {
 	visible: boolean;
 	onRequestClose: () => void;
 	locations: LocationResult[];
+	stageProp:Stage;
+	selectedLocationProp:LocationResult|null;
 };
 
 type Stage = "results" | "category" | "spaces";
@@ -79,17 +81,17 @@ const TAB_BAR_HEIGHT = 80;
 const SHEET_HEIGHT = 420;
 const LARGE_SHEET_HEIGHT = 650;
 
-export function LocationResultsPage({ visible, onRequestClose, locations }: PageProps) {
+export function LocationResultsPage({ visible, onRequestClose, locations, stageProp, selectedLocationProp }: PageProps) {
 	const { setSelectedSpot } = useSession();
 
-	const [stage, setStage] = useState<Stage>("results");
-	const [selectedLocation, setSelectedLocation] = useState<LocationResult | null>(null);
+	const [stage, setStage] = useState<Stage>(stageProp);
+	const [selectedLocation, setSelectedLocation] = useState<LocationResult | null>(selectedLocationProp);
 	const [spaceFilter, setSpaceFilter] = useState<SpaceFilter>("reservable");
 
 	useEffect(() => {
 		if (visible) {
-			setStage("results");
-			setSelectedLocation(null);
+			setStage(stageProp);
+			setSelectedLocation(selectedLocationProp);
 			setSpaceFilter("reservable");
 		}
 	}, [visible]);
@@ -97,6 +99,7 @@ export function LocationResultsPage({ visible, onRequestClose, locations }: Page
 	const list = useMemo(() => locations, [locations]);
 
 	const filteredSpaces: StudySpace[] = useMemo(() => {
+		//console.log(selectedLocation);
 		if (!selectedLocation) return [];
 		return selectedLocation.spaces.filter((s) => (spaceFilter === "reservable" ? s.reservable : !s.reservable));
 	}, [selectedLocation, spaceFilter]);

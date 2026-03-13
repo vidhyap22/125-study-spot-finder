@@ -149,7 +149,7 @@ function toQuery(params: Record<string, any>) {
 	return qs ? `?${qs}` : "";
 }
 
-async function fetchJson<T>({ method = "GET", path, body, timeoutMs = 15000, headers }: FetchOpts): Promise<T> {
+async function fetchJson<T>({ method = "GET", path, body, timeoutMs = 1500, headers }: FetchOpts): Promise<T> {
 	const controller = new AbortController();
 	const t = setTimeout(() => controller.abort(), timeoutMs);
 
@@ -164,7 +164,7 @@ async function fetchJson<T>({ method = "GET", path, body, timeoutMs = 15000, hea
 			body: method === "POST" ? JSON.stringify(body ?? {}) : undefined,
 			signal: controller.signal,
 		});
-
+		
 		const text = await res.text();
 		const isJson = text.trim().startsWith("{") || text.trim().startsWith("[");
 		const data = (isJson && text.length ? JSON.parse(text) : text) as any;
@@ -251,6 +251,7 @@ export function normalizeLocationResult(obj: any): LocationResult {
 	// If backend already returns LocationResult shape, this is basically a no-op.
 	const spacesRaw = obj.spaces ?? obj.data ?? obj.study_spaces ?? [];
 	const spaces = Array.isArray(spacesRaw) ? spacesRaw.map(normalizeStudySpace) : [];
+	console.log(spaces);
 	return {
 		id: String(obj.building_id ?? obj.id ?? ""),
 		title: String(obj.name ?? obj.title ?? ""),
@@ -259,6 +260,8 @@ export function normalizeLocationResult(obj: any): LocationResult {
 		isIndoors: obj.isIndoors ?? undefined,
 		isOutdoors: obj.isOutdoors ?? undefined,
 		spaces,
+		latitude:obj.latitude ?? undefined,
+		longitude:obj.longitude ?? undefined,
 	};
 }
 // api-client.ts
@@ -375,6 +378,7 @@ export async function apiGetBuildings(): Promise<SearchResponse | ApiFailure> {
 			method: "GET",
 		}),
 	);
+	console.log(result);
 	if ((result as any).success === false) return result as ApiFailure;
 
 	const ok = result as SearchResponse;

@@ -12,7 +12,7 @@ from automation.update_tasks import update_data
 # Add utils to path
 sys.path.append(str(Path(__file__).parent / "utils"))
 
-from utils.query import retrieve_ranked_study_spaces, get_available_buildings
+from utils.query import retrieve_ranked_study_spaces, get_buildings_with_spaces
 from utils.update_room_availability import update_availability
 from personal_model.store_personal_model_data import add_user, delete_bookmarks, store_bookmarks, store_filter_info, store_spot_feedback, store_spot_view, store_study_session, check_bookmark_status, get_bookmarked_space_info
 from automation import updater_service
@@ -34,7 +34,7 @@ def index():
 def get_buildings():
     """Get all available buildings"""
     try:
-        buildings = get_available_buildings()
+        buildings = get_buildings_with_spaces()
         return jsonify({
             "success": True,
             "data": buildings

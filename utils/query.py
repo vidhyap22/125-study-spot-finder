@@ -746,11 +746,53 @@ def get_available_buildings():
     """Get list of all available buildings"""
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
-    cursor.execute("SELECT building_id, name FROM buildings ORDER BY name")
-    buildings = [{"id": row[0], "name": row[1]} for row in cursor.fetchall()]
+    cursor.execute("""SELECT building_id, name, has_printer, opening_time, closing_time, longitude, latitude FROM buildings ORDER BY name;""")
+    buildings = [{"building_id": building[0], "name": building[1], "has_printer": building[2], "opening_time": building[3], "closing_time": building[4], "longitude": building[5], "latitude": building[6]} for building in cursor.fetchall()]
     conn.close()
     return buildings
 
+def get_study_spaces_at_building(building):
+    """Get list of all available buildings"""
+    conn = sqlite3.connect(DB_PATH)
+    cursor = conn.cursor()
+    cursor.execute("""SELECT
+            s.study_space_id,
+            s.name,
+            s.capacity,
+            s.tech_enhanced,
+            s.is_indoor,
+            s.must_reserve,
+            s.is_talking_allowed,
+            s.building_id,
+            b.name as building_name,
+            s.floor,
+            b.building_id
+            FROM study_spaces AS s
+            LEFT JOIN buildings AS b ON b.building_id = s.building_id
+            WHERE b.building_id = ?; """, (building, ))
+    spaces = [{"id": space[0], \
+        "title" : space[1], \
+        "capacity": space[2], \
+        "techEnhanced?": space[3], \
+        "environment": space[4], \
+        "reservable":space[5], \
+        "talkingAllowed": space[6], \
+        "locationId": space[7], \
+        "locationName": space[8], \
+        "floor": space[9]} for space in cursor.fetchall()]
+    conn.close()
+    return spaces
+
+def get_buildings_with_spaces():
+    spaceless_buildings = get_available_buildings()
+    buildings = []
+    for i, building in enumerate(spaceless_buildings):
+        spaces = get_study_spaces_at_building(building["building_id"])
+        if len(spaces) > 0:
+            building["spaces"] = spaces
+            buildings.append(building)
+    
+    return buildings
 def round_up_to_hour(dt):
     """
     Always round up to the next hour.
