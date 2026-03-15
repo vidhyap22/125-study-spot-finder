@@ -13,13 +13,31 @@ APP_DB = BASE_DIR / "data" / "database" / "app.db"
 def test_user_1():
     user1 = PersonalModel("USER_001", USER_DB, APP_DB)
     user1.user_context_for_ranking()
-    result = user1.probability([44672, 34681])
+    result = user1.probability([44672, 34681, 10, 11, 12, 34680, 44700])
     print(result)
 
 def test_user_2():
     user2 = PersonalModel("USER_002", USER_DB, APP_DB)
     user2.user_context_for_ranking()
-    result = user2.probability([44672, 34681])
+    result = user2.probability([44672, 34681, 10, 11, 12, 34680, 44700])
+    print(result)
+
+def test_user_4():
+    user4 = PersonalModel("USER_004", USER_DB, APP_DB)
+    user4.user_context_for_ranking()
+    user_context = user4.user_context_for_ranking()
+    average_preference = user_context["average_preference"]
+    print("average preference: ", '\n', average_preference)
+    result = user4.probability([44672, 34681, 10, 11, 12, 34680, 44700])
+    print(result)
+
+def test_user_6():
+    user6 = PersonalModel("USER_006", USER_DB, APP_DB)
+    user6.user_context_for_ranking()
+    user_context = user6.user_context_for_ranking()
+    average_preference = user_context["average_preference"]
+    print("average preference: ", '\n', average_preference)
+    result = user6.probability([44672, 34681, 10, 11, 12, 34680, 44700])
     print(result)
 
 def test_user_7_edgecase():
@@ -27,7 +45,7 @@ def test_user_7_edgecase():
     user_context = user7.user_context_for_ranking()
     average_preference = user_context["average_preference"]
     print("average preference: ", '\n', average_preference)
-    result = user7.probability([44672, 34681])
+    result = user7.probability([44672, 34681, 10, 11, 12, 34680, 44700])
     print(result)
 
 def main():
@@ -35,8 +53,12 @@ def main():
     #test_user_1()
     #print('='*50, "user2", '='*50)
     #test_user_2()
-    print('='*50, "user7", '='*50)
-    test_user_7_edgecase()
+    #print('='*50, "user7", '='*50)
+    #test_user_7_edgecase()
+    print('='*50, "user4", '='*50)
+    test_user_4()
+    print('='*50, "user6", '='*50)
+    test_user_6()
 
 if __name__ == '__main__':
     main()

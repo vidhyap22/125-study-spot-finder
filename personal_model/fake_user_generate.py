@@ -58,7 +58,6 @@ def main():
 
     insert_dicts("users", users, user_cur)
     insert_dicts("study_sessions", study_sessions, user_cur)
-    insert_dicts("study_sessions", study_sessions, user_cur)
     insert_dicts("bookmarks", bookmarks, user_cur)
     insert_dicts("spot_feedback", spot_feedback, user_cur)
     insert_dicts("search_filters ", search_filters, user_cur)
