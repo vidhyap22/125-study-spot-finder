@@ -11,7 +11,7 @@ import type { LocationResult } from "@/utils/types";
 import * as Location from "expo-location";
 import {MapNav, ex_route, ExitNavButton} from "@/components/navigation-ui"
 
-const USER_ID = "USER_001"; // hardcoding current user ID
+const USER_ID = "USER_005"; // hardcoding current user ID
 
 
 export default function HomeScreen() {
@@ -104,13 +104,13 @@ export default function HomeScreen() {
 		if (!res.success) {
 			setSearchError(res.error);
 			// TODO: error UI
-			//setLocations([]);//
+			setLocations([]);
 			setShowResults(true);
 			return;
 		}
-		//console.log(res.data[0]);
+		console.log(res.data[0]);
 
-		//setLocations(res.data as LocationResult[]);
+		setLocations(res.data as LocationResult[]);
 		setShowResults(true);
 	}
 
@@ -204,7 +204,7 @@ export default function HomeScreen() {
 			<LocationResultsPage 
 				visible={showResults} 
 				onRequestClose={() => setShowResults(false)} 
-				locations={markers} 
+				locations={ locations}//(showSearchResults ? locations : markers)} 
 				stageProp = {stage}
 				selectedLocationProp = {selectedLocation}
 				onStartNav = {on_start_navigation}

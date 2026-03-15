@@ -212,6 +212,8 @@ export function groupJoinedRowsToLocationResults(rows: any[]): LocationResult[] 
 				isOutdoors: false,
 
 				spaces: [],
+				latitude: 0,
+				longitude: 0
 			};
 
 			byBuilding.set(buildingId, building);
