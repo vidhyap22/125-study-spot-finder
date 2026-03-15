@@ -477,5 +477,5 @@ class PersonalModel():
 if __name__ == "__main__":
     user1 = PersonalModel("USER_001", USER_DB, APP_DB)
     user1.user_context_for_ranking()
-    result = user1.probability([44672, 34681])
+    result = user1.probability([44672, 34681, 10, 11, 12, 34680, 44700])
     print(result)
