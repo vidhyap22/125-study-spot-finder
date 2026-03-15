@@ -20,4 +20,6 @@ export type LocationResult = {
 	isIndoors?: boolean;
 	isOutdoors?: boolean;
 	spaces: StudySpace[];
+	latitude:number;
+	longitude:number;
 };

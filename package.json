@@ -2,6 +2,7 @@
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^7.1.0",
     "@fortawesome/free-brands-svg-icons": "^7.1.0",
-    "@fortawesome/free-solid-svg-icons": "^7.1.0"
+    "@fortawesome/free-solid-svg-icons": "^7.1.0",
+    "@types/geojson": "^7946.0.16"
   }
 }

@@ -1,7 +1,7 @@
 import requests
 import sqlite3
 
-
+api_key = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjgwYTA3ZjIyOWJhMzQ4ODU4MDJkM2NkNmFkNmNjNTIzIiwiaCI6Im11cm11cjY0In0="
 def get_building_coords(building_id, connection):
     #access database to fetch latitude, longitude of a building id using sqlite3 connection
     cursor = connection.execute("SELECT longitude, latitude FROM buildings WHERE building_id = ?;", (building_id,))
@@ -32,6 +32,7 @@ if __name__ == "__main__":
     url = build_url(api_key, *start, 33.647176,-117.841159) 
     print(url)
     data = get_data(url)
+    print(data)
 
 #things to add:
 #check that starting coordinates are within the bounds of UCI (find min and max long and lat)
