@@ -5,27 +5,17 @@ import { MOCK_LOCATIONS } from "@/utils/mock-locations";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { useEffect, useState } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
-import MapView, { Marker } from "react-native-maps";
-import { apiSearchSpaces, toApiFilters, apiGetBuildings } from "@/utils/api-client";
+import MapView, { Marker, Geojson } from "react-native-maps";
+import { apiSearchSpaces, toApiFilters, apiGetBuildings, apiGetDirections} from "@/utils/api-client";
 import type { LocationResult } from "@/utils/types";
 import * as Location from "expo-location";
+import {MapNav, ex_route, ExitNavButton} from "@/components/navigation-ui"
 
-const USER_ID = "USER_001"; // hardcoding current user ID
-const myPlace = {
-	type: "FeatureCollection",
-	features: [
-		{
-			type: "Feature",
-			properties: {},
-			geometry: {
-				type: "Point",
-				coordinates: [-117.84279, 33.64579],
-			},
-		},
-	],
-};
+const USER_ID = "USER_005"; // hardcoding current user ID
+
 
 export default function HomeScreen() {
+	const [userLoc, setUserLoc] = useState<Location.LocationObject|null>(null);
 	const [locations, setLocations] = useState<LocationResult[]>([]);
 	const [markers, setMarkers] = useState<LocationResult[]>([]); //All currently available markers
 	const [isSearching, setIsSearching] = useState(false);
@@ -37,21 +27,55 @@ export default function HomeScreen() {
 	});
 	const [stage, setStage] = useState("results");
 	const [selectedLocation, setSelectedLocation] = useState<LocationResult|null>(null);
+	const [navVis, setNavVis] = useState(false);
+	const [navRoute, setNavRoute] = useState(ex_route);
 
 	const theme = Colors.light;
 	const [showResults, setShowResults] = useState(false);
 
-	useEffect(() => {
-		async function getCurrentLocation() {
-			let { status } = await Location.requestForegroundPermissionsAsync();
-			if (status !== "granted") {
-				return;
-			}
-
-			let location = await Location.getCurrentPositionAsync({});
+	
+	async function getCurrentLocation() {
+		let { status } = await Location.requestForegroundPermissionsAsync();
+		if (status !== "granted") {
+			return;
 		}
+
+		let location = await Location.getCurrentPositionAsync({});
+		//console.log(location);
+		setUserLoc(location);
+	}
+
+	useEffect(() => {
 		getCurrentLocation();
 	}, []);
+
+	async function on_start_navigation(building_id:string)
+	{
+		async function retrieve_directions(long:number, lat:number)
+		{
+			const response = await apiGetDirections(long, lat);
+			if (response.success)
+			{
+				setNavRoute(response);
+				console.log("route from index.tsx: ");
+				console.log(response);
+				console.log(response === ex_route);
+			}
+		}
+		const building = markers.find(marker => marker.id === building_id);
+		const location = await getCurrentLocation();
+		console.log("starting navigation")
+		setNavVis(true);
+		setShowResults(false);
+		//retrieve_directions(building.longitude, building.latitude);
+		const response = await apiGetDirections(building.longitude, building.latitude);
+		if (response.success)
+		{
+			setNavRoute(response);
+			console.log("route from index.tsx: ");
+			console.log(response);
+		}
+	}
 
 	useEffect(() => {
 		async function retrieve_buildings()
@@ -80,13 +104,13 @@ export default function HomeScreen() {
 		if (!res.success) {
 			setSearchError(res.error);
 			// TODO: error UI
-			//setLocations([]);//
+			setLocations([]);
 			setShowResults(true);
 			return;
 		}
 		console.log(res.data[0]);
 
-		//setLocations(res.data as LocationResult[]);
+		setLocations(res.data as LocationResult[]);
 		setShowResults(true);
 	}
 
@@ -105,10 +129,15 @@ export default function HomeScreen() {
 		setShowResults(false);
 	}
 
+	function exitNav()
+	{
+		setNavVis(false);
+	}
+
 	return (
 		<View style={[styles.container, { backgroundColor: theme.background }]}>
 			{/* Map */}
-			<MapView
+			{!navVis && (<MapView
 				style={styles.image}
 				//events
 				onUserLocationChange={update_route_as_user_moves}
@@ -135,7 +164,14 @@ export default function HomeScreen() {
 						key = {index}
 					/>
 				))}
-			</MapView>
+			</MapView>)}
+
+			{navVis && userLoc != null && (<MapNav user_lat = {userLoc?.coords.latitude}
+								user_lon = {userLoc?.coords.longitude}
+								input_route = {navRoute}
+								onExit={exitNav}/>)}
+
+			{navVis && <ExitNavButton onExit = {exitNav}/>}
 
 			{/* Floating filter bar */}
 			<View style={styles.controlWrapper}>
@@ -168,9 +204,10 @@ export default function HomeScreen() {
 			<LocationResultsPage 
 				visible={showResults} 
 				onRequestClose={() => setShowResults(false)} 
-				locations={markers} 
+				locations={ locations}//(showSearchResults ? locations : markers)} 
 				stageProp = {stage}
 				selectedLocationProp = {selectedLocation}
+				onStartNav = {on_start_navigation}
 				/>
 		</View>
 	);

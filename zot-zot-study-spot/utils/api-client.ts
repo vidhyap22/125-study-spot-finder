@@ -1,6 +1,7 @@
 // import { Filters } from "@/components/filter-bar";
 import type { StudySpace, LocationResult } from "./types";
 import { getUserLocationOrNull } from "./user-location";
+import * as Location from "expo-location";
 
 export type SearchRequest = {
 	user_id: string;
@@ -211,6 +212,8 @@ export function groupJoinedRowsToLocationResults(rows: any[]): LocationResult[] 
 				isOutdoors: false,
 
 				spaces: [],
+				latitude: 0,
+				longitude: 0
 			};
 
 			byBuilding.set(buildingId, building);
@@ -520,4 +523,27 @@ export async function apiAddUser(req: AddUserReq): Promise<{ success: true; rece
 			body: req,
 		}),
 	);
+}
+
+
+export async function apiGetDirections(long:number, lat:number)
+{
+	let map_api_key = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjgwYTA3ZjIyOWJhMzQ4ODU4MDJkM2NkNmFkNmNjNTIzIiwiaCI6Im11cm11cjY0In0="
+	let user_location = await Location.getCurrentPositionAsync({});
+	let url = "https://api.openrouteservice.org/v2/directions/foot-walking?";
+	url += "api_key=" + map_api_key;
+	url += "&";
+	url += 'start=' + user_location.coords.longitude.toString() + ',' +  user_location.coords.latitude.toString();
+	url += "&";
+	url += 'end='+ long.toString() + ',' + lat.toString();
+	console.log("fetching from " + url);
+	const response = await fetch(url);
+	if (!response.ok) {
+		throw new Error(`Response status: ${response.status}`);
+	}
+	//console.log(response);
+	const result = await response.json();
+	console.log("api result:");
+	console.log(result);
+	return result
 }

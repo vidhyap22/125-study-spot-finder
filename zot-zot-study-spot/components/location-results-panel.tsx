@@ -72,6 +72,7 @@ type PageProps = {
 	locations: LocationResult[];
 	stageProp:Stage;
 	selectedLocationProp:LocationResult|null;
+	onStartNav:(buiding_id:string)=>void;
 };
 
 type Stage = "results" | "category" | "spaces";
@@ -81,7 +82,7 @@ const TAB_BAR_HEIGHT = 80;
 const SHEET_HEIGHT = 420;
 const LARGE_SHEET_HEIGHT = 650;
 
-export function LocationResultsPage({ visible, onRequestClose, locations, stageProp, selectedLocationProp }: PageProps) {
+export function LocationResultsPage({ visible, onRequestClose, locations, stageProp, selectedLocationProp, onStartNav }: PageProps) {
 	const { setSelectedSpot } = useSession();
 
 	const [stage, setStage] = useState<Stage>(stageProp);
@@ -160,6 +161,7 @@ export function LocationResultsPage({ visible, onRequestClose, locations, stageP
 								});
 								onRequestClose();
 							}}
+							onStartNavigation = {onStartNav}
 						/>
 					) : (
 						<View style={styles.emptyContainer}>
