@@ -233,22 +233,22 @@
         {
             "start": "2026-03-17T17:30:00-07:00",
             "end": "2026-03-17T18:00:00-07:00",
-            "isAvailable": true
+            "isAvailable": false
         },
         {
             "start": "2026-03-17T18:00:00-07:00",
             "end": "2026-03-17T18:30:00-07:00",
-            "isAvailable": true
+            "isAvailable": false
         },
         {
             "start": "2026-03-17T18:30:00-07:00",
             "end": "2026-03-17T19:00:00-07:00",
-            "isAvailable": true
+            "isAvailable": false
         },
         {
             "start": "2026-03-17T19:00:00-07:00",
             "end": "2026-03-17T19:30:00-07:00",
-            "isAvailable": true
+            "isAvailable": false
         },
         {
             "start": "2026-03-17T19:30:00-07:00",
@@ -363,22 +363,22 @@
         {
             "start": "2026-03-18T17:00:00-07:00",
             "end": "2026-03-18T17:30:00-07:00",
-            "isAvailable": true
+            "isAvailable": false
         },
         {
             "start": "2026-03-18T17:30:00-07:00",
             "end": "2026-03-18T18:00:00-07:00",
-            "isAvailable": true
+            "isAvailable": false
         },
         {
             "start": "2026-03-18T18:00:00-07:00",
             "end": "2026-03-18T18:30:00-07:00",
-            "isAvailable": true
+            "isAvailable": false
         },
         {
             "start": "2026-03-18T18:30:00-07:00",
             "end": "2026-03-18T19:00:00-07:00",
-            "isAvailable": true
+            "isAvailable": false
         },
         {
             "start": "2026-03-18T19:00:00-07:00",
