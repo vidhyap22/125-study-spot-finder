@@ -21,6 +21,7 @@ type Props = {
 	locationId: string;
 	floor: string;
 	traffic: string | null;
+	rank: string | null;
 
 	onPress?: () => void;
 
@@ -41,6 +42,7 @@ export function StudySpaceRow({
 	roomId,
 	floor,
 	traffic,
+	rank,
 	onPress,
 	onReserveOpened,
 	onChoosePublic,
@@ -89,6 +91,9 @@ export function StudySpaceRow({
 			parts.push(`${parseFloat(traffic) * 100}% busy`);
 		}
 		console.log(environment);
+		if (rank) {
+			parts.push(rank);
+		}
 		return parts.join(" • ");
 	}, [capacity, techEnhanced, environment, talkingAllowed]);
 

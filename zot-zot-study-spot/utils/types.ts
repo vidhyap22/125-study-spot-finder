@@ -10,6 +10,7 @@ export type StudySpace = {
 	locationName: string;
 	floor: string;
 	traffic: string | null;
+	rank: string | null;
 };
 
 export type LocationResult = {
@@ -20,6 +21,6 @@ export type LocationResult = {
 	isIndoors?: boolean;
 	isOutdoors?: boolean;
 	spaces: StudySpace[];
-	latitude:number;
-	longitude:number;
+	latitude: number;
+	longitude: number;
 };

@@ -24,10 +24,10 @@ type Props = {
 
 	// parent receives a confirmed choice (public) or confirmed reservation (reservable)
 	onChooseSpace?: (spot: SelectedSpotPayload) => void;
-	onStartNavigation: (id:string)=>void;
+	onStartNavigation: (id: string) => void;
 };
 
-export function LocationSpacesList({ locationTitle, locationId, spaceType, spaces, onBack, onChooseSpace, onStartNavigation}: Props) {
+export function LocationSpacesList({ locationTitle, locationId, spaceType, spaces, onBack, onChooseSpace, onStartNavigation }: Props) {
 	// 1) reservable flow: modal after returning from browser
 	const [reservedModalVisible, setReservedModalVisible] = useState(false);
 	const [reservedModalMessage, setReservedModalMessage] = useState("");
@@ -39,7 +39,9 @@ export function LocationSpacesList({ locationTitle, locationId, spaceType, space
 	// 2) public flow: modal immediately on press
 	const [chooseModalVisible, setChooseModalVisible] = useState(false);
 	const pendingChooseSpaceRef = useRef<SpaceRef | null>(null);
-	const handleStartNavigation = () => {onStartNavigation(locationId)};
+	const handleStartNavigation = () => {
+		onStartNavigation(locationId);
+	};
 	useEffect(() => {
 		const sub = AppState.addEventListener("change", (nextState: AppStateStatus) => {
 			if (nextState === "active" && awaitingReturnRef.current) {
@@ -130,6 +132,7 @@ export function LocationSpacesList({ locationTitle, locationId, spaceType, space
 						locationId={locationId}
 						floor={item.floor}
 						traffic={item.traffic}
+						rank={item.rank}
 						onReserveOpened={handleReserveOpened}
 						onChoosePublic={handleChoosePublic}
 					/>

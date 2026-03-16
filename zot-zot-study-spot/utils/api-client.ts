@@ -165,7 +165,7 @@ async function fetchJson<T>({ method = "GET", path, body, timeoutMs = 1500, head
 			body: method === "POST" ? JSON.stringify(body ?? {}) : undefined,
 			signal: controller.signal,
 		});
-		
+
 		const text = await res.text();
 		const isJson = text.trim().startsWith("{") || text.trim().startsWith("[");
 		const data = (isJson && text.length ? JSON.parse(text) : text) as any;
@@ -191,7 +191,8 @@ async function safe<T>(fn: () => Promise<T>): Promise<T | ApiFailure> {
 export function groupJoinedRowsToLocationResults(rows: any[]): LocationResult[] {
 	const byBuilding = new Map<string, LocationResult>();
 
-	for (const row of rows) {
+	for (let i = 0; i < rows.length; i++) {
+		let row = rows[i];
 		const buildingId = String(row.building_id ?? row.locationId ?? row.location_id ?? "");
 		if (!buildingId) continue;
 
@@ -213,11 +214,12 @@ export function groupJoinedRowsToLocationResults(rows: any[]): LocationResult[] 
 
 				spaces: [],
 				latitude: 0,
-				longitude: 0
+				longitude: 0,
 			};
 
 			byBuilding.set(buildingId, building);
 		}
+		row.rank = `Rank ${i + 1}/${rows.length}`;
 
 		// Add the space
 		building.spaces.push(normalizeStudySpace(row));
@@ -247,6 +249,7 @@ export function normalizeStudySpace(row: any): StudySpace {
 		locationName: String(row.building_name ?? row.locationName ?? row.location_title ?? ""),
 		floor: String(row.floor ?? ""),
 		traffic: traffic,
+		rank: String(row.rank),
 	};
 }
 
@@ -263,8 +266,8 @@ export function normalizeLocationResult(obj: any): LocationResult {
 		isIndoors: obj.isIndoors ?? undefined,
 		isOutdoors: obj.isOutdoors ?? undefined,
 		spaces,
-		latitude:obj.latitude ?? undefined,
-		longitude:obj.longitude ?? undefined,
+		latitude: obj.latitude ?? undefined,
+		longitude: obj.longitude ?? undefined,
 	};
 }
 // api-client.ts
@@ -525,17 +528,15 @@ export async function apiAddUser(req: AddUserReq): Promise<{ success: true; rece
 	);
 }
 
-
-export async function apiGetDirections(long:number, lat:number)
-{
-	let map_api_key = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjgwYTA3ZjIyOWJhMzQ4ODU4MDJkM2NkNmFkNmNjNTIzIiwiaCI6Im11cm11cjY0In0="
+export async function apiGetDirections(long: number, lat: number) {
+	let map_api_key = "eyJvcmciOiI1YjNjZTM1OTc4NTExMTAwMDFjZjYyNDgiLCJpZCI6IjgwYTA3ZjIyOWJhMzQ4ODU4MDJkM2NkNmFkNmNjNTIzIiwiaCI6Im11cm11cjY0In0=";
 	let user_location = await Location.getCurrentPositionAsync({});
 	let url = "https://api.openrouteservice.org/v2/directions/foot-walking?";
 	url += "api_key=" + map_api_key;
 	url += "&";
-	url += 'start=' + user_location.coords.longitude.toString() + ',' +  user_location.coords.latitude.toString();
+	url += "start=" + user_location.coords.longitude.toString() + "," + user_location.coords.latitude.toString();
 	url += "&";
-	url += 'end='+ long.toString() + ',' + lat.toString();
+	url += "end=" + long.toString() + "," + lat.toString();
 	console.log("fetching from " + url);
 	const response = await fetch(url);
 	if (!response.ok) {
@@ -545,5 +546,5 @@ export async function apiGetDirections(long:number, lat:number)
 	const result = await response.json();
 	console.log("api result:");
 	console.log(result);
-	return result
+	return result;
 }
